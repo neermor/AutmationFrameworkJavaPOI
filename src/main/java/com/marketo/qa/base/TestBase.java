@@ -15,6 +15,7 @@ import org.testng.annotations.BeforeMethod;
 
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.Pages.LoginPage;
+import com.marketo.qa.utility.reports;
 
 public class TestBase {
 	public static WebDriver driver;
@@ -71,6 +72,7 @@ public class TestBase {
 		new LoginPage().Login(prop.getProperty("username"), prop.getProperty("password"));
 		new CommonLib().StandardWait();
 		Reporter.log("Login Succsessfully");
+
 	}
 
 	

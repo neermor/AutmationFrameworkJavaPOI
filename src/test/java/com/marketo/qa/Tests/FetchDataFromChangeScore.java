@@ -8,6 +8,7 @@ import com.marketo.qa.Pages.MarketingActivitesPage;
 import com.marketo.qa.Pages.MyMarketoPage;
 import com.marketo.qa.Pages.SupportToolsPage;
 import com.marketo.qa.base.TestBase;
+import com.marketo.qa.utility.reports;
 import com.marketo.qa.utility.screenshotUtility;
 
 public class FetchDataFromChangeScore extends TestBase {
@@ -17,6 +18,7 @@ public class FetchDataFromChangeScore extends TestBase {
 	
 	@Test()
 	public void VerifyChangeScoreCount() throws Throwable {
+		reports.docs();
 		LoginPage.OpenSupportTool();
 		Support.SelectValueFlowAction("Flow Actions Used","Change Score",1);
 		screenshotUtility.TakeScreenshot(Support.GetResultTable(), "Change Score");
