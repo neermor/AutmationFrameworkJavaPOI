@@ -5,27 +5,27 @@
       <![CDATA[Login Succsessfully]]>
     </line>
   </reporter-output>
-  <suite started-at="2022-07-21T09:25:32 IST" name="Default suite" finished-at="2022-07-21T09:26:06 IST" duration-ms="33558">
+  <suite started-at="2022-07-22T15:46:39 IST" name="Default suite" finished-at="2022-07-22T15:47:19 IST" duration-ms="39572">
     <groups>
     </groups>
-    <test started-at="2022-07-21T09:25:32 IST" name="Default test" finished-at="2022-07-21T09:26:06 IST" duration-ms="33558">
+    <test started-at="2022-07-22T15:46:39 IST" name="Default test" finished-at="2022-07-22T15:47:19 IST" duration-ms="39572">
       <class name="com.marketo.qa.Tests.FetchDataFromChangeScore">
-        <test-method is-config="true" signature="initialization()[pri:0, instance:com.marketo.qa.Tests.FetchDataFromChangeScore@791f145a]" started-at="2022-07-21T09:25:32 IST" name="initialization" finished-at="2022-07-21T09:25:39 IST" duration-ms="6275" status="PASS">
+        <test-method is-config="true" signature="initialization()[pri:0, instance:com.marketo.qa.Tests.FetchDataFromChangeScore@791f145a]" started-at="2022-07-22T15:46:39 IST" name="initialization" finished-at="2022-07-22T15:46:53 IST" duration-ms="13125" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialization -->
-        <test-method is-config="true" signature="MarketoLogin()[pri:0, instance:com.marketo.qa.Tests.FetchDataFromChangeScore@791f145a]" started-at="2022-07-21T09:25:39 IST" name="MarketoLogin" finished-at="2022-07-21T09:25:49 IST" duration-ms="10169" status="PASS">
+        <test-method is-config="true" signature="MarketoLogin()[pri:0, instance:com.marketo.qa.Tests.FetchDataFromChangeScore@791f145a]" started-at="2022-07-22T15:46:53 IST" name="MarketoLogin" finished-at="2022-07-22T15:47:03 IST" duration-ms="10238" status="PASS">
           <reporter-output>
             <line>
               <![CDATA[Login Succsessfully]]>
             </line>
           </reporter-output>
         </test-method> <!-- MarketoLogin -->
-        <test-method signature="VerifyChangeScoreCount()[pri:0, instance:com.marketo.qa.Tests.FetchDataFromChangeScore@791f145a]" started-at="2022-07-21T09:25:49 IST" name="VerifyChangeScoreCount" finished-at="2022-07-21T09:26:06 IST" duration-ms="16903" status="PASS">
+        <test-method signature="VerifyChangeScoreCount()[pri:0, instance:com.marketo.qa.Tests.FetchDataFromChangeScore@791f145a]" started-at="2022-07-22T15:47:03 IST" name="VerifyChangeScoreCount" finished-at="2022-07-22T15:47:19 IST" duration-ms="15952" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- VerifyChangeScoreCount -->
-        <test-method is-config="true" signature="CloseBrowser()[pri:0, instance:com.marketo.qa.Tests.FetchDataFromChangeScore@791f145a]" started-at="2022-07-21T09:26:06 IST" name="CloseBrowser" finished-at="2022-07-21T09:26:06 IST" duration-ms="186" status="PASS">
+        <test-method is-config="true" signature="CloseBrowser()[pri:0, instance:com.marketo.qa.Tests.FetchDataFromChangeScore@791f145a]" started-at="2022-07-22T15:47:19 IST" name="CloseBrowser" finished-at="2022-07-22T15:47:19 IST" duration-ms="233" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CloseBrowser -->
