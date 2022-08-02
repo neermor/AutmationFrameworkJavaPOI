@@ -6,9 +6,7 @@
       <class name="com.marketo.qa.Tests.FetchDataFromChangeScore">
         <methods>
           <include name="VerifyChangeScoreCount"/>
-          <include name="MarketoLogin"/>
           <include name="initialization"/>
-          <include name="CloseBrowser"/>
         </methods>
       </class> <!-- com.marketo.qa.Tests.FetchDataFromChangeScore -->
     </classes>

@@ -13,18 +13,21 @@ import com.marketo.qa.base.TestBase;
 public class MyMarketoPage extends TestBase {
 	
 	boolean flag = false;
-	private By MyMarketoPageHomeTiles=By.xpath("//div[contains(@id, 'homeTile') or contains(@id, 'mercuryTile')]");
+	By MyMarketoPageHomeTiles=By.xpath("//div[@role='tablist']/div");
 
 	
-	public void OpenMarketingActivitiesTab() {
-	    List<WebElement> HomeTiles = driver.findElements(MyMarketoPageHomeTiles);
+	public void OpenMarketingActivitiesTab() throws Throwable {
+		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 
-		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);		
+	    List<WebElement> HomeTiles = driver.findElements(MyMarketoPageHomeTiles);
+        System.out.println(HomeTiles);
 		 for(WebElement option: HomeTiles){
 			 
 				if (option.getText().equalsIgnoreCase("Marketing Activities")) {
 					option.click();
 				}
+				System.out.println(option.getText());
+				Thread.sleep(4000);
 			 }
 		 }
 	
@@ -39,6 +42,7 @@ public class MyMarketoPage extends TestBase {
 				}
 			 }
 		 }
+	
 	public void OpenAdminTab() {
 		 List<WebElement> HomeTiles = driver.findElements(MyMarketoPageHomeTiles);
 
@@ -49,7 +53,8 @@ public class MyMarketoPage extends TestBase {
 						option.click();
 					}
 				 }
-	}
+			 }
+	
 	public void OpenanalyticsTab() {
 		 List<WebElement> HomeTiles = driver.findElements(MyMarketoPageHomeTiles);
 
@@ -60,7 +65,8 @@ public class MyMarketoPage extends TestBase {
 						option.click();
 					}
 				 }
-	}
+			 }
+	
 	public void OpenDatabaseTab() {
 		 List<WebElement> HomeTiles = driver.findElements(MyMarketoPageHomeTiles);
 
@@ -71,8 +77,7 @@ public class MyMarketoPage extends TestBase {
 						option.click();
 					}
 				 }
-	}
-	
+			 }
 	
 	
 	public boolean VerifyHomeTileElements() {
@@ -87,12 +92,10 @@ public class MyMarketoPage extends TestBase {
 	        	Assert.assertTrue(option.isEnabled(),"HomeTiles were found on the page!:");
 	       flag = true;
 	        	
-	         }
-	        
+	         }	        
 	    }
 		return flag;
 	}
-	
 	
 	
 

@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -31,19 +32,19 @@ public class CommonLib extends TestBase{
 		dropDown.selectByVisibleText(selectValue);
 	}
 	
-	public void StandardWait() throws Throwable {
-		Thread.sleep(10000);
+	public void StandardWait(int time) throws Throwable {
+		Thread.sleep(time);
 	}
 	
 	public void WriteExcelData(String sheetName ,int row,int col,int cellValue) throws Exception {
         String ExcelPath=System.getProperty("user.dir")+"./src/test/resources/TestData/MarketoData.xlsx";
 		File file =  new File(ExcelPath);
         FileInputStream fis = new FileInputStream(file); 
-        XSSFWorkbook wb = new XSSFWorkbook(fis);
-        XSSFSheet sheet = wb.getSheet(sheetName);
+        XSSFWorkbook book = new XSSFWorkbook(fis);
+        XSSFSheet sheet = book.getSheet(sheetName);
         sheet.getRow(row).createCell(col).setCellValue(cellValue);
         FileOutputStream fos = new FileOutputStream(file);
-        wb.write(fos);
+        book.write(fos);
         fos.close();
 
 	}
@@ -54,11 +55,18 @@ public class CommonLib extends TestBase{
         FileInputStream fis = new FileInputStream(file); 
         XSSFWorkbook wb = new XSSFWorkbook(fis);
         XSSFSheet sheet = wb.getSheet(sheetName);
-        sheet.createRow(row).createCell(col).setCellValue(cellValue);
+        sheet.getRow(row).createCell(col).setCellValue(cellValue);
         FileOutputStream fos = new FileOutputStream(file);
         wb.write(fos);
         fos.close();
+        
 		}
+	
+	public void MouseHover(WebElement element) {
+		Actions actions = new Actions(driver);
+		actions.moveToElement(element).perform();
+	}
+	
 
        
 

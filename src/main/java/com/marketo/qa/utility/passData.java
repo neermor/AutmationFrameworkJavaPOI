@@ -3,7 +3,12 @@ package com.marketo.qa.utility;
 
 public class passData  {
 	
-	static String login = "C:\\Users\\pradyumna.sahoo\\Dev\\MarketoInstance\\test-output\\screenshots\\Interesting Moment.png";
+	public static String PrintScreenShot(String ScreenShotName) {
+	 String login = "C:/Users/pradyumna.sahoo/Dev/MarketoInstance/test-output/"+ScreenShotName+".png";
+		return login;
+	}
+	static String login = "C:\\Users\\pradyumna.sahoo\\Dev\\MarketoInstance\\test-output\\screenshots\\Change Score.png";
+
 	static String after = "C:\\Users\\neeraj.mourya\\eclipse-workspace\\Acedmy\\test-output\\screenshots\\after.png";
 	
 	static String Document_name = "8967";

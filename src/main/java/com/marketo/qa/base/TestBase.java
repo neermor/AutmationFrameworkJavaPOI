@@ -9,13 +9,11 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Reporter;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 
 import com.marketo.qa.FileLib.CommonLib;
+import com.marketo.qa.Pages.GhostLoginPage;
 import com.marketo.qa.Pages.LoginPage;
-import com.marketo.qa.utility.reports;
 
 public class TestBase {
 	public static WebDriver driver;
@@ -37,7 +35,6 @@ public class TestBase {
 			e.printStackTrace();
 		}
 	}
-
 	@BeforeClass
 	public static void initialization() {
 
@@ -57,27 +54,30 @@ public class TestBase {
 			System.out.println("IE");
 		}
 
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
-		driver.manage().deleteAllCookies();
-		driver.get(prop.getProperty("url"));
-	}
+	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	driver.manage().window().maximize();
+	driver.get(prop.getProperty("url"));
+
+}
 
 	public static void OpenSupportTool() {
 		driver.get(prop.getProperty("url") + "/supportTools");
 	}
+	
+	public static void GhostLogin() throws Throwable {
+		driver.get(prop.getProperty("ghosturl"));
+		new GhostLoginPage().GhostLogin("sandboxcopy_23may_07", "bryc3.n311ian", "glo88356.ghost@adobe.com");
+		new CommonLib().StandardWait(40000);
 
-	@BeforeMethod
+	}
 	public static void MarketoLogin() throws Throwable {
-		new LoginPage().Login(prop.getProperty("username"), prop.getProperty("password"));
-		new CommonLib().StandardWait();
+		new LoginPage().Login(prop.getProperty("username"), prop.getProperty("pwd"));
+		new CommonLib().StandardWait(20000);
 		Reporter.log("Login Succsessfully");
-
 	}
 
 	
 	  
-	  @AfterMethod 
 	  public static void CloseBrowser() { 
 		  driver.quit();
 		  }
