@@ -3,11 +3,13 @@ package com.marketo.qa.utility;
 
 import java.io.IOException;
 import java.math.BigInteger;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TimeZone;
+
 import org.apache.poi.xwpf.model.XWPFHeaderFooterPolicy;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFAbstractNum;
@@ -22,6 +24,8 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTP;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTSectPr;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTText;
+
+import com.marketo.qa.Pages.AdminPage;
 
 public class stylingDoc {
 	
@@ -42,6 +46,9 @@ public class stylingDoc {
 	                + "<w:lvl w:ilvl=\"1\" w:tentative=\"1\"><w:start w:val=\"1\"/><w:numFmt w:val=\"decimal\"/><w:lvlText w:val=\"%1.%2\"/><w:lvlJc w:val=\"left\"/><w:pPr><w:ind w:left=\"1440\" w:hanging=\"360\"/></w:pPr></w:lvl>"
 	                + "<w:lvl w:ilvl=\"2\" w:tentative=\"1\"><w:start w:val=\"1\"/><w:numFmt w:val=\"decimal\"/><w:lvlText w:val=\"%1.%2.%3\"/><w:lvlJc w:val=\"left\"/><w:pPr><w:ind w:left=\"2160\" w:hanging=\"360\"/></w:pPr></w:lvl>"
 	                + "</w:abstractNum>";
+	
+	static String AccountName = new AdminPage().AccountName();
+
 
 	//End of decimal values 
 	
@@ -50,7 +57,7 @@ public class stylingDoc {
 	{
 		//XWPFDocument document;
 
-		Path screenshotsDocumentPath = Paths.get(reports.screenshotsPathWordDoc);
+		//Path screenshotsDocumentPath = Paths.get(reports.screenshotsPathWordDoc);
 //		if (!Files.exists(screenshotsDocumentPath)) {
 //			// Create a blank document
 //			document = new XWPFDocument();
@@ -78,7 +85,7 @@ public class stylingDoc {
 	}
 	
 	
-	 public static void HeaderFooter(XWPFDocument doc )
+	 public static void HeaderFooter(XWPFDocument doc ) throws IOException
 	    {
 	    	
 	    	CTSectPr sectPr=doc.getDocument().getBody().addNewSectPr();
@@ -101,12 +108,11 @@ public class stylingDoc {
 	  		headerRun.setFontSize(15);
 	  		headerRun.setColor("e60000");
 	  		headerRun.setBold(true);
-	  		headerRun.setText("Marketo Instance -Reports");
-	  		headerRun.addTab();
-	  		String curr_date=getCurrentDate("yyyy-MM-dd-hh:mm:ss");
-	  		headerRun.setText(curr_date);
+	  		headerRun.setText(AccountName +"– Instance Review –");
+	  		String curr_date=getCurrentDate(" dd-MM-yyyy");
+	  		headerRun.setText(curr_date + "–"+getCurrentDate(" hh:mm ")+ getCurrentDate("a")+" MST" );
 	  		
-	  		//headerRun.setText(documentName);
+	  		
 	  		
 	  		
 	  		//Parse
@@ -138,13 +144,34 @@ public class stylingDoc {
 	    	
 	    }
 	 
+	 // Using bellow method bold the particular data 
+	 
+	 public static void bold(XWPFDocument document) throws IOException
+		{
+			String[] keywords = new String[] {String.valueOf(passData.Exceldata("All Campaigns")),String.valueOf(passData.Exceldata("Active campaigns")), 
+					String.valueOf(passData.Exceldata("Landing Pages")),String.valueOf(passData.Exceldata("Forms")),String.valueOf(passData.Exceldata("Triggered campaigns")),String.valueOf(passData.Exceldata("Triggered campaigns"))};
+			Map<String, String> formats = new HashMap<String, String>();
+			formats.put("bold", "true");
+			formats.put("color", "000000");
+
+			for (XWPFParagraph AllParagraph : document.getParagraphs()) { // go through all paragraphs
+				for (String keyword : keywords) {
+
+					WordFormatWords.formatWord(AllParagraph, keyword, formats);
+				}}
+			}
+	 
 	 private static String getCurrentDate(String format) 
 		{
-			DateFormat dateformat=new SimpleDateFormat(format);
+			
 			Date date=new Date();
+			DateFormat dateformat=new SimpleDateFormat(format);
+			dateformat.setTimeZone(TimeZone.getTimeZone("MST"));
 			return dateformat.format(date);
 			
 		}
+	 
+	
 
 
 }

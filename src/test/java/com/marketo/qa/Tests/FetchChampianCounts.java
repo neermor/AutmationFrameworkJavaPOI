@@ -12,7 +12,7 @@ public class FetchChampianCounts extends TestBase {
 	
 	@Test
 	public void ChampiensCount() throws Throwable {
-			MarketoLogin();
+			GhostLogin();
 			homePage.VerifyHomeTileElements();
 			homePage.OpenMarketingActivitiesTab();
 			mAP.SelectWorkSpace("Default");

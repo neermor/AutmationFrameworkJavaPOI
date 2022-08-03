@@ -12,7 +12,7 @@ public class AdminPage extends TestBase{
 	By MyAccount=By.xpath("//li[@class='x-tree-node']//span[text()='My Account']");
 	By AccountName = By.xpath("//span[text()='Account Settings']/../following-sibling::div//label[text()='Name:']/following-sibling::div//div");
 	By Tags=By.xpath("//li[@class='x-tree-node']//span[text()='Tags']");
-	By Table = By.cssSelector("[class='x-panel-body x-panel-body-noheader x-panel-body-noborder']");
+	By Table = By.cssSelector("[class='x-panel-body x-panel-body-noheader x-panel-body-noborder'] div div div + [class=\"x-grid3-scroller\"] [class=\"x-grid3-body\"]");
 	By ChannelTag = By.xpath("//span [text()='Channel']/preceding-sibling:: img");
 	By Iframe = By.cssSelector("#mlm");
 	By TagCount = By.xpath("//span[text()='Channel']/../../../following-sibling:: td //div[@class='undefined'] /span");
