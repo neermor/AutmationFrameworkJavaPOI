@@ -67,9 +67,8 @@ public class MarketingActivitePage extends TestBase {
 	public void GetMoreCampaignOption(String MoreCampaignValue) throws Throwable {
 		Thread.sleep(10000);
 	    List<WebElement> CampaignOption = driver.findElements(MoreCampaignOptions);
-        System.out.println(CampaignOption);
-		 for(WebElement option: CampaignOption){
-			 
+	    		System.out.println(CampaignOption);	    		
+		 for(WebElement option: CampaignOption){			 
 				if (option.getText().equalsIgnoreCase(MoreCampaignValue)) {
 					option.click();
 				}
@@ -106,18 +105,21 @@ public class MarketingActivitePage extends TestBase {
 	public void GetCampaignCount(String CampaignType,int row)throws Throwable {
 		ClickCampaignInspector();
 		GetCampaignInspectorOption(CampaignType);
+		new CommonLib().StandardWait(4000); 
 		new CommonLib().WriteExcelData("Sheet1", row, 0, CampaignType);
 		new CommonLib().WriteExcelData("Sheet1", row, 1, GetCount());
 	}
 	
-	public void HoverMoreCampaign(){
-		new CommonLib().MouseHover(GetMoreCampaign());		
+	public void HoverMoreCampaign() throws Throwable{
+		new CommonLib().MouseHover(GetMoreCampaign());
+		new CommonLib().StandardWait(4000); 
 	}
 	
 	public void GetMoreCampaignCount(String CampaignType,int row) throws Throwable {
 		ClickCampaignInspector();
-		HoverMoreCampaign();
+		HoverMoreCampaign();		
 		GetMoreCampaignOption(CampaignType);
+		new CommonLib().StandardWait(4000); 
 		new CommonLib().WriteExcelData("Sheet1", row, 0, CampaignType);
 		new CommonLib().WriteExcelData("Sheet1", row, 1, GetCount());
 

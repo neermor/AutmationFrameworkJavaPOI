@@ -19,9 +19,9 @@ public class FetchChampianCounts extends TestBase {
 			mAP.switchFrame();
 			mAP.GetCampaignCount("All Campaigns",7);
 			mAP.GetCampaignCount("Active Campaigns", 8);
-			mAP.GetMoreCampaignCount("Active Triggered Campaigns", 9);
-			mAP.GetMoreCampaignCount("All Triggered Campaigns", 10);
-			
+			mAP.GetMoreCampaignCount("All Triggered Campaigns",9);
+			mAP.GetMoreCampaignCount("Active Triggered Campaigns", 10);
+
 	}
 
 

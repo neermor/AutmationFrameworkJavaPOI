@@ -1,38 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
-    <line>
-      <![CDATA[Login Succsessfully]]>
-    </line>
   </reporter-output>
-  <suite started-at="2022-08-02T19:16:35 IST" name="Suite" finished-at="2022-08-02T19:17:17 IST" duration-ms="42244">
+  <suite started-at="2022-08-03T11:35:50 IST" name="Default suite" finished-at="2022-08-03T11:40:32 IST" duration-ms="281812">
     <groups>
     </groups>
-    <test started-at="2022-08-02T19:16:35 IST" name="Test" finished-at="2022-08-02T19:17:17 IST" duration-ms="42244">
-      <class name="com.marketo.qa.Tests.FetchAdminDatas">
-        <test-method is-config="true" signature="initialization()[pri:0, instance:com.marketo.qa.Tests.FetchAdminDatas@750e2b97]" started-at="2022-08-02T19:16:35 IST" name="initialization" finished-at="2022-08-02T19:16:43 IST" duration-ms="8777" status="PASS">
+    <test started-at="2022-08-03T11:35:50 IST" name="Default test" finished-at="2022-08-03T11:40:32 IST" duration-ms="281812">
+      <class name="com.marketo.qa.Tests.FetchChampianCounts">
+        <test-method is-config="true" signature="initialization()[pri:0, instance:com.marketo.qa.Tests.FetchChampianCounts@750e2b97]" started-at="2022-08-03T11:35:50 IST" name="initialization" finished-at="2022-08-03T11:35:59 IST" duration-ms="9341" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialization -->
-        <test-method signature="VerifyCountAndScreenshor()[pri:0, instance:com.marketo.qa.Tests.FetchAdminDatas@750e2b97]" started-at="2022-08-02T19:16:43 IST" name="VerifyCountAndScreenshor" finished-at="2022-08-02T19:17:17 IST" duration-ms="33439" status="PASS">
+        <test-method signature="ChampiensCount()[pri:0, instance:com.marketo.qa.Tests.FetchChampianCounts@750e2b97]" started-at="2022-08-03T11:35:59 IST" name="ChampiensCount" finished-at="2022-08-03T11:40:32 IST" duration-ms="272418" status="PASS">
           <reporter-output>
-            <line>
-              <![CDATA[Login Succsessfully]]>
-            </line>
           </reporter-output>
-        </test-method> <!-- VerifyCountAndScreenshor -->
-        <test-method is-config="true" signature="GenerateReport()[pri:0, instance:com.marketo.qa.Tests.FetchAdminDatas@750e2b97]" started-at="2022-08-02T19:17:17 IST" name="GenerateReport" finished-at="2022-08-02T19:17:19 IST" duration-ms="2044" status="FAIL">
-          <exception class="java.io.FileNotFoundException">
-            <message>
-              <![CDATA[C:\Users\pradyumna.sahoo\Desktop\Reports\screenshots.docx (The process cannot access the file because it is being used by another process)]]>
-            </message>
+        </test-method> <!-- ChampiensCount -->
+        <test-method is-config="true" signature="GenerateReport()[pri:0, instance:com.marketo.qa.Tests.FetchChampianCounts@750e2b97]" started-at="2022-08-03T11:40:32 IST" name="GenerateReport" finished-at="2022-08-03T11:41:12 IST" duration-ms="40050" status="FAIL">
+          <exception class="java.lang.ExceptionInInitializerError">
             <full-stacktrace>
-              <![CDATA[java.io.FileNotFoundException: C:\Users\pradyumna.sahoo\Desktop\Reports\screenshots.docx (The process cannot access the file because it is being used by another process)
-at java.base/java.io.FileOutputStream.open0(Native Method)
-at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
-at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
-at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:123)
-at com.marketo.qa.utility.reports.docs(reports.java:274)
+              <![CDATA[java.lang.ExceptionInInitializerError
+at com.marketo.qa.utility.reports.<clinit>(reports.java:25)
 at com.marketo.qa.base.TestBase.GenerateReport(TestBase.java:86)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
@@ -53,13 +40,42 @@ at org.testng.TestNG.run(TestNG.java:1031)
 at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//li[@class='x-tree-node']//span[text()='My Account']"}
+  (Session info: chrome=103.0.5060.134)
+For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
+Build info: version: '4.2.2', revision: '683ccb65d6'
+System info: host: 'DEL1-LHP-N72048', ip: '192.168.220.53', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.3'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [be74d991f8d384c43772c854ff6fa33a, findElement {using=xpath, value=//li[@class='x-tree-node']//span[text()='My Account']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.134, chrome: {chromedriverVersion: 103.0.5060.53 (a1711811edd7..., userDataDir: C:\Users\PRADYU~1.SAH\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:53792}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:53792/devtoo..., se:cdpVersion: 103.0.5060.134, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: be74d991f8d384c43772c854ff6fa33a
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:588)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:406)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:398)
+at com.marketo.qa.Pages.AdminPage.GetMyAccount(AdminPage.java:21)
+at com.marketo.qa.Pages.AdminPage.AccountName(AdminPage.java:53)
+at com.marketo.qa.utility.stylingDoc.<clinit>(stylingDoc.java:50)
+... 21 more
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.io.FileNotFoundException -->
+          </exception> <!-- java.lang.ExceptionInInitializerError -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- GenerateReport -->
-      </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
-    </test> <!-- Test -->
-  </suite> <!-- Suite -->
+      </class> <!-- com.marketo.qa.Tests.FetchChampianCounts -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>
