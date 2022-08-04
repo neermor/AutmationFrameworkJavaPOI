@@ -7,17 +7,17 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.xmlbeans.XmlException;
-import org.junit.AfterClass;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Reporter;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
-
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.Pages.GhostLoginPage;
 import com.marketo.qa.Pages.LoginPage;
 import com.marketo.qa.utility.reports;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 
 public class TestBase {
 	public static WebDriver driver;
@@ -28,7 +28,7 @@ public class TestBase {
 
 		FileInputStream fis;
 		try {
-			fis = new FileInputStream(System.getProperty("user.dir") + "./Config/data.properties");
+			fis = new FileInputStream(System.getProperty("user.home") + "/Desktop/Config/data.properties");
 			prop.load(fis);
 
 		} catch (FileNotFoundException e) {
@@ -39,34 +39,49 @@ public class TestBase {
 			e.printStackTrace();
 		}
 	}
+
 	@BeforeClass
 	public static void initialization() {
 
 		String browserName = prop.getProperty("browser");
 
 		if (browserName.equals("Chrome")) {
-			System.setProperty("webdriver.chrome.driver",
-					System.getProperty("user.dir") + "./src/test/resources/chromedriver.exe");
-			driver = new ChromeDriver();
+			
+			
+			driver = WebDriverManager.chromedriver().create();
+			
 		}
 
 		else if (browserName.equals("Firefox")) {
-			System.out.println("Firefox");
+			
+			driver = WebDriverManager.firefoxdriver().create();
 		}
 
 		else if (browserName.equals("IE")) {
-			System.out.println("IE");
+			
+			driver = WebDriverManager.iedriver().create();
 		}
-
-	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	driver.manage().window().maximize();
-	driver.get(prop.getProperty("url"));
-
-}
+		
+		else if (browserName.equals("Edge")) {
+			
+			driver = WebDriverManager.edgedriver().create();
+		}
+		else if (browserName.equals("Safari")) {
+		
+			driver = WebDriverManager.safaridriver().create();
+		}
+		
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		driver.get(prop.getProperty("url"));
+	}
 
 	public static void OpenSupportTool() {
 		driver.get(prop.getProperty("url") + "/supportTools");
 	}
+
+
 	
 	public static void GhostLogin() throws Throwable {
 		driver.get(prop.getProperty("ghosturl"));
@@ -82,11 +97,12 @@ public class TestBase {
 
 	
 	  @AfterSuite
-	  public void GenerateReport() throws Throwable, Throwable{
+//	  public void GenerateReport() throws IOException, XmlException {
+//		  reports.docs();
+//		  
+//	  }
+	  public static void CloseBrowser() throws IOException, XmlException { 
 		  reports.docs();
-		  
-	  }
-	  public static void CloseBrowser() { 
 		  driver.quit();
 		  }
 	 

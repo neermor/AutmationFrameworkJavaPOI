@@ -3,6 +3,8 @@ package com.marketo.qa.utility;
 import java.io.IOException;
 import java.util.Map;
 
+import com.marketo.qa.Pages.AdminPage;
+
 
 
 
@@ -11,7 +13,8 @@ import java.util.Map;
 public class passData  {
 	
 	
-	
+	static AdminPage Ap = new AdminPage();
+	 static String AccountName= Ap.AccountName();
 	
 	public static String FetchScreenshot(String ScreenshotName) {
 		 String path = "C:\\Users\\pradyumna.sahoo\\eclipse-workspace\\Acedmy\\test-output\\screenshots\\"+ScreenshotName+".png";

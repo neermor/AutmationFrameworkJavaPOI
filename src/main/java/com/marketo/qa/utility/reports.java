@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.poi.util.Units;
 import org.apache.poi.xwpf.usermodel.BreakType;
 import org.apache.poi.xwpf.usermodel.Document;
@@ -21,12 +24,13 @@ import com.marketo.qa.Pages.AdminPage;
 
 public class reports {
 
-	passData pd = new passData();
-	static String AccountName = stylingDoc.AccountName;
+
 	
 
 	static String word = System.getProperty("user.home") + "\\Desktop\\Reports\\";
-	static String screenshotsPathWordDoc = word + "screenshots.docx";
+	static String fileName = new SimpleDateFormat("dd_MM_yy_HH_mm").format(new Date());
+	static String screenshotsPathWordDoc = word + "Report_"+fileName+".docx";
+
 
 	public static void docs() throws IOException, XmlException {
 		Path outputDirectory = Paths.get(word);
@@ -100,7 +104,7 @@ public class reports {
 			r1.addCarriageReturn();
 			r1.setFontFamily("Calibri Light (Headings)");
 			r1.setFontSize(10);
-			r1.setText(AccountName+"," +passData.Org_info);
+			r1.setText(passData.AccountName+"," +passData.Org_info);
 			
 			paragraph = document.createParagraph();
 			run = paragraph.createRun();
@@ -119,7 +123,7 @@ public class reports {
 			run = paragraph.createRun();
 			run.setFontFamily("Calibri Light (Headings)");
 			run.setFontSize(10);
-			run.setText(AccountName +"," +passData.models);
+			run.setText(passData.AccountName +"," +passData.models);
 			run.addBreak(BreakType.PAGE);
 			
 			//adding lead scoring data into report 
@@ -135,28 +139,28 @@ public class reports {
 			run.setFontFamily("Calibri Light (Headings)");
 			run.setFontSize(10);
 			paragraph.setNumID(stylingDoc.bullet(document));
-			run.setText(AccountName+","+" has advanced lead scoring built out taking into account behavior, demographics, successes and decay.");
+			run.setText(passData.AccountName+","+" has advanced lead scoring built out taking into account behavior, demographics, successes and decay.");
 			
 			paragraph = document.createParagraph();
 			run = paragraph.createRun();
 			run.setFontFamily("Calibri Light (Headings)");
 			run.setFontSize(10);
 			paragraph.setNumID(stylingDoc.bullet(document));
-			run.setText(AccountName+","+"is executing multiple score changes with single campaigns.");
+			run.setText(passData.AccountName+","+"is executing multiple score changes with single campaigns.");
 			
 			paragraph = document.createParagraph();
 			run = paragraph.createRun();
 			run.setFontFamily("Calibri Light (Headings)");
 			run.setFontSize(10);
 			paragraph.setNumID(stylingDoc.bullet(document));
-			run.setText(AccountName+","+"is using MyTokens in their lead scoring campaigns which allows for a Marketer to quickly, and easily, control from a high level their lead change scores.");
+			run.setText(passData.AccountName+","+"is using MyTokens in their lead scoring campaigns which allows for a Marketer to quickly, and easily, control from a high level their lead change scores.");
 			
 			paragraph = document.createParagraph();
 			run = paragraph.createRun();
 			run.setFontFamily("Calibri Light (Headings)");
 			run.setFontSize(10);
 			paragraph.setNumID(stylingDoc.bullet(document));
-			run.setText(AccountName+","+"has built out campaigns reducing lead scores when leads exhibit undesirable behavior.");
+			run.setText(passData.AccountName+","+"has built out campaigns reducing lead scores when leads exhibit undesirable behavior.");
 		
 			
 			
@@ -179,7 +183,7 @@ public class reports {
 			run = paragraph.createRun();
 			run.setFontFamily("Calibri Light (Headings)");
 			run.setFontSize(10);
-			run.setText(passData.intresting_moment +" " + AccountName +"’s marketing campaigns."
+			run.setText(passData.intresting_moment +" " + passData.AccountName +"’s marketing campaigns."
 					+" When a lead exhibits any of the below behavior, it will be documented and tracked.");
 			
 			run.addPicture(new FileInputStream(passData.intesting_moment_img), Document.PICTURE_TYPE_PNG, passData.Tag,
@@ -199,7 +203,7 @@ public class reports {
 			run = paragraph.createRun();
 			run.setFontFamily("Calibri Light (Headings)");
 			run.setFontSize(10);
-			run.setText(AccountName + passData.data_management);	
+			run.setText(passData.AccountName + passData.data_management);	
 			run.addCarriageReturn();
 			
 		//adding Events data 
@@ -213,7 +217,7 @@ public class reports {
 			run = paragraph.createRun();
 			run.setFontFamily("Calibri Light (Headings)");
 			run.setFontSize(10);
-			run.setText(AccountName + " has built numerous Event campaigns in Marketo.");	
+			run.setText(passData.AccountName + " has built numerous Event campaigns in Marketo.");	
 			run.addBreak();
 			run.setText(passData.events);
 		
@@ -226,7 +230,7 @@ public class reports {
 			run = paragraph.createRun();
 			run.setFontFamily("Calibri Light (Headings)");
 			run.setFontSize(10);
-			run.setText(AccountName + passData.Nurture);
+			run.setText(passData.AccountName + passData.Nurture);
 			
 		
 			paragraph = document.createParagraph();

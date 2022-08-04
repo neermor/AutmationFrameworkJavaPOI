@@ -47,7 +47,7 @@ public class stylingDoc {
 	                + "<w:lvl w:ilvl=\"2\" w:tentative=\"1\"><w:start w:val=\"1\"/><w:numFmt w:val=\"decimal\"/><w:lvlText w:val=\"%1.%2.%3\"/><w:lvlJc w:val=\"left\"/><w:pPr><w:ind w:left=\"2160\" w:hanging=\"360\"/></w:pPr></w:lvl>"
 	                + "</w:abstractNum>";
 	
-	static String AccountName = new AdminPage().AccountName();
+	//static String AccountName = new AdminPage().AccountName();
 
 
 	//End of decimal values 
@@ -108,7 +108,7 @@ public class stylingDoc {
 	  		headerRun.setFontSize(15);
 	  		headerRun.setColor("e60000");
 	  		headerRun.setBold(true);
-	  		headerRun.setText(AccountName +"– Instance Review –");
+	  		headerRun.setText(passData.AccountName +"– Instance Review –");
 	  		String curr_date=getCurrentDate(" dd-MM-yyyy");
 	  		headerRun.setText(curr_date + "–"+getCurrentDate(" hh:mm ")+ getCurrentDate("a")+" MST" );
 	  		
@@ -127,7 +127,8 @@ public class stylingDoc {
 	  		
 	  		//Setting Footer
 	  		Date date=new Date();
-	  		int year=date.getYear();
+	  		@SuppressWarnings("deprecation")
+			int year=date.getYear();
 	  		int currentYear=year+1900;  
 	  		String footerText="©"+currentYear+". Confidential - Do not Share this documents.";
 	  		ctFooter.setStringValue(footerText);	

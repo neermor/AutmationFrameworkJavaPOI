@@ -7,26 +7,9 @@
         <methods>
           <include name="VerifyChangeScoreCount"/>
           <include name="initialization"/>
+          <include name="CloseBrowser"/>
         </methods>
       </class> <!-- com.marketo.qa.Tests.FetchDataFromChangeScore -->
-      <class name="com.marketo.qa.Tests.FetchAdminDatas">
-        <methods>
-          <include name="VerifyCountAndScreenshor"/>
-          <include name="initialization"/>
-        </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
-      <class name="com.marketo.qa.Tests.FetchChampianCounts">
-        <methods>
-          <include name="ChampiensCount"/>
-          <include name="initialization"/>
-        </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchChampianCounts -->
-      <class name="com.marketo.qa.Tests.FetchDesignStudioData">
-        <methods>
-          <include name="initialization"/>
-          <include name="TakeRequiredCount"/>
-        </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchDesignStudioData -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->
