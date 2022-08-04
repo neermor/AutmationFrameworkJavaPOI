@@ -10,7 +10,6 @@ import com.marketo.qa.base.TestBase;
 public class FetchAdminDatas extends TestBase {
 	MyMarketoPage homePage= new MyMarketoPage();
 	AdminPage admin= new AdminPage();
-	
 	@Test	
 	public void VerifyCountAndScreenshor()throws Throwable{
 	MarketoLogin();
@@ -20,5 +19,4 @@ public class FetchAdminDatas extends TestBase {
 	admin.TagsCountAndScreenshot("Tags",11);
 	}
 	
-
 }
