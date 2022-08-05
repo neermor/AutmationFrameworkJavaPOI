@@ -81,11 +81,6 @@ public class TestBase {
 	}
 
 	
-	  @AfterSuite
-	  public void GenerateReport() throws Throwable, Throwable{
-		  reports.docs();
-		  
-	  }
 	  public static void CloseBrowser() { 
 		  driver.quit();
 		  }

@@ -3,16 +3,23 @@ package com.marketo.qa.FileLib;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.google.common.base.Function;
 import com.marketo.qa.base.TestBase;
 
 public class CommonLib extends TestBase{
@@ -66,6 +73,27 @@ public class CommonLib extends TestBase{
 		Actions actions = new Actions(driver);
 		actions.moveToElement(element).perform();
 	}
+	
+	public WebElement waitForElementVisibleFlunt( final By locator)
+	{
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+				  .withTimeout(Duration.ofSeconds(20))
+				  .pollingEvery(Duration.ofSeconds(3))
+				  .withMessage("Waiting for element to load")
+				  .ignoring(NoSuchElementException.class);
+		
+		WebElement element = wait.until(new Function<WebDriver, WebElement>()
+		  {
+		    public WebElement apply(WebDriver driver)
+		    {
+		      return driver.findElement(locator);
+		    }
+		  });
+		return element;
+							
+	}
+
+
 	
 
        
