@@ -3,13 +3,13 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="com.marketo.qa.Tests.FetchDataFromChangeScore">
+      <class name="com.marketo.qa.Tests.FetchAdminDatas">
         <methods>
-          <include name="VerifyChangeScoreCount"/>
+          <include name="VerifyCountAndScreenshor"/>
           <include name="initialization"/>
-          <include name="CloseBrowser"/>
+          <include name="GenerateReport"/>
         </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchDataFromChangeScore -->
+      </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->
