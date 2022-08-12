@@ -97,12 +97,12 @@ public class TestBase {
 
 	
 	  @AfterSuite
-//	  public void GenerateReport() throws IOException, XmlException {
-//		  reports.docs();
-//		  
-//	  }
-	  public static void CloseBrowser() throws IOException, XmlException { 
+	  public void GenerateReport() throws IOException, XmlException {
 		  reports.docs();
+		  
+	  }
+	  public static void CloseBrowser() throws IOException, XmlException { 
+		 // reports.docs();
 		  driver.quit();
 		  }
 	 

@@ -3,9 +3,14 @@ package com.marketo.qa.Tests;
 
 import org.testng.annotations.Test;
 
+
 import com.marketo.qa.Pages.AdminPage;
 import com.marketo.qa.Pages.MyMarketoPage;
 import com.marketo.qa.base.TestBase;
+
+
+
+//@author glo07251
 
 public class FetchAdminDatas extends TestBase {
 	MyMarketoPage homePage= new MyMarketoPage();

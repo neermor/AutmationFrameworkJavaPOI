@@ -20,10 +20,13 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.xmlbeans.XmlException;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTAbstractNum;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTNumbering;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTOnOff;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTP;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTRPr;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTSectPr;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTText;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.STOnOff;
 
 import com.marketo.qa.Pages.AdminPage;
 
@@ -31,7 +34,7 @@ public class stylingDoc {
 	
 	//bullets and Decimal values 
 	
-	static String cTAbstractNumBulletXML = 
+	static String cTAbstractNumBulletXML =  
 	        "<w:abstractNum xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" w:abstractNumId=\"0\">"
 	                + "<w:multiLevelType w:val=\"hybridMultilevel\"/>"
 	                + "<w:lvl w:ilvl=\"0\"><w:start w:val=\"1\"/><w:numFmt w:val=\"bullet\"/><w:lvlText w:val=\"\"/><w:lvlJc w:val=\"left\"/><w:pPr><w:ind w:left=\"720\" w:hanging=\"360\"/></w:pPr><w:rPr><w:rFonts w:ascii=\"Symbol\" w:hAnsi=\"Symbol\" w:hint=\"default\"/></w:rPr></w:lvl>"
@@ -55,21 +58,7 @@ public class stylingDoc {
 	
 	public static BigInteger bullet(XWPFDocument document) throws IOException, XmlException
 	{
-		//XWPFDocument document;
-
-		//Path screenshotsDocumentPath = Paths.get(reports.screenshotsPathWordDoc);
-//		if (!Files.exists(screenshotsDocumentPath)) {
-//			// Create a blank document
-//			document = new XWPFDocument();
-//		} else {
-//			// Open existing document
-//			document = new XWPFDocument(Files.newInputStream(Paths.get(reports.screenshotsPathWordDoc)));
-//		}
-
-		//XWPFParagraph paragraph = document.createParagraph();
-
-		//XWPFRun run = paragraph.createRun();
-		//document = new XWPFDocument();
+		
 		CTNumbering cTNumbering = CTNumbering.Factory.parse(cTAbstractNumBulletXML);
         CTAbstractNum cTAbstractNum = cTNumbering.getAbstractNumArray(0);
 
@@ -78,8 +67,6 @@ public class stylingDoc {
       BigInteger abstractNumID = numbering.addAbstractNum(abstractNum);
 
         BigInteger numID =numbering.addNum(abstractNumID);
-       // System.out.println("numID: " + numID);
-       // document.close();
         return numID;
         
 	}
@@ -99,6 +86,7 @@ public class stylingDoc {
 	  		// Alignments and color, styles of the header in the word doc -- Header
 	  		XWPFParagraph headerParagraph=new XWPFParagraph(ctpHeader,doc);
 	  		XWPFRun headerRun=headerParagraph.createRun();
+	  		setNoProof(headerRun);
 	  		
 	  		//Setting Header
 	  		headerParagraph.setAlignment(ParagraphAlignment.CENTER);
@@ -125,6 +113,7 @@ public class stylingDoc {
 	  		CTR ctrFooter=ctpFooter.addNewR();
 	  		CTText ctFooter=ctrFooter.addNewT();
 	  		
+	  		
 	  		//Setting Footer
 	  		Date date=new Date();
 	  		@SuppressWarnings("deprecation")
@@ -145,15 +134,44 @@ public class stylingDoc {
 	    	
 	    }
 	 
+	 // Removing Spell checker 
+	 public static void setNoProof (XWPFRun run) {
+		    CTR ctR = run.getCTR();
+		    CTRPr ctRPr = ctR.isSetRPr() ? ctR.getRPr() : ctR.addNewRPr();
+		    if (!ctRPr.isSetNoProof()) {
+		        // If the noProof property is missing, add it
+		        ctRPr.addNewNoProof();
+		    } else {
+		        // If the noProof property is present, make sure it is not
+		        // FALSE, OFF, or X_0
+		        CTOnOff noProof = ctRPr.getNoProof();
+		        if (noProof.isSetVal() &&
+		                (noProof.getVal() == STOnOff.FALSE ||
+		                noProof.getVal() == STOnOff.OFF ||
+		                noProof.getVal() == STOnOff.X_0)) {
+		            noProof.setVal(STOnOff.TRUE);
+		        }
+		    }
+		}
+	 
 	 // Using bellow method bold the particular data 
 	 
 	 public static void bold(XWPFDocument document) throws IOException
 		{
 			String[] keywords = new String[] {String.valueOf(passData.Exceldata("All Campaigns")),String.valueOf(passData.Exceldata("Active campaigns")), 
-					String.valueOf(passData.Exceldata("Landing Pages")),String.valueOf(passData.Exceldata("Forms")),String.valueOf(passData.Exceldata("Triggered campaigns")),String.valueOf(passData.Exceldata("Triggered campaigns"))};
+					String.valueOf(passData.Exceldata("Landing Pages")),String.valueOf(passData.Exceldata("Active Triggered Campaigns")),
+					String.valueOf(passData.Exceldata("Forms")),String.valueOf(passData.Exceldata("Triggered campaigns")),String.valueOf(passData.Exceldata("Landing Pages")),
+					"Not","not",String.valueOf(passData.Exceldata("Snippets")),String.valueOf(passData.Exceldata("Emails")),
+					String.valueOf(passData.Exceldata("Active Campaigns")),String.valueOf(passData.Exceldata("model")),String.valueOf(passData.Exceldata("Lead")),
+					String.valueOf(passData.Exceldata("Change Data Value")),String.valueOf(passData.Exceldata("Event Programs")),String.valueOf(passData.Exceldata("Nurture campaigns")),
+					String.valueOf(passData.Exceldata("Segment Data")),String.valueOf(passData.Exceldata("Library")),String.valueOf(passData.Exceldata("Integrations")),
+					String.valueOf(passData.AccountName),String.valueOf(passData.Exceldata("All Batch Campaigns")),
+					String.valueOf(passData.Exceldata("Models")),String.valueOf(passData.Exceldata("Leads"))};
+		
 			Map<String, String> formats = new HashMap<String, String>();
 			formats.put("bold", "true");
 			formats.put("color", "000000");
+			
 
 			for (XWPFParagraph AllParagraph : document.getParagraphs()) { // go through all paragraphs
 				for (String keyword : keywords) {

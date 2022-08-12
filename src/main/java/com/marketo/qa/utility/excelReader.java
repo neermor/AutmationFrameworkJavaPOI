@@ -17,10 +17,10 @@ public class excelReader {
 	 public static Map<String, String> getMapData() throws IOException 
 	 {
 		 HashMap<String, String>testData =new HashMap<String, String>();
-		
+	
 		try {
 			
-	        String ExcelPath=System.getProperty("user.dir")+"./src/test/resources/TestData/MarketoData.xlsx";
+	        String ExcelPath=System.getProperty("user.home") + "\\Desktop\\Config\\MarketoData.xlsx";
 			FileInputStream FileInputStream = new FileInputStream(ExcelPath);
 			 try (Workbook workbook = new XSSFWorkbook(FileInputStream)) {
 				Sheet sheet =workbook.getSheetAt(0);
@@ -62,7 +62,7 @@ public class excelReader {
 	        	break;
 	        default:
 	            return "";
-	    }
+	    } 
 		 return CellData;
 		}
 }
