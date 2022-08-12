@@ -7,7 +7,7 @@
         <methods>
           <include name="VerifyChangeScoreCount"/>
           <include name="initialization"/>
-          <include name="CloseBrowser"/>
+          <include name="GenerateReport"/>
         </methods>
       </class> <!-- com.marketo.qa.Tests.FetchDataFromChangeScore -->
     </classes>

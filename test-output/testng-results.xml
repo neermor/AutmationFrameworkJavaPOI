@@ -1,126 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
+    <line>
+      <![CDATA[Login Succsessfully]]>
+    </line>
   </reporter-output>
-  <suite started-at="2022-08-04T16:40:24 IST" name="Default suite" finished-at="2022-08-04T16:42:17 IST" duration-ms="112268">
+  <suite started-at="2022-08-12T16:06:22 IST" name="Suite" finished-at="2022-08-12T16:07:55 IST" duration-ms="92868">
     <groups>
     </groups>
-    <test started-at="2022-08-04T16:40:24 IST" name="Default test" finished-at="2022-08-04T16:42:17 IST" duration-ms="112268">
-      <class name="com.marketo.qa.Tests.FetchDataFromChangeScore">
-        <test-method is-config="true" signature="initialization()[pri:0, instance:com.marketo.qa.Tests.FetchDataFromChangeScore@18078bef]" started-at="2022-08-04T16:40:24 IST" name="initialization" finished-at="2022-08-04T16:40:32 IST" duration-ms="8158" status="PASS">
+    <test started-at="2022-08-12T16:06:22 IST" name="Test" finished-at="2022-08-12T16:07:55 IST" duration-ms="92868">
+      <class name="com.marketo.qa.Tests.FetchAdminDatas">
+        <test-method is-config="true" signature="initialization()[pri:0, instance:com.marketo.qa.Tests.FetchAdminDatas@35d019a3]" started-at="2022-08-12T16:06:22 IST" name="initialization" finished-at="2022-08-12T16:06:40 IST" duration-ms="18326" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialization -->
-        <test-method signature="VerifyChangeScoreCount()[pri:0, instance:com.marketo.qa.Tests.FetchDataFromChangeScore@18078bef]" started-at="2022-08-04T16:40:32 IST" name="VerifyChangeScoreCount" finished-at="2022-08-04T16:42:17 IST" duration-ms="104046" status="FAIL">
-          <exception class="org.openqa.selenium.NoSuchElementException">
-            <message>
-              <![CDATA[Cannot locate an element using xpath=//a[text()='Flow Actions Used']
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'NAG1-LHP-N66635', ip: '192.168.0.104', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '18.0.1.1'
-Driver info: driver.version: RemoteWebDriver]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: Cannot locate an element using xpath=//a[text()='Flow Actions Used']
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'NAG1-LHP-N66635', ip: '192.168.0.104', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '18.0.1.1'
-Driver info: driver.version: RemoteWebDriver
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:327)
-at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
-at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-at com.marketo.qa.Pages.SupportToolsPage.GetSupportToolIndex(SupportToolsPage.java:30)
-at com.marketo.qa.Pages.SupportToolsPage.SelectValueFlowAction(SupportToolsPage.java:39)
-at com.marketo.qa.Tests.FetchDataFromChangeScore.VerifyChangeScoreCount(FetchDataFromChangeScore.java:23)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-at java.base/java.lang.reflect.Method.invoke(Method.java:577)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:794)
-at org.testng.TestRunner.run(TestRunner.java:596)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
-at org.testng.SuiteRunner.run(SuiteRunner.java:276)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
-at org.testng.TestNG.runSuites(TestNG.java:1063)
-at org.testng.TestNG.run(TestNG.java:1031)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+        <test-method signature="VerifyCountAndScreenshor()[pri:0, instance:com.marketo.qa.Tests.FetchAdminDatas@35d019a3]" started-at="2022-08-12T16:06:40 IST" name="VerifyCountAndScreenshor" finished-at="2022-08-12T16:07:55 IST" duration-ms="74490" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[Login Succsessfully]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- VerifyCountAndScreenshor -->
+        <test-method is-config="true" signature="GenerateReport()[pri:0, instance:com.marketo.qa.Tests.FetchAdminDatas@35d019a3]" started-at="2022-08-12T16:07:55 IST" name="GenerateReport" finished-at="2022-08-12T16:07:59 IST" duration-ms="3758" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- VerifyChangeScoreCount -->
-        <test-method is-config="true" signature="CloseBrowser()[pri:0, instance:com.marketo.qa.Tests.FetchDataFromChangeScore@18078bef]" started-at="2022-08-04T16:42:17 IST" name="CloseBrowser" finished-at="2022-08-04T16:42:17 IST" duration-ms="553" status="FAIL">
-          <exception class="java.lang.ExceptionInInitializerError">
-            <full-stacktrace>
-              <![CDATA[java.lang.ExceptionInInitializerError
-at com.marketo.qa.utility.reports.docs(reports.java:55)
-at com.marketo.qa.base.TestBase.CloseBrowser(TestBase.java:105)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-at java.base/java.lang.reflect.Method.invoke(Method.java:577)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:62)
-at org.testng.internal.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:385)
-at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:321)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:344)
-at org.testng.SuiteRunner.run(SuiteRunner.java:276)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
-at org.testng.TestNG.runSuites(TestNG.java:1063)
-at org.testng.TestNG.run(TestNG.java:1031)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=103.0.5060.134)
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'NAG1-LHP-N66635', ip: '192.168.0.104', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '18.0.1.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.134, chrome: {chromedriverVersion: 103.0.5060.134 (8ec6fce403b..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:65259}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: dadf2cbf3daa116a598e563982a9a7b5
-*** Element info: {Using=xpath, value=//li[@class='x-tree-node']//span[text()='My Account']}
-at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
-at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
-at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-at com.marketo.qa.Pages.AdminPage.GetMyAccount(AdminPage.java:21)
-at com.marketo.qa.Pages.AdminPage.AccountName(AdminPage.java:53)
-at com.marketo.qa.utility.passData.<clinit>(passData.java:17)
-... 19 more
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.ExceptionInInitializerError -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- CloseBrowser -->
-      </class> <!-- com.marketo.qa.Tests.FetchDataFromChangeScore -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+        </test-method> <!-- GenerateReport -->
+      </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>

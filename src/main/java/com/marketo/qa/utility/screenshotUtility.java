@@ -19,7 +19,7 @@ public class screenshotUtility {
 	        //take screenshot of the page
 	        File src= ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 	        try {
-	            FileUtils.copyFile(src, new File("C:\\Users\\neeraj.mourya\\eclipse-workspace\\Acedmy\\test-output\\screenshots\\"+screenshotName+".png"));
+	            FileUtils.copyFile(src, new File(System.getProperty("user.home") +"\\Desktop\\Config\\"+screenshotName+".png"));
 	        } catch (IOException e) {
 	            System.out.println("Screenshot Taken"+e.getMessage());
 	            e.printStackTrace();
@@ -27,12 +27,12 @@ public class screenshotUtility {
 		
 	    }
 	 
-	 public static void TakeScreenshot(WebElement element, String ScreenshotName)
+	 public static void TakeScreenshot(WebElement element, String screenshotName)
 		{
 			File src = ((TakesScreenshot) element).getScreenshotAs(OutputType.FILE);
 			try {
 				FileUtils.copyFile(src,
-						new File(System.getProperty("user.dir") + "\\test-output\\screenshots\\" + ScreenshotName + ".png"));
+						new File(System.getProperty("user.home") + "\\Desktop\\Config\\"+screenshotName+".png"));
 			} catch (IOException e) {
 				System.out.println("Screenshot Taken" + e.getMessage());
 				e.printStackTrace();
