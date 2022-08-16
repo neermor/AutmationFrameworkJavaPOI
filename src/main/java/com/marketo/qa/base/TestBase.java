@@ -97,7 +97,7 @@ public class TestBase {
 
 	
 	  @AfterSuite
-	  public void GenerateReport() throws IOException, XmlException {
+	  public void GenerateReport() throws Exception {
 		  reports.docs();
 		  
 	  }

@@ -5,23 +5,23 @@
       <![CDATA[Login Succsessfully]]>
     </line>
   </reporter-output>
-  <suite started-at="2022-08-12T16:06:22 IST" name="Suite" finished-at="2022-08-12T16:07:55 IST" duration-ms="92868">
+  <suite started-at="2022-08-16T15:30:49 IST" name="Suite" finished-at="2022-08-16T15:32:10 IST" duration-ms="81179">
     <groups>
     </groups>
-    <test started-at="2022-08-12T16:06:22 IST" name="Test" finished-at="2022-08-12T16:07:55 IST" duration-ms="92868">
+    <test started-at="2022-08-16T15:30:49 IST" name="Test" finished-at="2022-08-16T15:32:10 IST" duration-ms="81179">
       <class name="com.marketo.qa.Tests.FetchAdminDatas">
-        <test-method is-config="true" signature="initialization()[pri:0, instance:com.marketo.qa.Tests.FetchAdminDatas@35d019a3]" started-at="2022-08-12T16:06:22 IST" name="initialization" finished-at="2022-08-12T16:06:40 IST" duration-ms="18326" status="PASS">
+        <test-method is-config="true" signature="initialization()[pri:0, instance:com.marketo.qa.Tests.FetchAdminDatas@35d019a3]" started-at="2022-08-16T15:30:49 IST" name="initialization" finished-at="2022-08-16T15:30:57 IST" duration-ms="8123" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialization -->
-        <test-method signature="VerifyCountAndScreenshor()[pri:0, instance:com.marketo.qa.Tests.FetchAdminDatas@35d019a3]" started-at="2022-08-12T16:06:40 IST" name="VerifyCountAndScreenshor" finished-at="2022-08-12T16:07:55 IST" duration-ms="74490" status="PASS">
+        <test-method signature="VerifyCountAndScreenshor()[pri:0, instance:com.marketo.qa.Tests.FetchAdminDatas@35d019a3]" started-at="2022-08-16T15:30:57 IST" name="VerifyCountAndScreenshor" finished-at="2022-08-16T15:32:10 IST" duration-ms="73034" status="PASS">
           <reporter-output>
             <line>
               <![CDATA[Login Succsessfully]]>
             </line>
           </reporter-output>
         </test-method> <!-- VerifyCountAndScreenshor -->
-        <test-method is-config="true" signature="GenerateReport()[pri:0, instance:com.marketo.qa.Tests.FetchAdminDatas@35d019a3]" started-at="2022-08-12T16:07:55 IST" name="GenerateReport" finished-at="2022-08-12T16:07:59 IST" duration-ms="3758" status="PASS">
+        <test-method is-config="true" signature="GenerateReport()[pri:0, instance:com.marketo.qa.Tests.FetchAdminDatas@35d019a3]" started-at="2022-08-16T15:32:10 IST" name="GenerateReport" finished-at="2022-08-16T15:32:13 IST" duration-ms="2769" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- GenerateReport -->

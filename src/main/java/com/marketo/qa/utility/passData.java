@@ -96,7 +96,7 @@ public class passData  {
 			+ " segment that they fall into.";
 	
 	//Snippet
-	static String No_Snippets =  AccountName +"\n is not taking advantage of snippets. Snippets are reusable blocks of rich text and graphics that"
+	static String No_Snippets =  AccountName +"\nis not taking advantage of snippets. Snippets are reusable blocks of rich text and graphics that"
 			+ " the client can use in their emails and landing pages, and it is a great timesaver!"
 			+ " https://experienceleague.adobe.com/docs/marketo/using/product-docs/personalization/segmentation-and-snippets/snippets/create-a-snippet.html?lang=en";
 	
@@ -178,18 +178,8 @@ public class passData  {
 	
 	public static String GenricMethod(String snippets) throws IOException {
 		
-		int snippet = Integer.parseInt(passData.Exceldata("Snippets"));
-		
-		
-		if (snippet>=5) 
-		{		
 			
 			return snippets+"\nSnippets" ;
-		}
-		
-		else  {
-		}
-			return  No_Snippets;
 			
 					
 	} 
@@ -297,7 +287,7 @@ public static String Nurture_Campaigns() throws IOException {
 	
 	else if  (Nurture_Campaigns<5 && Nurture_Campaigns>0) {
 	
-		return Exceldata("Nurture campaigns")+Nurture ;
+		return  AccountName+"\nhas\n"+ Exceldata("Nurture campaigns")+Nurture ;
 	
 	}
 	else  {
