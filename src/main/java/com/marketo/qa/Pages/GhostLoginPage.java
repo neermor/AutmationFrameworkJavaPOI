@@ -56,15 +56,16 @@ public class GhostLoginPage extends TestBase{
 		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 		GetPrfix().sendKeys(prifix);
 		getPassword().sendKeys(pwd);
+		getGhostID().clear();
 		getGhostID().sendKeys(ghostId);
 		getLoginButton().click();
-		Thread.sleep(8000);	
+		Thread.sleep(10000);	
 		
 		if(GetOktaUsername().isDisplayed()) {
 			Thread.sleep(2000);	
 			GetOktaUsername().sendKeys("glo07251");
 			GetOktaNextBtn().click();
-			Thread.sleep(2000);		
+			Thread.sleep(2000);	
 			GetOktaPassword().sendKeys("ColoradoAvalanche1!");
 			GetOktaVerifyBtn().click();	
 			Thread.sleep(2000);		

@@ -172,8 +172,7 @@ public class passData  {
 		
 		return testdata.get(value);
 		
-	}
-	 
+	}	 
 	
 	
 	public static String GenricMethod(String snippets) throws IOException {
