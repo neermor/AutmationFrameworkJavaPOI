@@ -13,10 +13,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Reporter;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.Pages.GhostLoginPage;
 import com.marketo.qa.Pages.LoginPage;
+import com.marketo.qa.Pages.MyMarketoPage;
 import com.marketo.qa.utility.reports;
 
 public class TestBase {
@@ -39,7 +41,7 @@ public class TestBase {
 			e.printStackTrace();
 		}
 	}
-	@BeforeClass
+	@BeforeSuite
 	public static void initialization() {
 
 		String browserName = prop.getProperty("browser");
@@ -62,7 +64,7 @@ public class TestBase {
 	driver.manage().window().maximize();
 	driver.get(prop.getProperty("url"));
 
-}
+	}
 
 	public static void OpenSupportTool() {
 		driver.get(prop.getProperty("url") + "/supportTools");
@@ -71,7 +73,7 @@ public class TestBase {
 	public static void GhostLogin() throws Throwable {
 		driver.get(prop.getProperty("ghosturl"));
 		new GhostLoginPage().GhostLogin(prop.getProperty("prifix"), prop.getProperty("Ghostpwd"),prop.getProperty("id"));
-		new CommonLib().StandardWait(40000);
+		new CommonLib().StandardWait(20000);
 
 	}
 	public static void MarketoLogin() throws Throwable {
@@ -79,8 +81,16 @@ public class TestBase {
 		new CommonLib().StandardWait(20000);
 		Reporter.log("Login Succsessfully");
 	}
-
 	
+	@AfterClass
+	public static void Logout() {
+		new MyMarketoPage().GetAccountIcon().click();
+		new MyMarketoPage().GetLogoutBtn().click();
+
+	}
+	
+	
+
 	  public static void CloseBrowser() { 
 		  driver.quit();
 		  }

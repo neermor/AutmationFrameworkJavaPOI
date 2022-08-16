@@ -14,14 +14,14 @@ public class FetchDesignStudioData extends TestBase{
 	@Test
 	public void TakeRequiredCount() throws Throwable {
 		
-MarketoLogin();
-homePage.VerifyHomeTileElements();
-		homePage.OpendesignStudioTab();
+		MarketoLogin();
+		homePage.VerifyHomeTileElements();
+		homePage.OpendesignStudioTab();		
 		Ds.FetchTreeNodeCount("Emails",4);
 		Ds.FetchTreeNodeCount("Forms",5);
-		Ds.FetchTreeNodeCount("Landing Pages",6);	
-		
-		
+		Ds.FetchTreeNodeCount("Landing Pages",6);
+		Ds.FetchUploadCount("Images and Files",7);
+		Ds.FetchSnippetsCount("Snippets",8);		
 		
 	}
 

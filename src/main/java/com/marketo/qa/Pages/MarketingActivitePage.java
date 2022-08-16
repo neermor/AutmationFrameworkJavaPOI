@@ -94,12 +94,20 @@ public class MarketingActivitePage extends TestBase {
 		SelectTreeNode(WorkspaceName);
 	}
 	
-	public String GetCount() throws Throwable {
+	
+	public String GetCount() throws Throwable {		
+		
 		Thread.sleep(4000);
 	    String countString = driver.findElement(AllCount).getText();
 	    String[] words=countString.split("\\s");  
 	    System.out.println(words[0]); 
+	    
+	    if(words[0].equalsIgnoreCase("No")) {
+			return "0";
+		}
+	    else {
 	    return words[0];
+	    }
 	}
 	
 	public void GetCampaignCount(String CampaignType,int row)throws Throwable {

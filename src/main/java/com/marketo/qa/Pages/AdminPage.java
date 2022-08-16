@@ -15,7 +15,13 @@ public class AdminPage extends TestBase{
 	By Table = By.cssSelector("[class='x-panel-body x-panel-body-noheader x-panel-body-noborder'] div div div + [class=\"x-grid3-scroller\"] [class=\"x-grid3-body\"]");
 	By ChannelTag = By.xpath("//span [text()='Channel']/preceding-sibling:: img");
 	By Iframe = By.cssSelector("#mlm");
-	By TagCount = By.xpath("//span[text()='Channel']/../../../following-sibling:: td //div[@class='undefined'] /span");
+	By TagCount = By.xpath("//span[text()='Channel']/../../../following-sibling:: td //div[@class='undefined'] /span"); 
+	By IntegrationTag = By.xpath("//span [text()='Integration']/../preceding-sibling:: img[@class='x-tree-ec-icon x-tree-elbow-minus']");
+	By LunchPoint = By.xpath("//li[@class='x-tree-node']//span[text()='LaunchPoint']");
+	By VerifyLunchPoint = By.xpath("//span[text()='No services configured']");
+	By InstalledService = By.cssSelector("[class='x-grid3-viewport']");
+	By LeadsCount = By.cssSelector("[class='x-toolbar-right-row'] [class='xtb-text']");
+
 	
 	public WebElement GetMyAccount() {
 		return driver.findElement(MyAccount);
@@ -43,8 +49,25 @@ public class AdminPage extends TestBase{
 	public WebElement GetIFrame() {
 		return driver.findElement(Iframe);
 	}
+	public WebElement GetIntegrationTag() {
+		return driver.findElement(IntegrationTag);
+	}
+	
+	public WebElement GetLunchPoint() {
+		return driver.findElement(LunchPoint);
+	}
+	
+	public WebElement GetVerifyLunchPoint() {
+		return driver.findElement(VerifyLunchPoint);
+	}
+	
+	public WebElement GetInstalledService() {
+		return driver.findElement(InstalledService);
+	}
+	
 	
 	public void switchFrame() throws Throwable {
+		driver.switchTo().defaultContent();
 		driver.switchTo().frame(GetIFrame());
 
 	}
@@ -64,9 +87,33 @@ public class AdminPage extends TestBase{
 		
 	}
 	
-	
-	
+	public void OpenLunchPoint(int row) throws Throwable {
+		
+		GetLunchPoint().click();
+		try {
+		driver.findElement(By.xpath("//span[text()='No services configured']")).isDisplayed();			
+		}
 
+		catch (Exception e) {
+			
+			screenshotUtility.TakeScreenshot(GetInstalledService(), "Integration");			
+		}
+		new CommonLib().WriteExcelData("Sheet1", row, 0, "Integration");
+		new CommonLib().WriteExcelData("Sheet1", row, 1, GetCount());
+		}
 	
-
-}
+		public String GetCount() throws Throwable {
+		
+		Thread.sleep(4000);
+	    String countString = driver.findElement(LeadsCount).getText();
+	    String[] words=countString.split("\\s"); 
+	    if(words[0].equalsIgnoreCase("No")) {
+			return "0";
+		}
+	    else {
+	    return words[0];
+	    }
+		
+	}
+		}
+	

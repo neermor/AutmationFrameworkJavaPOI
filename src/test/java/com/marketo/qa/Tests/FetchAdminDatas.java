@@ -17,7 +17,9 @@ public class FetchAdminDatas extends TestBase {
 	homePage.OpenAdminTab();
 	Thread.sleep(10000);
 	admin.switchFrame();
-	admin.TagsCountAndScreenshot("Tags",11);
+	admin.TagsCountAndScreenshot("Tags",18);
+	admin.OpenLunchPoint(19);
+
 	}
 	
 

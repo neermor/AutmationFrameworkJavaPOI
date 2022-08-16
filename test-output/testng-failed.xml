@@ -3,13 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.marketo.qa.Tests.FetchChampianCounts">
+      <class name="com.marketo.qa.Tests.FetchAdminDatas">
         <methods>
-          <include name="ChampiensCount"/>
+          <include name="VerifyCountAndScreenshor"/>
           <include name="initialization"/>
-          <include name="GenerateReport"/>
         </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchChampianCounts -->
+      </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
