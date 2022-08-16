@@ -4,6 +4,7 @@
   <test thread-count="5" name="Test(failed)">
     <classes>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <class name="com.marketo.qa.Tests.FetchModelsCount">
         <methods>
           <include name="ModelCount"/>
@@ -27,12 +28,23 @@
       </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
 <<<<<<< HEAD
       <class name="com.marketo.qa.Tests.FetchDataFromChangeScore">
+=======
+      <class name="com.marketo.qa.Tests.FetchAdminDatas">
+>>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
         <methods>
-          <include name="VerifyChangeScoreCount"/>
+          <include name="VerifyCountAndScreenshor"/>
           <include name="initialization"/>
+<<<<<<< HEAD
+=======
+          <include name="GenerateReport"/>
+>>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
         </methods>
+<<<<<<< HEAD
       </class> <!-- com.marketo.qa.Tests.FetchDataFromChangeScore -->
 =======
+>>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
+=======
+      </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
 >>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
     </classes>
   </test> <!-- Test(failed) -->

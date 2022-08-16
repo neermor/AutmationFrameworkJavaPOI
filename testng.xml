@@ -9,6 +9,7 @@
       <class name="com.marketo.qa.Tests.FetchAdminDatas"/>
       <class name="com.marketo.qa.Tests.FetchModelsCount"/>
       <class name="com.marketo.qa.Tests.FetchLeadsCount"/>
+
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

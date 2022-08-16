@@ -4,12 +4,13 @@ import static org.testng.Assert.assertTrue;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 import org.apache.poi.util.Units;
 import org.apache.poi.xwpf.usermodel.BreakType;
@@ -18,7 +19,7 @@ import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
-import org.apache.xmlbeans.XmlException;
+
 
 
 
@@ -31,10 +32,11 @@ public class reports {
 
 	static String word = System.getProperty("user.home") + "\\Desktop\\Reports\\";
 	static String fileName = new SimpleDateFormat("dd_MM_yy_HH_mm").format(new Date());
-	static String screenshotsPathWordDoc = word + "Report_"+fileName+".docx";
-
-
-	public static void docs() throws IOException, XmlException {
+	static String screenshotsPathWordDoc = word + passData.AccountName+fileName+".docx";
+	
+	
+	
+	public static void docs() throws Exception {
 		Path outputDirectory = Paths.get(word);
 		if (!Files.exists(outputDirectory)) {
 			assertTrue(new File(String.valueOf(outputDirectory)).mkdirs(), "Unable to create output directory");
@@ -45,6 +47,7 @@ public class reports {
 		
 		
 		XWPFDocument document = new XWPFDocument();
+		
 		XWPFParagraph Statsparagraph = document.createParagraph();
 		XWPFRun run = Statsparagraph.createRun();
 		run.setBold(true);
@@ -56,14 +59,16 @@ public class reports {
 		run.setFontFamily("Calibri Light (Headings)");
 		run.setFontSize(10);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
-		run.setText("They have " + passData.Exceldata("All Campaigns")+ " campaigns");
+		run.setText("        They have " + passData.Exceldata("All Campaigns")+ " campaigns");
 		
 		
 		Statsparagraph = document.createParagraph();
 		run = Statsparagraph.createRun();
 		run.setFontFamily("Calibri Light (Headings)");
 		run.setFontSize(10);
+		
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
+		
 		run.setText("They have " + passData.Exceldata("Active Campaigns") + " active campaigns");
 		
 		Statsparagraph = document.createParagraph();
@@ -85,7 +90,7 @@ public class reports {
 		run.setFontFamily("Calibri Light (Headings)");
 		run.setFontSize(10);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
-		run.setText("They have " + passData.Exceldata("Active Triggered Campaigns") + " re-occurring batch campaigns");
+		run.setText("They have " + passData.Exceldata("Batch Campaigns - Repeating Schedule") + " re-occurring batch campaigns");
 		
 		Statsparagraph = document.createParagraph();
 		run = Statsparagraph.createRun();
@@ -153,11 +158,25 @@ public class reports {
 			
 			XWPFParagraph imgPara = document.createParagraph();
 			XWPFRun img = imgPara.createRun();
+			
 			img.addPicture(new FileInputStream(passData.FetchScreenshot("Tags")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Tags"),
 					Units.toEMU(380), Units.toEMU(150));
 			
 			img.addBreak(BreakType.PAGE);
 			
+			int Snippets = Integer.parseInt(passData.Exceldata("Snippets"));
+			if (Snippets<5)
+			{
+				XWPFParagraph SnippetsData = document.createParagraph();
+				XWPFRun SnippetsRun = SnippetsData.createRun();
+				stylingDoc.setNoProof(SnippetsRun);
+				SnippetsRun.setFontFamily("Calibri Light (Headings)");
+				SnippetsRun.setFontSize(10);
+				
+				
+				
+				SnippetsRun.setText(passData.No_Snippets);
+			}
 			
 			//Models report part, Note : we have to added conditional based formatting 
 			
@@ -415,7 +434,7 @@ public class reports {
 			SegmentHeading.setBold(true);
 			SegmentHeading.setText("Segment");
 			
-			int Segment_Data= Integer.parseInt(passData.Exceldata("Segment Data"));
+			int Segment_Data= Integer.parseInt(passData.Exceldata("Segmentations"));
 			if (Segment_Data>0)
 			{
 			
@@ -453,7 +472,7 @@ public class reports {
 			intigrationRunHeading.setBold(true);
 			intigrationRunHeading.setText("Integrations");
 			
-			int intigration_Data= Integer.parseInt(passData.Exceldata("Integration Data"));
+			int intigration_Data= Integer.parseInt(passData.Exceldata("Integration"));
 			if (intigration_Data>0)
 			{
 			

@@ -3,24 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-<<<<<<< HEAD
       <class name="com.marketo.qa.Tests.FetchAdminDatas">
-=======
-      <class name="com.marketo.qa.Tests.FetchDataFromChangeScore">
->>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
         <methods>
-<<<<<<< HEAD
           <include name="VerifyCountAndScreenshor"/>
-=======
-          <include name="VerifyChangeScoreCount"/>
->>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
           <include name="initialization"/>
+          <include name="Logout"/>
+          <include name="GenerateReport"/>
         </methods>
-<<<<<<< HEAD
       </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
-=======
-      </class> <!-- com.marketo.qa.Tests.FetchDataFromChangeScore -->
->>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -96,7 +96,7 @@ public class passData  {
 			+ " segment that they fall into.";
 	
 	//Snippet
-	static String No_Snippets =  AccountName +"\n is not taking advantage of snippets. Snippets are reusable blocks of rich text and graphics that"
+	static String No_Snippets =  AccountName +"\nis not taking advantage of snippets. Snippets are reusable blocks of rich text and graphics that"
 			+ " the client can use in their emails and landing pages, and it is a great timesaver!"
 			+ " https://experienceleague.adobe.com/docs/marketo/using/product-docs/personalization/segmentation-and-snippets/snippets/create-a-snippet.html?lang=en";
 	
@@ -166,40 +166,30 @@ public class passData  {
 			+ " marketers to execute personalized campaigns for both accounts and leads in one motion. You also "
 			+ "benefit from reaching key decision makers and deal influencers.";
 	
-	public static String Exceldata(String value) throws IOException 
+	public static String Exceldata(String value) throws IOException
 	{
 		Map <String, String> testdata =excelReader.getMapData();
 		
 		return testdata.get(value);
 		
-	}	 
+	}
+	
 	
 	
 	public static String GenricMethod(String snippets) throws IOException {
 		
-		int snippet = Integer.parseInt(passData.Exceldata("Snippets"));
-		
-		
-		if (snippet>=5) 
-		{		
 			
 			return snippets+"\nSnippets" ;
-		}
-		
-		else  {
-		}
-			return  No_Snippets;
 			
 					
-	} 
-
+	}
 	//No Lead_scoring Data
 public static String LeadScoring(String leads) throws IOException {
 		
 		int lead = Integer.parseInt(passData.Exceldata("Leads"));
 		
 		
-		if (lead>=5) 
+		if (lead>=5)
 		{			
 			return AccountName +"\nhas\n"+leads+ Lead_scoring;
 		}
@@ -207,14 +197,12 @@ public static String LeadScoring(String leads) throws IOException {
 		else  {
 		}
 			return No_lead_scoring;			
-	} 
-
+	}
 //my tokens method for Lead scoring
-
 public static String MyTokens() throws IOException {	
 	int token = Integer.parseInt(passData.Exceldata("Tokens"));
 	
-	if (token>0) 
+	if (token>0)
 	{			
 		return tokens ;
 	}
@@ -224,14 +212,12 @@ public static String MyTokens() throws IOException {
 	
 		return no_tokens;
 				
-} 
-
-
+}
 public static String BatchCampaigns() throws IOException {	
 	
 	int Batch = Integer.parseInt(passData.Exceldata("All Batch Campaigns"));
 	
-	if (Batch>0) 
+	if (Batch>0)
 	{			
 		return AccountName +"\nhas built\n"+Exceldata("All Batch Campaigns")+batch ;
 	}
@@ -241,15 +227,13 @@ public static String BatchCampaigns() throws IOException {
 	
 		return no_batch;
 				
-} 
-
-//Method for Data Management 
-
+}
+//Method for Data Management
 public static String DataManagement() throws IOException {	
 	
 	int DataManagment = Integer.parseInt(passData.Exceldata("Change Data Value"));
 	
-	if (DataManagment>10) 
+	if (DataManagment>10)
 	{			
 		return Data ;
 	}
@@ -259,14 +243,13 @@ public static String DataManagement() throws IOException {
 	
 		return No_Data +No_data_link ;
 				
-} 
-
-//Method for Events 
+}
+//Method for Events
 public static String Events() throws IOException {	
 	
 	int Event_Program = Integer.parseInt(passData.Exceldata("Event Programs"));
 	
-	if (Event_Program>=5) 
+	if (Event_Program>=5)
 	{			
 		return events;
 	}
@@ -281,22 +264,20 @@ public static String Events() throws IOException {
 	
 		return No_events  ;
 				
-} 
-
-
-//Method of Nurture Campaigns 
+}
+//Method of Nurture Campaigns
 public static String Nurture_Campaigns() throws IOException {	
 	
 	int Nurture_Campaigns = Integer.parseInt(passData.Exceldata("Nurture campaigns"));
 	
-	if (Nurture_Campaigns>=5) 
+	if (Nurture_Campaigns>=5)
 	{			
 		return Exceldata("Nurture campaigns")+Nurture;
 	}
 	
 	else if  (Nurture_Campaigns<5 && Nurture_Campaigns>0) {
 	
-		return Exceldata("Nurture campaigns")+Nurture ;
+		return  AccountName+"\nhas\n"+ Exceldata("Nurture campaigns")+Nurture ;
 	
 	}
 	else  {
@@ -305,14 +286,12 @@ public static String Nurture_Campaigns() throws IOException {
 		return No_Nurture  ;
 				
 }
-
-//Segment Data 
-
+//Segment Data
 public static String Segmentation() throws IOException {	
 	
 	int Segmentation = Integer.parseInt(passData.Exceldata("Segment Data"));
 	
-	if (Segmentation>=5) 
+	if (Segmentation>=5)
 	{			
 		return AccountName+"\nhas\n"+Exceldata("Segment Data")+Nurture;
 	}
@@ -323,15 +302,12 @@ public static String Segmentation() throws IOException {
 		return segment  ;
 				
 }
-
-
-
-//Program Library 
+//Program Library
 public static String Library() throws IOException {	
 	
 	int Library = Integer.parseInt(passData.Exceldata("Library"));
 	
-	if (Library>=1) 
+	if (Library>=1)
 	{			
 		return Program_library ;
 	}
@@ -342,14 +318,12 @@ public static String Library() throws IOException {
 		return no_library ;
 				
 }
-
 //Integrations
-
 public static String Integrations() throws IOException {	
 	
 	int Integrations = Integer.parseInt(passData.Exceldata("Integrations"));
 	
-	if (Integrations>=1) 
+	if (Integrations>=1)
 	{			
 		return passData.FetchScreenshot("Change Score") ;
 	}
@@ -360,8 +334,6 @@ public static String Integrations() throws IOException {
 		return No_Integrations ;
 				
 }
-
-
 	
 		
 }
