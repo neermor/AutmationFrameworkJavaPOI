@@ -9,11 +9,14 @@ import java.util.concurrent.TimeUnit;
 import org.apache.xmlbeans.XmlException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
+
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.Pages.GhostLoginPage;
 import com.marketo.qa.Pages.LoginPage;
+import com.marketo.qa.Pages.MyMarketoPage;
 import com.marketo.qa.utility.reports;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -40,6 +43,7 @@ public class TestBase {
 		}
 	}
 
+
 	@BeforeClass
 	public static void initialization() {
 
@@ -61,6 +65,7 @@ public class TestBase {
 			
 			driver = WebDriverManager.iedriver().create();
 		}
+
 		
 		else if (browserName.equals("Edge")) {
 			
@@ -86,7 +91,7 @@ public class TestBase {
 	public static void GhostLogin() throws Throwable {
 		driver.get(prop.getProperty("ghosturl"));
 		new GhostLoginPage().GhostLogin(prop.getProperty("prifix"), prop.getProperty("Ghostpwd"),prop.getProperty("id"));
-		new CommonLib().StandardWait(40000);
+		new CommonLib().StandardWait(20000);
 
 	}
 	public static void MarketoLogin() throws Throwable {
@@ -94,15 +99,24 @@ public class TestBase {
 		new CommonLib().StandardWait(20000);
 		Reporter.log("Login Succsessfully");
 	}
-
 	
+	@AfterClass
+	public static void Logout() {
+		new MyMarketoPage().GetAccountIcon().click();
+		new MyMarketoPage().GetLogoutBtn().click();
+
+	}
+	
+	
+
 	  @AfterSuite
+
 	  public void GenerateReport() throws Exception {
 		  reports.docs();
 		  
 	  }
+	  
 	  public static void CloseBrowser() throws IOException, XmlException { 
-		 // reports.docs();
 		  driver.quit();
 		  }
 	 

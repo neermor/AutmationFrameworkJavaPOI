@@ -14,7 +14,17 @@ public class MyMarketoPage extends TestBase {
 	
 	boolean flag = false;
 	By MyMarketoPageHomeTiles=By.xpath("//div[@role='tablist']/div");
+	By AccountIcon= By.cssSelector("div [data-id='userAccountNavButton']");
+	By LogoutBtn = By.cssSelector("[data-id='userAccountLogoutButton']");
+	By TreeNode=By.cssSelector("[data-id='globalTreeDrawerExpanderContent'] [data-id='treeNode_Label']");
 
+	public WebElement GetAccountIcon() {
+		return driver.findElement(AccountIcon);
+	}
+	
+	public WebElement GetLogoutBtn() {
+		return driver.findElement(LogoutBtn);
+	}
 	
 	public void OpenMarketingActivitiesTab() throws Throwable {
 		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
@@ -80,7 +90,9 @@ public class MyMarketoPage extends TestBase {
 			 }
 	
 	
-	public boolean VerifyHomeTileElements() {
+	public boolean VerifyHomeTileElements() throws Throwable {
+		Thread.sleep(10000);
+
 	    List<WebElement> HomeTiles = driver.findElements(MyMarketoPageHomeTiles);
 
 	    
@@ -95,6 +107,29 @@ public class MyMarketoPage extends TestBase {
 	         }	        
 	    }
 		return flag;
+	}
+
+	public void SelectTreeNode(String TreeNodeName) throws Throwable {
+		Thread.sleep(10000);
+	    List<WebElement> HomeTiles = driver.findElements(TreeNode);
+        System.out.println(HomeTiles);
+		 for(WebElement option: HomeTiles){
+			 
+				if (option.getText().equalsIgnoreCase(TreeNodeName)) {
+					option.click();
+				}
+				System.out.println(option.getText());
+			 }
+		 }
+	
+	public void SelectWorkSpace(String WorkspaceName) throws Throwable {
+		SelectTreeNode(WorkspaceName);
+
+	}
+	
+
+	public void  ExtendTreeNode(String Name) throws Throwable {
+		driver.findElement(By.xpath("//div[contains(@data-id,'treeNode_Label')]/span[text()="+"'"+Name+"'"+"]/../preceding-sibling::button[@data-id='treeNodeChevronIconButton']")).click();
 	}
 	
 	

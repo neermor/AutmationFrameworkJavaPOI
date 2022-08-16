@@ -3,6 +3,22 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
     <classes>
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <class name="com.marketo.qa.Tests.FetchModelsCount">
+        <methods>
+          <include name="ModelCount"/>
+          <include name="initialization"/>
+        </methods>
+      </class> <!-- com.marketo.qa.Tests.FetchModelsCount -->
+      <class name="com.marketo.qa.Tests.FetchLeadsCount">
+        <methods>
+          <include name="initialization"/>
+          <include name="CollectLeadsCount"/>
+        </methods>
+      </class> <!-- com.marketo.qa.Tests.FetchLeadsCount -->
+=======
+>>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
       <class name="com.marketo.qa.Tests.FetchAdminDatas">
         <methods>
           <include name="VerifyCountAndScreenshor"/>
@@ -10,6 +26,26 @@
           <include name="GenerateReport"/>
         </methods>
       </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
+<<<<<<< HEAD
+      <class name="com.marketo.qa.Tests.FetchDataFromChangeScore">
+=======
+      <class name="com.marketo.qa.Tests.FetchAdminDatas">
+>>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
+        <methods>
+          <include name="VerifyCountAndScreenshor"/>
+          <include name="initialization"/>
+<<<<<<< HEAD
+=======
+          <include name="GenerateReport"/>
+>>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
+        </methods>
+<<<<<<< HEAD
+      </class> <!-- com.marketo.qa.Tests.FetchDataFromChangeScore -->
+=======
+>>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
+=======
+      </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
+>>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->
