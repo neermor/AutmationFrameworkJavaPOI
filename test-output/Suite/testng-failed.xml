@@ -3,6 +3,7 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
     <classes>
+<<<<<<< HEAD
       <class name="com.marketo.qa.Tests.FetchModelsCount">
         <methods>
           <include name="ModelCount"/>
@@ -15,18 +16,24 @@
           <include name="CollectLeadsCount"/>
         </methods>
       </class> <!-- com.marketo.qa.Tests.FetchLeadsCount -->
+=======
+>>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
       <class name="com.marketo.qa.Tests.FetchAdminDatas">
         <methods>
           <include name="VerifyCountAndScreenshor"/>
           <include name="initialization"/>
+          <include name="GenerateReport"/>
         </methods>
       </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
+<<<<<<< HEAD
       <class name="com.marketo.qa.Tests.FetchDataFromChangeScore">
         <methods>
           <include name="VerifyChangeScoreCount"/>
           <include name="initialization"/>
         </methods>
       </class> <!-- com.marketo.qa.Tests.FetchDataFromChangeScore -->
+=======
+>>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->
