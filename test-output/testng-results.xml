@@ -5,23 +5,23 @@
       <![CDATA[Login Succsessfully]]>
     </line>
   </reporter-output>
-  <suite started-at="2022-08-16T10:07:54 IST" name="Default suite" finished-at="2022-08-16T10:09:26 IST" duration-ms="91564">
+  <suite started-at="2022-08-16T11:57:51 IST" name="Default suite" finished-at="2022-08-16T11:58:31 IST" duration-ms="40600">
     <groups>
     </groups>
-    <test started-at="2022-08-16T10:07:54 IST" name="Default test" finished-at="2022-08-16T10:09:26 IST" duration-ms="91564">
-      <class name="com.marketo.qa.Tests.FetchAdminDatas">
-        <test-method is-config="true" signature="initialization()[pri:0, instance:com.marketo.qa.Tests.FetchAdminDatas@46cdf8bd]" started-at="2022-08-16T10:07:40 IST" name="initialization" finished-at="2022-08-16T10:07:54 IST" duration-ms="14239" status="PASS">
+    <test started-at="2022-08-16T11:57:51 IST" name="Default test" finished-at="2022-08-16T11:58:31 IST" duration-ms="40600">
+      <class name="com.marketo.qa.Tests.FetchDataFromChangeScore">
+        <test-method is-config="true" signature="initialization()[pri:0, instance:com.marketo.qa.Tests.FetchDataFromChangeScore@f0c8a99]" started-at="2022-08-16T11:57:36 IST" name="initialization" finished-at="2022-08-16T11:57:51 IST" duration-ms="14193" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialization -->
-        <test-method signature="VerifyCountAndScreenshor()[pri:0, instance:com.marketo.qa.Tests.FetchAdminDatas@46cdf8bd]" started-at="2022-08-16T10:07:54 IST" name="VerifyCountAndScreenshor" finished-at="2022-08-16T10:09:26 IST" duration-ms="91540" status="PASS">
+        <test-method signature="VerifyChangeScoreCount()[pri:0, instance:com.marketo.qa.Tests.FetchDataFromChangeScore@f0c8a99]" started-at="2022-08-16T11:57:51 IST" name="VerifyChangeScoreCount" finished-at="2022-08-16T11:58:31 IST" duration-ms="40576" status="PASS">
           <reporter-output>
             <line>
               <![CDATA[Login Succsessfully]]>
             </line>
           </reporter-output>
-        </test-method> <!-- VerifyCountAndScreenshor -->
-      </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
+        </test-method> <!-- VerifyChangeScoreCount -->
+      </class> <!-- com.marketo.qa.Tests.FetchDataFromChangeScore -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
