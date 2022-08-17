@@ -63,6 +63,7 @@ public class DatabasePage extends TestBase{
 
 	
 	public void  ExtendWorkshoptreenode(String Name,String ListName) throws Throwable {
+		new CommonLib().StandardWait(2000);
 		driver.findElement(By.xpath("//div[contains(@data-id,'treeNode_Label')]/span[text()="+"'"+Name+"'"+"]/../preceding-sibling::button[@data-id='treeNodeChevronIconButton']")).click();
 		SelectTreeNode(ListName);
 		new CommonLib().StandardWait(2000);
@@ -74,7 +75,6 @@ public class DatabasePage extends TestBase{
 	
 	public void GetLeadsCount(int row) throws Throwable {
 		new CommonLib().StandardWait(2000);
-		driver.switchTo().defaultContent();
 		driver.switchTo().frame(GetIFrame());
 		GetPeople().click();
 		new CommonLib().WriteExcelData("Sheet1", row, 0, "Leads");
@@ -93,15 +93,11 @@ public class DatabasePage extends TestBase{
 			screenshotUtility.TakeScreenshot(GetSagHar(), "Segmentations");		 		
 			new CommonLib().StandardWait(2000);
 		}
-		else {
-			new CommonLib().WriteExcelData("Sheet1", row, 0, "Segmentations");
-			new CommonLib().WriteExcelData("Sheet1", row, 1, 0);
-		
-		}
 			}
 			catch (Exception e) {
-				// TODO: handle exception
-			}
+				new CommonLib().WriteExcelData("Sheet1", row, 0, "Segmentations");
+				new CommonLib().WriteExcelData("Sheet1", row, 1, 0);
+				}
 	}
 
 }

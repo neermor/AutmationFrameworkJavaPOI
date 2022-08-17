@@ -11,15 +11,22 @@ import com.marketo.qa.base.TestBase;
 public class FetchLeadsCount extends TestBase {
 	MyMarketoPage homePage= new MyMarketoPage();
 	DatabasePage Db= new DatabasePage();
+	MarketingActivitePage mAP= new MarketingActivitePage();
+
 
 	@Test
 	public void CollectLeadsCount() throws Throwable {
 		MarketoLogin();
+		mAP.switchFrame();
 		homePage.OpenDatabaseTab();
+		driver.switchTo().defaultContent();
 		homePage.SelectWorkSpace("Default");
 		Db.SegmentationsCount(17);
 		Db.ExtendWorkshoptreenode("System Smart Lists","All People");
 		Db.GetLeadsCount(15);
+		driver.switchTo().defaultContent();
+		Logout();
+
 	}
 
 }

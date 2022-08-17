@@ -7,8 +7,7 @@
         <methods>
           <include name="VerifyCountAndScreenshor"/>
           <include name="initialization"/>
-          <include name="Logout"/>
-          <include name="GenerateReport"/>
+          <include name="CloseBrowser"/>
         </methods>
       </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
     </classes>

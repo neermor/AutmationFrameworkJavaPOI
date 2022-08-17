@@ -9,6 +9,8 @@ import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.base.TestBase;
 import com.marketo.qa.utility.screenshotUtility;
 
+import net.lightbody.bmp.proxy.jetty.html.Break;
+
 public class AnalyticsPage extends TestBase{
 	MyMarketoPage homepage= new MyMarketoPage();
 
@@ -34,16 +36,12 @@ public class AnalyticsPage extends TestBase{
 				screenshotUtility.TakeScreenshot(GetRcm(), "Models");		 		
 			}
 
-		else {
+		}
+		catch (Exception e) {
 			new CommonLib().WriteExcelData("Sheet1", row, 0, "Models");
 			System.out.println(GetModels().size());
 			new CommonLib().WriteExcelData("Sheet1", row, 1, 0);
 			}
-
-		}
-		catch (Exception e) {
-			// TODO: handle exception
-		}
 		
 		
 		}

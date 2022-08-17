@@ -11,7 +11,10 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.Pages.GhostLoginPage;
@@ -44,7 +47,7 @@ public class TestBase {
 	}
 
 
-	@BeforeClass
+	@BeforeTest
 	public static void initialization() {
 
 		String browserName = prop.getProperty("browser");
@@ -100,23 +103,15 @@ public class TestBase {
 		Reporter.log("Login Succsessfully");
 	}
 	
-	@AfterClass
 	public static void Logout() {
 		new MyMarketoPage().GetAccountIcon().click();
 		new MyMarketoPage().GetLogoutBtn().click();
 
 	}
 	
-	
 
-	  @AfterSuite
-
-	  public void GenerateReport() throws Exception {
-		  reports.docs();
-		  
-	  }
-	  
-	  public static void CloseBrowser() throws IOException, XmlException { 
+	  @AfterTest
+	  public static void CloseBrowser() { 
 		  driver.quit();
 		  }
 	 
