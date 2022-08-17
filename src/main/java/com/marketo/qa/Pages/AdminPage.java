@@ -74,10 +74,11 @@ public class AdminPage extends TestBase{
 
 	}
 	
-	public String AccountName() {
+	public void AccountName(int row) throws Throwable {
 		GetMyAccount().click();
-		return GetAccountName().getText();
-		
+		new CommonLib().WriteExcelData("Sheet1", row, 0, "Account Name");
+		new CommonLib().WriteExcelData("Sheet1", row, 1,  GetAccountName().getText());
+				
 	}
 	
 	public void TagsCountAndScreenshot(String tags, int row) throws Throwable {

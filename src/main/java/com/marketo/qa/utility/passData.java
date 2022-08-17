@@ -12,8 +12,7 @@ import com.marketo.qa.Pages.AdminPage;
 
 
 public class passData  {
-	static AdminPage Ap = new AdminPage();
-	static String AccountName= Ap.AccountName();
+	static String AccountName= "";
 	
 	public static String FetchScreenshot(String screenshotName) {
 		
