@@ -25,6 +25,7 @@ public class FetchAdminDatas extends TestBase {
 	admin.TagsCountAndScreenshot("Tags",18);
 	admin.OpenLunchPoint(19);
 	admin.GetInterestingMomentSubscription(20);
+	admin.AccountName(21);
 	driver.switchTo().defaultContent();
 	Logout();
 	}
