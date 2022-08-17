@@ -7,6 +7,8 @@ import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.base.TestBase;
 import com.marketo.qa.utility.screenshotUtility;
 
+import gherkin.formatter.model.DocString;
+
 public class AdminPage extends TestBase{
 	
 	By MyAccount=By.xpath("//li[@class='x-tree-node']//span[text()='My Account']");
@@ -21,7 +23,7 @@ public class AdminPage extends TestBase{
 	By VerifyLunchPoint = By.xpath("//span[text()='No services configured']");
 	By InstalledService = By.cssSelector("[class='x-grid3-viewport']");
 	By LeadsCount = By.cssSelector("[class='x-toolbar-right-row'] [class='xtb-text']");
-
+	By SalesInsight=By.xpath("//li[@class='x-tree-node']//span[text()='Sales Insight']");
 	
 	public WebElement GetMyAccount() {
 		return driver.findElement(MyAccount);
@@ -112,8 +114,21 @@ public class AdminPage extends TestBase{
 		}
 	    else {
 	    return words[0];
-	    }
+	    }    
+	 }
 		
-	}
+		public void GetInterestingMomentSubscription(int row) throws Throwable {		
+	    	 try {
+		    	 boolean flag= driver.findElement(SalesInsight).isDisplayed();
+	    	 if(flag) {
+		    		new CommonLib().WriteExcelData("Sheet1", row, 0, "Interesting Moment Subscription");
+					new CommonLib().WriteExcelData("Sheet1", row, 1, "True");	
+					}
+	    	 }
+	    	 catch (Exception e) {
+		    		new CommonLib().WriteExcelData("Sheet1", row, 0, "Interesting Moment Subscription");
+					new CommonLib().WriteExcelData("Sheet1", row, 1, "False");	    		 
+	    	 }
+	    }
 		}
 	

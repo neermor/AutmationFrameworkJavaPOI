@@ -1,51 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="Test(failed)">
+  <test thread-count="5" name="GhostLogin(failed)">
     <classes>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <class name="com.marketo.qa.Tests.FetchModelsCount">
+      <class name="com.marketo.qa.Tests.FetchChampianCounts">
         <methods>
-          <include name="ModelCount"/>
+          <include name="ChampiensCount"/>
           <include name="initialization"/>
+          <include name="CloseBrowser"/>
         </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchModelsCount -->
+      </class> <!-- com.marketo.qa.Tests.FetchChampianCounts -->
+    </classes>
+  </test> <!-- GhostLogin(failed) -->
+  <test thread-count="5" name="QELogin(failed)">
+    <classes>
+      <class name="com.marketo.qa.Tests.FetchAdminDatas">
+        <methods>
+          <include name="VerifyCountAndScreenshor"/>
+          <include name="initialization"/>
+          <include name="CloseBrowser"/>
+        </methods>
+      </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
+      <class name="com.marketo.qa.Tests.FetchDataFromChangeScore">
+        <methods>
+          <include name="VerifyChangeScoreCount"/>
+          <include name="initialization"/>
+          <include name="CloseBrowser"/>
+        </methods>
+      </class> <!-- com.marketo.qa.Tests.FetchDataFromChangeScore -->
       <class name="com.marketo.qa.Tests.FetchLeadsCount">
         <methods>
           <include name="initialization"/>
           <include name="CollectLeadsCount"/>
+          <include name="CloseBrowser"/>
         </methods>
       </class> <!-- com.marketo.qa.Tests.FetchLeadsCount -->
-=======
->>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
-      <class name="com.marketo.qa.Tests.FetchAdminDatas">
+      <class name="com.marketo.qa.Tests.FetchDesignStudioData">
         <methods>
-          <include name="VerifyCountAndScreenshor"/>
           <include name="initialization"/>
-          <include name="GenerateReport"/>
+          <include name="TakeRequiredCount"/>
+          <include name="CloseBrowser"/>
         </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
-<<<<<<< HEAD
-      <class name="com.marketo.qa.Tests.FetchDataFromChangeScore">
-=======
-      <class name="com.marketo.qa.Tests.FetchAdminDatas">
->>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
+      </class> <!-- com.marketo.qa.Tests.FetchDesignStudioData -->
+      <class name="com.marketo.qa.Tests.FetchModelsCount">
         <methods>
-          <include name="VerifyCountAndScreenshor"/>
+          <include name="ModelCount"/>
           <include name="initialization"/>
-<<<<<<< HEAD
-=======
-          <include name="GenerateReport"/>
->>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
+          <include name="CloseBrowser"/>
         </methods>
-<<<<<<< HEAD
-      </class> <!-- com.marketo.qa.Tests.FetchDataFromChangeScore -->
-=======
->>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
-=======
-      </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
->>>>>>> branch 'main' of https://del.globallogic.com/gitlab/neeraj.mourya/markketo-instance.git
+      </class> <!-- com.marketo.qa.Tests.FetchModelsCount -->
     </classes>
-  </test> <!-- Test(failed) -->
+  </test> <!-- QELogin(failed) -->
 </suite> <!-- Failed suite [Suite] -->

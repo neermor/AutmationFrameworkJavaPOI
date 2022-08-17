@@ -13,7 +13,6 @@ public class FetchChampianCounts extends TestBase {
 	@Test
 	public void ChampiensCount() throws Throwable {
 			GhostLogin();
-			homePage.VerifyHomeTileElements();
 			homePage.OpenMarketingActivitiesTab();
 			mAP.SelectWorkSpace("Default");
 			System.out.println(driver);
@@ -25,6 +24,9 @@ public class FetchChampianCounts extends TestBase {
 			mAP.GetMoreCampaignCount("All Batch Campaigns", 12);
 			mAP.GetCampaignCount("All Campaigns",13);
 			mAP.GetCampaignCount("Active Campaigns", 14);
+			driver.switchTo().defaultContent();
+			Logout();
+
 			 
 
 	}
