@@ -6,21 +6,15 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.xmlbeans.XmlException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.Pages.GhostLoginPage;
 import com.marketo.qa.Pages.LoginPage;
 import com.marketo.qa.Pages.MyMarketoPage;
-import com.marketo.qa.utility.reports;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -82,7 +76,7 @@ public class TestBase {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
-		driver.get(prop.getProperty("url"));
+		driver.get(prop.getProperty("ghosturl"));
 	}
 
 	public static void OpenSupportTool() {
@@ -92,7 +86,6 @@ public class TestBase {
 
 	
 	public static void GhostLogin() throws Throwable {
-		driver.get(prop.getProperty("ghosturl"));
 		new GhostLoginPage().GhostLogin(prop.getProperty("prifix"), prop.getProperty("Ghostpwd"),prop.getProperty("id"));
 		new CommonLib().StandardWait(20000);
 
@@ -110,7 +103,6 @@ public class TestBase {
 	}
 	
 
-	  @AfterTest
 	  public static void CloseBrowser() { 
 		  driver.quit();
 		  }

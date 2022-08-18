@@ -19,7 +19,6 @@ public class FetchAdminDatas extends TestBase {
 
 	@Test	
 	public void VerifyCountAndScreenshor()throws Throwable{
-	MarketoLogin();
 	homePage.OpenAdminTab();
 	admin.switchFrame();
 	admin.TagsCountAndScreenshot("Tags",18);
@@ -27,7 +26,6 @@ public class FetchAdminDatas extends TestBase {
 	admin.GetInterestingMomentSubscription(20);
 	admin.AccountName(21);
 	driver.switchTo().defaultContent();
-	Logout();
 	}
 	
 	
