@@ -14,7 +14,6 @@ public class MyMarketoPage extends TestBase {
 	
 	boolean flag = false;
 	By MyMarketoPageHeaderHomeTiles=By.xpath("//div[@role='tablist']/div");
-	By MyMarketoPageHomeTiles=By.cssSelector("[id*='CanvasContent-body'] span[class*='btn-inner']");
 	By AccountIcon= By.cssSelector("div [data-id='userAccountNavButton']");
 	By LogoutBtn = By.cssSelector("[data-id='userAccountLogoutButton']");
 	By TreeNode=By.cssSelector("[data-id='globalTreeDrawerExpanderContent'] [data-id='treeNode_Label']");
@@ -31,7 +30,6 @@ public class MyMarketoPage extends TestBase {
 		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 
 	    List<WebElement> HomeTiles = driver.findElements(MyMarketoPageHeaderHomeTiles);
-        System.out.println(HomeTiles);
 		 for(WebElement option: HomeTiles){
 			 
 				if (option.getText().equalsIgnoreCase("Marketing Activities")) {
@@ -42,8 +40,8 @@ public class MyMarketoPage extends TestBase {
 			 }
 		 }
 	
-	public void OpendesignStudioTab() {
-	   List<WebElement> HomeTiles = driver.findElements(MyMarketoPageHomeTiles);
+	public void OpenDesignStudioTab() {
+	   List<WebElement> HomeTiles = driver.findElements(MyMarketoPageHeaderHomeTiles);
        System.out.println(HomeTiles);
 		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);		
 		 for(WebElement option: HomeTiles){
@@ -66,8 +64,10 @@ public class MyMarketoPage extends TestBase {
 				 }
 			 }
 	
+
+	
 	public void OpenanalyticsTab() {
-		 List<WebElement> HomeTiles = driver.findElements(MyMarketoPageHomeTiles);
+		 List<WebElement> HomeTiles = driver.findElements(MyMarketoPageHeaderHomeTiles);
 
 			driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);		
 			 for(WebElement option: HomeTiles){
@@ -79,7 +79,7 @@ public class MyMarketoPage extends TestBase {
 			 }
 	
 	public void OpenDatabaseTab() {
-		 List<WebElement> HomeTiles = driver.findElements(MyMarketoPageHomeTiles);
+		 List<WebElement> HomeTiles = driver.findElements(MyMarketoPageHeaderHomeTiles);
 
 			driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);		
 			 for(WebElement option: HomeTiles){
@@ -94,7 +94,7 @@ public class MyMarketoPage extends TestBase {
 	public boolean VerifyHomeTileElements() throws Throwable {
 		Thread.sleep(10000);
 
-	    List<WebElement> HomeTiles = driver.findElements(MyMarketoPageHomeTiles);
+	    List<WebElement> HomeTiles = driver.findElements(MyMarketoPageHeaderHomeTiles);
 
 	    
 	    if (HomeTiles.size() == 0) {

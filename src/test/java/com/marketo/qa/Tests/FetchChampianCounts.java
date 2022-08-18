@@ -12,22 +12,18 @@ public class FetchChampianCounts extends TestBase {
 	
 	@Test
 	public void ChampiensCount() throws Throwable {
-			GhostLogin();
+		GhostLogin();
 			homePage.OpenMarketingActivitiesTab();
-			mAP.SelectWorkSpace("Default");
-			System.out.println(driver);
+			mAP.SelectWorkSpace("World");
 			mAP.switchFrame();
-			System.out.println(driver);
 			mAP.GetMoreCampaignCount("All Triggered Campaigns",9);
-			mAP.GetMoreCampaignCount("Active Triggered Campaigns", 10);
-			mAP.GetMoreCampaignCount("Batch Campaigns - Repeating Schedule", 11);
-			mAP.GetMoreCampaignCount("All Batch Campaigns", 12);
-			mAP.GetCampaignCount("All Campaigns",13);
-			mAP.GetCampaignCount("Active Campaigns", 14);
-			driver.switchTo().defaultContent();
-			Logout();
-
-			 
+			
+			  mAP.GetMoreCampaignCount("Active Triggered Campaigns", 10);
+			  mAP.GetMoreCampaignCount("Batch Campaigns - Repeating Schedule", 11);
+			  mAP.GetMoreCampaignCount("All Batch Campaigns", 12);
+			  mAP.GetCampaignCount("All Campaigns",13);
+			  mAP.GetCampaignCount("Active Campaigns", 14);
+			 driver.switchTo().defaultContent();			 
 
 	}
 

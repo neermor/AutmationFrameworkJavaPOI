@@ -17,8 +17,6 @@ public class FetchDataFromChangeScore extends TestBase {
 	
 	@Test
 	public void VerifyChangeScoreCount() throws Throwable {
-		MarketoLogin();	
-		//GhostLogin();
 		OpenSupportTool();
 		Support.SelectValueFlowAction("Flow Actions Used","Change Score",1);
 		screenshotUtility.TakeScreenshot(Support.GetResultTable(), "Change Score");

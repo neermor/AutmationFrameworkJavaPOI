@@ -19,10 +19,24 @@ public class MarketingActivitePage extends TestBase {
 	By AllCount = By.cssSelector("[class='x-toolbar-right-ct'] [class='x-toolbar-cell'] div");
 	By MoreCampaigns = By.xpath("//span[contains(text(),'More Campaigns')]");
 	By MoreCampaignOptions = By.cssSelector("[class='x-menu x-menu-floating x-layer mktSubMenu'] ul li span");
-
+	By filter = By.xpath("//button[@data-id='global_treeFilterButton']");
+	By EventFilter = By.xpath("//input[@value='Event Programs']");
+	By EngagementPrograms = By.xpath("//input[@value='Engagement Programs']");
 	
 	public WebElement GetIFrame() {
 		return driver.findElement(Iframe);
+	}
+	
+	public WebElement GetFilter() {
+		return driver.findElement(filter);
+	}
+	
+	public WebElement GetEventFilter() {
+		return driver.findElement(EventFilter);
+	}
+	
+	public WebElement GetEngagementPrograms() {
+		return driver.findElement(EngagementPrograms);
 	}
 		
 	public WebElement GetCampaignDD() {
@@ -53,7 +67,6 @@ public class MarketingActivitePage extends TestBase {
 	public void SelectTreeNode(String TreeNodeName) throws Throwable {
 		Thread.sleep(10000);
 	    List<WebElement> HomeTiles = driver.findElements(TreeNode);
-        System.out.println(HomeTiles);
 		 for(WebElement option: HomeTiles){
 			 
 				if (option.getText().equalsIgnoreCase(TreeNodeName)) {
@@ -67,7 +80,6 @@ public class MarketingActivitePage extends TestBase {
 	public void GetMoreCampaignOption(String MoreCampaignValue) throws Throwable {
 		Thread.sleep(10000);
 	    List<WebElement> CampaignOption = driver.findElements(MoreCampaignOptions);
-	    		System.out.println(CampaignOption);	    		
 		 for(WebElement option: CampaignOption){			 
 				if (option.getText().equalsIgnoreCase(MoreCampaignValue)) {
 					option.click();
@@ -80,7 +92,6 @@ public class MarketingActivitePage extends TestBase {
 	public void GetCampaignInspectorOption(String CampaignType) throws Throwable {
 		Thread.sleep(10000);
 	    List<WebElement> CampaignOption = driver.findElements(CampaignInspectorOption);
-        System.out.println(CampaignOption);
 		 for(WebElement option: CampaignOption){
 			 
 				if (option.getText().equalsIgnoreCase(CampaignType)) {
@@ -100,7 +111,6 @@ public class MarketingActivitePage extends TestBase {
 		Thread.sleep(4000);
 	    String countString = driver.findElement(AllCount).getText();
 	    String[] words=countString.split("\\s");  
-	    System.out.println(words[0]); 
 	    
 	    if(words[0].equalsIgnoreCase("No")) {
 			return "0";
@@ -134,9 +144,41 @@ public class MarketingActivitePage extends TestBase {
 
 	}
 	
+	public void GetEventCount(int row) {
+		GetFilter().click();
+		GetEventFilter().click();
+		try {
+		boolean flag	= driver.findElement(By.xpath("//div[@data-id='Tree_NoResultsText']")).isDisplayed();
+			if(flag) {
+				new CommonLib().WriteExcelData("Sheet1", row, 0, "Event Programs");
+				new CommonLib().WriteExcelData("Sheet1", row, 1, "0");
+				
+			}	
+			
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+	
+	public void GetNatureCount(int row) {
+		GetFilter().click();
+		GetEngagementPrograms().click();
+		try {
+			boolean flag	= driver.findElement(By.xpath("//div[@data-id='Tree_NoResultsText']")).isDisplayed();
+				if(flag) {
+					new CommonLib().WriteExcelData("Sheet1", row, 0, "Event Programs");
+					new CommonLib().WriteExcelData("Sheet1", row, 1, "0");
+					
+				}	
+				
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+		}
+	}
 	
 	
-	
-	
-
-}

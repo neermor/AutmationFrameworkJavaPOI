@@ -14,13 +14,9 @@ public class FetchModelsCount extends TestBase {
 
 	@Test
 	public void ModelCount() throws Throwable {
-		MarketoLogin();
-		mAP.switchFrame();
 		homePage.OpenanalyticsTab();
-		driver.switchTo().defaultContent();
 		homePage.SelectWorkSpace("Default");
 		Analytic.ModelCount(16);
-		Logout();
 		}
 
 }
