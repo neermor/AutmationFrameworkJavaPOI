@@ -22,9 +22,6 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 
 
-
-
-
 public class reports {
 	
 
@@ -32,8 +29,7 @@ public class reports {
 
 	static String word = System.getProperty("user.home") + "\\Desktop\\Reports\\";
 	static String fileName = new SimpleDateFormat("dd_MM_yy_HH_mm").format(new Date());
-	static String screenshotsPathWordDoc = word + passData.AccountName+fileName+".docx";
-	
+
 	
 	
 	public static void docs() throws Exception {
@@ -59,7 +55,7 @@ public class reports {
 		run.setFontFamily("Calibri Light (Headings)");
 		run.setFontSize(10);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
-		run.setText("        They have " + passData.Exceldata("All Campaigns")+ " campaigns");
+		run.setText("They have " + passData.Exceldata("All Campaigns")+ " campaigns");
 		
 		
 		Statsparagraph = document.createParagraph();
@@ -139,6 +135,13 @@ public class reports {
 		run.setFontFamily("Calibri Light (Headings)");
 		run.setFontSize(10);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
+		run.setText(passData.Exceldata("Leads") + "\nLeads");
+		
+		Statsparagraph = document.createParagraph();
+		run = Statsparagraph.createRun();
+		run.setFontFamily("Calibri Light (Headings)");
+		run.setFontSize(10);
+		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		run.setText(passData.Exceldata("Tags") + " programs");
 		
 		
@@ -154,7 +157,7 @@ public class reports {
 			
 			r1.setFontFamily("Calibri Light (Headings)");
 			r1.setFontSize(10);
-			r1.setText(passData.AccountName +"," +passData.Org_info);
+			r1.setText(passData.Exceldata("Account Name")+"," +passData.Org_info);
 			
 			XWPFParagraph imgPara = document.createParagraph();
 			XWPFRun img = imgPara.createRun();
@@ -172,10 +175,8 @@ public class reports {
 				stylingDoc.setNoProof(SnippetsRun);
 				SnippetsRun.setFontFamily("Calibri Light (Headings)");
 				SnippetsRun.setFontSize(10);
+				SnippetsRun.setText("         " +passData.Exceldata("Account Name")+passData.No_Snippets);
 				
-				
-				
-				SnippetsRun.setText(passData.No_Snippets);
 			}
 			
 			//Models report part, Note : we have to added conditional based formatting 
@@ -183,10 +184,12 @@ public class reports {
 			XWPFParagraph paragraphModel = document.createParagraph();
 			XWPFRun model = paragraphModel.createRun();
 			model.setBold(true);
+			model.addCarriageReturn();
+			model.addCarriageReturn();
 			model.setText("Models");
 			
-			File f = new File(passData.FetchScreenshot( "Tags"));
-			if (f.exists()) 
+			int Models = Integer.parseInt(passData.Exceldata("Models"));;
+			if (Models>0) 
 					{
 				XWPFParagraph paragraphModelData = document.createParagraph();
 				XWPFRun modelData = paragraphModelData.createRun();
@@ -196,7 +199,7 @@ public class reports {
 				
 				
 				
-				modelData.setText(passData.AccountName +",\nHas\n"+passData.Exceldata("Models")+"\nbuilt models in Marketo. Revenue cycle models take marketing"
+				modelData.setText(passData.Exceldata("Account Name") +",\nHas previously built\n"+passData.Exceldata("Models")+"\n models in Marketo. Revenue cycle models take marketing"
 						+ " to the next level. They model all the stages of your entire revenue funnel—from when you first interact with a lead "
 						+ "all the way until the lead is a won customer.");
 				
@@ -205,37 +208,34 @@ public class reports {
 				modelData.addBreak();
 				modelData.setFontSize(10);
 				stylingDoc.setNoProof(modelData);
-				modelData.setText(passData.models2);
+				modelData.setText(passData.Exceldata("Account Name")+passData.models2);
 				
 				
 				
 				XWPFParagraph model_img = document.createParagraph();
 				XWPFRun img1 = model_img.createRun();
-				img1.addPicture(new FileInputStream(passData.FetchScreenshot("Tags")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Tags"),
-						Units.toEMU(380), Units.toEMU(150));
+				img1.addPicture(new FileInputStream(passData.FetchScreenshot("Models")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Models"),
+						Units.toEMU(230), Units.toEMU(150));
 							
 			}
 			else
 			{
-				
 				XWPFParagraph paragraphModelData = document.createParagraph();
 				XWPFRun modelTest = paragraphModelData.createRun();
 				modelTest.setFontFamily("Calibri Light (Headings)");
 				modelTest.setFontSize(10);
 				stylingDoc.setNoProof(modelTest);
-				modelTest.setText(passData.No_models);
-				modelTest.addCarriageReturn();
-				modelTest.addCarriageReturn();  
+				modelTest.setText(passData.Exceldata("Account Name") + passData.No_models);
+				
 			}
 			
-			
-			
-			
-			
+
 			//adding lead scoring data into report 
 			XWPFParagraph LeadParagraph = document.createParagraph();
 			
 			XWPFRun LeadRun = LeadParagraph.createRun();
+			LeadRun.addCarriageReturn();
+			LeadRun.addCarriageReturn();
 			LeadRun.setBold(true);
 			LeadRun.setText("Lead Scoring");
 			
@@ -249,15 +249,19 @@ public class reports {
 			LeadDataRun.setFontSize(10);
 			stylingDoc.setNoProof(LeadDataRun);
 			LeadData.setNumID(stylingDoc.bullet(document));
-			LeadDataRun.setText(passData.LeadScoring(passData.Exceldata("Leads")));
+			LeadDataRun.setText(passData.LeadScoring(passData.Exceldata("Change Score")));
 			
+			int ChangeScore = Integer.parseInt(passData.Exceldata("Change Score"));
+			if (ChangeScore>1) 	
+			{
 			XWPFParagraph LeadData1 = document.createParagraph();
 			XWPFRun runData = LeadData1.createRun();
 			stylingDoc.setNoProof(runData);
 			runData.setFontFamily("Calibri Light (Headings)");
 			runData.setFontSize(10);
 			LeadData1.setNumID(stylingDoc.bullet(document));
-			runData.setText(passData.AccountName +","+"\nis executing multiple score changes with single campaigns.");
+			runData.setText(passData.Exceldata("Account Name") +","+"\nis executing multiple score changes with single campaigns.");
+			}
 			
 			XWPFParagraph LeadData2 = document.createParagraph();
 			XWPFRun runData2 = LeadData2.createRun();
@@ -286,12 +290,14 @@ public class reports {
 			
 			
 			//Interesting moment report part 
-			if(passData.Exceldata("Interesting Moment_subscription")=="true")
+			if(passData.Exceldata("IInteresting Moment Subscription")=="true")
 			{
 			
 				XWPFParagraph Interesting = document.createParagraph();
 				XWPFRun InterestingRun = Interesting.createRun();
 				InterestingRun.setBold(true);
+				InterestingRun.addCarriageReturn();
+				InterestingRun.addCarriageReturn();
 				InterestingRun.setText("Interesting Moment");
 				int Interesting_Moment= Integer.parseInt(passData.Exceldata("Interesting Moment"));
 				
@@ -303,7 +309,7 @@ public class reports {
 				InterestingDatarun.setFontFamily("Calibri Light (Headings)");
 				stylingDoc.setNoProof(InterestingDatarun);
 				InterestingDatarun.setFontSize(10);
-				InterestingDatarun.setText(passData.intresting_moment);
+				InterestingDatarun.setText("The following Interesting Moments have been defined to support\n"+passData.intresting_moment);
 				
 				InterestingDatarun = InterestingData.createRun();
 				InterestingDatarun.addPicture(new FileInputStream(passData.FetchScreenshot("Interesting Moment")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Interesting Moment"),
@@ -324,7 +330,7 @@ public class reports {
 					InterestingDatarun.setFontFamily("Calibri Light (Headings)");
 					InterestingDatarun.setFontSize(10);
 					stylingDoc.setNoProof(InterestingDatarun);
-					InterestingDatarun.setText(passData.intresting_moment_else);
+					InterestingDatarun.setText(passData.Exceldata("Account Name")+passData.intresting_moment_else);
 					InterestingDatarun.addCarriageReturn();
 					
 				}
@@ -346,7 +352,7 @@ public class reports {
 			DataManagementDatarun.setFontFamily("Calibri Light (Headings)");
 			DataManagementDatarun.setFontSize(10);
 			stylingDoc.setNoProof(DataManagementDatarun);
-			DataManagementDatarun.setText(passData.Data);	
+			DataManagementDatarun.setText(passData.DataManagement());	
 
 			
 		//adding Events data 
@@ -359,19 +365,19 @@ public class reports {
 			Eventsrun.setText("Events");
 	
 			XWPFParagraph EventsData = document.createParagraph();
+//			XWPFRun EventsDatarun = EventsData.createRun();
+//			EventsDatarun.setFontFamily("Calibri Light (Headings)");
+//			EventsDatarun.setFontSize(10);
+//			stylingDoc.setNoProof(EventsDatarun);
+//			EventsDatarun.setText(passData.Exceldata("Account Name") + " has built numerous Event campaigns in Marketo.");
+			
+			
 			XWPFRun EventsDatarun = EventsData.createRun();
 			EventsDatarun.setFontFamily("Calibri Light (Headings)");
 			EventsDatarun.setFontSize(10);
 			stylingDoc.setNoProof(EventsDatarun);
-			EventsDatarun.setText(passData.AccountName  + " has built numerous Event campaigns in Marketo.");
+			EventsDatarun.setText(passData.Events());
 			
-			
-			EventsDatarun = EventsData.createRun();
-			EventsDatarun.setFontFamily("Calibri Light (Headings)");
-			EventsDatarun.setFontSize(10);
-			stylingDoc.setNoProof(EventsDatarun);
-			EventsDatarun.setText(passData.events);
-			EventsDatarun.addBreak();
 			
 			
 		
@@ -381,6 +387,7 @@ public class reports {
 			XWPFParagraph NurtureData = document.createParagraph();
 			XWPFRun NurtureDataRun = NurtureData.createRun();
 			NurtureDataRun.setBold(true);
+			NurtureDataRun.addCarriageReturn();
 			NurtureDataRun.setText("Nurture");
 			NurtureDataRun.addBreak();
 			
@@ -443,11 +450,14 @@ public class reports {
 			SegmentRun.setFontFamily("Calibri Light (Headings)");
 			SegmentRun.setFontSize(10);
 			stylingDoc.setNoProof(SegmentRun);
-			SegmentRun.setText(passData.segment);
+			SegmentRun.setText(passData.Exceldata("Account Name")+passData.segment);
+			
 			
 			SegmentRun = SegmentData.createRun();
-			SegmentRun.addPicture(new FileInputStream(passData.FetchScreenshot("Change Score")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Change Score"),
-					Units.toEMU(470), Units.toEMU(80));
+			SegmentRun.addBreak();
+			SegmentRun.addBreak();
+			SegmentRun.addPicture(new FileInputStream(passData.FetchScreenshot("Segmentations")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Segmentations"),
+					Units.toEMU(230), Units.toEMU(50));
 
 			}
 			else {
@@ -457,11 +467,33 @@ public class reports {
 				InterestingDatarun.setFontFamily("Calibri Light (Headings)");
 				InterestingDatarun.setFontSize(10);
 				stylingDoc.setNoProof(InterestingDatarun);
-				InterestingDatarun.setText(passData.no_segment);
+				InterestingDatarun.setText(passData.Exceldata("Account Name")+passData.no_segment);
 				InterestingDatarun.addCarriageReturn();
 				
 				
 			}
+			
+			//program library section
+			
+			XWPFParagraph program = document.createParagraph();
+			XWPFRun programRun = program.createRun();
+			programRun.addCarriageReturn();
+			programRun.addCarriageReturn();
+			programRun.setBold(true);
+			programRun.setText("Program Library");
+			
+			
+			
+			XWPFParagraph ProgramData = document.createParagraph();
+			XWPFRun ProgramDataRun = ProgramData.createRun();
+			ProgramDataRun.setFontFamily("Calibri Light (Headings)");
+			ProgramDataRun.addCarriageReturn();
+			ProgramDataRun.setFontSize(10);
+			stylingDoc.setNoProof(ProgramDataRun);
+			ProgramDataRun.setText(passData.Library());
+	
+			
+			
 			
 			//Integration Data Section
 			
@@ -485,8 +517,8 @@ public class reports {
 	
 			intigrationRun = document.createParagraph();
 			XWPFRun intigrationImg = intigrationRun.createRun();
-			intigrationImg.addPicture(new FileInputStream(passData.FetchScreenshot("Change Score")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Change Score"),
-					Units.toEMU(470), Units.toEMU(80));
+			intigrationImg.addPicture(new FileInputStream(passData.FetchScreenshot("Integration")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Integration"),
+					Units.toEMU(470), Units.toEMU(200));
 
 			}
 			else {
@@ -496,8 +528,8 @@ public class reports {
 				intigrationData.setFontFamily("Calibri Light (Headings)");
 				intigrationData.setFontSize(10);
 				stylingDoc.setNoProof(intigrationData);
-				intigrationData.setText(passData.No_Integrations);
-				intigrationData.addCarriageReturn();
+				intigrationData.setText(passData.Exceldata("Account Name")+passData.No_Integrations);
+				
 				
 			}
 		
@@ -583,7 +615,7 @@ public class reports {
 		stylingDoc.HeaderFooter(document);// Styling of Header and footer
 		
 		stylingDoc.bold(document);
-		FileOutputStream out = new FileOutputStream(screenshotsPathWordDoc);
+		FileOutputStream out = new FileOutputStream(word +passData.Exceldata("Account Name")+fileName+".docx");
 
 		document.write(out);
 		out.close();

@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
@@ -15,6 +16,7 @@ import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.Pages.GhostLoginPage;
 import com.marketo.qa.Pages.LoginPage;
 import com.marketo.qa.Pages.MyMarketoPage;
+import com.marketo.qa.utility.reports;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -28,7 +30,7 @@ public class TestBase {
 
 		FileInputStream fis;
 		try {
-			fis = new FileInputStream(System.getProperty("user.home") + "/Desktop/Config/data.properties");
+			fis = new FileInputStream(System.getProperty("user.home") + "/Desktop/data.properties");
 			prop.load(fis);
 
 		} catch (FileNotFoundException e) {
@@ -102,8 +104,10 @@ public class TestBase {
 
 	}
 	
-
-	  public static void CloseBrowser() { 
+	@AfterSuite
+	
+	  public static void CloseBrowser() throws Exception {
+		  reports.docs();
 		  driver.quit();
 		  }
 	 

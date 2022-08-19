@@ -1,6 +1,7 @@
 package com.marketo.qa.utility;
 
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.text.DateFormat;
@@ -10,8 +11,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
-
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.util.Units;
 import org.apache.poi.xwpf.model.XWPFHeaderFooterPolicy;
+import org.apache.poi.xwpf.usermodel.Document;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFAbstractNum;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -77,7 +80,7 @@ public class stylingDoc {
 	
 	
 	
-	 public static void HeaderFooter(XWPFDocument doc ) throws IOException
+	 public static void HeaderFooter(XWPFDocument doc ) throws IOException, InvalidFormatException
 	    {
 	    	
 	    	CTSectPr sectPr=doc.getDocument().getBody().addNewSectPr();
@@ -95,13 +98,15 @@ public class stylingDoc {
 	  		
 	  		//Setting Header
 	  		headerParagraph.setAlignment(ParagraphAlignment.CENTER);
-	  		
-	  		headerRun.addBreak();
-	  		
-	  		headerRun.setFontSize(15);
+//	  		FileInputStream in = new FileInputStream(passData.FetchScreenshot("adobe"));
+//	  		headerRun.addPicture(in, Document.PICTURE_TYPE_PNG, "adobe.png", 
+//	  				Units.toEMU(100), Units.toEMU(50));
+//	  		
+//	  		headerRun.addTab();
+	  		headerRun.setFontSize(13);
 	  		headerRun.setColor("e60000");
 	  		headerRun.setBold(true);
-	  		headerRun.setText(passData.AccountName +"– Instance Review –");
+	  		headerRun.setText(passData.Exceldata("Account Name")+"– Instance Review –");
 	  		String curr_date=getCurrentDate(" dd-MM-yyyy");
 	  		headerRun.setText(curr_date + "–"+getCurrentDate(" hh:mm ")+ getCurrentDate("a")+" MST" );
 	  		
@@ -135,7 +140,7 @@ public class stylingDoc {
 	  		XWPFParagraph[] parsFooter=new XWPFParagraph[1];
 	  		parsFooter[0]= footerparagraph;
 	  		policy.createFooter(XWPFHeaderFooterPolicy.DEFAULT,parsFooter);//Corrected to Footer
-	    
+	  		//in.close();
 	    	
 	    }
 	 
@@ -170,7 +175,7 @@ public class stylingDoc {
 					String.valueOf(passData.Exceldata("Active Campaigns")),String.valueOf(passData.Exceldata("model")),String.valueOf(passData.Exceldata("Lead")),
 					String.valueOf(passData.Exceldata("Change Data Value")),String.valueOf(passData.Exceldata("Event Programs")),String.valueOf(passData.Exceldata("Nurture campaigns")),
 					String.valueOf(passData.Exceldata("Segment Data")),String.valueOf(passData.Exceldata("Library")),String.valueOf(passData.Exceldata("Integrations")),
-					String.valueOf(passData.AccountName),String.valueOf(passData.Exceldata("All Batch Campaigns")),
+					String.valueOf(passData.Exceldata("All Batch Campaigns")),passData.Exceldata("Account Name"),
 					String.valueOf(passData.Exceldata("Models")),String.valueOf(passData.Exceldata("Leads"))};
 		
 			Map<String, String> formats = new HashMap<String, String>();
