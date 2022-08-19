@@ -24,7 +24,7 @@ import com.marketo.qa.base.TestBase;
 
 public class CommonLib extends TestBase{
 	 
-	
+	String ExcelPath=System.getProperty("user.home") + "\\Desktop\\Config\\MarketoData.xlsx";
 	public  void waitForPageLoad(int time) {
 		driver.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
 	}
@@ -44,7 +44,7 @@ public class CommonLib extends TestBase{
 	}
 	
 	public void WriteExcelData(String sheetName ,int row,int col,int cellValue) throws Exception {
-        String ExcelPath=System.getProperty("user.dir")+"./src/test/resources/TestData/MarketoData.xlsx";
+        
 		File file =  new File(ExcelPath);
         FileInputStream fis = new FileInputStream(file); 
         XSSFWorkbook book = new XSSFWorkbook(fis);
@@ -57,7 +57,7 @@ public class CommonLib extends TestBase{
 	}
 	
 	public void WriteExcelData(String sheetName ,int row,int col,String cellValue) throws Exception {
-        String ExcelPath=System.getProperty("user.dir")+"./src/test/resources/TestData/MarketoData.xlsx";
+        
 		File file =  new File(ExcelPath);
         FileInputStream fis = new FileInputStream(file); 
         XSSFWorkbook wb = new XSSFWorkbook(fis);

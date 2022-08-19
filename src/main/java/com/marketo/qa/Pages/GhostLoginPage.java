@@ -63,10 +63,10 @@ public class GhostLoginPage extends TestBase{
 		
 		if(GetOktaUsername().isDisplayed()) {
 			Thread.sleep(2000);	
-			GetOktaUsername().sendKeys("glo88356");
+			GetOktaUsername().sendKeys(prop.getProperty("OcktaID"));
 			GetOktaNextBtn().click();
 			Thread.sleep(2000);	
-			GetOktaPassword().sendKeys("ColoradoAvalanche1!");
+			GetOktaPassword().sendKeys(prop.getProperty("OcktaPass"));
 			GetOktaVerifyBtn().click();	
 			Thread.sleep(2000);		
 			GetOktaPushBtn().click();

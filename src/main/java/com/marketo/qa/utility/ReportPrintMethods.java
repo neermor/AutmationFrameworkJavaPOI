@@ -86,7 +86,7 @@ public class ReportPrintMethods {
 			
 			r1.setFontFamily("Calibri Light (Headings)");
 			r1.setFontSize(10);
-			r1.setText(passData.AccountName +"," +passData.Org_info);
+			r1.setText(passData.Exceldata("Account Name") +"," +passData.Org_info);
 			
 			XWPFParagraph imgPara = document.createParagraph();
 			XWPFRun img = imgPara.createRun();
