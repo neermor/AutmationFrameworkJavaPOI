@@ -309,7 +309,7 @@ public class reports {
 			//Interesting moment report part 
 			if(passData.Exceldata("Interesting Moment Subscription").equalsIgnoreCase("true"))
 			{
-			
+				
 				XWPFParagraph Interesting = document.createParagraph();
 				XWPFRun InterestingRun = Interesting.createRun();
 				InterestingRun.setBold(true);
