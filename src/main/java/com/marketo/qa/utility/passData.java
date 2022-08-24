@@ -27,7 +27,7 @@ public class passData  {
 			+ " There are two types of smart campaigns: Batch and Trigger. A batch campaign launches "
 			+ "at a specific time and affects a specific set of leads all at once. A triggered smart"
 			+ " campaign affects one lead at a time, based on a triggered event."
-			+ " To learn more about Smart campaigns in Marketo. visit: https://docs.marketo.com/display/public/DOCS/Smart+Campaigns.";
+			+ " To learn more about Smart campaigns in Marketo. visit :";
 	
 	static String No_models = "\nhas not built models in Marketo. Revenue cycle models take marketing to the next level."
 			+ " They model all the stages of your entire revenue funnel—from when you first interact with a lead all "
@@ -82,8 +82,7 @@ public class passData  {
 			+ "to leads at cast time. Marketo's smart streams also offer:";
 
 	static String No_Nurture=  "\ndoes not have any Nurture campaigns set up in their instance. They might need a refresher on how"
-			+ " useful Nurture Campaigns can be: "
-			+ "https://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en";
+			+ " useful Nurture Campaigns can be: ";
 	
 	
 	//Segments 
@@ -96,8 +95,7 @@ public class passData  {
 	
 	//Snippet
 	static String No_Snippets = "\nis not taking advantage of snippets. Snippets are reusable blocks of rich text and graphics that"
-			+ " the client can use in their emails and landing pages, and it is a great timesaver!"
-			+ " https://experienceleague.adobe.com/docs/marketo/using/product-docs/personalization/segmentation-and-snippets/snippets/create-a-snippet.html?lang=en";
+			+ " the client can use in their emails and landing pages, and it is a great timesaver!";
 	
 	
 	//No Lead_scoring Data
@@ -244,6 +242,10 @@ public static String DataManagement() throws IOException {
 	{			
 		return passData.Exceldata("Account Name")+Data ;
 	}
+	else if(DataManagment<5 && DataManagment>0 )
+	{
+		return passData.Exceldata("Account Name")+ No_Data +No_data_link ;
+	}
 	
 	else  {
 	}
@@ -278,19 +280,11 @@ public static String Nurture_Campaigns() throws IOException {
 	int Nurture_Campaigns = Integer.parseInt(passData.Exceldata("Nurture campaigns"));
 	
 	if (Nurture_Campaigns>=5)
-	{			
-		return passData.Exceldata("Account Name")+"\nhas\n"+Exceldata("Nurture campaigns")+Nurture;
+	{
+		
 	}
+	return passData.Exceldata("Account Name")+"\nhas\n"+Exceldata("Nurture campaigns")+Nurture;
 	
-	else if  (Nurture_Campaigns<5 && Nurture_Campaigns>0) {
-	
-		return  passData.Exceldata("Account Name")+"\nhas\n"+ Exceldata("Nurture campaigns")+Nurture ;
-	
-	}
-	else  {
-	}
-	
-		return passData.Exceldata("Account Name")+No_Nurture  ;
 				
 }
 //Segment Data

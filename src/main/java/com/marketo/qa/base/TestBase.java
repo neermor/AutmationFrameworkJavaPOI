@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -103,11 +104,16 @@ public class TestBase {
 		new MyMarketoPage().GetLogoutBtn().click();
 
 	}
-	
 	@AfterSuite
-	
-	  public static void CloseBrowser() throws Exception {
+	public static void GenerateReport() throws Exception
+	{
 		  reports.docs();
+	}
+	
+	@AfterTest
+	
+	  public static void CloseBrowser(){
+		 
 		  driver.quit();
 		  }
 	 

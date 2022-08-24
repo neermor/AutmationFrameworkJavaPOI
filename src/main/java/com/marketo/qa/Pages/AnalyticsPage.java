@@ -24,27 +24,26 @@ public class AnalyticsPage extends TestBase{
 		return driver.findElement(Rcm);
 	}
 	
-	public void ModelCount(int row) throws Throwable {
-		homepage.ExtendTreeNode("Revenue Cycle Modeler");	
-		try {
-			boolean  flag=driver.findElement(By.xpath("//div[contains(@data-id,'treeNode_Label')]/span[text()='Group Models']/../preceding-sibling::button[@data-id='treeNodeChevronIconButton']")).isDisplayed();
-			if(flag) {
-				homepage.ExtendTreeNode("Group Models");
+
+		public void ModelCount(int row) throws Throwable {
+			homepage.ExtendTreeNode("Revenue Cycle Modeler");	
+			try {
+				boolean  flag=driver.findElement(By.xpath("//div[contains(@data-id,'treeNode_Label')]/span[text()='Group Models']/../preceding-sibling::button[@data-id='treeNodeChevronIconButton']")).isDisplayed();
+				if(flag) {
+					homepage.ExtendTreeNode("Group Models");
+					new CommonLib().WriteExcelData("Sheet1", row, 0, "Models");
+					System.out.println(GetModels().size());
+					new CommonLib().WriteExcelData("Sheet1", row, 1, GetModels().size());
+					screenshotUtility.TakeScreenshot(GetRcm(), "Models");		 		
+				}
+			}
+			catch (Exception e) {
 				new CommonLib().WriteExcelData("Sheet1", row, 0, "Models");
 				System.out.println(GetModels().size());
-				new CommonLib().WriteExcelData("Sheet1", row, 1, GetModels().size());
-				screenshotUtility.TakeScreenshot(GetRcm(), "Models");		 		
+				new CommonLib().WriteExcelData("Sheet1", row, 1, 0);
+				}
+			
+			
 			}
 
-		}
-		catch (Exception e) {
-			new CommonLib().WriteExcelData("Sheet1", row, 0, "Models");
-			System.out.println(GetModels().size());
-			new CommonLib().WriteExcelData("Sheet1", row, 1, 0);
-			}
-		
-		
-		}
-	}
-
-
+}

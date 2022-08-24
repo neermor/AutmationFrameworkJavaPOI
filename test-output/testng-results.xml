@@ -1,51 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="10" total="16" passed="6" failed="0" skipped="0">
+<testng-results ignored="15" total="21" passed="6" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-08-19T14:51:38 IST" name="Suite" finished-at="2022-08-19T15:00:29 IST" duration-ms="530355">
+  <suite started-at="2022-08-23T11:45:01 IST" name="Suite" finished-at="2022-08-23T11:53:49 IST" duration-ms="528068">
     <groups>
     </groups>
-    <test started-at="2022-08-19T14:51:38 IST" name="GhostLogin" finished-at="2022-08-19T15:00:29 IST" duration-ms="530355">
+    <test started-at="2022-08-23T11:45:01 IST" name="GhostLogin" finished-at="2022-08-23T11:53:49 IST" duration-ms="528068">
       <class name="com.marketo.qa.Tests.FetchChampianCounts">
-        <test-method is-config="true" signature="initialization()[pri:0, instance:com.marketo.qa.Tests.FetchChampianCounts@4461c7e3]" started-at="2022-08-19T14:51:38 IST" name="initialization" finished-at="2022-08-19T14:51:45 IST" duration-ms="6909" status="PASS">
+        <test-method is-config="true" signature="initialization()[pri:0, instance:com.marketo.qa.Tests.FetchChampianCounts@77e4c80f]" started-at="2022-08-23T11:45:01 IST" name="initialization" finished-at="2022-08-23T11:45:12 IST" duration-ms="11008" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialization -->
-        <test-method signature="ChampiensCount()[pri:0, instance:com.marketo.qa.Tests.FetchChampianCounts@4461c7e3]" started-at="2022-08-19T14:51:45 IST" name="ChampiensCount" finished-at="2022-08-19T14:55:43 IST" duration-ms="237968" status="PASS">
+        <test-method signature="ChampiensCount()[pri:0, instance:com.marketo.qa.Tests.FetchChampianCounts@77e4c80f]" started-at="2022-08-23T11:45:12 IST" name="ChampiensCount" finished-at="2022-08-23T11:48:58 IST" duration-ms="225657" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ChampiensCount -->
-        <test-method is-config="true" signature="CloseBrowser()[pri:0, instance:com.marketo.qa.Tests.FetchChampianCounts@4461c7e3]" started-at="2022-08-19T15:00:29 IST" name="CloseBrowser" finished-at="2022-08-19T15:00:30 IST" duration-ms="1678" status="PASS">
+        <test-method is-config="true" signature="CloseBrowser()[pri:0, instance:com.marketo.qa.Tests.FetchChampianCounts@77e4c80f]" started-at="2022-08-23T11:53:48 IST" name="CloseBrowser" finished-at="2022-08-23T11:53:49 IST" duration-ms="600" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CloseBrowser -->
+        <test-method is-config="true" signature="GenerateReport()[pri:0, instance:com.marketo.qa.Tests.FetchChampianCounts@77e4c80f]" started-at="2022-08-23T11:53:49 IST" name="GenerateReport" finished-at="2022-08-23T11:53:50 IST" duration-ms="1416" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- GenerateReport -->
       </class> <!-- com.marketo.qa.Tests.FetchChampianCounts -->
       <class name="com.marketo.qa.Tests.FetchLeadsCount">
-        <test-method signature="CollectLeadsCount()[pri:0, instance:com.marketo.qa.Tests.FetchLeadsCount@51931956]" started-at="2022-08-19T14:59:43 IST" name="CollectLeadsCount" finished-at="2022-08-19T15:00:19 IST" duration-ms="35821" status="PASS">
+        <test-method signature="CollectLeadsCount()[pri:0, instance:com.marketo.qa.Tests.FetchLeadsCount@564718df]" started-at="2022-08-23T11:53:01 IST" name="CollectLeadsCount" finished-at="2022-08-23T11:53:38 IST" duration-ms="36783" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CollectLeadsCount -->
       </class> <!-- com.marketo.qa.Tests.FetchLeadsCount -->
       <class name="com.marketo.qa.Tests.FetchModelsCount">
-        <test-method signature="ModelCount()[pri:0, instance:com.marketo.qa.Tests.FetchModelsCount@491666ad]" started-at="2022-08-19T14:58:12 IST" name="ModelCount" finished-at="2022-08-19T14:59:43 IST" duration-ms="90549" status="PASS">
+        <test-method signature="ModelCount()[pri:0, instance:com.marketo.qa.Tests.FetchModelsCount@971d0d8]" started-at="2022-08-23T11:51:30 IST" name="ModelCount" finished-at="2022-08-23T11:53:01 IST" duration-ms="91029" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ModelCount -->
       </class> <!-- com.marketo.qa.Tests.FetchModelsCount -->
       <class name="com.marketo.qa.Tests.FetchDataFromChangeScore">
-        <test-method signature="VerifyChangeScoreCount()[pri:0, instance:com.marketo.qa.Tests.FetchDataFromChangeScore@564718df]" started-at="2022-08-19T15:00:19 IST" name="VerifyChangeScoreCount" finished-at="2022-08-19T15:00:29 IST" duration-ms="9841" status="PASS">
+        <test-method signature="VerifyChangeScoreCount()[pri:0, instance:com.marketo.qa.Tests.FetchDataFromChangeScore@18a70f16]" started-at="2022-08-23T11:53:38 IST" name="VerifyChangeScoreCount" finished-at="2022-08-23T11:53:48 IST" duration-ms="10249" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- VerifyChangeScoreCount -->
       </class> <!-- com.marketo.qa.Tests.FetchDataFromChangeScore -->
       <class name="com.marketo.qa.Tests.FetchAdminDatas">
-        <test-method signature="VerifyCountAndScreenshor()[pri:0, instance:com.marketo.qa.Tests.FetchAdminDatas@4f9a3314]" started-at="2022-08-19T14:57:23 IST" name="VerifyCountAndScreenshor" finished-at="2022-08-19T14:58:12 IST" duration-ms="49115" status="PASS">
+        <test-method signature="VerifyCountAndScreenshor()[pri:0, instance:com.marketo.qa.Tests.FetchAdminDatas@491666ad]" started-at="2022-08-23T11:50:40 IST" name="VerifyCountAndScreenshor" finished-at="2022-08-23T11:51:30 IST" duration-ms="50855" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- VerifyCountAndScreenshor -->
       </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
       <class name="com.marketo.qa.Tests.FetchDesignStudioData">
-        <test-method signature="TakeRequiredCount()[pri:0, instance:com.marketo.qa.Tests.FetchDesignStudioData@64d2d351]" started-at="2022-08-19T14:55:43 IST" name="TakeRequiredCount" finished-at="2022-08-19T14:57:23 IST" duration-ms="100131" status="PASS">
+        <test-method signature="TakeRequiredCount()[pri:0, instance:com.marketo.qa.Tests.FetchDesignStudioData@4f9a3314]" started-at="2022-08-23T11:48:58 IST" name="TakeRequiredCount" finished-at="2022-08-23T11:50:40 IST" duration-ms="101840" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TakeRequiredCount -->

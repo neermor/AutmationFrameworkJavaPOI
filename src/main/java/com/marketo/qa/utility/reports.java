@@ -16,6 +16,7 @@ import org.apache.poi.util.Units;
 import org.apache.poi.xwpf.usermodel.BreakType;
 import org.apache.poi.xwpf.usermodel.Document;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
+import org.apache.poi.xwpf.usermodel.UnderlinePatterns;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
@@ -50,97 +51,95 @@ public class reports {
 		run.setText("Stats");
 
 		Statsparagraph = document.createParagraph();
+		Statsparagraph.setSpacingAfter(0);
 		run = Statsparagraph.createRun();
 		stylingDoc.setNoProof(run);
-		run.setFontFamily("Calibri Light (Headings)");
-		run.setFontSize(10);
+		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		run.setText("They have " + passData.Exceldata("All Campaigns")+ " campaigns");
 		
 		
 		Statsparagraph = document.createParagraph();
+		Statsparagraph.setSpacingAfter(0);
 		run = Statsparagraph.createRun();
-		run.setFontFamily("Calibri Light (Headings)");
-		run.setFontSize(10);
-		
+		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		
 		run.setText("They have " + passData.Exceldata("Active Campaigns") + " active campaigns");
 		
 		Statsparagraph = document.createParagraph();
 		run = Statsparagraph.createRun();
-		run.setFontFamily("Calibri Light (Headings)");
-		run.setFontSize(10);
+		Statsparagraph.setSpacingAfter(0);
+		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		run.setText("They have " + passData.Exceldata("All Triggered Campaigns") + " triggered campaigns");
 		
 		Statsparagraph = document.createParagraph();
 		run = Statsparagraph.createRun();
-		run.setFontFamily("Calibri Light (Headings)");
-		run.setFontSize(10);
+		Statsparagraph.setSpacingAfter(0);
+		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		run.setText("They have " + passData.Exceldata("Active Triggered Campaigns") + " Active triggered campaigns");
 		
 		Statsparagraph = document.createParagraph();
 		run = Statsparagraph.createRun();
-		run.setFontFamily("Calibri Light (Headings)");
-		run.setFontSize(10);
+		Statsparagraph.setSpacingAfter(0);
+		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		run.setText("They have " + passData.Exceldata("Batch Campaigns - Repeating Schedule") + " re-occurring batch campaigns");
 		
 		Statsparagraph = document.createParagraph();
 		run = Statsparagraph.createRun();
-		run.setFontFamily("Calibri Light (Headings)");
-		run.setFontSize(10);
+		stylingDoc.FontFamilySize(run);
+		Statsparagraph.setSpacingAfter(0);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		run.setText("They have " + passData.Exceldata("All Batch Campaigns") + " batch campaigns");
 		
 		Statsparagraph = document.createParagraph();
 		run = Statsparagraph.createRun();
-		run.setFontFamily("Calibri Light (Headings)");
-		run.setFontSize(10);
+		stylingDoc.FontFamilySize(run);
+		Statsparagraph.setSpacingAfter(0);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		run.setText( passData.Exceldata("Landing Pages") + " landing pages");
 		
 		Statsparagraph = document.createParagraph();
 		run = Statsparagraph.createRun();
-		run.setFontFamily("Calibri Light (Headings)");
-		run.setFontSize(10);
+		stylingDoc.FontFamilySize(run);
+		Statsparagraph.setSpacingAfter(0);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		run.setText(passData.Exceldata("Forms")+" forms");
 		
 		Statsparagraph = document.createParagraph();
 		run = Statsparagraph.createRun();
-		run.setFontFamily("Calibri Light (Headings)");
-		run.setFontSize(10);
+		stylingDoc.FontFamilySize(run);
+		Statsparagraph.setSpacingAfter(0);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		run.setText(passData.Exceldata("Emails") + " emails");
 		
 		Statsparagraph = document.createParagraph();
 		run = Statsparagraph.createRun();
-		run.setFontFamily("Calibri Light (Headings)");
-		run.setFontSize(10);
+		stylingDoc.FontFamilySize(run);
+		Statsparagraph.setSpacingAfter(0);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		run.setText(passData.GenricMethod(passData.Exceldata("Snippets")));
 		
 		Statsparagraph = document.createParagraph();
 		run = Statsparagraph.createRun();
-		run.setFontFamily("Calibri Light (Headings)");
-		run.setFontSize(10);
+		stylingDoc.FontFamilySize(run);
+		Statsparagraph.setSpacingAfter(0);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		run.setText(passData.Exceldata("Images and Files") + " uploaded files");
 		
 		Statsparagraph = document.createParagraph();
 		run = Statsparagraph.createRun();
-		run.setFontFamily("Calibri Light (Headings)");
-		run.setFontSize(10);
+		stylingDoc.FontFamilySize(run);
+		Statsparagraph.setSpacingAfter(0);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		run.setText(passData.Exceldata("Leads") + "\nLeads");
 		
 		Statsparagraph = document.createParagraph();
 		run = Statsparagraph.createRun();
-		run.setFontFamily("Calibri Light (Headings)");
-		run.setFontSize(10);
+		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		run.setText(passData.Exceldata("Tags") + " programs");
 		
@@ -155,35 +154,56 @@ public class reports {
 			r1.addCarriageReturn();
 			r1.setBold(false);
 			
-			r1.setFontFamily("Calibri Light (Headings)");
-			r1.setFontSize(10);
+			stylingDoc.FontFamilySize(r1);
 			r1.setText(passData.Exceldata("Account Name")+"," +passData.Org_info);
+			
+			XWPFRun r2 = paragraphStats.createRun();
+			
+			r2.setText("https://docs.marketo.com/display/public/DOCS/Smart+Campaigns");
+			stylingDoc.setNoProof(r2);
+			paragraphStats.createHyperlinkRun("https://docs.marketo.com/display/public/DOCS/Smart+Campaigns");
+			r2.setUnderline(UnderlinePatterns.SINGLE);
+			 r2.setColor("3333cc");
+			 stylingDoc.FontFamilySize(r2);
 			
 			XWPFParagraph imgPara = document.createParagraph();
 			XWPFRun img = imgPara.createRun();
-			
 			img.addPicture(new FileInputStream(passData.FetchScreenshot("Tags")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Tags"),
 					Units.toEMU(380), Units.toEMU(150));
+			img.addCarriageReturn();
 			
-			img.addBreak(BreakType.PAGE);
 			
 			int Snippets = Integer.parseInt(passData.Exceldata("Snippets"));
 			if (Snippets<5)
 			{
+				XWPFParagraph paragraphModel = document.createParagraph();
+				XWPFRun model = paragraphModel.createRun();
+				model.setBold(true);
+				model.setText("Snippets");
 				XWPFParagraph SnippetsData = document.createParagraph();
 				XWPFRun SnippetsRun = SnippetsData.createRun();
 				stylingDoc.setNoProof(SnippetsRun);
-				SnippetsRun.setFontFamily("Calibri Light (Headings)");
-				SnippetsRun.setFontSize(10);
-				SnippetsRun.setText("         " +passData.Exceldata("Account Name")+passData.No_Snippets);
+				stylingDoc.FontFamilySize(SnippetsRun);
+				SnippetsRun.setText(passData.Exceldata("Account Name")+passData.No_Snippets);
+				
+				XWPFParagraph paragraphModel2 = document.createParagraph();
+				XWPFRun modellink = paragraphModel2.createRun();
+				stylingDoc.setNoProof(modellink);
+				modellink.setText("\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/personalization/segmentation-and-snippets/snippets/create-a-snippet.html?lang=en");
+				paragraphModel.createHyperlinkRun("https://experienceleague.adobe.com/docs/marketo/using/product-docs/personalization/segmentation-and-snippets/snippets/create-a-snippet.html?lang=en");
+				modellink.setUnderline(UnderlinePatterns.SINGLE);
+				modellink.setColor("3333cc");
+				stylingDoc.FontFamilySize(modellink);
 				
 			}
+			
 			
 			//Models report part, Note : we have to added conditional based formatting 
 			
 			XWPFParagraph paragraphModel = document.createParagraph();
 			XWPFRun model = paragraphModel.createRun();
 			model.setBold(true);
+			model.addBreak(BreakType.PAGE);
 			model.addCarriageReturn();
 			model.addCarriageReturn();
 			model.setText("Models");
@@ -194,8 +214,7 @@ public class reports {
 				XWPFParagraph paragraphModelData = document.createParagraph();
 				XWPFRun modelData = paragraphModelData.createRun();
 				stylingDoc.setNoProof(modelData);
-				modelData.setFontFamily("Calibri Light (Headings)");
-				modelData.setFontSize(10);
+				stylingDoc.FontFamilySize(modelData);
 				
 				
 				
@@ -204,10 +223,9 @@ public class reports {
 						+ "all the way until the lead is a won customer.");
 				
 				modelData = paragraphModelData.createRun();
-				modelData.setFontFamily("Calibri Light (Headings)");
 				modelData.addBreak();
-				modelData.setFontSize(10);
 				stylingDoc.setNoProof(modelData);
+				stylingDoc.FontFamilySize(modelData);
 				modelData.setText(passData.Exceldata("Account Name")+passData.models2);
 				
 				
@@ -222,8 +240,7 @@ public class reports {
 			{
 				XWPFParagraph paragraphModelData = document.createParagraph();
 				XWPFRun modelTest = paragraphModelData.createRun();
-				modelTest.setFontFamily("Calibri Light (Headings)");
-				modelTest.setFontSize(10);
+				stylingDoc.FontFamilySize(modelTest);
 				stylingDoc.setNoProof(modelTest);
 				modelTest.setText(passData.Exceldata("Account Name") + passData.No_models);
 				
@@ -245,9 +262,9 @@ public class reports {
 			XWPFParagraph LeadData = document.createParagraph();
 			
 			XWPFRun LeadDataRun = LeadData.createRun();
-			LeadDataRun.setFontFamily("Calibri Light (Headings)");
-			LeadDataRun.setFontSize(10);
+			stylingDoc.FontFamilySize(LeadDataRun);
 			stylingDoc.setNoProof(LeadDataRun);
+			LeadData.setSpacingAfter(0);
 			LeadData.setNumID(stylingDoc.bullet(document));
 			LeadDataRun.setText(passData.LeadScoring(passData.Exceldata("Change Score")));
 			
@@ -257,25 +274,25 @@ public class reports {
 			XWPFParagraph LeadData1 = document.createParagraph();
 			XWPFRun runData = LeadData1.createRun();
 			stylingDoc.setNoProof(runData);
-			runData.setFontFamily("Calibri Light (Headings)");
-			runData.setFontSize(10);
+			LeadData1.setSpacingAfter(0);
+			stylingDoc.FontFamilySize(runData);
 			LeadData1.setNumID(stylingDoc.bullet(document));
 			runData.setText(passData.Exceldata("Account Name") +","+"\nis executing multiple score changes with single campaigns.");
 			}
 			
 			XWPFParagraph LeadData2 = document.createParagraph();
 			XWPFRun runData2 = LeadData2.createRun();
-			runData2.setFontFamily("Calibri Light (Headings)");
-			runData2.setFontSize(10);
+			stylingDoc.FontFamilySize(runData2);
 			LeadData2.setNumID(stylingDoc.bullet(document));
 			stylingDoc.setNoProof(runData2);
+			LeadData2.setSpacingAfter(0);
 			runData2.setText(passData.MyTokens());
 			
 			XWPFParagraph LeadData3 = document.createParagraph();
 			XWPFRun LeadDatarun3 = LeadData3.createRun();
-			LeadDatarun3.setFontFamily("Calibri Light (Headings)");
-			LeadDatarun3.setFontSize(10);
+			stylingDoc.FontFamilySize(LeadDatarun3);
 			stylingDoc.setNoProof(LeadDatarun3);
+			
 			LeadData3.setNumID(stylingDoc.bullet(document));
 			LeadDatarun3.setText(passData.BatchCampaigns());
 		
@@ -283,14 +300,14 @@ public class reports {
 			
 			XWPFParagraph LeadData4 = document.createParagraph();
 			XWPFRun LeadDataRun4 = LeadData4.createRun();
-			LeadDataRun4.setFontFamily("Calibri Light (Headings)");
-			LeadDataRun4.setFontSize(10);
+			
+			stylingDoc.FontFamilySize(LeadDataRun4);
 			stylingDoc.setNoProof(LeadDataRun4);
 			LeadDataRun4.setText(passData.lead_scoring);
 			
 			
 			//Interesting moment report part 
-			if(passData.Exceldata("IInteresting Moment Subscription")=="true")
+			if(passData.Exceldata("Interesting Moment Subscription").equalsIgnoreCase("true"))
 			{
 			
 				XWPFParagraph Interesting = document.createParagraph();
@@ -306,9 +323,9 @@ public class reports {
 				
 				XWPFParagraph InterestingData = document.createParagraph();
 				XWPFRun InterestingDatarun = InterestingData.createRun();
-				InterestingDatarun.setFontFamily("Calibri Light (Headings)");
+				
 				stylingDoc.setNoProof(InterestingDatarun);
-				InterestingDatarun.setFontSize(10);
+				stylingDoc.FontFamilySize(InterestingDatarun);
 				InterestingDatarun.setText("The following Interesting Moments have been defined to support\n"+passData.intresting_moment);
 				
 				InterestingDatarun = InterestingData.createRun();
@@ -317,9 +334,9 @@ public class reports {
 				
 				 InterestingData = document.createParagraph();
 				 InterestingDatarun = InterestingData.createRun();
-				 InterestingDatarun.setFontSize(10);
+			
 				 stylingDoc.setNoProof(InterestingDatarun);
-				 InterestingDatarun.setFontFamily("Calibri Light (Headings)");
+				 stylingDoc.FontFamilySize(InterestingDatarun);
 				 InterestingDatarun.setText(passData.intresting_moment_below);
 	
 				}
@@ -327,11 +344,10 @@ public class reports {
 					
 					XWPFParagraph InterestingData = document.createParagraph();
 					XWPFRun InterestingDatarun = InterestingData.createRun();
-					InterestingDatarun.setFontFamily("Calibri Light (Headings)");
-					InterestingDatarun.setFontSize(10);
+					stylingDoc.FontFamilySize(InterestingDatarun);
 					stylingDoc.setNoProof(InterestingDatarun);
 					InterestingDatarun.setText(passData.Exceldata("Account Name")+passData.intresting_moment_else);
-					InterestingDatarun.addCarriageReturn();
+					
 					
 				}
 			}
@@ -349,8 +365,7 @@ public class reports {
 			
 			XWPFParagraph DataManagementData = document.createParagraph();
 			XWPFRun DataManagementDatarun = DataManagementData.createRun();
-			DataManagementDatarun.setFontFamily("Calibri Light (Headings)");
-			DataManagementDatarun.setFontSize(10);
+			stylingDoc.FontFamilySize(DataManagementDatarun);
 			stylingDoc.setNoProof(DataManagementDatarun);
 			DataManagementDatarun.setText(passData.DataManagement());	
 
@@ -365,16 +380,9 @@ public class reports {
 			Eventsrun.setText("Events");
 	
 			XWPFParagraph EventsData = document.createParagraph();
-//			XWPFRun EventsDatarun = EventsData.createRun();
-//			EventsDatarun.setFontFamily("Calibri Light (Headings)");
-//			EventsDatarun.setFontSize(10);
-//			stylingDoc.setNoProof(EventsDatarun);
-//			EventsDatarun.setText(passData.Exceldata("Account Name") + " has built numerous Event campaigns in Marketo.");
-			
 			
 			XWPFRun EventsDatarun = EventsData.createRun();
-			EventsDatarun.setFontFamily("Calibri Light (Headings)");
-			EventsDatarun.setFontSize(10);
+			stylingDoc.FontFamilySize(EventsDatarun);
 			stylingDoc.setNoProof(EventsDatarun);
 			EventsDatarun.setText(passData.Events());
 			
@@ -389,57 +397,79 @@ public class reports {
 			NurtureDataRun.setBold(true);
 			NurtureDataRun.addCarriageReturn();
 			NurtureDataRun.setText("Nurture");
-			NurtureDataRun.addBreak();
+			NurtureDataRun.addCarriageReturn();
 			
+			int NurtureDataint= Integer.parseInt(passData.Exceldata("Nurture campaigns"));
+			
+			if (NurtureDataint>0)
+				
+			{
 			NurtureDataRun = NurtureData.createRun();
-			NurtureDataRun.setFontFamily("Calibri Light (Headings)");
-			NurtureDataRun.setFontSize(10);
+			stylingDoc.FontFamilySize(NurtureDataRun);
 			stylingDoc.setNoProof(NurtureDataRun);
-			NurtureDataRun.setText(passData.Nurture_Campaigns());
+			NurtureDataRun.setText(passData.Exceldata("Account Name")+"\nhas\n"+passData.Exceldata("Nurture campaigns")+passData.Nurture);
 			
-		
+			}
+			else
+			{
+				NurtureDataRun = NurtureData.createRun();
+				stylingDoc.FontFamilySize(NurtureDataRun);
+				stylingDoc.setNoProof(NurtureDataRun);
+				NurtureDataRun.setText(passData.Exceldata("Account Name")+passData.No_Nurture);
+				
+				XWPFRun NurtureDataRunlink = NurtureData.createRun();
+				stylingDoc.FontFamilySize(NurtureDataRunlink);
+			//	NurtureData.createHyperlinkRun("https://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en\r\n");
+				NurtureDataRunlink.setUnderline(UnderlinePatterns.SINGLE);
+				NurtureDataRunlink.setColor("3333cc");
+				NurtureDataRunlink.setText("https://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en");
+				
+				
+			}
+			
+			
 			XWPFParagraph NurtureData1 = document.createParagraph();
 			XWPFRun	NurtureDatarun1 = NurtureData1.createRun();
-			NurtureDatarun1.setFontFamily("Calibri Light (Headings)");
-			NurtureDatarun1.setFontSize(10);
+			stylingDoc.FontFamilySize(NurtureDatarun1);
 			NurtureData1.setNumID(stylingDoc.bullet(document));
+			NurtureData1.setSpacingAfter(0);
 			NurtureDatarun1.setText("Intelligently and automatically deliver content to a target audience.");
+			
 			
 			XWPFParagraph NurtureData2 = document.createParagraph();
 			XWPFRun NurtureDatarun2 = NurtureData2.createRun();
-			NurtureDatarun2.setFontFamily("Calibri Light (Headings)");
-			NurtureDatarun2.setFontSize(10);
+			stylingDoc.FontFamilySize(NurtureDatarun2);
+			NurtureData2.setSpacingAfter(0);
 			NurtureData2.setNumID(stylingDoc.bullet(document));
 			NurtureDatarun2.setText("Easily build dialogue with prospects and customers while preventing customers who have already received content from receiving the same content again.");
 			
 			XWPFParagraph NurtureData3 = document.createParagraph();
 			XWPFRun	NurtureDatarun3 = NurtureData3.createRun();
-			NurtureDatarun3.setFontFamily("Calibri Light (Headings)");
-			NurtureDatarun3.setFontSize(10);
+			stylingDoc.FontFamilySize(NurtureDatarun3);
+			NurtureData3.setSpacingAfter(0);
 			NurtureData3.setNumID(stylingDoc.bullet(document));
 			NurtureDatarun3.setText("Add new content and entire programs to nurture streams.");
 			
 			XWPFParagraph NurtureData4 = document.createParagraph();
 			XWPFRun NurtureDatarun4 = NurtureData4.createRun();
-			NurtureDatarun4.setFontFamily("Calibri Light (Headings)");
-			NurtureDatarun4.setFontSize(10);
+			stylingDoc.FontFamilySize(NurtureDatarun4);
+			NurtureData4.setSpacingAfter(0);
 			NurtureData4.setNumID(stylingDoc.bullet(document));
 			NurtureDatarun4.setText("Edit the availability of content.");
 			
 			XWPFParagraph NurtureData5 = document.createParagraph();
 			XWPFRun	NurtureDatarun5 = NurtureData5.createRun();
-			NurtureDatarun5.setFontFamily("Calibri Light (Headings)");
-			NurtureDatarun5.setFontSize(10);
+			stylingDoc.FontFamilySize(NurtureDatarun5);
 			NurtureData5.setNumID(stylingDoc.bullet(document));
 			NurtureDatarun5.setText("Understand content performance based on engagement with each piece of content.");
-			NurtureDatarun5.addBreak(BreakType.PAGE);
+			NurtureDatarun5.addCarriageReturn();
 			
 			
 			//Segment Data printing 
 			XWPFParagraph Segment = document.createParagraph();
 			XWPFRun SegmentHeading = Segment.createRun();
 			SegmentHeading.setBold(true);
-			SegmentHeading.setText("Segment");
+			SegmentHeading.setText("Segmentation");
 			
 			int Segment_Data= Integer.parseInt(passData.Exceldata("Segmentations"));
 			if (Segment_Data>0)
@@ -447,8 +477,7 @@ public class reports {
 			
 			XWPFParagraph SegmentData = document.createParagraph();
 			XWPFRun SegmentRun = SegmentData.createRun();
-			SegmentRun.setFontFamily("Calibri Light (Headings)");
-			SegmentRun.setFontSize(10);
+			stylingDoc.FontFamilySize(SegmentRun);
 			stylingDoc.setNoProof(SegmentRun);
 			SegmentRun.setText(passData.Exceldata("Account Name")+passData.segment);
 			
@@ -464,8 +493,7 @@ public class reports {
 				
 				XWPFParagraph InterestingData = document.createParagraph();
 				XWPFRun InterestingDatarun = InterestingData.createRun();
-				InterestingDatarun.setFontFamily("Calibri Light (Headings)");
-				InterestingDatarun.setFontSize(10);
+				stylingDoc.FontFamilySize(InterestingDatarun);
 				stylingDoc.setNoProof(InterestingDatarun);
 				InterestingDatarun.setText(passData.Exceldata("Account Name")+passData.no_segment);
 				InterestingDatarun.addCarriageReturn();
@@ -486,9 +514,8 @@ public class reports {
 			
 			XWPFParagraph ProgramData = document.createParagraph();
 			XWPFRun ProgramDataRun = ProgramData.createRun();
-			ProgramDataRun.setFontFamily("Calibri Light (Headings)");
+			stylingDoc.FontFamilySize(ProgramDataRun);
 			ProgramDataRun.addCarriageReturn();
-			ProgramDataRun.setFontSize(10);
 			stylingDoc.setNoProof(ProgramDataRun);
 			ProgramDataRun.setText(passData.Library());
 	
@@ -510,9 +537,7 @@ public class reports {
 			
 			XWPFParagraph intigrationRun = document.createParagraph();
 			XWPFRun intigrationData = intigrationRun.createRun();
-			intigrationData.setFontFamily("Calibri Light (Headings)");
-			
-			intigrationData.setFontSize(10);
+			stylingDoc.FontFamilySize(intigrationData);
 			intigrationData.setText("The following integrations have been installed:");
 	
 			intigrationRun = document.createParagraph();
@@ -525,8 +550,7 @@ public class reports {
 				
 				XWPFParagraph intigrationRun = document.createParagraph();
 				XWPFRun intigrationData = intigrationRun.createRun();
-				intigrationData.setFontFamily("Calibri Light (Headings)");
-				intigrationData.setFontSize(10);
+				stylingDoc.FontFamilySize(intigrationData);
 				stylingDoc.setNoProof(intigrationData);
 				intigrationData.setText(passData.Exceldata("Account Name")+passData.No_Integrations);
 				
@@ -549,8 +573,7 @@ public class reports {
 			
 			XWPFParagraph PersonalizeDoc = document.createParagraph();
 			XWPFRun PersonalizeRun = PersonalizeDoc.createRun();
-			PersonalizeRun.setFontFamily("Calibri Light (Headings)");
-			PersonalizeRun.setFontSize(10);
+			stylingDoc.FontFamilySize(PersonalizeRun);
 			stylingDoc.setNoProof(PersonalizeRun);
 			PersonalizeRun.setText(passData.web_personalize);
 			
@@ -558,7 +581,7 @@ public class reports {
 			PersonalizeDoc = document.createParagraph();
 			XWPFRun PersonalizeImg = PersonalizeDoc.createRun();
 			stylingDoc.setNoProof(PersonalizeImg);
-			PersonalizeRun.setFontSize(10);
+			stylingDoc.FontFamilySize(PersonalizeImg);
 			PersonalizeImg.setText("Top Campaigns: The top performing campaigns during the selected time period, ordered by number of clicks.");
 			PersonalizeImg.addBreak();
 			XWPFRun PersonalizeImg1 = PersonalizeDoc.createRun();
@@ -582,8 +605,7 @@ public class reports {
 			
 			XWPFParagraph Account_Management = document.createParagraph();
 			XWPFRun Account_ManagementRun = Account_Management.createRun();
-			Account_ManagementRun.setFontFamily("Calibri Light (Headings)");
-			Account_ManagementRun.setFontSize(10);
+			stylingDoc.FontFamilySize(Account_ManagementRun);
 			stylingDoc.setNoProof(Account_ManagementRun);
 			Account_ManagementRun.setText(passData.Account_Management);
 			Account_ManagementRun.addCarriageReturn();
@@ -594,8 +616,7 @@ public class reports {
 			XWPFRun OverviewRun = Overview.createRun();
 			OverviewRun.addCarriageReturn();
 			OverviewRun.addCarriageReturn();
-			OverviewRun.setFontFamily("Calibri Light (Headings)");
-			OverviewRun.setFontSize(10);
+			stylingDoc.FontFamilySize(OverviewRun);
 			OverviewRun.setBold(true);
 			OverviewRun.setText("Overview");
 			OverviewRun.addBreak();
