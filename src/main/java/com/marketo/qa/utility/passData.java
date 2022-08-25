@@ -5,12 +5,9 @@ import java.io.IOException;
 import java.util.Map;
 
 
-
-
-
-
 public class passData  {
-	static String AccountName= "";
+	
+	
 	
 	public static String FetchScreenshot(String screenshotName) {
 		
@@ -27,16 +24,16 @@ public class passData  {
 			+ " campaign affects one lead at a time, based on a triggered event."
 			+ " To learn more about Smart campaigns in Marketo. visit: https://docs.marketo.com/display/public/DOCS/Smart+Campaigns.";
 	
-	static String No_models  =AccountName  +"\nhas not built models in Marketo. Revenue cycle models take marketing to the next level."
+	static String No_models = "\nhas not built models in Marketo. Revenue cycle models take marketing to the next level."
 			+ " They model all the stages of your entire revenue funnel—from when you first interact with a lead all "
 			+ "the way until the lead is a won customer.";
 
-	static String models  = AccountName +"\nbuilt models in Marketo. Revenue cycle models take marketing to the next level. They model all the stages"
+	static String models  = "\nbuilt models in Marketo. Revenue cycle models take marketing to the next level. They model all the stages"
 			+ " of your entire revenue funnel—from when you first interact with a lead all the way until the lead is"
 			+ " a won customer.";
 	
 	
-	static String models2= AccountName +"\nhas created the following Revenue Cycle Models in their Marketo instance:";
+	static String models2= "\nhas created the following Revenue Cycle Models in their Marketo instance:";
 	
 	static String lead_scoring ="Marketo’s lead scoring capabilities are far more robust than any other vendor offerings. \r\n"
 			+ "Lead scoring allows you to identify which prospects are most interested and engaged with your brand. "
@@ -48,7 +45,7 @@ public class passData  {
 	
 	//Interesting Moment Data 
 	
-	static String intresting_moment = "The following Interesting Moments have been defined to support\n"+ AccountName  +"’s marketing campaigns."
+	static String intresting_moment = "’s marketing campaigns."
 			+" When a lead exhibits any of the below behavior, it will be documented and tracked.";
 	
 	static String intresting_moment_below ="If you have Marketo Sales Insight, you can use the interesting moment flow step to give your"
@@ -56,7 +53,7 @@ public class passData  {
 			+ "to define what information is relevant to their sales team. "
 			+ "When a lead takes a specific action, that action is logged and recorded for the team to see.";
 	
-	static String intresting_moment_else= passData.AccountName+"\nhas not defined any Interesting Moments to support their marketing campaigns in Marketo. Interesting Moments are used to document and track any lead behaviors exhibited that are of importance to the Sales Team and the Marketing Team.\r\n"
+	static String intresting_moment_else= "\nhas not defined any Interesting Moments to support their marketing campaigns in Marketo. Interesting Moments are used to document and track any lead behaviors exhibited that are of importance to the Sales Team and the Marketing Team.\r\n"
 			+ "Interesting Moments allow the marketer to define what information is relevant to their sales team. When a lead takes a specific action, that action is logged and recorded for the team to see. There is nothing comparable to interesting moments with other vendors.";
 	
 	
@@ -67,8 +64,8 @@ public class passData  {
 			+ "offline events! Capture the status of your leads as they progress through different stages and get accurate"
 			+ " measures of the ROI for your marketing initiatives.";
 	
-	static String No_events = AccountName +"\n does not have any Event campaigns set up in their instance. Here is a good doc to share"
-			+ " on how to create a new event campaign:"
+	static String No_events = "\ndoes not have any Event campaigns set up in their instance. Here is a good doc to share"
+			+ " on how to create a new event campaign:\r\n"
 			+ " https://docs.marketo.com/display/public/DOCS/Create+a+New+Event+Program";
 	
 	
@@ -79,65 +76,66 @@ public class passData  {
 			+ "types of Content you can add to engagement program streams — emails and programs. Emails will be sent"
 			+ "to leads at cast time. Marketo's smart streams also offer:";
 
-	static String No_Nurture= AccountName +"\ndoes not have any Nurture campaigns set up in their instance. They might need a refresher on how"
+	static String No_Nurture=  "\ndoes not have any Nurture campaigns set up in their instance. They might need a refresher on how"
 			+ " useful Nurture Campaigns can be: "
 			+ "https://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en";
 	
 	
 	//Segments 
-	static String no_segment= AccountName  +"\ndoes not have any segments defined. Segmentation categorizes your audience into different"
+	static String no_segment=  "\ndoes not have any segments defined. Segmentation categorizes your audience into different"
 			+ " subgroups based on a Smart List rule. These groups are called segments. Segments allow the marketer"
 			+ " to target leads based on the segment that they fall into.\n";
 		
-	static String segment= AccountName +"\nhas the following segments defined. Segments allow the marketer to target leads based on the"
+	static String segment= "\nhas the following segments defined. Segments allow the marketer to target leads based on the"
 			+ " segment that they fall into.";
 	
 	//Snippet
-	static String No_Snippets =  AccountName +"\nis not taking advantage of snippets. Snippets are reusable blocks of rich text and graphics that"
+	static String No_Snippets = "\nis not taking advantage of snippets. Snippets are reusable blocks of rich text and graphics that"
 			+ " the client can use in their emails and landing pages, and it is a great timesaver!"
 			+ " https://experienceleague.adobe.com/docs/marketo/using/product-docs/personalization/segmentation-and-snippets/snippets/create-a-snippet.html?lang=en";
 	
 	
 	//No Lead_scoring Data
 	static String Lead_scoring= "\n has advanced lead scoring built out taking into account behavior, demographics, successes and decay.";
-	static String No_lead_scoring= AccountName +"\n has not built out any lead scoring campaigns in Marketo";
+	static String No_lead_scoring= "\n has not built out any lead scoring campaigns in Marketo";
+	static String Lead_scoring_Less5="\nlead scoring campaigns built out taking into account behavior,successes and decay.";
 	
-	static String tokens= AccountName +"\nis using MyTokens in their lead scoring campaigns which allows for a Marketer to quickly, "
+	static String tokens= "\nis using MyTokens in their lead scoring campaigns which allows for a Marketer to quickly, "
 			+ "and easily, control from a high level their lead change scores";
 	
-	static String no_tokens= AccountName +"\nis Not using MyTokens in their lead scoring campaigns which allows for a Marketer to quickly, "
+	static String no_tokens= "\nis Not using MyTokens in their lead scoring campaigns which allows for a Marketer to quickly, "
 			+ "and easily, control from a high level their lead change scores";
 	
-	static String no_batch=AccountName +"\nhas Not built out campaigns reducing lead scores when leads exhibit undesirable behavior";
+	static String no_batch="\nhas Not built out campaigns reducing lead scores when leads exhibit undesirable behavior";
 	
 	static String batch= "\nbuilt out campaigns reducing lead scores when leads exhibit undesirable behavior";
 	
 	//Data Management 
-	static String Data= AccountName +"\nhas Data Management actions setup within Marketo. Marketo’s data management tools allow a"
+	static String Data= "\nhas Data Management actions setup within Marketo. Marketo’s data management tools allow a"
 			+ " marketer to configure actions to automatically manage leads. For example, Data Management actions can"
 			+ " be set up to de-duplicate data, clean up bad data, and modify data based on predetermined actions and "
 			+ "values.";
 	
-	static String No_Data= AccountName +"\ndoes not appear to have data management actions set up. Good examples of data management "
+	static String No_Data= "\ndoes not appear to have data management actions set up. Good examples of data management "
 			+ "would be any steps taken to clean up lead data, for example, adding leads to a blacklist triggered by"
 			+ " a certain action. Here is a walkthrough of how to do that: https://experienceleague.adobe.com/docs/marketo/using/product-docs/core-marketo-concepts/smart-lists-and-static-lists/managing-people-in-smart-lists/add-person-to-blocklist.html?lang=en";
-	static String No_data_link= "\nHere is a high overview on how to create Change Data Value flow actions: ";
+	static String No_data_link= "\nHere is a high overview on how to create Change Data Value flow actions: https://docs.marketo.com/display/public/DOCS/Change+Data+Value";
 	
 	//Library Data
 	
-	static String Program_library= "It appears that\n" +AccountName + "\nhas imported templates from the Marketo Program Library.\r\n"
+	static String Program_library=  "\nhas imported templates from the Marketo Program Library.\r\n"
 			+ "Marketo is committed to our customers' success and has seeded a ton of pre-built programs for almost any use case"
 			+ " into the Marketo Program Library that our customers are free to import when they are needed as their marketing "
 			+ "strategies evolve and call for different types of programs and campaigns.";
 	
-	static String no_library= "It appears that\n"+AccountName +"\nhas Not imported templates from the Marketo Program Library.\r\n"
+	static String no_library= "\nhas Not imported templates from the Marketo Program Library.\r\n"
 			+ "Marketo is committed to our customers' success and has seeded a ton of pre-built programs for almost any use "
 			+ "case into the Marketo Program Library that our customers are free to import when they are needed as"
 			+ " their marketing strategies evolve and call for different types of programs and campaigns.";
 	
 	// Integrations 
 	
-	static String No_Integrations= AccountName +"\nhas Not installed any integrations."
+	static String No_Integrations= "\nhas not installed any integrations."
 			+ "Marketo LaunchPoint is the most complete ecosystem of Marketing solution integrations in the industry."
 			+ " LaunchPoint offers hundreds of applications that complement and integrate into Marketo’s customer"
 			+ " engagement platform. LaunchPoint gives Marketers access to the best applications, solutions and"
@@ -183,46 +181,53 @@ public class passData  {
 	//No Lead_scoring Data
 public static String LeadScoring(String leads) throws IOException {
 		
-		int lead = Integer.parseInt(passData.Exceldata("Leads"));
+		int ChangeScore = Integer.parseInt(passData.Exceldata("Change Score"));
 		
 		
-		if (lead>=5)
+		if (ChangeScore>=5)
 		{			
-			return AccountName +"\nhas\n"+leads+ Lead_scoring;
+			return passData.Exceldata("Account Name") +"\nhas\n"+Lead_scoring;
 		}
+		else if(ChangeScore<5 && ChangeScore>0) {
+			
+			return passData.Exceldata("Account Name") +"\nhas\n"+leads+ Lead_scoring_Less5;
+		}
+		
 		
 		else  {
 		}
-			return No_lead_scoring;			
+			return passData.Exceldata("Account Name") + No_lead_scoring;			
 	}
 //my tokens method for Lead scoring
 public static String MyTokens() throws IOException {	
-	int token = Integer.parseInt(passData.Exceldata("Tokens"));
+	int token = Integer.parseInt(passData.Exceldata("Change Score"));
 	
 	if (token>0)
 	{			
-		return tokens ;
+		return passData.Exceldata("Account Name") +tokens ;
 	}
 	
 	else  {
 	}
 	
-		return no_tokens;
+		return passData.Exceldata("Account Name") +no_tokens;
 				
 }
+
+// batch campaigns for lead scoring 
 public static String BatchCampaigns() throws IOException {	
 	
-	int Batch = Integer.parseInt(passData.Exceldata("All Batch Campaigns"));
+	int ChangeScore = Integer.parseInt(passData.Exceldata("Change Score"));
 	
-	if (Batch>0)
+	if (ChangeScore>0)
 	{			
-		return AccountName +"\nhas built\n"+Exceldata("All Batch Campaigns")+batch ;
+		return passData.Exceldata("Account Name") +"\nhas built\n"+Exceldata("Change Score")+batch ;
 	}
 	
 	else  {
 	}
 	
-		return no_batch;
+		return passData.Exceldata("Account Name") + no_batch;
 				
 }
 //Method for Data Management
@@ -230,15 +235,15 @@ public static String DataManagement() throws IOException {
 	
 	int DataManagment = Integer.parseInt(passData.Exceldata("Change Data Value"));
 	
-	if (DataManagment>10)
+	if (DataManagment>5)
 	{			
-		return Data ;
+		return passData.Exceldata("Account Name")+Data ;
 	}
 	
 	else  {
 	}
 	
-		return No_Data +No_data_link ;
+		return passData.Exceldata("Account Name")+ No_Data +No_data_link ;
 				
 }
 //Method for Events
@@ -248,18 +253,18 @@ public static String Events() throws IOException {
 	
 	if (Event_Program>=5)
 	{			
-		return events;
+		return passData.Exceldata("Account Name") + " has built numerous Event campaigns in Marketo.\r\n"+events;
 	}
 	
 	else if (Event_Program<5 && Event_Program>0 ) {
 	
-		return AccountName +"\nhas\n"+Exceldata("Event Programs")+"\nEvent campaigns in Marketo.\n" +events ;
+		return passData.Exceldata("Account Name") +"\nhas\n"+Exceldata("Event Programs")+"\nEvent campaigns in Marketo.\n" +events ;
 	
 	}
 	else  {
 	}
 	
-		return No_events  ;
+		return passData.Exceldata("Account Name")+No_events  ;
 				
 }
 //Method of Nurture Campaigns
@@ -269,18 +274,18 @@ public static String Nurture_Campaigns() throws IOException {
 	
 	if (Nurture_Campaigns>=5)
 	{			
-		return Exceldata("Nurture campaigns")+Nurture;
+		return passData.Exceldata("Account Name")+"\nhas\n"+Exceldata("Nurture campaigns")+Nurture;
 	}
 	
 	else if  (Nurture_Campaigns<5 && Nurture_Campaigns>0) {
 	
-		return  AccountName+"\nhas\n"+ Exceldata("Nurture campaigns")+Nurture ;
+		return  passData.Exceldata("Account Name")+"\nhas\n"+ Exceldata("Nurture campaigns")+Nurture ;
 	
 	}
 	else  {
 	}
 	
-		return No_Nurture  ;
+		return passData.Exceldata("Account Name")+No_Nurture  ;
 				
 }
 //Segment Data
@@ -288,15 +293,15 @@ public static String Segmentation() throws IOException {
 	
 	int Segmentation = Integer.parseInt(passData.Exceldata("Segment Data"));
 	
-	if (Segmentation>=5)
+	if (Segmentation>=0)
 	{			
-		return AccountName+"\nhas\n"+Exceldata("Segment Data")+Nurture;
+		return passData.Exceldata("Account Name")+"\nhas\n"+Exceldata("Segment Data")+segment;
 	}
 	
 	else  {
 	}
 	
-		return segment  ;
+		return passData.Exceldata("Account Name")+no_segment  ;
 				
 }
 //Program Library
@@ -306,31 +311,17 @@ public static String Library() throws IOException {
 	
 	if (Library>=1)
 	{			
-		return Program_library ;
+		return "It appears that\n"+passData.Exceldata("Account Name")+Program_library ;
 	}
 	
 	else  {
 	}
 	
-		return no_library ;
+		return "It appears that\n" +passData.Exceldata("Account Name")+no_library ;
 				
 }
-//Integrations
-public static String Integrations() throws IOException {	
-	
-	int Integrations = Integer.parseInt(passData.Exceldata("Integrations"));
-	
-	if (Integrations>=1)
-	{			
-		return passData.FetchScreenshot("Change Score") ;
-	}
-	
-	else  {
-	}
-	
-		return No_Integrations ;
-				
-}
+
+
 	
 		
 }

@@ -98,8 +98,8 @@ public class TestBase {
 
 	}
 	
-	@AfterSuite
-	  public static void CloseBrowser() throws Exception { 
+	@AfterSuite	
+	  public static void CloseBrowser() throws Exception {
 		  driver.quit();
 		  System.out.println("Execution Over");
 		  reports.docs();
