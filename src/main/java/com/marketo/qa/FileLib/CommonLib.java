@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
@@ -24,6 +25,7 @@ import com.marketo.qa.base.TestBase;
 
 public class CommonLib extends TestBase{
 	 
+
 	String ExcelPath=System.getProperty("user.home") + "\\Desktop\\Config\\MarketoData.xlsx";
 	public  void waitForPageLoad(int time) {
 		driver.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
@@ -42,14 +44,24 @@ public class CommonLib extends TestBase{
 	public void StandardWait(int time) throws Throwable {
 		Thread.sleep(time);
 	}
-	
+	 XSSFRow roww = null;
+
 	public void WriteExcelData(String sheetName ,int row,int col,int cellValue) throws Exception {
         
 		File file =  new File(ExcelPath);
         FileInputStream fis = new FileInputStream(file); 
         XSSFWorkbook book = new XSSFWorkbook(fis);
         XSSFSheet sheet = book.getSheet(sheetName);
-        sheet.getRow(row).createCell(col).setCellValue(cellValue);
+        
+        roww = sheet.getRow(row);
+        
+        if(roww == null) {
+        	sheet.createRow(row).createCell(col).setCellValue(cellValue);
+        }
+        else {
+        	sheet.getRow(row).createCell(col).setCellValue(cellValue);
+
+        }        
         FileOutputStream fos = new FileOutputStream(file);
         book.write(fos);
         fos.close();
@@ -62,12 +74,40 @@ public class CommonLib extends TestBase{
         FileInputStream fis = new FileInputStream(file); 
         XSSFWorkbook wb = new XSSFWorkbook(fis);
         XSSFSheet sheet = wb.getSheet(sheetName);
-        sheet.getRow(row).createCell(col).setCellValue(cellValue);
-        FileOutputStream fos = new FileOutputStream(file);
+        roww = sheet.getRow(row);
+
+        if(roww == null) {
+        	sheet.createRow(row).createCell(col).setCellValue(cellValue);
+        }
+        else {
+        	sheet.getRow(row).createCell(col).setCellValue(cellValue);
+
+        }        FileOutputStream fos = new FileOutputStream(file);
         wb.write(fos);
         fos.close();
         
 		}
+	
+	public void ClearExcelData(String sheetName ,int row) throws Exception {
+		String ExcelPath=System.getProperty("user.dir")+"./src/test/resources/TestData/MarketoData.xlsx";
+		File file =  new File(ExcelPath);
+        FileInputStream fis = new FileInputStream(file); 
+        XSSFWorkbook wb = new XSSFWorkbook(fis);
+        XSSFSheet sheet = wb.getSheet(sheetName);
+        int lastCell=sheet.getRow(row).getLastCellNum();
+        for (int i = 0;i<lastCell;i++){
+        	System.out.println(i);
+        	sheet.createRow(row).createCell(i).setCellValue("");        	
+        }
+        FileOutputStream fos = new FileOutputStream(file);
+        wb.write(fos);
+        fos.close();
+
+  	}
+        
+        
+    
+	
 	
 	public void MouseHover(WebElement element) {
 		Actions actions = new Actions(driver);

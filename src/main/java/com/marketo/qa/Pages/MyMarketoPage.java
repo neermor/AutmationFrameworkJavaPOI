@@ -35,7 +35,6 @@ public class MyMarketoPage extends TestBase {
 				if (option.getText().equalsIgnoreCase("Marketing Activities")) {
 					option.click();
 				}
-				System.out.println(option.getText());
 				Thread.sleep(4000);
 			 }
 		 }
@@ -113,7 +112,6 @@ public class MyMarketoPage extends TestBase {
 	public void SelectTreeNode(String TreeNodeName) throws Throwable {
 		Thread.sleep(10000);
 	    List<WebElement> HomeTiles = driver.findElements(TreeNode);
-        System.out.println(HomeTiles);
 		 for(WebElement option: HomeTiles){
 			 
 				if (option.getText().equalsIgnoreCase(TreeNodeName)) {

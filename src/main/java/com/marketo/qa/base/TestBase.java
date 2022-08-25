@@ -7,14 +7,11 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.Reporter;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.Pages.GhostLoginPage;
-import com.marketo.qa.Pages.LoginPage;
 import com.marketo.qa.Pages.MyMarketoPage;
 import com.marketo.qa.utility.reports;
 
@@ -30,7 +27,7 @@ public class TestBase {
 
 		FileInputStream fis;
 		try {
-			fis = new FileInputStream(System.getProperty("user.home") + "/Desktop/data.properties");
+			fis = new FileInputStream(System.getProperty("user.dir") + "./Config/data.properties");
 			prop.load(fis);
 
 		} catch (FileNotFoundException e) {
@@ -44,7 +41,7 @@ public class TestBase {
 
 
 	@BeforeTest
-	public static void initialization() {
+	public static void initialization() throws Throwable {
 
 		String browserName = prop.getProperty("browser");
 
@@ -74,11 +71,11 @@ public class TestBase {
 		
 			driver = WebDriverManager.safaridriver().create();
 		}
-		
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.get(prop.getProperty("ghosturl"));
+		GhostLogin();
 	}
 
 	public static void OpenSupportTool() {
@@ -87,29 +84,29 @@ public class TestBase {
 
 
 	
-	public static void GhostLogin() throws Throwable {
-		new GhostLoginPage().GhostLogin(prop.getProperty("prifix"), prop.getProperty("Ghostpwd"),prop.getProperty("id"));
-		new CommonLib().StandardWait(20000);
-
-	}
-	public static void MarketoLogin() throws Throwable {
-		new LoginPage().Login(prop.getProperty("username"), prop.getProperty("password"));
-		new CommonLib().StandardWait(20000);
-		Reporter.log("Login Succsessfully");
-	}
 	
+	 public static void GhostLogin() throws Throwable { new
+	  GhostLoginPage().GhostLogin(prop.getProperty("prefix"),prop.getProperty("Ghostpwd"),prop.getProperty("id"));
+	 new CommonLib().StandardWait(20000);
+	  
+	 }
+	
+		
 	public static void Logout() {
 		new MyMarketoPage().GetAccountIcon().click();
 		new MyMarketoPage().GetLogoutBtn().click();
 
 	}
 	
-	@AfterSuite
-	
+	@AfterSuite	
 	  public static void CloseBrowser() throws Exception {
-		  reports.docs();
 		  driver.quit();
+		  System.out.println("Execution Over");
+		  reports.docs();
+
 		  }
-	 
+	  
+	
+	  
 
 }
