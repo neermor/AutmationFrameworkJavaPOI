@@ -7,8 +7,6 @@ import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.base.TestBase;
 import com.marketo.qa.utility.screenshotUtility;
 
-import gherkin.formatter.model.DocString;
-
 public class AdminPage extends TestBase{
 	
 	By MyAccount=By.xpath("//li[@class='x-tree-node']//span[text()='My Account']");

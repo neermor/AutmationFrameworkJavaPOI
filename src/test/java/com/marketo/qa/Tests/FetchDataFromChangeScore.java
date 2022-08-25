@@ -18,14 +18,14 @@ public class FetchDataFromChangeScore extends TestBase {
 	@Test
 	public void VerifyChangeScoreCount() throws Throwable {
 		OpenSupportTool();
-		Support.SelectValueFlowAction("Flow Actions Used","Change Score",1);
+		Support.SelectValueFlowAction("Flow Actions Used","Change Score",23);
 		screenshotUtility.TakeScreenshot(Support.GetResultTable(), "Change Score");
 		Support.ClickBackToSupportLink();
-		Support.SelectValueFlowAction("Flow Actions Used","Interesting Moment",2);
+		Support.SelectValueFlowAction("Flow Actions Used","Interesting Moment",24);
 		screenshotUtility.TakeScreenshot(Support.GetResultTable(),"Interesting Moment");
 		Support.ClickBackToSupportLink();
-		Support.SelectValueFlowAction("Flow Actions Used","Change Data Value",3);
-		screenshotUtility.TakeScreenshot(Support.GetResultTable(), "Change Data Value");		 		
+		Support.SelectValueFlowAction("Flow Actions Used","Change Data Value",25);
+		screenshotUtility.TakeScreenshot(Support.GetResultTable(), "Change Data Value");
 
 		}
 		

@@ -15,8 +15,7 @@ public class FetchModelsCount extends TestBase {
 	@Test
 	public void ModelCount() throws Throwable {
 		homePage.OpenanalyticsTab();
-		homePage.SelectWorkSpace("Default");
-		Analytic.ModelCount(16);
+		Analytic.AllWorkspaceModelCount();
 		}
 
 }

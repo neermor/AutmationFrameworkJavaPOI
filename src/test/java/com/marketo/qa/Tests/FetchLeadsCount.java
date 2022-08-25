@@ -17,11 +17,8 @@ public class FetchLeadsCount extends TestBase {
 	@Test
 	public void CollectLeadsCount() throws Throwable {
 		homePage.OpenDatabaseTab();
-		homePage.SelectWorkSpace("Default");
-		Db.SegmentationsCount(17);
-		Db.ExtendWorkshoptreenode("System Smart Lists","All People");
-		Db.GetLeadsCount(15);
-		driver.switchTo().defaultContent();
+		Db.AllWorkspaceCollectLeadsCount();
+
 
 	}
 

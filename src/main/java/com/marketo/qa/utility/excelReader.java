@@ -2,7 +2,6 @@ package com.marketo.qa.utility;
 
 
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,7 +18,7 @@ public class excelReader {
 		 HashMap<String, String>testData =new HashMap<String, String>();
 	
 		try {
-			
+		
 	        String ExcelPath=System.getProperty("user.home") + "\\Desktop\\Config\\MarketoData.xlsx";
 			FileInputStream FileInputStream = new FileInputStream(ExcelPath);
 			 try (Workbook workbook = new XSSFWorkbook(FileInputStream)) {

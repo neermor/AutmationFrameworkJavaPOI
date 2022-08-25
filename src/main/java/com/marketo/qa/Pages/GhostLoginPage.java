@@ -52,14 +52,13 @@ public class GhostLoginPage extends TestBase{
 		return driver.findElement(OkatSendPush);
 	}
 	
-	public void GhostLogin(String prifix, String pwd, String ghostId) throws Throwable {
+	public void GhostLogin(String prefix, String pwd, String ghostId) throws Throwable {
 		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
-		GetPrfix().sendKeys(prifix);
+		GetPrfix().sendKeys(prefix);
 		getPassword().sendKeys(pwd);
 		getGhostID().clear();
 		getGhostID().sendKeys(ghostId);
 		getLoginButton().click();
-		Thread.sleep(10000);	
 		
 		if(GetOktaUsername().isDisplayed()) {
 			Thread.sleep(2000);	

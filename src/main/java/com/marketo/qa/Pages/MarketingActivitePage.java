@@ -12,6 +12,7 @@ public class MarketingActivitePage extends TestBase {
 	
 	boolean flag = false;
 	By TreeNode=By.xpath("//div[contains(@data-id,'treeNodeRow' )]");
+	By WorkSpace = By.xpath("//div[contains(@data-id,'treeNode_workspace')]/..//div//span");
 	By Iframe = By.cssSelector("#mlm");
 	By CampaignInspector = By.cssSelector("#canvas__cp_campaignInspector");
 	By CampaignDD= By.xpath("//button[text()='Active Campaigns']");
@@ -22,9 +23,14 @@ public class MarketingActivitePage extends TestBase {
 	By filter = By.xpath("//button[@data-id='global_treeFilterButton']");
 	By EventFilter = By.xpath("//input[@value='Event Programs']");
 	By EngagementPrograms = By.xpath("//input[@value='Engagement Programs']");
+	By resetBtn = By.cssSelector("globalTreeFilter_reset");
 	
 	public WebElement GetIFrame() {
 		return driver.findElement(Iframe);
+	}
+	
+	public WebElement GetResetBtn() {
+		return driver.findElement(resetBtn);
 	}
 	
 	public WebElement GetFilter() {
@@ -58,14 +64,14 @@ public class MarketingActivitePage extends TestBase {
 	
 	
 	public void ClickCampaignInspector() throws Throwable {
-		new CommonLib().StandardWait(2000);
+		new CommonLib().StandardWait(2000);; 
 		GetCampaignInspector().click();	
 		GetCampaignDD().click();
 		
 	} 
 	
 	public void SelectTreeNode(String TreeNodeName) throws Throwable {
-		Thread.sleep(10000);
+		new CommonLib().StandardWait(2000);; 
 	    List<WebElement> HomeTiles = driver.findElements(TreeNode);
 		 for(WebElement option: HomeTiles){
 			 
@@ -78,13 +84,12 @@ public class MarketingActivitePage extends TestBase {
 	
 
 	public void GetMoreCampaignOption(String MoreCampaignValue) throws Throwable {
-		Thread.sleep(10000);
+		Thread.sleep(4000);
 	    List<WebElement> CampaignOption = driver.findElements(MoreCampaignOptions);
 		 for(WebElement option: CampaignOption){			 
 				if (option.getText().equalsIgnoreCase(MoreCampaignValue)) {
 					option.click();
 				}
-				System.out.println(option.getText());
 			 }	
 		 }
 	
@@ -97,7 +102,6 @@ public class MarketingActivitePage extends TestBase {
 				if (option.getText().equalsIgnoreCase(CampaignType)) {
 					option.click();
 				}
-				System.out.println(option.getText());
 			 }	
 		 }
 	
@@ -120,26 +124,28 @@ public class MarketingActivitePage extends TestBase {
 	    }
 	}
 	
-	public void GetCampaignCount(String CampaignType,int row)throws Throwable {
+	public int GetCampaignCount(String CampaignType,int row,int cell)throws Throwable {
 		ClickCampaignInspector();
 		GetCampaignInspectorOption(CampaignType);
-		new CommonLib().StandardWait(4000); 
 		new CommonLib().WriteExcelData("Sheet1", row, 0, CampaignType);
-		new CommonLib().WriteExcelData("Sheet1", row, 1, GetCount());
+		new CommonLib().WriteExcelData("Sheet1", row, cell, GetCount());
+		return Integer.parseInt(GetCount());
+
 	}
 	
 	public void HoverMoreCampaign() throws Throwable{
 		new CommonLib().MouseHover(GetMoreCampaign());
-		new CommonLib().StandardWait(4000); 
+		new CommonLib().StandardWait(2000); 
 	}
 	
-	public void GetMoreCampaignCount(String CampaignType,int row) throws Throwable {
+	public int GetMoreCampaignCount(String CampaignType,int row,int cell) throws Throwable {
 		ClickCampaignInspector();
 		HoverMoreCampaign();		
 		GetMoreCampaignOption(CampaignType);
-		new CommonLib().StandardWait(4000); 
+		new CommonLib().waitForElementVisibleFlunt(AllCount); 
 		new CommonLib().WriteExcelData("Sheet1", row, 0, CampaignType);
-		new CommonLib().WriteExcelData("Sheet1", row, 1, GetCount());
+		new CommonLib().WriteExcelData("Sheet1", row, cell, GetCount());
+		return Integer.parseInt(GetCount());
 
 
 	}
@@ -159,26 +165,80 @@ public class MarketingActivitePage extends TestBase {
 		catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 	}
 	
-	public void GetNatureCount(int row) {
+	public void GetNurtureCount(int row) throws Throwable {
 		GetFilter().click();
 		GetEngagementPrograms().click();
 		try {
 			boolean flag	= driver.findElement(By.xpath("//div[@data-id='Tree_NoResultsText']")).isDisplayed();
 				if(flag) {
-					new CommonLib().WriteExcelData("Sheet1", row, 0, "Event Programs");
+					new CommonLib().WriteExcelData("Sheet1", row, 0, "Nurture campaigns");
 					new CommonLib().WriteExcelData("Sheet1", row, 1, "0");
 					
 				}	
 				
 			}
 			catch (Exception e) {
-				// TODO: handle exception
-			}
+List<WebElement> NurturCount = driver.findElements(By.xpath("//div[contains(@data-id,'treeNode_engagementprogram')]/.."));
+
+	new CommonLib().WriteExcelData("Sheet1", row, 0, "Nurture campaigns");
+	new CommonLib().WriteExcelData("Sheet1", row, 1, NurturCount.size());
+}
+		
 			
 		}
+	
+	int cell = 1;
+
+	int All_Triggered_Campaigns = 0;
+	int Active_Triggered_Campaigns = 0;
+	int Batch_Campaigns = 0;
+	int All_Batch_Campaigns = 0;
+	int AllCampaigns = 0;
+	int Active_Campaigns = 0;
+	
+	public void AllWorkspaceCampaignCount() throws Throwable {
+		
+		List<WebElement> workSpace = driver.findElements(WorkSpace);
+		workSpace.size();
+		new CommonLib().ClearExcelData("Sheet1", 7);
+		new CommonLib().ClearExcelData("Sheet1", 8);
+		new CommonLib().ClearExcelData("Sheet1", 9);
+		new CommonLib().ClearExcelData("Sheet1", 10);
+		new CommonLib().ClearExcelData("Sheet1", 11);
+		new CommonLib().ClearExcelData("Sheet1", 12);
+		new CommonLib().ClearExcelData("Sheet1", 13);
+
+		for(WebElement value : workSpace) {
+			System.out.println(value.getText());
+			value.click();		
+			switchFrame();
+			All_Triggered_Campaigns +=GetMoreCampaignCount("All Triggered Campaigns",8,cell);			
+			Active_Triggered_Campaigns +=GetMoreCampaignCount("Active Triggered Campaigns", 9,cell);
+			Batch_Campaigns +=GetMoreCampaignCount("Batch Campaigns - Repeating Schedule", 10,cell);
+			All_Batch_Campaigns +=GetMoreCampaignCount("All Batch Campaigns", 11,cell);
+			AllCampaigns +=GetCampaignCount("All Campaigns",12,cell);
+			Active_Campaigns +=GetCampaignCount("Active Campaigns", 13,cell);
+			driver.switchTo().defaultContent();
+			new CommonLib().WriteExcelData("Sheet1", 7, 0, "Campaign Data");
+			new CommonLib().WriteExcelData("Sheet1", 7, cell, value.getText());			
+			cell++;		
+
+
+		} 
+			  new CommonLib().WriteExcelData("Sheet1", 7, cell, "Total"); new
+			  CommonLib().WriteExcelData("Sheet1", 8, cell, All_Triggered_Campaigns); new
+			  CommonLib().WriteExcelData("Sheet1", 9, cell, Active_Triggered_Campaigns);
+			  new CommonLib().WriteExcelData("Sheet1", 10, cell, Batch_Campaigns); new
+			  CommonLib().WriteExcelData("Sheet1", 11, cell, All_Batch_Campaigns); new
+			  CommonLib().WriteExcelData("Sheet1", 12, cell, AllCampaigns); new
+			 CommonLib().WriteExcelData("Sheet1", 13, cell, Active_Campaigns);
+			 		
+
+
+	}
 	}
 	
 	
