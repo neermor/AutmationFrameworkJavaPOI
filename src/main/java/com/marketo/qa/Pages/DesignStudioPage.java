@@ -92,7 +92,7 @@ public class DesignStudioPage extends TestBase{
 
 	}
 	
-	int cell = 1;
+	int cell = 2;
 
 	int AllEmails = 0;
 	int AllForms = 0;
@@ -144,12 +144,12 @@ public void AllWorkspaceRequiredCount() throws Throwable {
 
 		}
 
-			  new CommonLib().WriteExcelData("Sheet1", 1, cell, "Total"); 
-			  new CommonLib().WriteExcelData("Sheet1", 2, cell, AllEmails); 
-			  new CommonLib().WriteExcelData("Sheet1", 3, cell, AllForms);
-			  new CommonLib().WriteExcelData("Sheet1", 4, cell, AllLandingPages); 
-			  new CommonLib().WriteExcelData("Sheet1", 5, cell, AllImages_and_Files); 
-			  new CommonLib().WriteExcelData("Sheet1", 6, cell, AllSnippets); 
+			  new CommonLib().WriteExcelData("Sheet1", 1, 1, "Total"); 
+			  new CommonLib().WriteExcelData("Sheet1", 2, 1, AllEmails); 
+			  new CommonLib().WriteExcelData("Sheet1", 3, 1, AllForms);
+			  new CommonLib().WriteExcelData("Sheet1", 4, 1, AllLandingPages); 
+			  new CommonLib().WriteExcelData("Sheet1", 5, 1, AllImages_and_Files); 
+			  new CommonLib().WriteExcelData("Sheet1", 6, 1, AllSnippets); 
 			 		
 
 

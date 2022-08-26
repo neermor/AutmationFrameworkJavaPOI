@@ -52,7 +52,7 @@ public class AnalyticsPage extends TestBase{
 		return 0;
 		
 		}
-	int cell = 1;
+	int cell = 2;
 
 	int Model = 0;
 	
@@ -87,8 +87,8 @@ public class AnalyticsPage extends TestBase{
 
 
 		} 
-			  new CommonLib().WriteExcelData("Sheet1", 17, cell, "Total"); 
-			  new CommonLib().WriteExcelData("Sheet1", 18, cell, Model);
+			  new CommonLib().WriteExcelData("Sheet1", 17, 1, "Total"); 
+			  new CommonLib().WriteExcelData("Sheet1", 18, 1, Model);
 			  
 			  
 			  
