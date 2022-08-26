@@ -3,20 +3,27 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="com.marketo.qa.Tests.FetchDataFromChangeScore">
+      <class name="com.marketo.qa.Tests.FetchModelsCount">
         <methods>
-          <include name="VerifyChangeScoreCount"/>
+          <include name="ModelCount"/>
           <include name="initialization"/>
           <include name="CloseBrowser"/>
         </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchDataFromChangeScore -->
-      <class name="com.marketo.qa.Tests.FetchAdminDatas">
+      </class> <!-- com.marketo.qa.Tests.FetchModelsCount -->
+      <class name="com.marketo.qa.Tests.FetchDesignStudioData">
         <methods>
-          <include name="VerifyCountAndScreenshor"/>
+          <include name="initialization"/>
+          <include name="TakeRequiredCount"/>
+          <include name="CloseBrowser"/>
+        </methods>
+      </class> <!-- com.marketo.qa.Tests.FetchDesignStudioData -->
+      <class name="com.marketo.qa.Tests.FetchChampianCounts">
+        <methods>
+          <include name="ChampiensCount"/>
           <include name="initialization"/>
           <include name="CloseBrowser"/>
         </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
+      </class> <!-- com.marketo.qa.Tests.FetchChampianCounts -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->
