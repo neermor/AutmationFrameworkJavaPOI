@@ -117,7 +117,6 @@ public class DatabasePage extends TestBase{
 	public void AllWorkspaceCollectLeadsCount() throws Throwable {
 		
 		List<WebElement> workSpace = driver.findElements(WorkSpace);
-		workSpace.size();
 		new CommonLib().ClearExcelData("Sheet1", 14);
 		new CommonLib().ClearExcelData("Sheet1", 15);
 		new CommonLib().ClearExcelData("Sheet1", 16);

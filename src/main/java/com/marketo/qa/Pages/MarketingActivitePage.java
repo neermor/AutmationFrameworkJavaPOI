@@ -202,7 +202,6 @@ List<WebElement> NurturCount = driver.findElements(By.xpath("//div[contains(@dat
 	public void AllWorkspaceCampaignCount() throws Throwable {
 		
 		List<WebElement> workSpace = driver.findElements(WorkSpace);
-		workSpace.size();
 		new CommonLib().ClearExcelData("Sheet1", 7);
 		new CommonLib().ClearExcelData("Sheet1", 8);
 		new CommonLib().ClearExcelData("Sheet1", 9);
@@ -210,9 +209,10 @@ List<WebElement> NurturCount = driver.findElements(By.xpath("//div[contains(@dat
 		new CommonLib().ClearExcelData("Sheet1", 11);
 		new CommonLib().ClearExcelData("Sheet1", 12);
 		new CommonLib().ClearExcelData("Sheet1", 13);
+		new CommonLib().ClearExcelData("Sheet1", 26);
 
 		for(WebElement value : workSpace) {
-			System.out.println(value.getText());
+			
 			value.click();		
 			switchFrame();
 			All_Triggered_Campaigns +=GetMoreCampaignCount("All Triggered Campaigns",8,cell);			
@@ -229,7 +229,8 @@ List<WebElement> NurturCount = driver.findElements(By.xpath("//div[contains(@dat
 
 		} 
 			  new CommonLib().WriteExcelData("Sheet1", 7, 1, "Total"); 
-			  
+				new CommonLib().WriteExcelData("Sheet1", 26,0,"Total WorkSpace");
+				new CommonLib().WriteExcelData("Sheet1", 26,1,workSpace.size());
 			  new CommonLib().WriteExcelData("Sheet1", 8, 1, All_Triggered_Campaigns); 
 			  new CommonLib().WriteExcelData("Sheet1", 9, 1, Active_Triggered_Campaigns);
 			  new CommonLib().WriteExcelData("Sheet1", 10, 1, Batch_Campaigns); 

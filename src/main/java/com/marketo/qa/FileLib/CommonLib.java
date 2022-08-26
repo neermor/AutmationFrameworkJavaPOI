@@ -95,9 +95,16 @@ public class CommonLib extends TestBase{
         FileInputStream fis = new FileInputStream(file); 
         XSSFWorkbook wb = new XSSFWorkbook(fis);
         XSSFSheet sheet = wb.getSheet(sheetName);
-        int lastCell=sheet.getRow(row).getLastCellNum();
-        for (int i = 0;i<lastCell;i++){
-        	sheet.createRow(row).createCell(i).setCellValue("");        	
+        roww = sheet.getRow(row);
+
+        if(roww == null) {
+        }
+        else {
+        	 int lastCell=sheet.getRow(row).getLastCellNum();
+             for (int i = 0;i<lastCell;i++){
+             	sheet.createRow(row).createCell(i).setCellValue("");        	
+             }
+            
         }
         FileOutputStream fos = new FileOutputStream(file);
         wb.write(fos);
