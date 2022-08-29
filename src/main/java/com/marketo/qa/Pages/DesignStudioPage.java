@@ -67,7 +67,6 @@ public class DesignStudioPage extends TestBase{
 		new CommonLib().WriteExcelData("Sheet1", row, 0, value);
 		new CommonLib().WriteExcelData("Sheet1", row, cell, GetCount());
 		return GetCount();
-
 	}
 	
 	public int FetchUploadCount(String value,int row,int cell) throws Throwable {
