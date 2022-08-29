@@ -3,27 +3,13 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="com.marketo.qa.Tests.FetchModelsCount">
-        <methods>
-          <include name="ModelCount"/>
-          <include name="initialization"/>
-          <include name="CloseBrowser"/>
-        </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchModelsCount -->
-      <class name="com.marketo.qa.Tests.FetchDesignStudioData">
-        <methods>
-          <include name="initialization"/>
-          <include name="TakeRequiredCount"/>
-          <include name="CloseBrowser"/>
-        </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchDesignStudioData -->
-      <class name="com.marketo.qa.Tests.FetchChampianCounts">
+      <class name="com.marketo.qa.Tests.FetchNuture_EventCount">
         <methods>
           <include name="ChampiensCount"/>
           <include name="initialization"/>
           <include name="CloseBrowser"/>
         </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchChampianCounts -->
+      </class> <!-- com.marketo.qa.Tests.FetchNuture_EventCount -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

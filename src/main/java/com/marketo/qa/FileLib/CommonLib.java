@@ -30,8 +30,8 @@ public class CommonLib extends TestBase{
 		driver.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
 	}
 	
-	public void WaitForElementToLoad(int duration,WebElement element) {
-		WebDriverWait wait = new WebDriverWait(driver, duration);
+	public void WaitForElementToLoad(WebDriver Drive, int duration,WebElement element) {
+		WebDriverWait wait = new WebDriverWait(Drive, duration);
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
 	

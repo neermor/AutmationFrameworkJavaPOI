@@ -23,7 +23,10 @@ public class MarketingActivitePage extends TestBase {
 	By filter = By.xpath("//button[@data-id='global_treeFilterButton']");
 	By EventFilter = By.xpath("//input[@value='Event Programs']");
 	By EngagementPrograms = By.xpath("//input[@value='Engagement Programs']");
-	By resetBtn = By.cssSelector("globalTreeFilter_reset");
+	By resetBtn = By.cssSelector("[data-id='DrawerFooter'] button[data-id='globalTreeFilter_reset']");
+	By NoResult = By.xpath("//div[@data-id='Tree_NoResultsText']");
+	By Event = By.xpath("//div[contains(@data-id,'treeNode_eventprogram')]/..");
+	By Nuture = By.xpath("//div[contains(@data-id,'treeNode_engagementprogram')]/..");
 	
 	public WebElement GetIFrame() {
 		return driver.findElement(Iframe);
@@ -56,6 +59,8 @@ public class MarketingActivitePage extends TestBase {
 	public WebElement GetMoreCampaign() {
 		return driver.findElement(MoreCampaigns);
 	}
+	
+	
 	
 	public void switchFrame() throws Throwable {
 		driver.switchTo().frame(GetIFrame());
@@ -150,11 +155,13 @@ public class MarketingActivitePage extends TestBase {
 
 	}
 	
-	public void GetEventCount(int row) {
+	public void GetEventCount(int row) throws Exception {
+		new CommonLib().WaitForElementToLoad(driver, 60, GetFilter());
 		GetFilter().click();
+		new CommonLib().WaitForElementToLoad(driver, 60, GetEventFilter());
 		GetEventFilter().click();
 		try {
-		boolean flag	= driver.findElement(By.xpath("//div[@data-id='Tree_NoResultsText']")).isDisplayed();
+		boolean flag	= driver.findElement(NoResult).isDisplayed();
 			if(flag) {
 				new CommonLib().WriteExcelData("Sheet1", row, 0, "Event Programs");
 				new CommonLib().WriteExcelData("Sheet1", row, 1, "0");
@@ -163,16 +170,20 @@ public class MarketingActivitePage extends TestBase {
 			
 		}
 		catch (Exception e) {
-			// TODO: handle exception
-		}
+			List<WebElement> EventCount = driver.findElements(Event);
+			new CommonLib().WriteExcelData("Sheet1", row, 0, "Event Programs");
+			new CommonLib().WriteExcelData("Sheet1", row, 1, EventCount.size());
+}
+		GetResetBtn().click();
 
 	}
 	
 	public void GetNurtureCount(int row) throws Throwable {
-		GetFilter().click();
+	
+		new CommonLib().WaitForElementToLoad(driver, 60, GetEngagementPrograms());
 		GetEngagementPrograms().click();
 		try {
-			boolean flag	= driver.findElement(By.xpath("//div[@data-id='Tree_NoResultsText']")).isDisplayed();
+			boolean flag	= driver.findElement(NoResult).isDisplayed();
 				if(flag) {
 					new CommonLib().WriteExcelData("Sheet1", row, 0, "Nurture campaigns");
 					new CommonLib().WriteExcelData("Sheet1", row, 1, "0");
@@ -181,12 +192,14 @@ public class MarketingActivitePage extends TestBase {
 				
 			}
 			catch (Exception e) {
-List<WebElement> NurturCount = driver.findElements(By.xpath("//div[contains(@data-id,'treeNode_engagementprogram')]/.."));
+List<WebElement> NurturCount = driver.findElements(Nuture);
 
 	new CommonLib().WriteExcelData("Sheet1", row, 0, "Nurture campaigns");
 	new CommonLib().WriteExcelData("Sheet1", row, 1, NurturCount.size());
 }
-		
+		GetResetBtn().click();
+		GetFilter().click();
+
 			
 		}
 	
