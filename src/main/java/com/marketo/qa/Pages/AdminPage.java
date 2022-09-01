@@ -73,6 +73,7 @@ public class AdminPage extends TestBase{
 	}
 	
 	public void AccountName(int row) throws Throwable {
+		new CommonLib().ClearExcelData("Sheet1", row);
 		GetMyAccount().click();
 		new CommonLib().WriteExcelData("Sheet1", row, 0, "Account Name");
 		new CommonLib().WriteExcelData("Sheet1", row, 1,  GetAccountName().getText());
@@ -80,6 +81,7 @@ public class AdminPage extends TestBase{
 	}
 	
 	public void TagsCountAndScreenshot(String tags, int row) throws Throwable {
+		new CommonLib().ClearExcelData("Sheet1", row);
 		GetTags().click();
 		GetChannelTag().click();
 		screenshotUtility.TakeScreenshot(GetTable(), tags);
@@ -89,7 +91,8 @@ public class AdminPage extends TestBase{
 	}
 	
 	public void OpenLunchPoint(int row) throws Throwable {
-		
+		new CommonLib().ClearExcelData("Sheet1", row);
+
 		GetLunchPoint().click();
 		try {
 		driver.findElement(By.xpath("//span[text()='No services configured']")).isDisplayed();			
@@ -116,7 +119,9 @@ public class AdminPage extends TestBase{
 	    }    
 	 }
 		
-		public void GetInterestingMomentSubscription(int row) throws Throwable {		
+		public void GetInterestingMomentSubscription(int row) throws Throwable {	
+			new CommonLib().ClearExcelData("Sheet1", row);
+
 	    	 try {
 		    	 boolean flag= driver.findElement(SalesInsight).isDisplayed();
 	    	 if(flag) {

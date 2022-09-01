@@ -109,7 +109,7 @@ public class DatabasePage extends TestBase{
 	
 	
 	
-	int cell = 1;
+	int cell = 2;
 
 	int Segmentations = 0;
 	int Leads = 0;
@@ -117,7 +117,6 @@ public class DatabasePage extends TestBase{
 	public void AllWorkspaceCollectLeadsCount() throws Throwable {
 		
 		List<WebElement> workSpace = driver.findElements(WorkSpace);
-		workSpace.size();
 		new CommonLib().ClearExcelData("Sheet1", 14);
 		new CommonLib().ClearExcelData("Sheet1", 15);
 		new CommonLib().ClearExcelData("Sheet1", 16);
@@ -148,9 +147,9 @@ public class DatabasePage extends TestBase{
 
 
 		} 
-			  new CommonLib().WriteExcelData("Sheet1", 14, cell, "Total"); 
-			  new CommonLib().WriteExcelData("Sheet1", 15, cell, Segmentations); 
-			  new CommonLib().WriteExcelData("Sheet1", 16, cell, Leads);
+			  new CommonLib().WriteExcelData("Sheet1", 14, 1, "Total"); 
+			  new CommonLib().WriteExcelData("Sheet1", 15, 1, Segmentations); 
+			  new CommonLib().WriteExcelData("Sheet1", 16, 1, Leads);
 			  
 			  
 			  

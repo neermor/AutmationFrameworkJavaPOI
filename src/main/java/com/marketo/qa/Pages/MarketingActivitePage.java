@@ -23,7 +23,10 @@ public class MarketingActivitePage extends TestBase {
 	By filter = By.xpath("//button[@data-id='global_treeFilterButton']");
 	By EventFilter = By.xpath("//input[@value='Event Programs']");
 	By EngagementPrograms = By.xpath("//input[@value='Engagement Programs']");
-	By resetBtn = By.cssSelector("globalTreeFilter_reset");
+	By resetBtn = By.cssSelector("[data-id='DrawerFooter'] button[data-id='globalTreeFilter_reset']");
+	By NoResult = By.xpath("//div[@data-id='Tree_NoResultsText']");
+	By Event = By.xpath("//div[contains(@data-id,'treeNode_eventprogram')]/..");
+	By Nuture = By.xpath("//div[contains(@data-id,'treeNode_engagementprogram')]/..");
 	
 	public WebElement GetIFrame() {
 		return driver.findElement(Iframe);
@@ -56,6 +59,8 @@ public class MarketingActivitePage extends TestBase {
 	public WebElement GetMoreCampaign() {
 		return driver.findElement(MoreCampaigns);
 	}
+	
+	
 	
 	public void switchFrame() throws Throwable {
 		driver.switchTo().frame(GetIFrame());
@@ -150,11 +155,13 @@ public class MarketingActivitePage extends TestBase {
 
 	}
 	
-	public void GetEventCount(int row) {
+	public void GetEventCount(int row) throws Exception {
+		new CommonLib().WaitForElementToLoad(driver, 60, GetFilter());
 		GetFilter().click();
+		new CommonLib().WaitForElementToLoad(driver, 60, GetEventFilter());
 		GetEventFilter().click();
 		try {
-		boolean flag	= driver.findElement(By.xpath("//div[@data-id='Tree_NoResultsText']")).isDisplayed();
+		boolean flag	= driver.findElement(NoResult).isDisplayed();
 			if(flag) {
 				new CommonLib().WriteExcelData("Sheet1", row, 0, "Event Programs");
 				new CommonLib().WriteExcelData("Sheet1", row, 1, "0");
@@ -163,16 +170,20 @@ public class MarketingActivitePage extends TestBase {
 			
 		}
 		catch (Exception e) {
-			// TODO: handle exception
-		}
+			List<WebElement> EventCount = driver.findElements(Event);
+			new CommonLib().WriteExcelData("Sheet1", row, 0, "Event Programs");
+			new CommonLib().WriteExcelData("Sheet1", row, 1, EventCount.size());
+}
+		GetResetBtn().click();
 
 	}
 	
 	public void GetNurtureCount(int row) throws Throwable {
-		GetFilter().click();
+	
+		new CommonLib().WaitForElementToLoad(driver, 60, GetEngagementPrograms());
 		GetEngagementPrograms().click();
 		try {
-			boolean flag	= driver.findElement(By.xpath("//div[@data-id='Tree_NoResultsText']")).isDisplayed();
+			boolean flag	= driver.findElement(NoResult).isDisplayed();
 				if(flag) {
 					new CommonLib().WriteExcelData("Sheet1", row, 0, "Nurture campaigns");
 					new CommonLib().WriteExcelData("Sheet1", row, 1, "0");
@@ -181,16 +192,18 @@ public class MarketingActivitePage extends TestBase {
 				
 			}
 			catch (Exception e) {
-List<WebElement> NurturCount = driver.findElements(By.xpath("//div[contains(@data-id,'treeNode_engagementprogram')]/.."));
+List<WebElement> NurturCount = driver.findElements(Nuture);
 
 	new CommonLib().WriteExcelData("Sheet1", row, 0, "Nurture campaigns");
 	new CommonLib().WriteExcelData("Sheet1", row, 1, NurturCount.size());
 }
-		
+		GetResetBtn().click();
+		GetFilter().click();
+
 			
 		}
 	
-	int cell = 1;
+	int cell = 2;
 
 	int All_Triggered_Campaigns = 0;
 	int Active_Triggered_Campaigns = 0;
@@ -202,7 +215,6 @@ List<WebElement> NurturCount = driver.findElements(By.xpath("//div[contains(@dat
 	public void AllWorkspaceCampaignCount() throws Throwable {
 		
 		List<WebElement> workSpace = driver.findElements(WorkSpace);
-		workSpace.size();
 		new CommonLib().ClearExcelData("Sheet1", 7);
 		new CommonLib().ClearExcelData("Sheet1", 8);
 		new CommonLib().ClearExcelData("Sheet1", 9);
@@ -210,9 +222,10 @@ List<WebElement> NurturCount = driver.findElements(By.xpath("//div[contains(@dat
 		new CommonLib().ClearExcelData("Sheet1", 11);
 		new CommonLib().ClearExcelData("Sheet1", 12);
 		new CommonLib().ClearExcelData("Sheet1", 13);
+		new CommonLib().ClearExcelData("Sheet1", 26);
 
 		for(WebElement value : workSpace) {
-			System.out.println(value.getText());
+			
 			value.click();		
 			switchFrame();
 			All_Triggered_Campaigns +=GetMoreCampaignCount("All Triggered Campaigns",8,cell);			
@@ -228,13 +241,15 @@ List<WebElement> NurturCount = driver.findElements(By.xpath("//div[contains(@dat
 
 
 		} 
-			  new CommonLib().WriteExcelData("Sheet1", 7, cell, "Total"); new
-			  CommonLib().WriteExcelData("Sheet1", 8, cell, All_Triggered_Campaigns); new
-			  CommonLib().WriteExcelData("Sheet1", 9, cell, Active_Triggered_Campaigns);
-			  new CommonLib().WriteExcelData("Sheet1", 10, cell, Batch_Campaigns); new
-			  CommonLib().WriteExcelData("Sheet1", 11, cell, All_Batch_Campaigns); new
-			  CommonLib().WriteExcelData("Sheet1", 12, cell, AllCampaigns); new
-			 CommonLib().WriteExcelData("Sheet1", 13, cell, Active_Campaigns);
+			  new CommonLib().WriteExcelData("Sheet1", 7, 1, "Total"); 
+				new CommonLib().WriteExcelData("Sheet1", 26,0,"Total WorkSpace");
+				new CommonLib().WriteExcelData("Sheet1", 26,1,workSpace.size());
+			  new CommonLib().WriteExcelData("Sheet1", 8, 1, All_Triggered_Campaigns); 
+			  new CommonLib().WriteExcelData("Sheet1", 9, 1, Active_Triggered_Campaigns);
+			  new CommonLib().WriteExcelData("Sheet1", 10, 1, Batch_Campaigns); 
+			  new CommonLib().WriteExcelData("Sheet1", 11, 1, All_Batch_Campaigns);
+			  new CommonLib().WriteExcelData("Sheet1", 12, 1, AllCampaigns); 
+			  new CommonLib().WriteExcelData("Sheet1", 13, 1, Active_Campaigns);
 			 		
 
 

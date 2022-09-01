@@ -39,6 +39,7 @@ public class SupportToolsPage extends TestBase{
 		GetSupportToolIndex(IndexName).click();
 		new CommonLib().SelectDropDownValue(GetFlowAction(), value);
 		GetListCampaign().click();
+		new CommonLib().ClearExcelData("Sheet1", row);
 		new CommonLib().WriteExcelData("Sheet1", row, 0, value);
 		new CommonLib().WriteExcelData("Sheet1", row, 1, GetCount());
 		
