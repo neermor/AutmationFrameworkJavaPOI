@@ -25,18 +25,22 @@ public class excelReader {
 				Sheet sheet =workbook.getSheetAt(0);
 				 int lastrownum = sheet.getLastRowNum();
 				 
+				 
 				 for(int i=1; i<lastrownum+1;i++)
 				 {
 					Row row =sheet.getRow(i); 
 					Cell Keycell = row.getCell(0);
-					
 					String key = getCellValue(Keycell);	
+					
+				
 					Cell Valuecell = row.getCell(1);
+					
 					String value = getCellValue(Valuecell);
 					String valueformat=value.replaceAll("\\.0*$", "");      //Removing decimal value 
 					testData.put(key, valueformat);
 				 }
-			}
+				 }
+			
 		 }
 		catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

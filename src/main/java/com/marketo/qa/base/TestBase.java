@@ -27,7 +27,7 @@ public class TestBase {
 
 		FileInputStream fis;
 		try {
-			fis = new FileInputStream(System.getProperty("user.dir") + "./Config/data.properties");
+			fis = new FileInputStream(System.getProperty("user.home") + "/Desktop/data.properties");
 			prop.load(fis);
 
 		} catch (FileNotFoundException e) {

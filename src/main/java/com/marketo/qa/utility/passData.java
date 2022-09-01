@@ -11,7 +11,7 @@ public class passData  {
 	
 	public static String FetchScreenshot(String screenshotName) {
 		
-		 String path = System.getProperty("user.home") + "\\Desktop\\Config\\"+screenshotName+".png";
+		 String path = System.getProperty("user.home") + "\\Desktop\\Config\\"+screenshotName +".png";
 		return path;
 	}
 	
@@ -109,10 +109,15 @@ public class passData  {
 	static String batch= "\nbuilt out campaigns reducing lead scores when leads exhibit undesirable behavior";
 	
 	//Data Management 
-	static String Data= "\nhas Data Management actions setup within Marketo. Marketo’s data management tools allow a"
-			+ " marketer to configure actions to automatically manage leads. For example, Data Management actions can"
-			+ " be set up to de-duplicate data, clean up bad data, and modify data based on predetermined actions and "
-			+ "values.";
+	static String Data= "\nhas Data Management actions setup within Marketo. To determine this metric our team looks at the ‘Change Data Value’ flow step in the client’s campaigns. Each ‘Change Data Value’ flow step counts as a data management action. \r\n"
+			+ "Marketo’s data management tools allow a marketer to configure actions to automatically manage leads. For example, Data Management actions can be"
+			+ " set up to de-duplicate data, clean up bad data, and modify data based on predetermined actions and values.\r\n";
+	
+	static String Data_less5= "\nhas less than 5 data management actions set up. To determine this metric our team looks at the ‘Change Data Value’ "
+			+ "flow step in the client’s campaigns. Each ‘Change Data Value’ flow step counts as a data management action.\n\r"
+			+ "Good examples of data management \"\r\n"
+			+ "would be any steps taken to clean up lead data, for example, adding leads to a blacklist triggered by\"\r\n"
+			+ "a certain action. Here is a walkthrough of how to do that: https://experienceleague.adobe.com/docs/marketo/using/product-docs/core-marketo-concepts/smart-lists-and-static-lists/managing-people-in-smart-lists/add-person-to-blocklist.html?lang=en";
 	
 	static String No_Data= "\ndoes not appear to have data management actions set up. Good examples of data management "
 			+ "would be any steps taken to clean up lead data, for example, adding leads to a blacklist triggered by"
@@ -159,17 +164,23 @@ public class passData  {
 			+ " marketers to execute personalized campaigns for both accounts and leads in one motion. You also "
 			+ "benefit from reaching key decision makers and deal influencers.";
 	
-	public static String Exceldata(String value) throws IOException
+	static String PredictiveContent ="Content analytics allows you to gain further insights into your existing content, learn what content works for your audiences, and increase ROI from your marketing efforts.\r\n"
+			+ "\r\n"
+			+ "With your Predictive Content Analytics, you can view Top Content by Views, Top Content by Conversion Rate, Trending Content, Suggested Content, and Content.\r\n"
+			+ "";
+	
+	
+		public static String Exceldata(String key) throws IOException
 	{
 		Map <String, String> testdata =excelReader.getMapData();
 		
-		return testdata.get(value);
+		return testdata.get(key);
 		
 	}
 	
 	
 	
-	public static String GenricMethod(String snippets) throws IOException {
+public static String GenricMethod(String snippets) throws IOException {
 		
 			
 			return snippets+"\nSnippets" ;
@@ -211,7 +222,6 @@ public static String MyTokens() throws IOException {
 		return passData.Exceldata("Account Name") +no_tokens;
 				
 }
-
 // batch campaigns for lead scoring 
 public static String BatchCampaigns() throws IOException {	
 	
@@ -239,7 +249,7 @@ public static String DataManagement() throws IOException {
 	}
 	else if(DataManagment<5 && DataManagment>0 )
 	{
-		return passData.Exceldata("Account Name")+ No_Data +No_data_link ;
+		return passData.Exceldata("Account Name")+ Data_less5 +No_data_link ;
 	}
 	
 	else  {
