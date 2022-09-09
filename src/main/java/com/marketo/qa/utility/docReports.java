@@ -1,10 +1,11 @@
 package com.marketo.qa.utility;
 
-import java.io.File;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -21,22 +22,11 @@ import org.apache.xmlbeans.XmlException;
 
 public class docReports {
 
-	static String word = System.getProperty("user.home") + "\\Desktop\\Reports\\";
+	static String word = System.getProperty("user.dir") + "/Reports/";
 	static String fileName = new SimpleDateFormat("dd_MM_yy_HH_mm").format(new Date());
 
-
-	// Create Separate folder
-
-	public static void CreateFolder() {
-		File file1 = new File(word);
-		if (!file1.exists()) {
-			if (file1.mkdir()) {
-				System.out.println("Directory is created!");
-			} else {
-				System.out.println("Failed to create directory!");
-			}
-		}
-	}
+	
+	
 
 	public static void close(XWPFDocument document) throws InvalidFormatException, IOException
 	{
@@ -184,7 +174,8 @@ public class docReports {
 			XWPFParagraph imgPara = document.createParagraph();
 			XWPFRun img = imgPara.createRun();
 			
-			for(int i=1;i<10;i++) {
+			for(int i=1;i<2;i++) {
+				
 			img.addCarriageReturn();
 			img.addPicture(new FileInputStream(passData.FetchScreenshot("Tags"+i)), Document.PICTURE_TYPE_PNG,
 				passData.FetchScreenshot("Tags"+i), Units.toEMU(380), Units.toEMU(150));
@@ -192,8 +183,13 @@ public class docReports {
 			System.out.println(passData.FetchScreenshot("Tags"+i));
 			img.addCarriageReturn();
 			}
+		}
+		
 			
+			catch (Exception e) {
 
+			}
+			try {
 			int Snippets = Integer.parseInt(passData.Exceldata("Snippets"));
 			if (Snippets < 5) {
 				XWPFParagraph paragraphModel = document.createParagraph();
@@ -217,15 +213,16 @@ public class docReports {
 				modellink.setColor("3333cc");
 				stylingDoc.FontFamilySize(modellink);
 
+			}}
+			catch (Exception e) {
+				// TODO: handle exception
 			}
 		}
-			catch (Exception e) {
-
-			}
+			
 		
 	
 		
-	}
+	
 
 	public static void models(XWPFDocument document) throws IOException, InvalidFormatException {
 		// TODO Auto-generated method stub
@@ -238,8 +235,8 @@ public class docReports {
 		model.addCarriageReturn();
 		model.setText("Models");
 		
-		
-		int Models = Integer.parseInt(passData.Exceldata("Models"));;
+		try {
+		int Models = Integer.parseInt(passData.Exceldata("Models"));
 		if (Models>0) 
 				{
 			XWPFParagraph paragraphModelData = document.createParagraph();
@@ -264,12 +261,19 @@ public class docReports {
 			XWPFParagraph model_img = document.createParagraph();
 			XWPFRun img1 = model_img.createRun();
 			for(int i=1;i<5;i++) {
-				img1.addCarriageReturn();
+				try {
+				
 			img1.addPicture(new FileInputStream(passData.FetchScreenshot("Models"+i)), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Models"+i),
 					Units.toEMU(230), Units.toEMU(150));
-			img1.addCarriageReturn();
-			}		
+			
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+			}	
+			}	
 		}
+		
+		 
 		else
 		{
 			XWPFParagraph paragraphModelData = document.createParagraph();
@@ -277,6 +281,11 @@ public class docReports {
 			stylingDoc.FontFamilySize(modelTest);
 			stylingDoc.setNoProof(modelTest);
 			modelTest.setText(passData.Exceldata("Account Name") + passData.No_models);
+			
+		}
+		}
+		catch(NumberFormatException ex)
+		{
 			
 		}
 		
@@ -302,7 +311,7 @@ public class docReports {
 		LeadData.setSpacingAfter(0);
 		LeadData.setNumID(stylingDoc.bullet(document));
 		LeadDataRun.setText(passData.LeadScoring(passData.Exceldata("Change Score")));
-		
+		try {
 		int ChangeScore = Integer.parseInt(passData.Exceldata("Change Score"));
 		if (ChangeScore>1) 	
 		{
@@ -313,6 +322,10 @@ public class docReports {
 		stylingDoc.FontFamilySize(runData);
 		LeadData1.setNumID(stylingDoc.bullet(document));
 		runData.setText(passData.Exceldata("Account Name") +","+"\nis executing multiple score changes with single campaigns.");
+		}
+		}
+		catch(NumberFormatException ex){ // handle your exception
+		    
 		}
 		
 		XWPFParagraph LeadData2 = document.createParagraph();
@@ -343,6 +356,7 @@ public class docReports {
 
 	public static void intrestingMoment(XWPFDocument document) throws NumberFormatException, InvalidFormatException, FileNotFoundException, IOException
 	{
+		
 		if(passData.Exceldata("Interesting Moment Subscription").equalsIgnoreCase("true"))
 		{
 			
@@ -352,6 +366,7 @@ public class docReports {
 			InterestingRun.addCarriageReturn();
 			InterestingRun.addCarriageReturn();
 			InterestingRun.setText("Interesting Moment");
+			try {
 			int Interesting_Moment= Integer.parseInt(passData.Exceldata("Interesting Moment"));
 			
 			if (Interesting_Moment>0)
@@ -366,10 +381,15 @@ public class docReports {
 			
 			InterestingDatarun = InterestingData.createRun();
 			for(int i=1;i<4;i++) {
+				try {
 				InterestingDatarun.addCarriageReturn();
-			InterestingDatarun.addPicture(new FileInputStream(passData.FetchScreenshot("Interesting Moment")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Interesting Moment"),
+			InterestingDatarun.addPicture(new FileInputStream(passData.FetchScreenshot("Interesting Moment"+i)), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Interesting Moment"),
 					Units.toEMU(470), Units.toEMU(80));
 			InterestingDatarun.addCarriageReturn();
+			}
+				catch (Exception e) {
+					// TODO: handle exception
+				}
 			}
 			 InterestingData = document.createParagraph();
 			 InterestingDatarun = InterestingData.createRun();
@@ -390,7 +410,11 @@ public class docReports {
 				
 			}
 		}
-		
+			
+		catch(NumberFormatException ex){ // handle your exception
+
+		}
+		}
 	}
 
 	public static void DataManagment(XWPFDocument document) throws IOException
@@ -438,6 +462,7 @@ public class docReports {
 		NurtureDataRun.setText("Nurture");
 		NurtureDataRun.addCarriageReturn();
 		
+		try {
 		int NurtureDataint= Integer.parseInt(passData.Exceldata("Nurture campaigns"));
 		
 		if (NurtureDataint>0)
@@ -465,7 +490,9 @@ public class docReports {
 			
 			
 		}
-		
+		}catch(NumberFormatException ex){ // handle your exception
+		    
+		}
 		
 		XWPFParagraph NurtureData1 = document.createParagraph();
 		XWPFRun	NurtureDatarun1 = NurtureData1.createRun();
@@ -511,7 +538,7 @@ public class docReports {
 		XWPFRun SegmentHeading = Segment.createRun();
 		SegmentHeading.setBold(true);
 		SegmentHeading.setText("Segmentation");
-		
+		try {
 		int Segment_Data= Integer.parseInt(passData.Exceldata("Segmentations"));
 		if (Segment_Data>0)
 		{
@@ -526,13 +553,18 @@ public class docReports {
 		SegmentRun = SegmentData.createRun();
 		SegmentRun.addBreak();
 		SegmentRun.addBreak();
+	
 		for(int i=1; i<4;i++) {
+			try {
 			SegmentRun.addCarriageReturn();
-		SegmentRun.addPicture(new FileInputStream(passData.FetchScreenshot("Segmentations")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Segmentations"),
+		SegmentRun.addPicture(new FileInputStream(passData.FetchScreenshot("Segmentations"+i)), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Segmentations"),
 				Units.toEMU(230), Units.toEMU(50));
 		SegmentRun.addCarriageReturn();
 		}
-		}
+			catch (Exception e) {
+				// TODO: handle exception
+			}}
+				}
 		else {
 			
 			XWPFParagraph InterestingData = document.createParagraph();
@@ -543,6 +575,10 @@ public class docReports {
 			
 			
 			
+		}
+		}
+		catch(NumberFormatException ex){ // handle your exception
+		    
 		}
 	}
 	
@@ -574,7 +610,7 @@ public class docReports {
 		intigrationRunHeading.addCarriageReturn();
 		intigrationRunHeading.setBold(true);
 		intigrationRunHeading.setText("Integrations");
-		
+		try {
 		int intigration_Data= Integer.parseInt(passData.Exceldata("Integration"));
 		if (intigration_Data>0)
 		{
@@ -586,7 +622,7 @@ public class docReports {
 
 		intigrationRun = document.createParagraph();
 		XWPFRun intigrationImg = intigrationRun.createRun();
-		for(int i =1; i<3;i++) {
+		for(int i =1; i<2;i++) {
 			intigrationImg.addCarriageReturn();
 		intigrationImg.addPicture(new FileInputStream(passData.FetchScreenshot("Integration")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Integration"),
 				Units.toEMU(470), Units.toEMU(200));
@@ -602,6 +638,10 @@ public class docReports {
 			intigrationData.setText(passData.Exceldata("Account Name")+passData.No_Integrations);
 			
 			
+		}
+		}
+		catch(NumberFormatException ex){ // handle your exception
+		    
 		}
 	
 	}

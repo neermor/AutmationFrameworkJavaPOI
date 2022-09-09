@@ -11,7 +11,7 @@ public class passData  {
 	
 	public static String FetchScreenshot(String screenshotName) {
 		
-		 String path = System.getProperty("user.home") + "\\Desktop\\Config\\"+screenshotName +".png";
+		 String path = System.getProperty("user.dir") + "/Config/"+screenshotName +".png";
 		return path;
 	}
 	
@@ -189,10 +189,8 @@ public static String GenricMethod(String snippets) throws IOException {
 	}
 	//No Lead_scoring Data
 public static String LeadScoring(String leads) throws IOException {
-		
+		try {
 		int ChangeScore = Integer.parseInt(passData.Exceldata("Change Score"));
-		
-		
 		if (ChangeScore>=5)
 		{			
 			return passData.Exceldata("Account Name") +"\nhas\n"+Lead_scoring;
@@ -201,14 +199,20 @@ public static String LeadScoring(String leads) throws IOException {
 			
 			return passData.Exceldata("Account Name") +"\nhas\n"+leads+ Lead_scoring_Less5;
 		}
-		
-		
-		else  {
+			else  {
 		}
-			return passData.Exceldata("Account Name") + No_lead_scoring;			
+			//return passData.Exceldata("Account Name") + No_lead_scoring;			
 	}
+		catch(NumberFormatException ex){ // handle your exception
+		    
+		}
+		return passData.Exceldata("Account Name") + No_lead_scoring;
+}
+
+	
 //my tokens method for Lead scoring
-public static String MyTokens() throws IOException {	
+public static String MyTokens() throws IOException {
+	try {
 	int token = Integer.parseInt(passData.Exceldata("Change Score"));
 	
 	if (token>0)
@@ -218,13 +222,16 @@ public static String MyTokens() throws IOException {
 	
 	else  {
 	}
-	
+	}
+	catch(NumberFormatException ex){ // handle your exception
+	    
+	}
 		return passData.Exceldata("Account Name") +no_tokens;
 				
 }
 // batch campaigns for lead scoring 
 public static String BatchCampaigns() throws IOException {	
-	
+	try {
 	int ChangeScore = Integer.parseInt(passData.Exceldata("Change Score"));
 	
 	if (ChangeScore>0)
@@ -234,13 +241,16 @@ public static String BatchCampaigns() throws IOException {
 	
 	else  {
 	}
-	
+	}
+	catch(NumberFormatException ex){ // handle your exception
+	   
+	}
 		return passData.Exceldata("Account Name") + no_batch;
 				
 }
 //Method for Data Management
 public static String DataManagement() throws IOException {	
-	
+	try {
 	int DataManagment = Integer.parseInt(passData.Exceldata("Change Data Value"));
 	
 	if (DataManagment>5)
@@ -254,13 +264,17 @@ public static String DataManagement() throws IOException {
 	
 	else  {
 	}
+	}
+	catch(NumberFormatException ex){ // handle your exception
+	    
+	}
 	
 		return passData.Exceldata("Account Name")+ No_Data +No_data_link ;
 				
 }
 //Method for Events
 public static String Events() throws IOException {	
-	
+	try {
 	int Event_Program = Integer.parseInt(passData.Exceldata("Event Programs"));
 	
 	if (Event_Program>=5)
@@ -274,6 +288,10 @@ public static String Events() throws IOException {
 	
 	}
 	else  {
+	}
+	}
+	catch(NumberFormatException ex){ // handle your exception
+	    
 	}
 	
 		return passData.Exceldata("Account Name")+No_events  ;
@@ -310,7 +328,7 @@ public static String Segmentation() throws IOException {
 }
 //Program Library
 public static String Library() throws IOException {	
-	
+	try {
 	int Library = Integer.parseInt(passData.Exceldata("Library"));
 	
 	if (Library>=1)
@@ -319,6 +337,10 @@ public static String Library() throws IOException {
 	}
 	
 	else  {
+	}
+	}
+	catch(NumberFormatException ex){ // handle your exception
+	    
 	}
 	
 		return "It appears that\n" +passData.Exceldata("Account Name")+no_library ;

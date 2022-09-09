@@ -84,7 +84,7 @@ public class AdminPage extends TestBase{
 		new CommonLib().ClearExcelData("Sheet1", row);
 		GetTags().click();
 		GetChannelTag().click();
-		screenshotUtility.TakeScreenshot(GetTable(), tags);
+		screenshotUtility.TakeScreenshot(GetTable(), "Tags1");
 		new CommonLib().WriteExcelData("Sheet1", row, 0, tags);
 		new CommonLib().WriteExcelData("Sheet1", row, 1, GetTagCount().getText());
 		

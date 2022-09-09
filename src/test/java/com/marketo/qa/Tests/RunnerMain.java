@@ -16,7 +16,7 @@ public class RunnerMain {
 	public static void main(String[] args) throws Exception {
 		
 		testng =new TestNG();
-		String path= System.getProperty("user.home")+"/Desktop/Config/testng.xml";
+		String path= System.getProperty("user.dir")+"/Config/testng.xml";
 //		System.out.println(path);
 			
 		List<String> XmlList= new ArrayList<String>();

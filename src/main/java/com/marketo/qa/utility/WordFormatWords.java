@@ -35,6 +35,10 @@ import java.util.*;
 	    for (int charNumber = 0; charNumber < runChars.length; charNumber++) { //go through all characters in that run
 	     sb.append(runChars[charNumber]); //buffer all characters
 	     runText = sb.toString();
+	     
+	     
+	   
+	 	    
 	     if (runText.endsWith(keyword)) { 
 	    	 
 	    	//if the buffered character stream ends with the keyword  
