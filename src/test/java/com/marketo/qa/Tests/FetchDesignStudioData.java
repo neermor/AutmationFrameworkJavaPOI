@@ -7,20 +7,31 @@ import com.marketo.qa.Pages.MarketingActivitePage;
 import com.marketo.qa.Pages.MyMarketoPage;
 import com.marketo.qa.base.TestBase;
 
-public class FetchDesignStudioData extends TestBase{
-	
-	MyMarketoPage homePage= new MyMarketoPage();
-	DesignStudioPage Ds= new DesignStudioPage();
-	MarketingActivitePage mAP= new MarketingActivitePage();
+public class FetchDesignStudioData extends TestBase {
 
+	MyMarketoPage homePage = new MyMarketoPage();
+	DesignStudioPage Ds = new DesignStudioPage();
+	MarketingActivitePage mAP = new MarketingActivitePage();
 
 	@Test
 	public void TakeRequiredCount() throws Throwable {
-		
-		homePage.OpenDesignStudioTab();	
-		Ds.AllWorkspaceRequiredCount();
 
-		
+		homePage.OpenDesignStudioTab();
+		String WorkspaceCondition = prop.getProperty("WorkspaceCondition");
+
+		switch (WorkspaceCondition) {
+		case "All":
+			Ds.AllWorkspaceRequiredCount();
+			break;
+
+		case "Specific":
+			int NoOfWorkspace = Integer.parseInt(prop.getProperty("NoOfWorkspaces"));
+			Ds.SpecificWorkspaceRequiredCount(NoOfWorkspace);
+			break;
+
+		default:
+			break;
+		}
 	}
 
 }

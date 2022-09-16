@@ -6,18 +6,28 @@ import com.marketo.qa.Pages.MarketingActivitePage;
 import com.marketo.qa.Pages.MyMarketoPage;
 import com.marketo.qa.base.TestBase;
 
-
 public class FetchChampianCounts extends TestBase {
-	MyMarketoPage homePage= new MyMarketoPage();
-	MarketingActivitePage mAP= new MarketingActivitePage();
-	
+	MyMarketoPage homePage = new MyMarketoPage();
+	MarketingActivitePage mAP = new MarketingActivitePage();
+
 	@Test
 	public void ChampiensCount() throws Throwable {
-			homePage.OpenMarketingActivitiesTab();
+		homePage.OpenMarketingActivitiesTab();
+		String WorkspaceCondition = prop.getProperty("WorkspaceCondition");
+
+		switch (WorkspaceCondition) {
+		case "All":
 			mAP.AllWorkspaceCampaignCount();
+			break;
 
+		case "Specific":
+			int NoOfWorkspace = Integer.parseInt(prop.getProperty("NoOfWorkspaces"));
+			mAP.SpecificWorkspaceCampaignCount(NoOfWorkspace);
+			break;
+
+		default:
+			break;
+		}
 	}
-
-
 
 }
