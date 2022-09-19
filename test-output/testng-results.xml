@@ -1,31 +1,303 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="2" total="4" passed="2" failed="0" skipped="0">
+<testng-results ignored="12" total="19" passed="3" failed="4" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-09-08T19:46:46 IST" name="Suite" finished-at="2022-09-08T19:49:58 IST" duration-ms="191889">
+  <suite started-at="2022-09-19T10:14:53 IST" name="Suite" finished-at="2022-09-19T10:23:30 IST" duration-ms="516457">
     <groups>
     </groups>
-    <test started-at="2022-09-08T19:46:46 IST" name="Test" finished-at="2022-09-08T19:49:58 IST" duration-ms="191889">
-      <class name="com.marketo.qa.Tests.FetchModelsCount">
-        <test-method is-config="true" signature="initialization()[pri:0, instance:com.marketo.qa.Tests.FetchModelsCount@2a3b5b47]" started-at="2022-09-08T19:46:46 IST" name="initialization" finished-at="2022-09-08T19:47:30 IST" duration-ms="44366" status="PASS">
+    <test started-at="2022-09-19T10:14:53 IST" name="Test" finished-at="2022-09-19T10:23:30 IST" duration-ms="516457">
+      <class name="com.marketo.qa.Tests.FetchChampianCounts">
+        <test-method is-config="true" signature="initialization()[pri:0, instance:com.marketo.qa.Tests.FetchChampianCounts@6302bbb1]" started-at="2022-09-19T10:14:53 IST" name="initialization" finished-at="2022-09-19T10:15:20 IST" duration-ms="26733" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialization -->
-        <test-method signature="ModelCount()[pri:0, instance:com.marketo.qa.Tests.FetchModelsCount@2a3b5b47]" started-at="2022-09-08T19:47:30 IST" name="ModelCount" finished-at="2022-09-08T19:49:44 IST" duration-ms="133839" status="PASS">
+        <test-method signature="ChampiensCount()[pri:0, instance:com.marketo.qa.Tests.FetchChampianCounts@6302bbb1]" started-at="2022-09-19T10:15:20 IST" name="ChampiensCount" finished-at="2022-09-19T10:16:07 IST" duration-ms="46449" status="FAIL">
+          <exception class="java.lang.NumberFormatException">
+            <message>
+              <![CDATA[For input string: "1-50"]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NumberFormatException: For input string: "1-50"
+at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+at java.base/java.lang.Integer.parseInt(Integer.java:668)
+at java.base/java.lang.Integer.parseInt(Integer.java:784)
+at com.marketo.qa.Pages.MarketingActivitePage.GetMoreCampaignCount(MarketingActivitePage.java:155)
+at com.marketo.qa.Pages.MarketingActivitePage.AllWorkspaceCampaignCount(MarketingActivitePage.java:233)
+at com.marketo.qa.Tests.FetchChampianCounts.ChampiensCount(FetchChampianCounts.java:17)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NumberFormatException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- ModelCount -->
-        <test-method is-config="true" signature="CloseBrowser()[pri:0, instance:com.marketo.qa.Tests.FetchModelsCount@2a3b5b47]" started-at="2022-09-08T19:49:58 IST" name="CloseBrowser" finished-at="2022-09-08T19:50:01 IST" duration-ms="3170" status="PASS">
+        </test-method> <!-- ChampiensCount -->
+        <test-method is-config="true" signature="CloseBrowser()[pri:0, instance:com.marketo.qa.Tests.FetchChampianCounts@6302bbb1]" started-at="2022-09-19T10:23:30 IST" name="CloseBrowser" finished-at="2022-09-19T10:23:32 IST" duration-ms="2533" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CloseBrowser -->
+      </class> <!-- com.marketo.qa.Tests.FetchChampianCounts -->
+      <class name="com.marketo.qa.Tests.FetchLeadsCount">
+        <test-method signature="CollectLeadsCount()[pri:0, instance:com.marketo.qa.Tests.FetchLeadsCount@a1153bc]" started-at="2022-09-19T10:20:07 IST" name="CollectLeadsCount" finished-at="2022-09-19T10:21:27 IST" duration-ms="80189" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CollectLeadsCount -->
+      </class> <!-- com.marketo.qa.Tests.FetchLeadsCount -->
+      <class name="com.marketo.qa.Tests.FetchNuture_EventCount">
+        <test-method signature="ChampiensCount()[pri:0, instance:com.marketo.qa.Tests.FetchNuture_EventCount@368f2016]" started-at="2022-09-19T10:17:27 IST" name="ChampiensCount" finished-at="2022-09-19T10:18:47 IST" duration-ms="80111" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//button[@data-id='global_treeFilterButton']"}
+  (Session info: chrome=105.0.5195.125)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'NAG1-LHP-N66635', ip: '192.168.45.36', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '18.0.2.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 105.0.5195.125, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:49732}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: d35ad5465af71b6fe0abbad9b27c26e6
+*** Element info: {Using=xpath, value=//button[@data-id='global_treeFilterButton']}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//button[@data-id='global_treeFilterButton']"}
+  (Session info: chrome=105.0.5195.125)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'NAG1-LHP-N66635', ip: '192.168.45.36', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '18.0.2.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 105.0.5195.125, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:49732}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: d35ad5465af71b6fe0abbad9b27c26e6
+*** Element info: {Using=xpath, value=//button[@data-id='global_treeFilterButton']}
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+at com.marketo.qa.Pages.MarketingActivitePage.GetFilter(MarketingActivitePage.java:40)
+at com.marketo.qa.Pages.MarketingActivitePage.GetEventCount(MarketingActivitePage.java:161)
+at com.marketo.qa.Tests.FetchNuture_EventCount.ChampiensCount(FetchNuture_EventCount.java:16)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ChampiensCount -->
+      </class> <!-- com.marketo.qa.Tests.FetchNuture_EventCount -->
+      <class name="com.marketo.qa.Tests.FetchModelsCount">
+        <test-method signature="ModelCount()[pri:0, instance:com.marketo.qa.Tests.FetchModelsCount@47eaca72]" started-at="2022-09-19T10:21:27 IST" name="ModelCount" finished-at="2022-09-19T10:22:48 IST" duration-ms="80118" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ModelCount -->
       </class> <!-- com.marketo.qa.Tests.FetchModelsCount -->
       <class name="com.marketo.qa.Tests.FetchDataFromChangeScore">
-        <test-method signature="VerifyChangeScoreCount()[pri:0, instance:com.marketo.qa.Tests.FetchDataFromChangeScore@4562e04d]" started-at="2022-09-08T19:49:44 IST" name="VerifyChangeScoreCount" finished-at="2022-09-08T19:49:58 IST" duration-ms="13620" status="PASS">
+        <test-method signature="VerifyChangeScoreCount()[pri:0, instance:com.marketo.qa.Tests.FetchDataFromChangeScore@55182842]" started-at="2022-09-19T10:22:48 IST" name="VerifyChangeScoreCount" finished-at="2022-09-19T10:23:30 IST" duration-ms="42410" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//a[text()='Flow Actions Used']"}
+  (Session info: chrome=105.0.5195.125)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'NAG1-LHP-N66635', ip: '192.168.45.36', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '18.0.2.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 105.0.5195.125, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:49732}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: d35ad5465af71b6fe0abbad9b27c26e6
+*** Element info: {Using=xpath, value=//a[text()='Flow Actions Used']}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//a[text()='Flow Actions Used']"}
+  (Session info: chrome=105.0.5195.125)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'NAG1-LHP-N66635', ip: '192.168.45.36', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '18.0.2.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 105.0.5195.125, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:49732}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: d35ad5465af71b6fe0abbad9b27c26e6
+*** Element info: {Using=xpath, value=//a[text()='Flow Actions Used']}
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+at com.marketo.qa.Pages.SupportToolsPage.GetSupportToolIndex(SupportToolsPage.java:30)
+at com.marketo.qa.Pages.SupportToolsPage.SelectValueFlowAction(SupportToolsPage.java:39)
+at com.marketo.qa.Tests.FetchDataFromChangeScore.VerifyChangeScoreCount(FetchDataFromChangeScore.java:21)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- VerifyChangeScoreCount -->
       </class> <!-- com.marketo.qa.Tests.FetchDataFromChangeScore -->
+      <class name="com.marketo.qa.Tests.FetchAdminDatas">
+        <test-method signature="VerifyCountAndScreenshor()[pri:0, instance:com.marketo.qa.Tests.FetchAdminDatas@692f203f]" started-at="2022-09-19T10:18:47 IST" name="VerifyCountAndScreenshor" finished-at="2022-09-19T10:20:07 IST" duration-ms="80096" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//li[@class='x-tree-node']//span[text()='Tags']"}
+  (Session info: chrome=105.0.5195.125)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'NAG1-LHP-N66635', ip: '192.168.45.36', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '18.0.2.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 105.0.5195.125, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:49732}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: d35ad5465af71b6fe0abbad9b27c26e6
+*** Element info: {Using=xpath, value=//li[@class='x-tree-node']//span[text()='Tags']}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//li[@class='x-tree-node']//span[text()='Tags']"}
+  (Session info: chrome=105.0.5195.125)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'NAG1-LHP-N66635', ip: '192.168.45.36', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '18.0.2.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 105.0.5195.125, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:49732}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: d35ad5465af71b6fe0abbad9b27c26e6
+*** Element info: {Using=xpath, value=//li[@class='x-tree-node']//span[text()='Tags']}
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+at com.marketo.qa.Pages.AdminPage.GetTags(AdminPage.java:39)
+at com.marketo.qa.Pages.AdminPage.TagsCountAndScreenshot(AdminPage.java:85)
+at com.marketo.qa.Tests.FetchAdminDatas.VerifyCountAndScreenshor(FetchAdminDatas.java:24)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- VerifyCountAndScreenshor -->
+      </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
+      <class name="com.marketo.qa.Tests.FetchDesignStudioData">
+        <test-method signature="TakeRequiredCount()[pri:0, instance:com.marketo.qa.Tests.FetchDesignStudioData@4d5d943d]" started-at="2022-09-19T10:16:07 IST" name="TakeRequiredCount" finished-at="2022-09-19T10:17:27 IST" duration-ms="80319" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TakeRequiredCount -->
+      </class> <!-- com.marketo.qa.Tests.FetchDesignStudioData -->
     </test> <!-- Test -->
   </suite> <!-- Suite -->
 </testng-results>

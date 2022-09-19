@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeTest;
 
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.Pages.GhostLoginPage;
+import com.marketo.qa.Pages.LoginPage;
 import com.marketo.qa.Pages.MyMarketoPage;
 import com.marketo.qa.utility.reports;
 
@@ -74,15 +75,16 @@ public class TestBase {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
-		driver.get(prop.getProperty("ghosturl"));
-		GhostLogin();
+		driver.get(prop.getProperty("url"));
+		//GhostLogin();
+		Login();
 	}
 
 	public static void OpenSupportTool() {
 		driver.get(prop.getProperty("url") + "/supportTools");
 	}
 
-
+	
 	
 	
 	 public static void GhostLogin() throws Throwable { new
@@ -91,6 +93,10 @@ public class TestBase {
 	  
 	 }
 	
+	 public static void Login() throws Throwable {
+			new LoginPage().Login(prop.getProperty("username"), prop.getProperty("password"));
+			new CommonLib().StandardWait(20000);
+	 }
 		
 	public static void Logout() {
 		new MyMarketoPage().GetAccountIcon().click();

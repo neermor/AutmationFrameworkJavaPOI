@@ -9,11 +9,93 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Suite</th></tr>
-<tr><td><a href="#t0">Test</a></td><td class="num">2</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">191,889</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Test</a></td><td class="num">3</td><td class="num">0</td><td class="num">0</td><td class="num attn">4</td><td class="num">516,457</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">com.marketo.qa.Tests.FetchDataFromChangeScore</td><td><a href="#m0">VerifyChangeScoreCount</a></td><td rowspan="1">1662646784529</td><td rowspan="1">13620</td></tr><tr class="passedodd"><td rowspan="1">com.marketo.qa.Tests.FetchModelsCount</td><td><a href="#m1">ModelCount</a></td><td rowspan="1">1662646650677</td><td rowspan="1">133839</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">com.marketo.qa.Tests.FetchAdminDatas</td><td><a href="#m0">VerifyCountAndScreenshor</a></td><td rowspan="1">1663562927612</td><td rowspan="1">80096</td></tr><tr class="failedodd"><td rowspan="1">com.marketo.qa.Tests.FetchChampianCounts</td><td><a href="#m1">ChampiensCount</a></td><td rowspan="1">1663562720727</td><td rowspan="1">46449</td></tr><tr class="failedeven"><td rowspan="1">com.marketo.qa.Tests.FetchDataFromChangeScore</td><td><a href="#m2">VerifyChangeScoreCount</a></td><td rowspan="1">1663563168019</td><td rowspan="1">42410</td></tr><tr class="failedodd"><td rowspan="1">com.marketo.qa.Tests.FetchNuture_EventCount</td><td><a href="#m3">ChampiensCount</a></td><td rowspan="1">1663562847500</td><td rowspan="1">80111</td></tr><tr><th colspan="4">Test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">com.marketo.qa.Tests.FetchDesignStudioData</td><td><a href="#m4">TakeRequiredCount</a></td><td rowspan="1">1663562767179</td><td rowspan="1">80319</td></tr><tr class="passedodd"><td rowspan="1">com.marketo.qa.Tests.FetchLeadsCount</td><td><a href="#m5">CollectLeadsCount</a></td><td rowspan="1">1663563007709</td><td rowspan="1">80189</td></tr><tr class="passedeven"><td rowspan="1">com.marketo.qa.Tests.FetchModelsCount</td><td><a href="#m6">ModelCount</a></td><td rowspan="1">1663563087899</td><td rowspan="1">80118</td></tr></tbody>
 </table>
-<h2>Test</h2><h3 id="m0">com.marketo.qa.Tests.FetchDataFromChangeScore#VerifyChangeScoreCount</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">com.marketo.qa.Tests.FetchModelsCount#ModelCount</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Test</h2><h3 id="m0">com.marketo.qa.Tests.FetchAdminDatas#VerifyCountAndScreenshor</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//li[@class=&apos;x-tree-node&apos;]//span[text()=&apos;Tags&apos;]&quot;}
+  (Session info: chrome=105.0.5195.125)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;NAG1-LHP-N66635&apos;, ip: &apos;192.168.45.36&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;18.0.2.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 105.0.5195.125, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:49732}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: d35ad5465af71b6fe0abbad9b27c26e6
+*** Element info: {Using=xpath, value=//li[@class=&apos;x-tree-node&apos;]//span[text()=&apos;Tags&apos;]}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at com.marketo.qa.Pages.AdminPage.GetTags(AdminPage.java:39)
+	at com.marketo.qa.Pages.AdminPage.TagsCountAndScreenshot(AdminPage.java:85)
+	at com.marketo.qa.Tests.FetchAdminDatas.VerifyCountAndScreenshor(FetchAdminDatas.java:24)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 28 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">com.marketo.qa.Tests.FetchChampianCounts#ChampiensCount</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NumberFormatException: For input string: &quot;1-50&quot;
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:668)
+	at java.base/java.lang.Integer.parseInt(Integer.java:784)
+	at com.marketo.qa.Pages.MarketingActivitePage.GetMoreCampaignCount(MarketingActivitePage.java:155)
+	at com.marketo.qa.Pages.MarketingActivitePage.AllWorkspaceCampaignCount(MarketingActivitePage.java:233)
+	at com.marketo.qa.Tests.FetchChampianCounts.ChampiensCount(FetchChampianCounts.java:17)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 25 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m2">com.marketo.qa.Tests.FetchDataFromChangeScore#VerifyChangeScoreCount</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//a[text()=&apos;Flow Actions Used&apos;]&quot;}
+  (Session info: chrome=105.0.5195.125)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;NAG1-LHP-N66635&apos;, ip: &apos;192.168.45.36&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;18.0.2.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 105.0.5195.125, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:49732}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: d35ad5465af71b6fe0abbad9b27c26e6
+*** Element info: {Using=xpath, value=//a[text()=&apos;Flow Actions Used&apos;]}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at com.marketo.qa.Pages.SupportToolsPage.GetSupportToolIndex(SupportToolsPage.java:30)
+	at com.marketo.qa.Pages.SupportToolsPage.SelectValueFlowAction(SupportToolsPage.java:39)
+	at com.marketo.qa.Tests.FetchDataFromChangeScore.VerifyChangeScoreCount(FetchDataFromChangeScore.java:21)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 28 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m3">com.marketo.qa.Tests.FetchNuture_EventCount#ChampiensCount</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//button[@data-id=&apos;global_treeFilterButton&apos;]&quot;}
+  (Session info: chrome=105.0.5195.125)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;NAG1-LHP-N66635&apos;, ip: &apos;192.168.45.36&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;18.0.2.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 105.0.5195.125, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:49732}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: d35ad5465af71b6fe0abbad9b27c26e6
+*** Element info: {Using=xpath, value=//button[@data-id=&apos;global_treeFilterButton&apos;]}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at com.marketo.qa.Pages.MarketingActivitePage.GetFilter(MarketingActivitePage.java:40)
+	at com.marketo.qa.Pages.MarketingActivitePage.GetEventCount(MarketingActivitePage.java:161)
+	at com.marketo.qa.Tests.FetchNuture_EventCount.ChampiensCount(FetchNuture_EventCount.java:16)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 28 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m4">com.marketo.qa.Tests.FetchDesignStudioData#TakeRequiredCount</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m5">com.marketo.qa.Tests.FetchLeadsCount#CollectLeadsCount</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m6">com.marketo.qa.Tests.FetchModelsCount#ModelCount</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

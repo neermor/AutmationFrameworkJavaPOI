@@ -69,7 +69,7 @@ public class MarketingActivitePage extends TestBase {
 	
 	
 	public void ClickCampaignInspector() throws Throwable {
-		new CommonLib().StandardWait(2000);; 
+		new CommonLib().StandardWait(2000);
 		GetCampaignInspector().click();	
 		GetCampaignDD().click();
 		
@@ -147,7 +147,9 @@ public class MarketingActivitePage extends TestBase {
 		ClickCampaignInspector();
 		HoverMoreCampaign();		
 		GetMoreCampaignOption(CampaignType);
-		new CommonLib().waitForElementVisibleFlunt(AllCount); 
+		
+		
+		//new CommonLib().waitForElementVisibleFlunt(AllCount); 
 		new CommonLib().WriteExcelData("Sheet1", row, 0, CampaignType);
 		new CommonLib().WriteExcelData("Sheet1", row, cell, GetCount());
 		return Integer.parseInt(GetCount());

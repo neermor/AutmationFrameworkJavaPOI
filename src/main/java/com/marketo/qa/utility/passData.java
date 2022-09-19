@@ -4,14 +4,17 @@ package com.marketo.qa.utility;
 import java.io.IOException;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 public class passData  {
 	
-	
+	private static Logger logger =LogManager.getLogger(docReports.class.getName());
 	
 	public static String FetchScreenshot(String screenshotName) {
 		
-		 String path = System.getProperty("user.dir") + "/Config/"+screenshotName +".png";
+		 String path = System.getProperty("user.dir") + "/Config/ScreenShot/"+screenshotName +".png";
 		return path;
 	}
 	
@@ -64,6 +67,10 @@ public class passData  {
 			+ "offline events! Capture the status of your leads as they progress through different stages and get accurate"
 			+ " measures of the ROI for your marketing initiatives.";
 	
+	static String event2 ="\nWe should include the Alternate Verbiage note here since this instance has less than 5 event campaigns:\r\n"
+			+ "“Since the client has less than 5 event campaigns we do suggest that you provide the following document on event campaigns:\r\n"
+			+ "";
+	
 	static String No_events = "\ndoes not have any Event campaigns set up in their instance. Here is a good doc to share"
 			+ " on how to create a new event campaign:\r\n"
 			+ " https://docs.marketo.com/display/public/DOCS/Create+a+New+Event+Program";
@@ -76,6 +83,9 @@ public class passData  {
 			+ "types of Content you can add to engagement program streams — emails and programs. Emails will be sent"
 			+ "to leads at cast time. Marketo's smart streams also offer:";
 
+	static String Nurture2= "\nWe should include the Alternate Verbiage note here since this instance has less than 5 nurture campaigns:\r\n"
+			+ "“Since the client has less than 5 nurture campaigns we do suggest that you provide the following document on event campaigns:";
+	
 	static String No_Nurture=  "\ndoes not have any Nurture campaigns set up in their instance. They might need a refresher on how"
 			+ " useful Nurture Campaigns can be: ";
 	
@@ -94,9 +104,11 @@ public class passData  {
 	
 	
 	//No Lead_scoring Data
-	static String Lead_scoring= "\n has advanced lead scoring built out taking into account behavior, demographics, successes and decay.";
+	static String Lead_scoring= "\n has advanced lead scoring built out taking into account behavior, demographics, successes and decay.. How are we checking this? Is the automation opeing the campaign and checking the flow step? "
+			+ "Need to know how this is being checked.";
 	static String No_lead_scoring= "\n has not built out any lead scoring campaigns in Marketo";
-	static String Lead_scoring_Less5="\nlead scoring campaigns built out taking into account behavior,successes and decay.";
+	static String Lead_scoring_Less5="\nlead scoring campaigns built out taking into account behavior,successes and decay."
+			+ " How are we checking this? Is the automation opeing the campaign and checking the flow step? Need to know how this is being checked.";
 	
 	static String tokens= "\nis using MyTokens in their lead scoring campaigns which allows for a Marketer to quickly, "
 			+ "and easily, control from a high level their lead change scores";
@@ -106,7 +118,7 @@ public class passData  {
 	
 	static String no_batch="\nhas Not built out campaigns reducing lead scores when leads exhibit undesirable behavior";
 	
-	static String batch= "\nbuilt out campaigns reducing lead scores when leads exhibit undesirable behavior";
+	static String batch= "\ncampaigns reducing lead scores when leads exhibit undesirable behavior";
 	
 	//Data Management 
 	static String Data= "\nhas Data Management actions setup within Marketo. To determine this metric our team looks at the ‘Change Data Value’ flow step in the client’s campaigns. Each ‘Change Data Value’ flow step counts as a data management action. \r\n"
@@ -290,7 +302,9 @@ public static String Events() throws IOException {
 	else  {
 	}
 	}
-	catch(NumberFormatException ex){ // handle your exception
+	catch(NumberFormatException ex){ 
+		logger.error("Event Program having null data hance section is skiped ");
+		// handle your exception
 	    
 	}
 	
