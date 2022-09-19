@@ -70,8 +70,8 @@ public class TestBase {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
-		driver.get(prop.getProperty("url"));
-		Login();
+		driver.get(prop.getProperty("ghosturl"));
+		GhostLogin();
 
 	}
 
