@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class excelReader {
@@ -19,24 +20,29 @@ public class excelReader {
 	
 		try {
 		
-	        String ExcelPath=System.getProperty("user.home") + "\\Desktop\\Config\\MarketoData.xlsx";
+	        String ExcelPath=System.getProperty("user.dir") + "/Config/MarketoData.xlsx";
 			FileInputStream FileInputStream = new FileInputStream(ExcelPath);
 			 try (Workbook workbook = new XSSFWorkbook(FileInputStream)) {
 				Sheet sheet =workbook.getSheetAt(0);
 				 int lastrownum = sheet.getLastRowNum();
 				 
+				 
 				 for(int i=1; i<lastrownum+1;i++)
 				 {
 					Row row =sheet.getRow(i); 
-					Cell Keycell = row.getCell(0);
 					
+					Cell Keycell = row.getCell(0,Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
 					String key = getCellValue(Keycell);	
-					Cell Valuecell = row.getCell(1);
+					
+				
+					Cell Valuecell = row.getCell(1,Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
+					
 					String value = getCellValue(Valuecell);
 					String valueformat=value.replaceAll("\\.0*$", "");      //Removing decimal value 
 					testData.put(key, valueformat);
 				 }
-			}
+				 }
+			
 		 }
 		catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -47,7 +53,7 @@ public class excelReader {
 	 }
 	 
 	 public static String getCellValue(Cell cell) {
-		 String CellData = null;
+		 String CellData=null;
 		 
 		 switch (cell.getCellType()) {
 	        case  STRING:    //field that represents string cell type
@@ -58,9 +64,13 @@ public class excelReader {
 	        	break;
 	        case BOOLEAN:
 	        	CellData= String.valueOf(cell.getBooleanCellValue());
-	        	break;
-	        default:
-	            return "";
+	        	break;   	
+	        case BLANK:
+	        	CellData= String.valueOf(cell.getStringCellValue());
+	        	break;   
+ 
+		default:
+			return "";
 	    } 
 		 return CellData;
 		}

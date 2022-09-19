@@ -89,7 +89,7 @@ public class AdminPage extends TestBase {
 		new CommonLib().WaitForElementToLoad(driver, 60, GetTags());
 		GetTags().click();
 		GetChannelTag().click();
-		screenshotUtility.TakeScreenshot(GetTable(), tags);
+		screenshotUtility.TakeScreenshot(GetTable(), "Tags1");
 		new CommonLib().WriteExcelData("Sheet1", row, 0, tags);
 		new CommonLib().WriteExcelData("Sheet1", row, 1, GetTagCount().getText());
 

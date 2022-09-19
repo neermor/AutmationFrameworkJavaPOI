@@ -11,7 +11,7 @@ public class passData  {
 	
 	public static String FetchScreenshot(String screenshotName) {
 		
-		 String path = System.getProperty("user.home") + "\\Desktop\\Config\\"+screenshotName+".png";
+		 String path = System.getProperty("user.dir") + "/Config/"+screenshotName +".png";
 		return path;
 	}
 	
@@ -22,7 +22,7 @@ public class passData  {
 			+ " There are two types of smart campaigns: Batch and Trigger. A batch campaign launches "
 			+ "at a specific time and affects a specific set of leads all at once. A triggered smart"
 			+ " campaign affects one lead at a time, based on a triggered event."
-			+ " To learn more about Smart campaigns in Marketo. visit: https://docs.marketo.com/display/public/DOCS/Smart+Campaigns.";
+			+ " To learn more about Smart campaigns in Marketo. visit :";
 	
 	static String No_models = "\nhas not built models in Marketo. Revenue cycle models take marketing to the next level."
 			+ " They model all the stages of your entire revenue funnel—from when you first interact with a lead all "
@@ -77,8 +77,7 @@ public class passData  {
 			+ "to leads at cast time. Marketo's smart streams also offer:";
 
 	static String No_Nurture=  "\ndoes not have any Nurture campaigns set up in their instance. They might need a refresher on how"
-			+ " useful Nurture Campaigns can be: "
-			+ "https://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en";
+			+ " useful Nurture Campaigns can be: ";
 	
 	
 	//Segments 
@@ -91,8 +90,7 @@ public class passData  {
 	
 	//Snippet
 	static String No_Snippets = "\nis not taking advantage of snippets. Snippets are reusable blocks of rich text and graphics that"
-			+ " the client can use in their emails and landing pages, and it is a great timesaver!"
-			+ " https://experienceleague.adobe.com/docs/marketo/using/product-docs/personalization/segmentation-and-snippets/snippets/create-a-snippet.html?lang=en";
+			+ " the client can use in their emails and landing pages, and it is a great timesaver!";
 	
 	
 	//No Lead_scoring Data
@@ -111,10 +109,15 @@ public class passData  {
 	static String batch= "\nbuilt out campaigns reducing lead scores when leads exhibit undesirable behavior";
 	
 	//Data Management 
-	static String Data= "\nhas Data Management actions setup within Marketo. Marketo’s data management tools allow a"
-			+ " marketer to configure actions to automatically manage leads. For example, Data Management actions can"
-			+ " be set up to de-duplicate data, clean up bad data, and modify data based on predetermined actions and "
-			+ "values.";
+	static String Data= "\nhas Data Management actions setup within Marketo. To determine this metric our team looks at the ‘Change Data Value’ flow step in the client’s campaigns. Each ‘Change Data Value’ flow step counts as a data management action. \r\n"
+			+ "Marketo’s data management tools allow a marketer to configure actions to automatically manage leads. For example, Data Management actions can be"
+			+ " set up to de-duplicate data, clean up bad data, and modify data based on predetermined actions and values.\r\n";
+	
+	static String Data_less5= "\nhas less than 5 data management actions set up. To determine this metric our team looks at the ‘Change Data Value’ "
+			+ "flow step in the client’s campaigns. Each ‘Change Data Value’ flow step counts as a data management action.\n\r"
+			+ "Good examples of data management \"\r\n"
+			+ "would be any steps taken to clean up lead data, for example, adding leads to a blacklist triggered by\"\r\n"
+			+ "a certain action. Here is a walkthrough of how to do that: https://experienceleague.adobe.com/docs/marketo/using/product-docs/core-marketo-concepts/smart-lists-and-static-lists/managing-people-in-smart-lists/add-person-to-blocklist.html?lang=en";
 	
 	static String No_Data= "\ndoes not appear to have data management actions set up. Good examples of data management "
 			+ "would be any steps taken to clean up lead data, for example, adding leads to a blacklist triggered by"
@@ -161,17 +164,23 @@ public class passData  {
 			+ " marketers to execute personalized campaigns for both accounts and leads in one motion. You also "
 			+ "benefit from reaching key decision makers and deal influencers.";
 	
-	public static String Exceldata(String value) throws IOException
+	static String PredictiveContent ="Content analytics allows you to gain further insights into your existing content, learn what content works for your audiences, and increase ROI from your marketing efforts.\r\n"
+			+ "\r\n"
+			+ "With your Predictive Content Analytics, you can view Top Content by Views, Top Content by Conversion Rate, Trending Content, Suggested Content, and Content.\r\n"
+			+ "";
+	
+	
+		public static String Exceldata(String key) throws IOException
 	{
 		Map <String, String> testdata =excelReader.getMapData();
 		
-		return testdata.get(value);
+		return testdata.get(key);
 		
 	}
 	
 	
 	
-	public static String GenricMethod(String snippets) throws IOException {
+public static String GenricMethod(String snippets) throws IOException {
 		
 			
 			return snippets+"\nSnippets" ;
@@ -180,10 +189,8 @@ public class passData  {
 	}
 	//No Lead_scoring Data
 public static String LeadScoring(String leads) throws IOException {
-		
+		try {
 		int ChangeScore = Integer.parseInt(passData.Exceldata("Change Score"));
-		
-		
 		if (ChangeScore>=5)
 		{			
 			return passData.Exceldata("Account Name") +"\nhas\n"+Lead_scoring;
@@ -192,14 +199,20 @@ public static String LeadScoring(String leads) throws IOException {
 			
 			return passData.Exceldata("Account Name") +"\nhas\n"+leads+ Lead_scoring_Less5;
 		}
-		
-		
-		else  {
+			else  {
 		}
-			return passData.Exceldata("Account Name") + No_lead_scoring;			
+			//return passData.Exceldata("Account Name") + No_lead_scoring;			
 	}
+		catch(NumberFormatException ex){ // handle your exception
+		    
+		}
+		return passData.Exceldata("Account Name") + No_lead_scoring;
+}
+
+	
 //my tokens method for Lead scoring
-public static String MyTokens() throws IOException {	
+public static String MyTokens() throws IOException {
+	try {
 	int token = Integer.parseInt(passData.Exceldata("Change Score"));
 	
 	if (token>0)
@@ -209,14 +222,16 @@ public static String MyTokens() throws IOException {
 	
 	else  {
 	}
-	
+	}
+	catch(NumberFormatException ex){ // handle your exception
+	    
+	}
 		return passData.Exceldata("Account Name") +no_tokens;
 				
 }
-
 // batch campaigns for lead scoring 
 public static String BatchCampaigns() throws IOException {	
-	
+	try {
 	int ChangeScore = Integer.parseInt(passData.Exceldata("Change Score"));
 	
 	if (ChangeScore>0)
@@ -226,21 +241,32 @@ public static String BatchCampaigns() throws IOException {
 	
 	else  {
 	}
-	
+	}
+	catch(NumberFormatException ex){ // handle your exception
+	   
+	}
 		return passData.Exceldata("Account Name") + no_batch;
 				
 }
 //Method for Data Management
 public static String DataManagement() throws IOException {	
-	
+	try {
 	int DataManagment = Integer.parseInt(passData.Exceldata("Change Data Value"));
 	
 	if (DataManagment>5)
 	{			
 		return passData.Exceldata("Account Name")+Data ;
 	}
+	else if(DataManagment<5 && DataManagment>0 )
+	{
+		return passData.Exceldata("Account Name")+ Data_less5 +No_data_link ;
+	}
 	
 	else  {
+	}
+	}
+	catch(NumberFormatException ex){ // handle your exception
+	    
 	}
 	
 		return passData.Exceldata("Account Name")+ No_Data +No_data_link ;
@@ -248,7 +274,7 @@ public static String DataManagement() throws IOException {
 }
 //Method for Events
 public static String Events() throws IOException {	
-	
+	try {
 	int Event_Program = Integer.parseInt(passData.Exceldata("Event Programs"));
 	
 	if (Event_Program>=5)
@@ -263,6 +289,10 @@ public static String Events() throws IOException {
 	}
 	else  {
 	}
+	}
+	catch(NumberFormatException ex){ // handle your exception
+	    
+	}
 	
 		return passData.Exceldata("Account Name")+No_events  ;
 				
@@ -273,19 +303,11 @@ public static String Nurture_Campaigns() throws IOException {
 	int Nurture_Campaigns = Integer.parseInt(passData.Exceldata("Nurture campaigns"));
 	
 	if (Nurture_Campaigns>=5)
-	{			
-		return passData.Exceldata("Account Name")+"\nhas\n"+Exceldata("Nurture campaigns")+Nurture;
+	{
+		
 	}
+	return passData.Exceldata("Account Name")+"\nhas\n"+Exceldata("Nurture campaigns")+Nurture;
 	
-	else if  (Nurture_Campaigns<5 && Nurture_Campaigns>0) {
-	
-		return  passData.Exceldata("Account Name")+"\nhas\n"+ Exceldata("Nurture campaigns")+Nurture ;
-	
-	}
-	else  {
-	}
-	
-		return passData.Exceldata("Account Name")+No_Nurture  ;
 				
 }
 //Segment Data
@@ -306,7 +328,7 @@ public static String Segmentation() throws IOException {
 }
 //Program Library
 public static String Library() throws IOException {	
-	
+	try {
 	int Library = Integer.parseInt(passData.Exceldata("Library"));
 	
 	if (Library>=1)
@@ -315,6 +337,10 @@ public static String Library() throws IOException {
 	}
 	
 	else  {
+	}
+	}
+	catch(NumberFormatException ex){ // handle your exception
+	    
 	}
 	
 		return "It appears that\n" +passData.Exceldata("Account Name")+no_library ;

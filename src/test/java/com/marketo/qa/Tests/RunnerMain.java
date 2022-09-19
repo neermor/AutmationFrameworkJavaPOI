@@ -1,5 +1,6 @@
 package com.marketo.qa.Tests;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,16 +16,18 @@ public class RunnerMain {
 	public static void main(String[] args) throws Exception {
 		
 		testng =new TestNG();
-		String path= System.getProperty("user.home")+"/Desktop/Config/testng.xml";
-		System.out.println(path);
+		String path= System.getProperty("user.dir")+"/Config/testng.xml";
+//		System.out.println(path);
+			
 		List<String> XmlList= new ArrayList<String>();
 		XmlList.add(path);
 		// TODO Auto-generated method stub
+//		
+//		testng.setTestClasses(new Class[] {FetchChampianCounts.class,FetchDesignStudioData.class,
+//				FetchAdminDatas.class,FetchModelsCount.class,
+//				FetchLeadsCount.class,FetchDataFromChangeScore.class});
 		
-//		testng.setTestClasses(new Class[] {FetchDataFromChangeScore.class,FetchAdminDatas.class,
-//				FetchDesignStudioData.class,FetchLeadsCount.class,
-//				FetchModelsCount.class});
-		testng.setTestSuites(XmlList);
+		testng.setTestSuites(XmlList);	
 		testng.run();
 		
 		

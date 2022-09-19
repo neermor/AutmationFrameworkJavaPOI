@@ -16,6 +16,7 @@ import org.apache.poi.util.Units;
 import org.apache.poi.xwpf.model.XWPFHeaderFooterPolicy;
 import org.apache.poi.xwpf.usermodel.Document;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
+import org.apache.poi.xwpf.usermodel.UnderlinePatterns;
 import org.apache.poi.xwpf.usermodel.XWPFAbstractNum;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFNumbering;
@@ -164,8 +165,27 @@ public class stylingDoc {
 		    }
 		}
 	 
-	 // Using bellow method bold the particular data 
+	  
+	 public static XWPFRun Link(XWPFRun run,XWPFParagraph paragraph, XWPFDocument docx)
+	 {
 	 
+		 paragraph = docx.createParagraph();
+		 run = paragraph.createHyperlinkRun("https://stackoverflow.com/");
+		 paragraph.setSpacingAfter(0);
+		 run.setUnderline(UnderlinePatterns.SINGLE);
+		 run.setColor("0000FF");
+			return run; 
+	 }
+	 
+	 
+	 public static XWPFRun FontFamilySize(XWPFRun run){
+		    run.setFontFamily("Calibri");
+		    run.setFontSize(10);
+		    return run;
+		}
+	 
+	 
+	// Using bellow method bold the particular data
 	 public static void bold(XWPFDocument document) throws IOException
 		{
 			String[] keywords = new String[] {String.valueOf(passData.Exceldata("All Campaigns")),String.valueOf(passData.Exceldata("Active campaigns")), 
@@ -175,8 +195,8 @@ public class stylingDoc {
 					String.valueOf(passData.Exceldata("Active Campaigns")),String.valueOf(passData.Exceldata("model")),String.valueOf(passData.Exceldata("Lead")),
 					String.valueOf(passData.Exceldata("Change Data Value")),String.valueOf(passData.Exceldata("Event Programs")),String.valueOf(passData.Exceldata("Nurture campaigns")),
 					String.valueOf(passData.Exceldata("Segment Data")),String.valueOf(passData.Exceldata("Library")),String.valueOf(passData.Exceldata("Integrations")),
-					String.valueOf(passData.Exceldata("All Batch Campaigns")),passData.Exceldata("Account Name"),
-					String.valueOf(passData.Exceldata("Models")),String.valueOf(passData.Exceldata("Leads"))};
+					String.valueOf(passData.Exceldata("All Batch Campaigns")),String.valueOf(passData.Exceldata("All Triggered Campaigns")),
+					String.valueOf(passData.Exceldata("Models")),String.valueOf(passData.Exceldata("Leads")),String.valueOf(passData.Exceldata("Tags")),String.valueOf(passData.Exceldata("Account Name"))};
 		
 			Map<String, String> formats = new HashMap<String, String>();
 			formats.put("bold", "true");
