@@ -1,25 +1,35 @@
 package com.marketo.qa.Tests;
 
-import com.marketo.qa.Pages.MyMarketoPage;
-
 import org.testng.annotations.Test;
 
 import com.marketo.qa.Pages.DatabasePage;
 import com.marketo.qa.Pages.MarketingActivitePage;
+import com.marketo.qa.Pages.MyMarketoPage;
 import com.marketo.qa.base.TestBase;
 
 public class FetchLeadsCount extends TestBase {
-	MyMarketoPage homePage= new MyMarketoPage();
-	DatabasePage Db= new DatabasePage();
-	MarketingActivitePage mAP= new MarketingActivitePage();
-
+	MyMarketoPage homePage = new MyMarketoPage();
+	DatabasePage Db = new DatabasePage();
+	MarketingActivitePage mAP = new MarketingActivitePage();
 
 	@Test
 	public void CollectLeadsCount() throws Throwable {
 		homePage.OpenDatabaseTab();
-		Db.AllWorkspaceCollectLeadsCount();
+		String WorkspaceCondition = prop.getProperty("WorkspaceCondition");
 
+		switch (WorkspaceCondition) {
+		case "All":
+			Db.AllWorkspaceCollectLeadsCount();
+			break;
 
+		case "Specific":
+			int NoOfWorkspace = Integer.parseInt(prop.getProperty("NoOfWorkspaces"));
+			Db.SpecificWorkspaceCollectLeadsCount(NoOfWorkspace);
+			break;
+
+		default:
+			break;
+		}
 	}
 
 }
