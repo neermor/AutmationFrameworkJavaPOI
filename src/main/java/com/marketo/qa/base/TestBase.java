@@ -107,9 +107,10 @@ public class TestBase {
 
 	@AfterSuite
 	public void teardown() throws Exception {
+		reports.docs();
 		driver.quit();
 		System.out.println("Execution Over");
-		reports.docs();
+		
 
 	}
 
