@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 import com.marketo.qa.FileLib.CommonLib;
@@ -27,7 +28,7 @@ public class TestBase {
 
 		FileInputStream fis;
 		try {
-			fis = new FileInputStream(System.getProperty("user.dir") + "/Config/data.properties");
+			fis = new FileInputStream(System.getProperty("user.dir") + "./Config/data.properties");
 			prop.load(fis);
 
 		} catch (FileNotFoundException e) {
@@ -70,7 +71,7 @@ public class TestBase {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
-		driver.get(prop.getProperty("ghosturl"));
+		driver.get(prop.getProperty("Ghosturl"));
 		GhostLogin();
 
 	}
@@ -96,6 +97,12 @@ public class TestBase {
 		new MyMarketoPage().GetAccountIcon().click();
 		new MyMarketoPage().GetLogoutBtn().click();
 
+	}
+
+	@AfterTest
+	public void BackToMyMarketo() {
+		driver.switchTo().defaultContent();
+		new MyMarketoPage().OpenMyMarketo();
 	}
 
 	@AfterSuite

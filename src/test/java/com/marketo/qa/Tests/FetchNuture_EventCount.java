@@ -1,7 +1,9 @@
 package com.marketo.qa.Tests;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.marketo.qa.FileLib.ListImpClass;
 import com.marketo.qa.Pages.MarketingActivitePage;
 import com.marketo.qa.Pages.MyMarketoPage;
 import com.marketo.qa.Pages.PredictiveContentPage;
@@ -9,6 +11,7 @@ import com.marketo.qa.Pages.TargetAccountManagementPage;
 import com.marketo.qa.Pages.WebPersonalization;
 import com.marketo.qa.base.TestBase;
 
+@Listeners(ListImpClass.class)
 public class FetchNuture_EventCount extends TestBase {
 	MyMarketoPage homePage = new MyMarketoPage();
 	MarketingActivitePage mAP = new MarketingActivitePage();
@@ -24,6 +27,7 @@ public class FetchNuture_EventCount extends TestBase {
 		mAP.GetNurtureCount(28);
 		mAP.GetProgrameLibrary(29);
 
+
 //		homePage.OpenMyMarketo();
 //		Wp.WebCampaignsScreenShot(31);
 //		driver.switchTo().defaultContent();
@@ -37,6 +41,8 @@ public class FetchNuture_EventCount extends TestBase {
 //		mAP.switchFrame();
 //		Pc.CheckPresentOrNot(30);
 //		driver.switchTo().defaultContent();
+
+
 
 	}
 
