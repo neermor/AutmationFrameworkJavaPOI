@@ -7,11 +7,12 @@ import org.openqa.selenium.WebElement;
 
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.base.TestBase;
+import com.marketo.qa.utility.screenshotUtility;
 
 public class MarketingActivitePage extends TestBase {
 
 	boolean flag = false;
-	By GlobalTreeSearch = By.cssSelector("globalTreeSearchInput_input");
+	By GlobalTreeSearch = By.xpath("//input[@data-id='globalTreeSearchInput_input']");
 	By TreeNode = By.xpath("//div[contains(@data-id,'treeNodeRow' )]");
 	By WorkSpace = By.xpath("//div[contains(@data-id,'treeNode_workspace')]/..//div//span");
 	By Iframe = By.cssSelector("#mlm");
@@ -29,6 +30,11 @@ public class MarketingActivitePage extends TestBase {
 	By Event = By.xpath("//div[contains(@data-id,'treeNode_eventprogram')]/..");
 	By Nuture = By.xpath("//div[contains(@data-id,'treeNode_engagementprogram')]/..");
 	By Page = By.xpath("//td[@class='x-toolbar-cell'] //div[contains(text(),'of ')]");
+	By Template = By.xpath("//div[@data-id='Tree_TreeBodyLoadedFadedIn']");
+
+	public WebElement GetTemplate() {
+		return driver.findElement(Template);
+	}
 
 	public WebElement GetIFrame() {
 		return driver.findElement(Iframe);
@@ -148,6 +154,24 @@ public class MarketingActivitePage extends TestBase {
 	public void HoverMoreCampaign() throws Throwable {
 		new CommonLib().MouseHover(GetMoreCampaign());
 		new CommonLib().StandardWait(2000);
+	}
+
+	public void GetProgrameLibrary(int row) throws Throwable {
+
+		GetGlobalTreeSearch().sendKeys("Template");
+		Thread.sleep(2000);
+		try {
+			driver.findElement(NoResult).isDisplayed();
+			new CommonLib().WriteExcelData("Sheet1", row, 0, "Programe Library");
+			new CommonLib().WriteExcelData("Sheet1", row, 1, "False");
+
+		} catch (Exception e) {
+			new CommonLib().WriteExcelData("Sheet1", row, 0, "Programe Library");
+			new CommonLib().WriteExcelData("Sheet1", row, 1, "True");
+			screenshotUtility.TakeScreenshot(GetTemplate(), "Template");
+
+		}
+
 	}
 
 	public int GetMoreCampaignCount(String CampaignType, int row, int cell) throws Throwable {
