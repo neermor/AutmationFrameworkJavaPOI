@@ -12,7 +12,7 @@ public class test extends TestBase  {
 		//System.out.println(ExcelPath);
 		
 		
-	reports.docs();
+		reports.docs();
 		}
 	
 	

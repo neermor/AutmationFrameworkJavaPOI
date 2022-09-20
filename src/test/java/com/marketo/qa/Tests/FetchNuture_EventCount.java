@@ -22,20 +22,21 @@ public class FetchNuture_EventCount extends TestBase {
 		homePage.OpenMarketingActivitiesTab();
 		mAP.GetEventCount(27);
 		mAP.GetNurtureCount(28);
+		mAP.GetProgrameLibrary(29);
 
-		homePage.OpenMyMarketo();
-		Wp.WebCampaignsScreenShot(31);
-		driver.switchTo().defaultContent();
-
-		homePage.OpenMyMarketo();
-		mAP.switchFrame();
-		Tam.VerifyAndFetchScreenshot(29);
-		driver.switchTo().defaultContent();
-
-		homePage.OpenMyMarketo();
-		mAP.switchFrame();
-		Pc.CheckPresentOrNot(30);
-		driver.switchTo().defaultContent();
+//		homePage.OpenMyMarketo();
+//		Wp.WebCampaignsScreenShot(31);
+//		driver.switchTo().defaultContent();
+//
+//		homePage.OpenMyMarketo();
+//		mAP.switchFrame();
+//		Tam.VerifyAndFetchScreenshot(29);
+//		driver.switchTo().defaultContent();
+//
+//		homePage.OpenMyMarketo();
+//		mAP.switchFrame();
+//		Pc.CheckPresentOrNot(30);
+//		driver.switchTo().defaultContent();
 
 	}
 

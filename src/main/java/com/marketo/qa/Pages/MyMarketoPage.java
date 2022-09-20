@@ -45,7 +45,6 @@ public class MyMarketoPage extends TestBase {
 
 	public void OpenDesignStudioTab() {
 		List<WebElement> HomeTiles = driver.findElements(MyMarketoPageHeaderHomeTiles);
-		System.out.println(HomeTiles);
 		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 		for (WebElement option : HomeTiles) {
 

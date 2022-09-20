@@ -23,7 +23,8 @@ import org.apache.xmlbeans.XmlException;
 
 
 public class docReports  {
-	private static Logger logger =LogManager.getLogger(docReports.class.getName()); 
+	
+	private static Logger logger =LogManager.getLogger(docReports.class); 
 
 	static String word = System.getProperty("user.dir") + "/Reports/";
 	static String fileName = new SimpleDateFormat("dd_MM_yy_HH_mm").format(new Date());
@@ -234,16 +235,16 @@ public class docReports  {
 			XWPFParagraph imgPara = document.createParagraph();
 			XWPFRun img = imgPara.createRun();
 			
-			for(int i=1;i<2;i++) {
+			for(int i=1;i<3;i++) {
 				
 			img.addCarriageReturn();
 			img.addPicture(new FileInputStream(passData.FetchScreenshot("Tags"+i)), Document.PICTURE_TYPE_PNG,
 				passData.FetchScreenshot("Tags"+i), Units.toEMU(380), Units.toEMU(120));
 			img.addCarriageReturn();
 			}
-		}
-		
 			
+		}
+	
 			catch (Exception e) {
 				logger.warn("Test is failed hence some data is missing from Program Section\n");
 
@@ -287,20 +288,21 @@ public class docReports  {
 			stylingDoc.FontFamilySize(modelData);
 			modelData.setText(passData.Exceldata("Account Name")+passData.models2);
 			
-			
-			
 			XWPFParagraph model_img = document.createParagraph();
 			logger.info("Printing images in doc");
 			XWPFRun img1 = model_img.createRun();
+			for(int i=1;i<6;i++) {
 			try {
-			for(int i=1;i<3;i++) {	
-			img1.addPicture(new FileInputStream(passData.FetchScreenshot("Models"+i)), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Models"+i),
-					Units.toEMU(230), Units.toEMU(150));
+				
+			img1.addPicture(new FileInputStream(passData.FetchScreenshot("Models"+i)), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Models"+i).toString(),
+					Units.toEMU(170), Units.toEMU(130));
+			
 	
-			}}
+			}
 			catch (Exception e) {
 				// TODO: handle exception
 				logger.warn("Test is failed to retrive models images\n");
+			}
 			}
 			
 			
@@ -655,7 +657,8 @@ public class docReports  {
 		
 		}
 		logger.info(" Nurture data part is done......");
-		}catch(NumberFormatException ex){
+		}
+		catch(NumberFormatException ex){
 			logger.error("Nurture Data Test is failed Hence we have null value\n");
 			// handle your exception
 		    
@@ -734,7 +737,18 @@ public class docReports  {
 		ProgramDataRun.addCarriageReturn();
 		stylingDoc.setNoProof(ProgramDataRun);
 		ProgramDataRun.setText(passData.Library());
+		for(int i= 1; i<5;i++)
+		{
+			try {
+			ProgramDataRun.addPicture(new FileInputStream(passData.FetchScreenshot("Library"+i)), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Library"+i).toString(),
+					Units.toEMU(470), Units.toEMU(200));
+		}
 		
+		catch (Exception e) {
+			// TODO: handle exception
+			logger.warn("There is no image in Program Library");
+		}
+		}
 	}
 
 	public static void Integration(XWPFDocument document) throws IOException, InvalidFormatException

@@ -87,7 +87,6 @@ public class WebPersonalization extends TestBase {
 		for (int i = 0; i <= size; i++) {
 			mAP.switchFrame();
 
-			System.out.println(i);
 			if (VerifyAndFetchScreenshots(row)) {
 				Set<String> s = driver.getWindowHandles();
 				Iterator<String> I1 = s.iterator();

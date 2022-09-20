@@ -70,37 +70,15 @@ public class TestBase {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
-<<<<<<< HEAD
-		driver.get(prop.getProperty("url"));
-		//GhostLogin();
-		Login();
-=======
 		driver.get(prop.getProperty("ghosturl"));
 		GhostLogin();
 
->>>>>>> 76f391ce8f1248edc3834912c4b7e44d6755b1e1
 	}
 
 	public static void OpenSupportTool() {
 		driver.get(prop.getProperty("url") + "/supportTools");
 	}
 
-<<<<<<< HEAD
-	
-	
-	
-	 public static void GhostLogin() throws Throwable { new
-	  GhostLoginPage().GhostLogin(prop.getProperty("prefix"),prop.getProperty("Ghostpwd"),prop.getProperty("id"));
-	 new CommonLib().StandardWait(20000);
-	  
-	 }
-	
-	 public static void Login() throws Throwable {
-			new LoginPage().Login(prop.getProperty("username"), prop.getProperty("password"));
-			new CommonLib().StandardWait(20000);
-	 }
-		
-=======
 	public static void GhostLogin() throws Throwable {
 		new GhostLoginPage().GhostLogin(prop.getProperty("prefix"), prop.getProperty("Ghostpwd"),
 				prop.getProperty("id"));
@@ -114,7 +92,6 @@ public class TestBase {
 
 	}
 
->>>>>>> 76f391ce8f1248edc3834912c4b7e44d6755b1e1
 	public static void Logout() {
 		new MyMarketoPage().GetAccountIcon().click();
 		new MyMarketoPage().GetLogoutBtn().click();
@@ -123,9 +100,10 @@ public class TestBase {
 
 	@AfterSuite
 	public void teardown() throws Exception {
+		reports.docs();
 		driver.quit();
 		System.out.println("Execution Over");
-		reports.docs();
+		
 
 	}
 

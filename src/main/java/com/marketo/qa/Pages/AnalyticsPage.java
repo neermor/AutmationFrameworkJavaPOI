@@ -56,7 +56,6 @@ public class AnalyticsPage extends TestBase {
 			if (flag) {
 				homepage.ExtendTreeNode("Group Models");
 				new CommonLib().WriteExcelData("Sheet1", row, 0, "Models");
-				System.out.println(GetModels().size());
 				new CommonLib().WriteExcelData("Sheet1", row, cell, GetModels().size());
 				screenshotUtility.TakeScreenshot(GetRcm(), "Models" + cell);
 				return GetModels().size();

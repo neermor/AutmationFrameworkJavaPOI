@@ -3,34 +3,13 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="com.marketo.qa.Tests.FetchChampianCounts">
+      <class name="com.marketo.qa.Tests.FetchLeadsCount">
         <methods>
-          <include name="ChampiensCount"/>
           <include name="initialization"/>
-          <include name="CloseBrowser"/>
+          <include name="CollectLeadsCount"/>
+          <include name="teardown"/>
         </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchChampianCounts -->
-      <class name="com.marketo.qa.Tests.FetchDataFromChangeScore">
-        <methods>
-          <include name="VerifyChangeScoreCount"/>
-          <include name="initialization"/>
-          <include name="CloseBrowser"/>
-        </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchDataFromChangeScore -->
-      <class name="com.marketo.qa.Tests.FetchAdminDatas">
-        <methods>
-          <include name="VerifyCountAndScreenshor"/>
-          <include name="initialization"/>
-          <include name="CloseBrowser"/>
-        </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
-      <class name="com.marketo.qa.Tests.FetchNuture_EventCount">
-        <methods>
-          <include name="ChampiensCount"/>
-          <include name="initialization"/>
-          <include name="CloseBrowser"/>
-        </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchNuture_EventCount -->
+      </class> <!-- com.marketo.qa.Tests.FetchLeadsCount -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

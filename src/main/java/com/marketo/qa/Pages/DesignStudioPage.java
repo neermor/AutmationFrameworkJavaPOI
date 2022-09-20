@@ -89,7 +89,6 @@ public class DesignStudioPage extends TestBase {
 		homepage.SelectTreeNode(value);
 		Clib.StandardWait(2000);
 		Clib.WriteExcelData("Sheet1", row, 0, value);
-		System.out.println(GetCount());
 		Clib.WriteExcelData("Sheet1", row, cell, GetCount());
 		return GetCount();
 	}
