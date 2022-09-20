@@ -67,6 +67,13 @@ public class GhostLoginPage extends TestBase {
 
 		boolean push = false;
 
+		driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
+		int flag = 0; 
+        while ((driver.findElements(OkatSendPush).size() > 0) || (driver.findElements(OkatUsername).size() > 0) && flag < 3){
+        	Thread.sleep(500);
+        	flag++;
+        	}
+		
 		try {
 			push = GetOktaPushBtn().isDisplayed();
 			if (push) {
@@ -95,7 +102,7 @@ public class GhostLoginPage extends TestBase {
 
 			}
 		}
-
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 	}
 
 }
