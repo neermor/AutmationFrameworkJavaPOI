@@ -86,12 +86,7 @@ public class TestBase {
 	public static void OpenSupportTool() {
 		String url = driver.getCurrentUrl();
 		String[] words = url.split("/");
-		System.out.println(words[0]);
-		System.out.println(words[3]);
-		System.out.println(words[2]);
-		System.out.println(words[0] + "//" + words[2] + "/supportTools");
 		driver.get(words[0] + "//" + words[2] + "/supportTools");
-
 		logger.info(" supportTools navigating");
 
 	}
