@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -24,7 +25,6 @@ public class TestBase {
 
 	public TestBase() {
 		prop = new Properties(); 
-
 		FileInputStream fis;
 		try {
 			fis = new FileInputStream(System.getProperty("user.dir") + "//Config//data.properties");
