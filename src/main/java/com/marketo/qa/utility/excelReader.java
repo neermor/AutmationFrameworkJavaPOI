@@ -20,7 +20,7 @@ public class excelReader {
 	
 		try {
 		
-	        String ExcelPath=System.getProperty("user.dir") + "/Config/MarketoData.xlsx";
+	        String ExcelPath=System.getProperty("user.dir") + "//Config//MarketoData.xlsx";
 			FileInputStream FileInputStream = new FileInputStream(ExcelPath);
 			 try (Workbook workbook = new XSSFWorkbook(FileInputStream)) {
 				Sheet sheet =workbook.getSheetAt(0);

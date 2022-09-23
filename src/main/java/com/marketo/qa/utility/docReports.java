@@ -1,13 +1,19 @@
 package com.marketo.qa.utility;
 
 
+
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.apache.log4j.PropertyConfigurator;
 import org.apache.logging.log4j.*;
+import org.apache.logging.log4j.core.LoggerContext;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.util.Units;
 import org.apache.poi.xwpf.usermodel.BreakType;
@@ -24,11 +30,26 @@ import org.apache.xmlbeans.XmlException;
 
 public class docReports  {
 	
-	private static Logger logger =LogManager.getLogger(docReports.class); 
 
-	static String word = System.getProperty("user.dir") + "/Reports/";
+	static String word = System.getProperty("user.dir") + "//Reports//";
 	static String fileName = new SimpleDateFormat("dd_MM_yy_HH_mm").format(new Date());
 	
+	private static final Logger logger =LogManager.getLogger(docReports.class);
+	
+//	public  docReports()
+//	{
+//		String currentDir =System.getProperty("user.dir")+"\\Config\\log4j2.xml";
+//	String test =	System.setProperty("logDir", currentDir);
+//		PropertyConfigurator.configure(test);	
+//		
+//		String currentDir =System.getProperty("user.dir")+"\\Config\\log4j2.xml";
+//		System.setProperty("logDir", currentDir);
+//		final LoggerContext ctx = (LoggerContext)LogManager.getContext(false);
+//		ctx.reconfigure();
+//		
+//		
+//	}
+	 
 	
 	
 	public static void close(XWPFDocument document) throws InvalidFormatException, IOException
@@ -41,6 +62,9 @@ public class docReports  {
 		document.write(out);
 		out.close();
 		logger.info("Doc file is Ready for " +passData.Exceldata("Account Name"));
+		
+		
+		
 	}
 
 	public static void stats(XWPFDocument document) throws NumberFormatException, InvalidFormatException, FileNotFoundException, IOException, XmlException

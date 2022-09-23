@@ -6,17 +6,18 @@
 <Configuration debug="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:noNamespaceSchemaLocation="log4j21.xsd" status="WARN">
  <Properties>
-    <Property name="filename">.\\src\\test\\resources\\log</Property>
-  </Properties>
- 	<ThresholdFilter level="all"/>
+
+    <Property name="logDir">//Reports//logs//</Property>
+  </Properties> 
+ 	
     <Appenders>
    
         
- <RollingRandomAccessFile name="File" fileName="${filename}/logdemo.log"
-                 filePattern="${filename}/reportlog-%d{HH-mm-ss-SSS}.log">
+ <RollingRandomAccessFile name="File" fileName="${sys:logDir}/ReportLog.log"
+                 filePattern="${sys:logDir}/Reportlog-%d{HH-mm-ss}.log">
                  
          <Policies>        
-      <TimeBasedTriggeringPolicy interval="10000" modulate="false"/>
+      <TimeBasedTriggeringPolicy interval="100000" modulate="false"/>
         <SizeBasedTriggeringPolicy size="5 KB"/>   
       </Policies>
       

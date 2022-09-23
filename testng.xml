@@ -3,12 +3,14 @@
 <suite name="Suite">
   <test thread-count="5" name="Test">
     <classes>
-   <class name="com.marketo.qa.Tests.FetchChampianCounts"/>    
+  <!-- <class name="com.marketo.qa.Tests.FetchChampianCounts"/>    
       <class name="com.marketo.qa.Tests.FetchDesignStudioData"/>
       <class name="com.marketo.qa.Tests.FetchLeadsCount"/>
-      <class name="com.marketo.qa.Tests.FetchAdminDatas"/>                     
-      <class name="com.marketo.qa.Tests.FetchModelsCount"/>   
+      <class name="com.marketo.qa.Tests.FetchAdminDatas"/> 
+      <class name="com.marketo.qa.Tests.FetchNuture_EventCount"/>                    
+      <class name="com.marketo.qa.Tests.FetchModelsCount"/>   -->  
      <class name="com.marketo.qa.Tests.FetchDataFromChangeScore"/> 
+     
       
     </classes>
   </test> <!-- Test -->  
