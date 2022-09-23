@@ -7,17 +7,17 @@
  xsi:noNamespaceSchemaLocation="log4j21.xsd" status="WARN">
  <Properties>
 
-    <Property name="logDir">Report//logs//</Property>
+    <Property name="logDir">//Reports//logs//</Property>
   </Properties> 
  	
     <Appenders>
    
         
- <RollingRandomAccessFile name="File" fileName="${sys:logDir}/logdemo.log"
-                 filePattern="${sys:logDir}/reportlog-%d{HH-mm-ss}.log">
+ <RollingRandomAccessFile name="File" fileName="${sys:logDir}/ReportLog.log"
+                 filePattern="${sys:logDir}/Reportlog-%d{HH-mm-ss}.log">
                  
          <Policies>        
-      <TimeBasedTriggeringPolicy interval="100000" modulate="false"/>
+      <TimeBasedTriggeringPolicy interval="1000000" modulate="false"/>
         <SizeBasedTriggeringPolicy size="10 KB"/>   
       </Policies>
       
@@ -30,7 +30,7 @@
     	<!-- Console appender configuration -->
         
      <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
         
      
