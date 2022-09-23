@@ -30,12 +30,10 @@ public class TestBase {
 
 	public TestBase() {
 		prop = new Properties();
-
 		FileInputStream fis;
 		try {
-			fis = new FileInputStream(System.getProperty("user.dir") + "./Config/data.properties");
+			fis = new FileInputStream(System.getProperty("user.dir") + "//Config//data.properties");
 			prop.load(fis);
-
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,10 +75,9 @@ public class TestBase {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
-		driver.get(prop.getProperty("url"));
-		logger.info(" URL navigating");
-		Login();
-		logger.info(" Succesfully logged in");
+		driver.get(prop.getProperty("ghosturl"));
+		GhostLogin();
+
 	}
 
 	public static void OpenSupportTool() {
@@ -118,9 +115,9 @@ public class TestBase {
 
 	@AfterSuite
 	public void teardown() throws Exception {
+		reports.docs();
 		driver.quit();
 		System.out.println("Execution Over");
-		reports.docs();
 
 	}
 
