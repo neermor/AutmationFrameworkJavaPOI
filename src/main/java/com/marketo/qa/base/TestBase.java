@@ -84,7 +84,6 @@ public class TestBase {
 		String url = driver.getCurrentUrl();
 		String[] words = url.split("/");
 		driver.get(words[0] + "//" + words[2] + "/supportTools");
-
 		logger.info(" supportTools navigating");
 
 	}
