@@ -5,9 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import org.apache.logging.log4j.*;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.util.Units;
 import org.apache.poi.xwpf.usermodel.BreakType;
@@ -20,14 +20,17 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.xmlbeans.XmlException;
 
 
-public class docReports {
+
+
+public class docReports  {
+	
+	private static Logger logger =LogManager.getLogger(docReports.class); 
 
 	static String word = System.getProperty("user.dir") + "/Reports/";
 	static String fileName = new SimpleDateFormat("dd_MM_yy_HH_mm").format(new Date());
-
 	
 	
-
+	
 	public static void close(XWPFDocument document) throws InvalidFormatException, IOException
 	{
 		stylingDoc.HeaderFooter(document);// Styling of Header and footer
@@ -37,24 +40,32 @@ public class docReports {
 
 		document.write(out);
 		out.close();
+		logger.info("Doc file is Ready for " +passData.Exceldata("Account Name"));
 	}
 
 	public static void stats(XWPFDocument document) throws NumberFormatException, InvalidFormatException, FileNotFoundException, IOException, XmlException
 	{
 		XWPFParagraph Statsparagraph = document.createParagraph();
 		XWPFRun run = Statsparagraph.createRun();
-
 		Statsparagraph = document.createParagraph();
 		run = Statsparagraph.createRun();
 		stylingDoc.setNoProof(run);
 		stylingDoc.FontFamilySize(run);
+		logger.info("Start writing in Doc file");
+		logger.info("Printing workspaces");
+		try {
 		run.setText(passData.Exceldata("Account Name") + "\nhas\n"
 				+ passData.Exceldata("Total WorkSpace")+"\nworkspaces. Stats below are a sum of assets found across all workspaces.");
-
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			logger.info("Work Space counting is missing\n");
+		}
 		Statsparagraph = document.createParagraph();
 		run = Statsparagraph.createRun();
 		run.addCarriageReturn();
 		run.setBold(true);
+		logger.info("Printing Stats Section.....");
 		run.setText("Stats");
 
 		Statsparagraph = document.createParagraph();
@@ -63,6 +74,7 @@ public class docReports {
 		stylingDoc.setNoProof(run);
 		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
+		logger.info("Writing All Campaigns count in doc file.....");
 		run.setText("They have " + passData.Exceldata("All Campaigns") + " campaigns");
 
 		Statsparagraph = document.createParagraph();
@@ -70,7 +82,7 @@ public class docReports {
 		run = Statsparagraph.createRun();
 		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
-
+		logger.info("Writing Active Campaigns count in doc file.....");
 		run.setText("They have " + passData.Exceldata("Active Campaigns") + " active campaigns");
 
 		Statsparagraph = document.createParagraph();
@@ -78,6 +90,7 @@ public class docReports {
 		Statsparagraph.setSpacingAfter(0);
 		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
+		logger.info("Writing All Triggered Campaigns count in doc file.....");
 		run.setText("They have " + passData.Exceldata("All Triggered Campaigns") + " triggered campaigns");
 
 		Statsparagraph = document.createParagraph();
@@ -85,6 +98,7 @@ public class docReports {
 		Statsparagraph.setSpacingAfter(0);
 		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
+		logger.info("Writing Active Triggered Campaigns count in doc file.....");
 		run.setText("They have " + passData.Exceldata("Active Triggered Campaigns") + " Active triggered campaigns");
 
 		Statsparagraph = document.createParagraph();
@@ -92,6 +106,7 @@ public class docReports {
 		Statsparagraph.setSpacingAfter(0);
 		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
+		logger.info("Writing Batch Campaigns - Repeating Schedule count in doc file.....");
 		run.setText("They have " + passData.Exceldata("Batch Campaigns - Repeating Schedule")
 				+ " re-occurring batch campaigns");
 
@@ -100,6 +115,7 @@ public class docReports {
 		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setSpacingAfter(0);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
+		logger.info("Writing All Batch Campaigns count in doc file.....");
 		run.setText("They have " + passData.Exceldata("All Batch Campaigns") + " batch campaigns");
 
 		Statsparagraph = document.createParagraph();
@@ -107,6 +123,7 @@ public class docReports {
 		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setSpacingAfter(0);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
+		logger.info("Writing Landing Pages count in doc file.....");
 		run.setText(passData.Exceldata("Landing Pages") + " landing pages");
 
 		Statsparagraph = document.createParagraph();
@@ -114,6 +131,7 @@ public class docReports {
 		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setSpacingAfter(0);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
+		logger.info("Writing Forms count in doc file.....");
 		run.setText(passData.Exceldata("Forms") + " forms");
 
 		Statsparagraph = document.createParagraph();
@@ -121,6 +139,7 @@ public class docReports {
 		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setSpacingAfter(0);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
+		logger.info("Writing Emails count in doc file.....");
 		run.setText(passData.Exceldata("Emails") + " emails");
 
 		Statsparagraph = document.createParagraph();
@@ -128,6 +147,7 @@ public class docReports {
 		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setSpacingAfter(0);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
+		logger.info("Writing Snippets count in doc file.....");
 		run.setText(passData.GenricMethod(passData.Exceldata("Snippets")));
 
 		Statsparagraph = document.createParagraph();
@@ -135,6 +155,7 @@ public class docReports {
 		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setSpacingAfter(0);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
+		logger.info("Writing uploaded files count in doc file.....");
 		run.setText(passData.Exceldata("Images and Files") + " uploaded files");
 
 		Statsparagraph = document.createParagraph();
@@ -150,13 +171,53 @@ public class docReports {
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		run.setText(passData.Exceldata("Tags") + " programs");
 
+		try {
+			int Snippets = Integer.parseInt(passData.Exceldata("Snippets"));
+			if (Snippets < 5) {
+				logger.info("Cont is less then 5 and it printing corresponding text");
+				XWPFParagraph paragraphModel = document.createParagraph();
+				XWPFRun model = paragraphModel.createRun();
+				model.setBold(true);
+				model.addCarriageReturn();
+				model.setText("Snippets");
+				
+				XWPFParagraph SnippetsData = document.createParagraph();
+				XWPFRun SnippetsRun = SnippetsData.createRun();
+				stylingDoc.setNoProof(SnippetsRun);
+				stylingDoc.FontFamilySize(SnippetsRun);
+				SnippetsRun.setText(passData.Exceldata("Account Name") + passData.No_Snippets);
+
+				XWPFParagraph paragraphModel2 = document.createParagraph();
+				XWPFRun modellink = paragraphModel2.createRun();
+				stylingDoc.setNoProof(modellink);
+				modellink.setText(
+						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/personalization/segmentation-and-snippets/snippets/create-a-snippet.html?lang=en");
+				paragraphModel.createHyperlinkRun(
+						"https://experienceleague.adobe.com/docs/marketo/using/product-docs/personalization/segmentation-and-snippets/snippets/create-a-snippet.html?lang=en");
+				modellink.setUnderline(UnderlinePatterns.SINGLE);
+				modellink.setColor("3333cc");
+				stylingDoc.FontFamilySize(modellink);
+				logger.info("Stats Section completed");
+
+			}}
+			catch (Exception e) {
+				logger.warn("Test is failed hence some data is missing from Stats Section\n");
+				// TODO: handle exception
+			}
+		
+		
+		XWPFParagraph paragraphModel = document.createParagraph();
+		XWPFRun model = paragraphModel.createRun();
+		model.setBold(true);
+		model.addCarriageReturn();
+		model.setText("Programs");
+		
 		XWPFParagraph paragraphStats = document.createParagraph();
 		XWPFRun r1 = paragraphStats.createRun();
 		try {
 			paragraphStats.setAlignment(ParagraphAlignment.LEFT);
 			stylingDoc.setNoProof(r1);
-			r1.addCarriageReturn();
-			r1.addCarriageReturn();
+			
 			r1.setBold(false);
 
 			stylingDoc.FontFamilySize(r1);
@@ -174,55 +235,23 @@ public class docReports {
 			XWPFParagraph imgPara = document.createParagraph();
 			XWPFRun img = imgPara.createRun();
 			
-			for(int i=1;i<2;i++) {
+			for(int i=1;i<3;i++) {
 				
 			img.addCarriageReturn();
 			img.addPicture(new FileInputStream(passData.FetchScreenshot("Tags"+i)), Document.PICTURE_TYPE_PNG,
-				passData.FetchScreenshot("Tags"+i), Units.toEMU(380), Units.toEMU(150));
-			
-			System.out.println(passData.FetchScreenshot("Tags"+i));
+				passData.FetchScreenshot("Tags"+i), Units.toEMU(380), Units.toEMU(120));
 			img.addCarriageReturn();
 			}
-		}
-		
 			
+		}
+	
 			catch (Exception e) {
+				logger.warn("Test is failed hence some data is missing from Program Section\n");
 
 			}
-			try {
-			int Snippets = Integer.parseInt(passData.Exceldata("Snippets"));
-			if (Snippets < 5) {
-				XWPFParagraph paragraphModel = document.createParagraph();
-				XWPFRun model = paragraphModel.createRun();
-				model.setBold(true);
-				model.setText("Snippets");
-				XWPFParagraph SnippetsData = document.createParagraph();
-				XWPFRun SnippetsRun = SnippetsData.createRun();
-				stylingDoc.setNoProof(SnippetsRun);
-				stylingDoc.FontFamilySize(SnippetsRun);
-				SnippetsRun.setText(passData.Exceldata("Account Name") + passData.No_Snippets);
 
-				XWPFParagraph paragraphModel2 = document.createParagraph();
-				XWPFRun modellink = paragraphModel2.createRun();
-				stylingDoc.setNoProof(modellink);
-				modellink.setText(
-						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/personalization/segmentation-and-snippets/snippets/create-a-snippet.html?lang=en");
-				paragraphModel.createHyperlinkRun(
-						"https://experienceleague.adobe.com/docs/marketo/using/product-docs/personalization/segmentation-and-snippets/snippets/create-a-snippet.html?lang=en");
-				modellink.setUnderline(UnderlinePatterns.SINGLE);
-				modellink.setColor("3333cc");
-				stylingDoc.FontFamilySize(modellink);
-
-			}}
-			catch (Exception e) {
-				// TODO: handle exception
-			}
 		}
 			
-		
-	
-		
-	
 
 	public static void models(XWPFDocument document) throws IOException, InvalidFormatException {
 		// TODO Auto-generated method stub
@@ -233,12 +262,15 @@ public class docReports {
 		model.addBreak(BreakType.PAGE);
 		model.addCarriageReturn();
 		model.addCarriageReturn();
+		logger.info("Printing Models Data");
 		model.setText("Models");
 		
 		try {
-		int Models = Integer.parseInt(passData.Exceldata("Models"));
-		if (Models>0) 
+			
+		int Model =Integer.parseInt(passData.Exceldata("Models")) ;
+		if (Model >0)
 				{
+			logger.info("Models data is greater then 0 hence printing appropriate data");
 			XWPFParagraph paragraphModelData = document.createParagraph();
 			XWPFRun modelData = paragraphModelData.createRun();
 			stylingDoc.setNoProof(modelData);
@@ -256,37 +288,46 @@ public class docReports {
 			stylingDoc.FontFamilySize(modelData);
 			modelData.setText(passData.Exceldata("Account Name")+passData.models2);
 			
-			
-			
 			XWPFParagraph model_img = document.createParagraph();
+			logger.info("Printing images in doc");
 			XWPFRun img1 = model_img.createRun();
-			for(int i=1;i<5;i++) {
-				try {
+			for(int i=1;i<6;i++) {
+			try {
 				
-			img1.addPicture(new FileInputStream(passData.FetchScreenshot("Models"+i)), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Models"+i),
-					Units.toEMU(230), Units.toEMU(150));
+			img1.addPicture(new FileInputStream(passData.FetchScreenshot("Models"+i)), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Models"+i).toString(),
+					Units.toEMU(170), Units.toEMU(130));
 			
+	
 			}
 			catch (Exception e) {
 				// TODO: handle exception
-			}	
-			}	
+				logger.warn("Test is failed to retrive models images\n");
+			}
+			}
+			
+			
+			
 		}
 		
 		 
 		else
 		{
+			logger.info("you hadn't added any models to your subscription " +passData.Exceldata("Account Name"));
 			XWPFParagraph paragraphModelData = document.createParagraph();
 			XWPFRun modelTest = paragraphModelData.createRun();
-			stylingDoc.FontFamilySize(modelTest);
+			
 			stylingDoc.setNoProof(modelTest);
+			modelTest.setBold(true);
+			modelTest.setFontSize(11);
+			
 			modelTest.setText(passData.Exceldata("Account Name") + passData.No_models);
+			logger.info("Model section completed");
 			
 		}
 		}
-		catch(NumberFormatException ex)
-		{
-			
+		catch (Exception e) {
+			logger.error("Test is failed hence does not found any data it having null values\n");
+			// TODO: handle exception
 		}
 		
 	}
@@ -295,9 +336,10 @@ public class docReports {
 	{
 		XWPFParagraph LeadParagraph = document.createParagraph();
 		XWPFRun LeadRun = LeadParagraph.createRun();
-		LeadRun.addCarriageReturn();
+		
 		LeadRun.addCarriageReturn();
 		LeadRun.setBold(true);
+		logger.info("Printing Lead scoring Section");
 		LeadRun.setText("Lead Scoring");
 		
 		
@@ -311,10 +353,13 @@ public class docReports {
 		LeadData.setSpacingAfter(0);
 		LeadData.setNumID(stylingDoc.bullet(document));
 		LeadDataRun.setText(passData.LeadScoring(passData.Exceldata("Change Score")));
+		
 		try {
 		int ChangeScore = Integer.parseInt(passData.Exceldata("Change Score"));
 		if (ChangeScore>1) 	
+			logger.info("Change Score count is greater then 1");	
 		{
+			
 		XWPFParagraph LeadData1 = document.createParagraph();
 		XWPFRun runData = LeadData1.createRun();
 		stylingDoc.setNoProof(runData);
@@ -323,11 +368,8 @@ public class docReports {
 		LeadData1.setNumID(stylingDoc.bullet(document));
 		runData.setText(passData.Exceldata("Account Name") +","+"\nis executing multiple score changes with single campaigns.");
 		}
-		}
-		catch(NumberFormatException ex){ // handle your exception
-		    
-		}
 		
+				
 		XWPFParagraph LeadData2 = document.createParagraph();
 		XWPFRun runData2 = LeadData2.createRun();
 		stylingDoc.FontFamilySize(runData2);
@@ -352,6 +394,15 @@ public class docReports {
 		stylingDoc.FontFamilySize(LeadDataRun4);
 		stylingDoc.setNoProof(LeadDataRun4);
 		LeadDataRun4.setText(passData.lead_scoring);
+		}
+
+			catch(NumberFormatException ex){
+				
+				logger.error("Lead Scoring having Null Data, So this section skipped\n");
+				// handle your exception
+		    
+		}
+		logger.info("Completed Lead Scoring Section");
 	}
 
 	public static void intrestingMoment(XWPFDocument document) throws NumberFormatException, InvalidFormatException, FileNotFoundException, IOException
@@ -359,7 +410,7 @@ public class docReports {
 		
 		if(passData.Exceldata("Interesting Moment Subscription").equalsIgnoreCase("true"))
 		{
-			
+			logger.info("User have Interesting Moment Subscription");
 			XWPFParagraph Interesting = document.createParagraph();
 			XWPFRun InterestingRun = Interesting.createRun();
 			InterestingRun.setBold(true);
@@ -388,6 +439,7 @@ public class docReports {
 			InterestingDatarun.addCarriageReturn();
 			}
 				catch (Exception e) {
+					
 					// TODO: handle exception
 				}
 			}
@@ -412,9 +464,10 @@ public class docReports {
 		}
 			
 		catch(NumberFormatException ex){ // handle your exception
-
+			logger.info("Test is skipped or fail hence data is missing for Intresting Moment\n");
 		}
 		}
+		logger.info("Intresting Moment part is done");
 	}
 
 	public static void DataManagment(XWPFDocument document) throws IOException
@@ -424,6 +477,7 @@ public class docReports {
 		DataManagementRun.setBold(true);
 		DataManagementRun.addCarriageReturn();
 		DataManagementRun.addCarriageReturn();
+		logger.info("Printing data of Data Management...");
 		DataManagementRun.setText("Data Management");
 		
 		
@@ -436,11 +490,12 @@ public class docReports {
 	
 	public static void Events(XWPFDocument document) throws IOException
 	{
+		
 		XWPFParagraph Events = document.createParagraph();
 		XWPFRun	Eventsrun = Events.createRun();
 		Eventsrun.setBold(true);
 		Eventsrun.addCarriageReturn();
-		
+		logger.info("Event Data is printing");
 		Eventsrun.setText("Events");
 
 		XWPFParagraph EventsData = document.createParagraph();
@@ -448,19 +503,35 @@ public class docReports {
 		stylingDoc.FontFamilySize(EventsDatarun);
 		stylingDoc.setNoProof(EventsDatarun);
 		EventsDatarun.setText(passData.Events());
+		
+		XWPFRun EventsDatarun2 = EventsData.createRun();
+		stylingDoc.FontFamilySize(EventsDatarun2);
+		stylingDoc.setNoProof(EventsDatarun2);
+		EventsDatarun2.addCarriageReturn();
+		EventsDatarun2.addCarriageReturn();
+		EventsDatarun2.setText(passData.event2);
+		
+		XWPFRun EventsDatarunLink = EventsData.createRun();
+		EventsDatarunLink.setUnderline(UnderlinePatterns.SINGLE);
+		stylingDoc.FontFamilySize(EventsDatarunLink);
+		stylingDoc.setNoProof(EventsDatarunLink);
+		EventsDatarunLink.setUnderlineColor("3333cc");
+		EventsDatarunLink.setColor("3333cc");
+		EventsDatarunLink.setText("\nhttps://docs.marketo.com/display/public/DOCS/Create+a+New+Event+Program.");
+		logger.info("Events data printing  is done");
 	}
 	
 	public static void nurtureData(XWPFDocument document) throws NumberFormatException, IOException, XmlException
 
 	
 	{
-		
+		logger.info("Printing Nurture data");
 		XWPFParagraph NurtureData = document.createParagraph();
 		XWPFRun NurtureDataRun = NurtureData.createRun();
 		NurtureDataRun.setBold(true);
 		NurtureDataRun.addCarriageReturn();
 		NurtureDataRun.setText("Nurture");
-		NurtureDataRun.addCarriageReturn();
+		;
 		
 		try {
 		int NurtureDataint= Integer.parseInt(passData.Exceldata("Nurture campaigns"));
@@ -471,14 +542,71 @@ public class docReports {
 		NurtureDataRun = NurtureData.createRun();
 		stylingDoc.FontFamilySize(NurtureDataRun);
 		stylingDoc.setNoProof(NurtureDataRun);
+		NurtureDataRun.addCarriageReturn();
 		NurtureDataRun.setText(passData.Exceldata("Account Name")+"\nhas\n"+passData.Exceldata("Nurture campaigns")+passData.Nurture);
 		
+		
+		XWPFParagraph NurtureData1 = document.createParagraph();
+		XWPFRun	NurtureDatarun1 = NurtureData1.createRun();
+		stylingDoc.FontFamilySize(NurtureDatarun1);
+		NurtureDatarun1.setBold(true);
+		NurtureData1.setNumID(stylingDoc.bullet(document));
+		
+		NurtureDatarun1.setText("Intelligently and automatically deliver content to a target audience.");
+		
+		
+		XWPFParagraph NurtureData2 = document.createParagraph();
+		XWPFRun NurtureDatarun2 = NurtureData2.createRun();
+		stylingDoc.FontFamilySize(NurtureDatarun2);
+		NurtureDatarun2.setBold(true);
+		
+		NurtureData2.setNumID(stylingDoc.bullet(document));
+		NurtureDatarun2.setText("Easily build dialogue with prospects and customers while preventing customers who have already received content from receiving the same content again.");
+		
+		XWPFParagraph NurtureData3 = document.createParagraph();
+		XWPFRun	NurtureDatarun3 = NurtureData3.createRun();
+		stylingDoc.FontFamilySize(NurtureDatarun3);
+		NurtureDatarun3.setBold(true);
+		
+		NurtureData3.setNumID(stylingDoc.bullet(document));
+		NurtureDatarun3.setText("Add new content and entire programs to nurture streams.");
+		
+		XWPFParagraph NurtureData4 = document.createParagraph();
+		XWPFRun NurtureDatarun4 = NurtureData4.createRun();
+		stylingDoc.FontFamilySize(NurtureDatarun4);
+		NurtureDatarun4.setBold(true);
+		
+		NurtureData4.setNumID(stylingDoc.bullet(document));
+		NurtureDatarun4.setText("Edit the availability of content.");
+		
+		XWPFParagraph NurtureData5 = document.createParagraph();
+		XWPFRun	NurtureDatarun5 = NurtureData5.createRun();
+		stylingDoc.FontFamilySize(NurtureDatarun5);
+		NurtureDatarun5.setBold(true);
+		NurtureData5.setNumID(stylingDoc.bullet(document));
+		NurtureDatarun5.setText("Understand content performance based on engagement with each piece of content.");
+		
+		
+		XWPFParagraph NurtureData6 = document.createParagraph();
+		XWPFRun	NurtureDatarun6 = NurtureData6.createRun();
+		stylingDoc.FontFamilySize(NurtureDatarun6);
+		NurtureDatarun6.setText(passData.Nurture2);
+		
+		XWPFRun	NurtureDatarunLink = NurtureData6.createRun();
+		stylingDoc.FontFamilySize(NurtureDatarunLink);
+		stylingDoc.setNoProof(NurtureDatarunLink);
+		NurtureDatarunLink.setUnderline(UnderlinePatterns.SINGLE);
+		NurtureDatarunLink.setColor("3333cc");
+		NurtureDatarunLink.setText("\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en .”");
 		}
+		
+		
 		else
 		{
 			NurtureDataRun = NurtureData.createRun();
 			stylingDoc.FontFamilySize(NurtureDataRun);
 			stylingDoc.setNoProof(NurtureDataRun);
+			NurtureDataRun.addCarriageReturn();
 			NurtureDataRun.setText(passData.Exceldata("Account Name")+passData.No_Nurture);
 			
 			XWPFRun NurtureDataRunlink = NurtureData.createRun();
@@ -489,10 +617,7 @@ public class docReports {
 			NurtureDataRunlink.setText("https://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en");
 			
 			
-		}
-		}catch(NumberFormatException ex){ // handle your exception
-		    
-		}
+		
 		
 		XWPFParagraph NurtureData1 = document.createParagraph();
 		XWPFRun	NurtureDatarun1 = NurtureData1.createRun();
@@ -530,6 +655,15 @@ public class docReports {
 		NurtureDatarun5.setText("Understand content performance based on engagement with each piece of content.");
 		NurtureDatarun5.addCarriageReturn();
 		
+		}
+		logger.info(" Nurture data part is done......");
+		}
+		catch(NumberFormatException ex){
+			logger.error("Nurture Data Test is failed Hence we have null value\n");
+			// handle your exception
+		    
+		}
+		
 	}
 
 	public static void segment(XWPFDocument document) throws NumberFormatException, IOException, InvalidFormatException
@@ -537,6 +671,7 @@ public class docReports {
 		XWPFParagraph Segment = document.createParagraph();
 		XWPFRun SegmentHeading = Segment.createRun();
 		SegmentHeading.setBold(true);
+		logger.info("Printing Segmentation Data");
 		SegmentHeading.setText("Segmentation");
 		try {
 		int Segment_Data= Integer.parseInt(passData.Exceldata("Segmentations"));
@@ -563,6 +698,7 @@ public class docReports {
 		}
 			catch (Exception e) {
 				// TODO: handle exception
+				logger.warn("We dont find any images so it does not printing images\n");
 			}}
 				}
 		else {
@@ -578,8 +714,9 @@ public class docReports {
 		}
 		}
 		catch(NumberFormatException ex){ // handle your exception
-		    
+		    logger.error("Test is skipped or failed so we have null value here\n");
 		}
+		logger.info(" Segmentation data part is done......");
 	}
 	
 	public static void programLibrary(XWPFDocument document) throws IOException, InvalidFormatException
@@ -589,6 +726,7 @@ public class docReports {
 		programRun.addCarriageReturn();
 		programRun.addCarriageReturn();
 		programRun.setBold(true);
+		logger.info(" Program Library part is Started");
 		programRun.setText("Program Library");
 		
 		
@@ -599,7 +737,18 @@ public class docReports {
 		ProgramDataRun.addCarriageReturn();
 		stylingDoc.setNoProof(ProgramDataRun);
 		ProgramDataRun.setText(passData.Library());
+		for(int i= 1; i<5;i++)
+		{
+			try {
+			ProgramDataRun.addPicture(new FileInputStream(passData.FetchScreenshot("Library"+i)), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Library"+i).toString(),
+					Units.toEMU(470), Units.toEMU(200));
+		}
 		
+		catch (Exception e) {
+			// TODO: handle exception
+			logger.warn("There is no image in Program Library");
+		}
+		}
 	}
 
 	public static void Integration(XWPFDocument document) throws IOException, InvalidFormatException
@@ -609,6 +758,7 @@ public class docReports {
 		intigrationRunHeading.addCarriageReturn();
 		intigrationRunHeading.addCarriageReturn();
 		intigrationRunHeading.setBold(true);
+		logger.info("Printing Integration Data");
 		intigrationRunHeading.setText("Integrations");
 		try {
 		int intigration_Data= Integer.parseInt(passData.Exceldata("Integration"));
@@ -623,11 +773,18 @@ public class docReports {
 		intigrationRun = document.createParagraph();
 		XWPFRun intigrationImg = intigrationRun.createRun();
 		for(int i =1; i<2;i++) {
+			try {
 			intigrationImg.addCarriageReturn();
 		intigrationImg.addPicture(new FileInputStream(passData.FetchScreenshot("Integration")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Integration"),
 				Units.toEMU(470), Units.toEMU(200));
 		intigrationImg.addCarriageReturn();
 		}
+			catch (Exception e) {
+				logger.warn("we dont have images to print\n");
+				// TODO: handle exception
+			}
+		}
+		
 		}
 		else {
 			
@@ -641,7 +798,7 @@ public class docReports {
 		}
 		}
 		catch(NumberFormatException ex){ // handle your exception
-		    
+		  logger.error("Intigration Test is skiped\n");  
 		}
 	
 	}
@@ -671,28 +828,30 @@ public class docReports {
 		stylingDoc.setNoProof(PersonalizeImg);
 		stylingDoc.FontFamilySize(PersonalizeImg);
 		PersonalizeImg.setText("Top Campaigns: The top performing campaigns during the selected time period, ordered by number of clicks.");
-		PersonalizeImg.addBreak();
+		
 		
 		XWPFRun PersonalizeImg1 = PersonalizeDoc.createRun();
 		stylingDoc.FontFamilySize(PersonalizeImg1);
 		stylingDoc.setNoProof(PersonalizeImg1);
-		PersonalizeImg1.addPicture(new FileInputStream(passData.FetchScreenshot("Change Score")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Change Score"),
+		PersonalizeImg1.addCarriageReturn();
+		PersonalizeImg1.addPicture(new FileInputStream(passData.FetchScreenshot("Change Score1")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Change Score"),
 				Units.toEMU(470), Units.toEMU(80));
 		PersonalizeImg1.addBreak();
 		PersonalizeImg1.addCarriageReturn();
-		PersonalizeImg1.addPicture(new FileInputStream(passData.FetchScreenshot("Change Score")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Change Score"),
+		PersonalizeImg1.addPicture(new FileInputStream(passData.FetchScreenshot("Change Score1")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Change Score"),
 				Units.toEMU(470), Units.toEMU(80));
 		PersonalizeImg1.addBreak();
 		PersonalizeImg1.addCarriageReturn();
-		PersonalizeImg1.addPicture(new FileInputStream(passData.FetchScreenshot("Change Score")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Change Score"),
+		PersonalizeImg1.addPicture(new FileInputStream(passData.FetchScreenshot("Change Score1")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Change Score"),
 				Units.toEMU(470), Units.toEMU(80));
 		PersonalizeImg1.addCarriageReturn();
 		PersonalizeImg1.setText("Total Organizations & Top 5 Organizations: The Organizations tab displays all the details (name, location, activity and time stamp) of organizations that visited your"
 				+ " website during a given period. The table can be sorted and organized by time, location, domain and via a free text search.");
-		PersonalizeImg1.addBreak();
-		PersonalizeImg1.addCarriageReturn();
-		PersonalizeImg1.addPicture(new FileInputStream(passData.FetchScreenshot("Change Score")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Change Score"),
+		
+		//PersonalizeImg1.addCarriageReturn();
+		PersonalizeImg1.addPicture(new FileInputStream(passData.FetchScreenshot("Change Score1")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Change Score"),
 				Units.toEMU(470), Units.toEMU(80));
+		PersonalizeImg1.addCarriageReturn();
 		
 		}
 	}
@@ -729,7 +888,7 @@ public class docReports {
 		OverviewRun.setText("Overview");
 		OverviewRun.addBreak();
 		OverviewRun.addBreak();
-		
+		try {
 		OverviewRun.addPicture(new FileInputStream(passData.FetchScreenshot("Integration")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Integration").toString(),
 				Units.toEMU(470), Units.toEMU(80));
 		OverviewRun.addBreak();
@@ -737,7 +896,11 @@ public class docReports {
 		OverviewRun.addBreak();
 		OverviewRun.addPicture(new FileInputStream(passData.FetchScreenshot("Integration")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Integration").toString(),
 				Units.toEMU(470), Units.toEMU(280));
-		
+		}
+		catch (Exception e) {
+			logger.warn("Test is skipped so user dont have images to print\n");
+			// TODO: handle exception
+		}
 		XWPFParagraph HigestAccount = document.createParagraph();
 		XWPFRun HigestAccountRunHead = HigestAccount.createRun();
 	
@@ -761,11 +924,15 @@ public class docReports {
 				Units.toEMU(470), Units.toEMU(110));
 		HigestAccountRunimg.setBold(true);
 		HigestAccountRunimg.setText("Account Lists");
-		
+		try {
 		HigestAccountRunimg.addCarriageReturn();
 		HigestAccountRunimg.addPicture(new FileInputStream(passData.FetchScreenshot("Integration")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Integration").toString(),
 				Units.toEMU(470), Units.toEMU(110));
-		
+		}
+		catch (Exception e) {
+			logger.warn("Test is skipped so user dont have images to print\n");
+			// TODO: handle exception
+		}
 		XWPFParagraph LargestAccountList = document.createParagraph();
 		XWPFRun LargestAccountListRun = LargestAccountList.createRun();
 		LargestAccountListRun.setBold(true);
@@ -779,8 +946,14 @@ public class docReports {
 		LargestAccountListRunData.setText("An account list is a collection of named accounts that can be targeted together. Account lists allow you to target named accounts by industry, location or size of the company. Marketo allows for up to 2,000 named accounts to be added to an account list.\n" +passData.Exceldata("Account Name")+"\n’s largest account list is NA Target Accounts, containing 545 named accounts and is responsible for $23.1 million in pipeline.");
 		
 		XWPFRun LargestAccountListRunimg = LargestAccountList.createRun();
+		try {
 		LargestAccountListRunimg.addPicture(new FileInputStream(passData.FetchScreenshot("Integration")), Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Integration").toString(),
 				Units.toEMU(470), Units.toEMU(80));
+		}
+		catch (Exception e) {
+			logger.warn("Test is skipped so user dont have images to print\n");
+			// TODO: handle exception
+		}
 		LargestAccountListRunimg.addCarriageReturn();
 		LargestAccountListRunimg.addCarriageReturn();
 		stylingDoc.FontFamilySize(LargestAccountListRunimg);
@@ -810,8 +983,7 @@ public class docReports {
 		stylingDoc.FontFamilySize(Account_ManagementRun);
 		stylingDoc.setNoProof(Account_ManagementRun);
 		Account_ManagementRun.setText(passData.PredictiveContent);
-		//Account_ManagementRun.addCarriageReturn();
-		//Account_ManagementRun.setText(passData.Account_Management2);
+		
 		
 	
 		}

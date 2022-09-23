@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
@@ -20,6 +22,9 @@ import com.marketo.qa.utility.reports;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestBase {
+
+	private static Logger logger = LogManager.getLogger(TestBase.class);
+
 	public static WebDriver driver;
 	public static Properties prop;
 
@@ -68,16 +73,27 @@ public class TestBase {
 
 			driver = WebDriverManager.safaridriver().create();
 		}
+		logger.info(browserName + " Browser launch");
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
-		driver.get(prop.getProperty("Ghosturl"));
-		GhostLogin();
-
+		driver.get(prop.getProperty("url"));
+		logger.info(" URL navigating");
+		Login();
+		logger.info(" Succesfully logged in");
 	}
 
 	public static void OpenSupportTool() {
-		driver.get(prop.getProperty("url") + "/supportTools");
+		String url = driver.getCurrentUrl();
+		String[] words = url.split("/");
+		System.out.println(words[0]);
+		System.out.println(words[3]);
+		System.out.println(words[2]);
+		System.out.println(words[0] + "//" + words[2] + "/supportTools");
+		driver.get(words[0] + "//" + words[2] + "/supportTools");
+
+		logger.info(" supportTools navigating");
+
 	}
 
 	public static void GhostLogin() throws Throwable {

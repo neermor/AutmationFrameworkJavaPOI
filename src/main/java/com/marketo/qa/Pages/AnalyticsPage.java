@@ -2,6 +2,8 @@ package com.marketo.qa.Pages;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -11,7 +13,10 @@ import com.marketo.qa.base.TestBase;
 import com.marketo.qa.utility.screenshotUtility;
 
 public class AnalyticsPage extends TestBase {
+
 	MyMarketoPage homepage = new MyMarketoPage();
+	private static Logger logger = LogManager.getLogger(TestBase.class);
+	CommonLib Clib = new CommonLib();
 
 	By Models = By.xpath("//div[contains(@data-id,'treeNode_revenuecyclemodel')]");
 	By Rcm = By.cssSelector("#treeBodyAnchor > div > div > div:nth-child(4)");
@@ -56,15 +61,18 @@ public class AnalyticsPage extends TestBase {
 			if (flag) {
 				homepage.ExtendTreeNode("Group Models");
 				new CommonLib().WriteExcelData("Sheet1", row, 0, "Models");
-				System.out.println(GetModels().size());
 				new CommonLib().WriteExcelData("Sheet1", row, cell, GetModels().size());
+				logger.info("Fetch Models Count");
 				screenshotUtility.TakeScreenshot(GetRcm(), "Models" + cell);
+				logger.info("Fetch Models Screenshot");
 				return GetModels().size();
 			}
 
 		} catch (Exception e) {
 			new CommonLib().WriteExcelData("Sheet1", row, 0, "Models");
 			new CommonLib().WriteExcelData("Sheet1", row, cell, 0);
+			logger.info("Models are Not Available");
+
 		}
 		return 0;
 
@@ -88,6 +96,7 @@ public class AnalyticsPage extends TestBase {
 			} catch (Exception e) {
 				Actions act = new Actions(driver);
 				act.doubleClick(value).perform();
+				logger.info("View " + value.getText() + " Workspace");
 
 			}
 
@@ -96,7 +105,7 @@ public class AnalyticsPage extends TestBase {
 			driver.switchTo().defaultContent();
 			Actions act = new Actions(driver);
 			act.doubleClick(value).perform();
-
+			logger.info("Close " + value.getText() + " Workspace");
 			new CommonLib().WriteExcelData("Sheet1", 17, 0, "Program Data");
 			new CommonLib().WriteExcelData("Sheet1", 17, cell, value.getText());
 			cell++;
@@ -109,7 +118,7 @@ public class AnalyticsPage extends TestBase {
 
 	public void SpecificWorkspaceModelCount(int NoOfWorkspace) throws Throwable {
 
-		new DesignStudioPage().ExcludeDefault();
+		new DesignStudioPage().CloseDefaultTreeView();
 		for (int i = 1; i <= NoOfWorkspace; i++) {
 			String Workspace = prop.getProperty("WorkSpace" + i);
 			try {
@@ -118,6 +127,7 @@ public class AnalyticsPage extends TestBase {
 			} catch (Exception e) {
 				Actions act = new Actions(driver);
 				act.doubleClick(ChooseWorkSpace(Workspace)).perform();
+				logger.info("View " + ChooseWorkSpace(Workspace).getText() + " Workspace");
 
 			}
 			Model += ModelCount(18, cell);
@@ -125,6 +135,7 @@ public class AnalyticsPage extends TestBase {
 			driver.switchTo().defaultContent();
 			Actions act = new Actions(driver);
 			act.doubleClick(workSpaceTree).perform();
+			logger.info("Close " + ChooseWorkSpace(Workspace).getText() + " Workspace");
 
 			new CommonLib().WriteExcelData("Sheet1", 17, 0, "Program Data");
 			new CommonLib().WriteExcelData("Sheet1", 17, cell, workSpaceTree.getText());

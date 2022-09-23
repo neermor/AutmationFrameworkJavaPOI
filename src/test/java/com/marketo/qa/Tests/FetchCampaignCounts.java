@@ -1,5 +1,7 @@
 package com.marketo.qa.Tests;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -9,13 +11,17 @@ import com.marketo.qa.Pages.MyMarketoPage;
 import com.marketo.qa.base.TestBase;
 
 @Listeners(ListImpClass.class)
-public class FetchChampianCounts extends TestBase {
+public class FetchCampaignCounts extends TestBase {
 	MyMarketoPage homePage = new MyMarketoPage();
 	MarketingActivitePage mAP = new MarketingActivitePage();
+	private static Logger logger = LogManager.getLogger(TestBase.class);
 
 	@Test
-	public void ChampiensCount() throws Throwable {
+	public void CampaignsCount() throws Throwable {
+
 		homePage.OpenMarketingActivitiesTab();
+		logger.info("Marketing Activite Page Task Opened");
+
 		String WorkspaceCondition = prop.getProperty("WorkspaceCondition");
 
 		switch (WorkspaceCondition) {
@@ -31,6 +37,8 @@ public class FetchChampianCounts extends TestBase {
 		default:
 			break;
 		}
+		logger.info("Marketing Activite Page Task is done");
+
 	}
 
 }

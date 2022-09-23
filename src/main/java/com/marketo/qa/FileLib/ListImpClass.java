@@ -23,7 +23,7 @@ public class ListImpClass extends TestBase implements ITestListener {
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-		System.out.println(result.getMethod().getMethodName() + " Test Execution Is Failed");
+		System.out.println(result.getMethod().getMethodName() + " Execution Is Failed");
 		screenshotUtility.TakeScreenshot(driver, result.getMethod().getMethodName() + "Failed");
 	}
 

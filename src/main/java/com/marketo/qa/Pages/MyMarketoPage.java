@@ -7,9 +7,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.base.TestBase;
 
 public class MyMarketoPage extends TestBase {
+	CommonLib Clib = new CommonLib();
 
 	boolean flag = false;
 	By MyMarketoPageHeaderHomeTiles = By.xpath("//div[@role='tablist']/div");
@@ -45,7 +47,6 @@ public class MyMarketoPage extends TestBase {
 
 	public void OpenDesignStudioTab() {
 		List<WebElement> HomeTiles = driver.findElements(MyMarketoPageHeaderHomeTiles);
-		System.out.println(HomeTiles);
 		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 		for (WebElement option : HomeTiles) {
 
@@ -152,6 +153,8 @@ public class MyMarketoPage extends TestBase {
 	public void ExtendTreeNode(String Name) throws Throwable {
 		driver.findElement(By.xpath("//div[contains(@data-id,'treeNode_Label')]/span[text()=" + "'" + Name + "'"
 				+ "]/../preceding-sibling::button[@data-id='treeNodeChevronIconButton']")).click();
+		Clib.StandardWait(1000);
+
 	}
 
 }

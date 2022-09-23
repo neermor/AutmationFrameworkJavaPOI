@@ -2,12 +2,15 @@ package com.marketo.qa.Pages;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.marketo.qa.base.TestBase;
 
 public class GhostLoginPage extends TestBase {
+	private static Logger logger = LogManager.getLogger(TestBase.class);
 
 	private By Password = By.id("loginPassword");
 	private By GhostId = By.id("secondaryUsername");
@@ -67,42 +70,46 @@ public class GhostLoginPage extends TestBase {
 
 		boolean push = false;
 
-		driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
-		int flag = 0; 
-        while ((driver.findElements(OkatSendPush).size() > 0) || (driver.findElements(OkatUsername).size() > 0) && flag < 3){
-        	Thread.sleep(500);
-        	flag++;
-        	}
-		
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		int flag = 0;
+		while ((driver.findElements(OkatSendPush).size() > 0)
+				|| (driver.findElements(OkatUsername).size() > 0) && flag < 3) {
+			Thread.sleep(500);
+			flag++;
+		}
+
 		try {
 			push = GetOktaPushBtn().isDisplayed();
 			if (push) {
 				GetOktaPushBtn().click();
+				logger.info("Okta verified");
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			logger.info("Direct Okta Push Button Is Not Presnet");
 		}
 		while (!push) {
 
 			try {
 				GetOktaUsername().isDisplayed();
 				Thread.sleep(2000);
-				GetOktaUsername().sendKeys(prop.getProperty("OcktaID"));
+				GetOktaUsername().sendKeys(prop.getProperty("OcktaUserID"));
 				GetOktaNextBtn().click();
 				Thread.sleep(2000);
-				GetOktaPassword().sendKeys(prop.getProperty("OcktaPass"));
+				GetOktaPassword().sendKeys(prop.getProperty("OcktaPassword"));
 				GetOktaVerifyBtn().click();
 				Thread.sleep(2000);
 				GetOktaPushBtn().click();
+				logger.info("Okta verified");
+
 				break;
 			}
 
 			catch (Exception e) {
-
+				logger.info("Failed Okta verified");
 			}
 		}
-		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 }

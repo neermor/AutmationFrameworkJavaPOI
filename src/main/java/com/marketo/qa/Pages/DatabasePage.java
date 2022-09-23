@@ -2,6 +2,8 @@ package com.marketo.qa.Pages;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -12,6 +14,7 @@ import com.marketo.qa.utility.screenshotUtility;
 
 public class DatabasePage extends TestBase {
 	MyMarketoPage homePage = new MyMarketoPage();
+	private static Logger logger = LogManager.getLogger(TestBase.class);
 
 	By TreeNode = By.xpath("//div[contains(@data-id,'treeNodeRow' )]");
 	By Iframe = By.cssSelector("#mlm");
@@ -56,7 +59,6 @@ public class DatabasePage extends TestBase {
 			}
 		}
 		return workSpaceTree;
-
 	}
 
 	public int GetCount() throws Throwable {
@@ -87,7 +89,9 @@ public class DatabasePage extends TestBase {
 		new CommonLib().StandardWait(2000);
 		driver.findElement(By.xpath("//div[contains(@data-id,'treeNode_Label')]/span[text()=" + "'" + Name + "'"
 				+ "]/../preceding-sibling::button[@data-id='treeNodeChevronIconButton']")).click();
+		logger.info("View " + Name);
 		SelectTreeNode(ListName);
+		logger.info("Select " + ListName);
 		new CommonLib().StandardWait(2000);
 	}
 
@@ -97,6 +101,8 @@ public class DatabasePage extends TestBase {
 		GetPeople().click();
 		new CommonLib().WriteExcelData("Sheet1", row, 0, "Leads");
 		new CommonLib().WriteExcelData("Sheet1", row, cell, GetCount());
+		logger.info("Fetch Leads Count");
+
 		return GetCount();
 	}
 
@@ -109,13 +115,18 @@ public class DatabasePage extends TestBase {
 				homePage.ExtendTreeNode("Segmentations");
 				new CommonLib().WriteExcelData("Sheet1", row, 0, "Segmentations");
 				new CommonLib().WriteExcelData("Sheet1", row, cell, GetSag().size());
+				logger.info("Fetch Segmentations Count");
 				new CommonLib().StandardWait(2000);
 				screenshotUtility.TakeScreenshot(GetSagHar(), "Segmentations" + cell);
+				logger.info("Fetch Segmentations Screenshot");
+
 				return GetSag().size();
 			}
 		} catch (Exception e) {
 			new CommonLib().WriteExcelData("Sheet1", row, 0, "Segmentations");
 			new CommonLib().WriteExcelData("Sheet1", row, cell, 0);
+			logger.info("Segmentations are not available. .");
+
 		}
 		return 0;
 
@@ -135,13 +146,14 @@ public class DatabasePage extends TestBase {
 
 		for (WebElement value : workSpace) {
 			try {
-				if (GetExpandBtn(value.getText()).isDisplayed()) {
-				}
+				GetExpandBtn(value.getText()).isDisplayed();
 			} catch (Exception e) {
 				Actions act = new Actions(driver);
 				act.doubleClick(value).perform();
+				logger.info("View " + value.getText() + " Workspace");
 
 			}
+
 			Segmentations += SegmentationsCount(15, cell);
 			ExtendWorkshoptreenode("System Smart Lists", "All People");
 			Leads += GetLeadsCount(16, cell);
@@ -149,6 +161,7 @@ public class DatabasePage extends TestBase {
 			driver.switchTo().defaultContent();
 			Actions act = new Actions(driver);
 			act.doubleClick(value).perform();
+			logger.info("Close " + value.getText() + " Workspace");
 
 			new CommonLib().WriteExcelData("Sheet1", 14, 0, "Database Data");
 			new CommonLib().WriteExcelData("Sheet1", 14, cell, value.getText());
@@ -163,7 +176,7 @@ public class DatabasePage extends TestBase {
 
 	public void SpecificWorkspaceCollectLeadsCount(int NoOfWorkspace) throws Throwable {
 
-		new DesignStudioPage().ExcludeDefault();
+		new DesignStudioPage().CloseDefaultTreeView();
 		for (int i = 1; i <= NoOfWorkspace; i++) {
 			String Workspace = prop.getProperty("WorkSpace" + i);
 			try {
@@ -172,7 +185,9 @@ public class DatabasePage extends TestBase {
 			} catch (Exception e) {
 				Actions act = new Actions(driver);
 				act.doubleClick(ChooseWorkSpace(Workspace)).perform();
+				logger.info("View " + ChooseWorkSpace(Workspace).getText() + " Workspace");
 			}
+
 			Segmentations += SegmentationsCount(15, cell);
 			ExtendWorkshoptreenode("System Smart Lists", "All People");
 			Leads += GetLeadsCount(16, cell);
@@ -180,6 +195,7 @@ public class DatabasePage extends TestBase {
 			driver.switchTo().defaultContent();
 			Actions act = new Actions(driver);
 			act.doubleClick(workSpaceTree).perform();
+			logger.info("Close " + ChooseWorkSpace(Workspace).getText() + " Workspace");
 
 			new CommonLib().WriteExcelData("Sheet1", 14, 0, "Database Data");
 			new CommonLib().WriteExcelData("Sheet1", 14, cell, workSpaceTree.getText());

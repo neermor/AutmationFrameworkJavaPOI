@@ -87,14 +87,12 @@ public class WebPersonalization extends TestBase {
 		for (int i = 0; i <= size; i++) {
 			mAP.switchFrame();
 
-			System.out.println(i);
 			if (VerifyAndFetchScreenshots(row)) {
 				Set<String> s = driver.getWindowHandles();
 				Iterator<String> I1 = s.iterator();
 
 				Parent_window = I1.next();
 				String child_window = I1.next();
-				System.out.println(child_window);
 				driver.switchTo().window(child_window);
 
 				Clib.WaitForElementToLoad(driver, 60, GetWorkSpaceDropDown());
@@ -107,9 +105,7 @@ public class WebPersonalization extends TestBase {
 
 				for (WebElement value : SlipperyElement) {
 					Clib.StandardWait(2000);
-					System.out.println(wp);
-					System.out.println(value.getText());
-					if (value.getText().equalsIgnoreCase("ACT-SS")) {
+					if (value.getText().equalsIgnoreCase(wp)) {
 						value.click();
 						Clib.StandardWait(2000);
 						Clib.WaitForElementToLoad(driver, 60, GetDashboard("Top Campaigns"));

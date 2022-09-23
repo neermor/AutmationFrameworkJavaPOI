@@ -16,7 +16,7 @@ public class FetchAdminDatas extends TestBase {
 	MarketingActivitePage mAP = new MarketingActivitePage();
 
 	@Test
-	public void VerifyCountAndScreenshor() throws Throwable {
+	public void VerifyCountAndScreenshot() throws Throwable {
 		homePage.OpenAdminTab();
 		admin.switchFrame();
 		admin.TagsCountAndScreenshot("Tags", 19);

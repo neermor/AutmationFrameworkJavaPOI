@@ -19,7 +19,7 @@ public class screenshotUtility {
 	        //take screenshot of the page
 	        File src= ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 	        try {
-	            FileUtils.copyFile(src, new File(System.getProperty("user.dir") +"/Config/"+screenshotName+".png"));
+	            FileUtils.copyFile(src, new File(System.getProperty("user.dir") +"/Config/ScreenShot/"+screenshotName+".png"));
 	        } catch (IOException e) {
 	            System.out.println("Screenshot Taken"+e.getMessage());
 	            e.printStackTrace();
@@ -32,7 +32,7 @@ public class screenshotUtility {
 			File src = ((TakesScreenshot) element).getScreenshotAs(OutputType.FILE);
 			try {
 				FileUtils.copyFile(src,
-						new File(System.getProperty("user.dir") +"/Config/"+screenshotName+".png"));
+						new File(System.getProperty("user.dir") +"/Config/ScreenShot/"+screenshotName+".png"));
 			} catch (IOException e) {
 				System.out.println("Screenshot Taken" + e.getMessage());
 				e.printStackTrace();

@@ -23,128 +23,115 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.google.common.base.Function;
 import com.marketo.qa.base.TestBase;
 
-public class CommonLib extends TestBase{
-	 
-	String ExcelPath=System.getProperty("user.dir") + "/Config/MarketoData.xlsx";
-	public  void waitForPageLoad(int time) {
-		driver.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
+public class CommonLib extends TestBase {
+
+	String ExcelPath = System.getProperty("user.dir") + "\\Config\\MarketoData.xlsx";
+
+	public void waitForPageLoad(int time) {
+		driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
 	}
-	
-	public void WaitForElementToLoad(WebDriver Drive, int duration,WebElement element) {
+
+	public void WaitForElementToLoad(WebDriver Drive, int duration, WebElement element) {
 		WebDriverWait wait = new WebDriverWait(Drive, duration);
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
-	
-	public void SelectDropDownValue(WebElement element,String selectValue ) {
+
+	public void SelectDropDownValue(WebElement element, String selectValue) {
 		Select dropDown = new Select(element);
 		dropDown.selectByVisibleText(selectValue);
 	}
-	
+
 	public void StandardWait(int time) throws Throwable {
 		Thread.sleep(time);
 	}
-	 XSSFRow roww = null;
 
-	public void WriteExcelData(String sheetName ,int row,int col,int cellValue) throws Exception {
-	//	String ExcelPath=System.getProperty("user.dir")+"./src/test/resources/TestData/MarketoData.xlsx";
+	XSSFRow roww = null;
 
-		File file =  new File(ExcelPath);
-        FileInputStream fis = new FileInputStream(file); 
-        XSSFWorkbook book = new XSSFWorkbook(fis);
-        XSSFSheet sheet = book.getSheet(sheetName);
-        
-        roww = sheet.getRow(row);
-        
-        if(roww == null) {
-        	sheet.createRow(row).createCell(col).setCellValue(cellValue);
-        }
-        else {
-        	sheet.getRow(row).createCell(col).setCellValue(cellValue);
+	public void WriteExcelData(String sheetName, int row, int col, int cellValue) throws Exception {
+		// String
+		// ExcelPath=System.getProperty("user.dir")+"./src/test/resources/TestData/MarketoData.xlsx";
 
-        }        
-        FileOutputStream fos = new FileOutputStream(file);
-        book.write(fos);
-        fos.close();
+		File file = new File(ExcelPath);
+		FileInputStream fis = new FileInputStream(file);
+		XSSFWorkbook book = new XSSFWorkbook(fis);
+		XSSFSheet sheet = book.getSheet(sheetName);
+
+		roww = sheet.getRow(row);
+
+		if (roww == null) {
+			sheet.createRow(row).createCell(col).setCellValue(cellValue);
+		} else {
+			sheet.getRow(row).createCell(col).setCellValue(cellValue);
+
+		}
+		FileOutputStream fos = new FileOutputStream(file);
+		book.write(fos);
+		fos.close();
 
 	}
-	
-	public void WriteExcelData(String sheetName ,int row,int col,String cellValue) throws Exception {
-	//	String ExcelPath=System.getProperty("user.dir")+"./src/test/resources/TestData/MarketoData.xlsx";
 
-		File file =  new File(ExcelPath);
-        FileInputStream fis = new FileInputStream(file); 
-        XSSFWorkbook wb = new XSSFWorkbook(fis);
-        XSSFSheet sheet = wb.getSheet(sheetName);
-        roww = sheet.getRow(row);
+	public void WriteExcelData(String sheetName, int row, int col, String cellValue) throws Exception {
+		// String
+		// ExcelPath=System.getProperty("user.dir")+"./src/test/resources/TestData/MarketoData.xlsx";
 
-        if(roww == null) {
-        	sheet.createRow(row).createCell(col).setCellValue(cellValue);
-        }
-        else {
-        	sheet.getRow(row).createCell(col).setCellValue(cellValue);
+		File file = new File(ExcelPath);
+		FileInputStream fis = new FileInputStream(file);
+		XSSFWorkbook wb = new XSSFWorkbook(fis);
+		XSSFSheet sheet = wb.getSheet(sheetName);
+		roww = sheet.getRow(row);
 
-        }        FileOutputStream fos = new FileOutputStream(file);
-        wb.write(fos);
-        fos.close();
-        
+		if (roww == null) {
+			sheet.createRow(row).createCell(col).setCellValue(cellValue);
+		} else {
+			sheet.getRow(row).createCell(col).setCellValue(cellValue);
+
 		}
-	
-	public void ClearExcelData(String sheetName ,int row) throws Exception {
-	//	String ExcelPath=System.getProperty("user.dir")+"./src/test/resources/TestData/MarketoData.xlsx";
-		File file =  new File(ExcelPath);
-        FileInputStream fis = new FileInputStream(file); 
-        XSSFWorkbook wb = new XSSFWorkbook(fis);
-        XSSFSheet sheet = wb.getSheet(sheetName);
-        roww = sheet.getRow(row);
+		FileOutputStream fos = new FileOutputStream(file);
+		wb.write(fos);
+		fos.close();
 
-        if(roww == null) {
-        }
-        else {
-        	 int lastCell=sheet.getRow(row).getLastCellNum();
-             for (int i = 0;i<lastCell;i++){
-             	sheet.createRow(row).createCell(i).setCellValue("");        	
-             }
-            
-        }
-        FileOutputStream fos = new FileOutputStream(file);
-        wb.write(fos);
-        fos.close();
+	}
 
-  	}
-        
-        
-    
-	
-	
+	public void ClearExcelData(String sheetName, int row) throws Exception {
+		// String
+		// ExcelPath=System.getProperty("user.dir")+"./src/test/resources/TestData/MarketoData.xlsx";
+		File file = new File(ExcelPath);
+		FileInputStream fis = new FileInputStream(file);
+		XSSFWorkbook wb = new XSSFWorkbook(fis);
+		XSSFSheet sheet = wb.getSheet(sheetName);
+		roww = sheet.getRow(row);
+
+		if (roww == null) {
+		} else {
+			int lastCell = sheet.getRow(row).getLastCellNum();
+			for (int i = 0; i < lastCell; i++) {
+				sheet.createRow(row).createCell(i).setCellValue("");
+			}
+
+		}
+		FileOutputStream fos = new FileOutputStream(file);
+		wb.write(fos);
+		fos.close();
+
+	}
+
 	public void MouseHover(WebElement element) {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(element).perform();
 	}
-	
-	public WebElement waitForElementVisibleFlunt( final By locator)
-	{
-		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-				  .withTimeout(Duration.ofSeconds(20))
-				  .pollingEvery(Duration.ofSeconds(3))
-				  .withMessage("Waiting for element to load")
-				  .ignoring(NoSuchElementException.class);
-		
-		WebElement element = wait.until(new Function<WebDriver, WebElement>()
-		  {
-		    public WebElement apply(WebDriver driver)
-		    {
-		      return driver.findElement(locator);
-		    }
-		  });
+
+	public WebElement waitForElementVisibleFlunt(final By locator) {
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(20))
+				.pollingEvery(Duration.ofSeconds(3)).withMessage("Waiting for element to load")
+				.ignoring(NoSuchElementException.class);
+
+		WebElement element = wait.until(new Function<WebDriver, WebElement>() {
+			public WebElement apply(WebDriver driver) {
+				return driver.findElement(locator);
+			}
+		});
 		return element;
-							
-	}
-
-
-	
-
-       
 
 	}
-	
-	
+
+}

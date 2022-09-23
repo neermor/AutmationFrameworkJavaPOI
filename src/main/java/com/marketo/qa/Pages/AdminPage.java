@@ -1,5 +1,7 @@
 package com.marketo.qa.Pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -8,6 +10,8 @@ import com.marketo.qa.base.TestBase;
 import com.marketo.qa.utility.screenshotUtility;
 
 public class AdminPage extends TestBase {
+
+	private static Logger logger = LogManager.getLogger(AdminPage.class);
 
 	By MyAccount = By.xpath("//li[@class='x-tree-node']//span[text()='My Account']");
 	By AccountName = By.xpath(
@@ -81,17 +85,20 @@ public class AdminPage extends TestBase {
 		GetMyAccount().click();
 		new CommonLib().WriteExcelData("Sheet1", row, 0, "Account Name");
 		new CommonLib().WriteExcelData("Sheet1", row, 1, GetAccountName().getText());
+		logger.info("Read Account Name");
 
 	}
 
 	public void TagsCountAndScreenshot(String tags, int row) throws Throwable {
 		new CommonLib().ClearExcelData("Sheet1", row);
-		new CommonLib().WaitForElementToLoad(driver, 60, GetTags());
+		new CommonLib().StandardWait(4000);
 		GetTags().click();
 		GetChannelTag().click();
 		screenshotUtility.TakeScreenshot(GetTable(), "Tags1");
+		logger.info("Click Tags Screenshots");
 		new CommonLib().WriteExcelData("Sheet1", row, 0, tags);
 		new CommonLib().WriteExcelData("Sheet1", row, 1, GetTagCount().getText());
+		logger.info("Read Tags Count");
 
 	}
 
@@ -101,8 +108,12 @@ public class AdminPage extends TestBase {
 		GetLunchPoint().click();
 		try {
 			driver.findElement(By.xpath("//span[text()='No services configured']")).isDisplayed();
+			logger.info("Integration not available");
+
 		} catch (Exception e) {
 			screenshotUtility.TakeScreenshot(GetInstalledService(), "Integration");
+			logger.info("Integration Is available");
+			logger.info("Click Integration Screenshot");
 		}
 
 		new CommonLib().WriteExcelData("Sheet1", row, 0, "Integration");
@@ -125,7 +136,7 @@ public class AdminPage extends TestBase {
 		new CommonLib().ClearExcelData("Sheet1", row);
 
 		try {
-			boolean flag = driver.findElement(SalesInsight).isDisplayed();
+			driver.findElement(SalesInsight).isDisplayed();
 			new CommonLib().WriteExcelData("Sheet1", row, 0, "Interesting Moment Subscription");
 			new CommonLib().WriteExcelData("Sheet1", row, 1, "True");
 

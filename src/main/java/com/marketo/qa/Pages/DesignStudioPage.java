@@ -2,6 +2,8 @@ package com.marketo.qa.Pages;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -13,6 +15,7 @@ public class DesignStudioPage extends TestBase {
 	MyMarketoPage homepage = new MyMarketoPage();
 	MarketingActivitePage mAP = new MarketingActivitePage();
 	CommonLib Clib = new CommonLib();
+	private static Logger logger = LogManager.getLogger(TestBase.class);
 
 	By TreeNode = By.xpath("//div[contains(@data-id,'treeNodeRow' )]");
 	By AllCount = By.cssSelector("[data-id='dataGridFooter_pageInfo']");
@@ -21,6 +24,7 @@ public class DesignStudioPage extends TestBase {
 	By WorkSpace = By.xpath("//div[contains(@data-id,'treeNode_workspace')]/..//div//span");
 	By DefaultWP = By.xpath("//div[@data-id='treeNode_Label']//span[text()='Default']");
 	By CountNxtPage = By.xpath("//button[@data-id='dataGridFooter_nextPage']");
+	By Refresh = By.xpath("//button[@data-id='dataGridFooter_refresh']");
 
 	public WebElement GetIFrame() {
 		return driver.findElement(Iframe);
@@ -28,6 +32,10 @@ public class DesignStudioPage extends TestBase {
 
 	public WebElement GetDefaultWP() {
 		return driver.findElement(DefaultWP);
+	}
+
+	public WebElement GetRefresh() {
+		return driver.findElement(Refresh);
 	}
 
 	public WebElement GetNextPage() {
@@ -41,23 +49,28 @@ public class DesignStudioPage extends TestBase {
 	}
 
 	boolean flag = true;
-	int count = 0;
 
 	public int GetCount() throws Throwable {
+		int count = 0;
+
 		try {
 			while (flag) {
 				GetNextPage().click();
+				Clib.WaitForElementToLoad(driver, 40, GetNextPage());
 				flag = GetNextPage().isEnabled();
 			}
-			if (!flag) {
-				String countString = driver.findElement(AllCount).getText();
-				String[] words = countString.split("\\s");
-				if (words[0].equalsIgnoreCase("0")) {
-					return 0;
-				}
-				count = Integer.parseInt(words[2]);
-			}
 		} catch (Exception e) {
+			Clib.StandardWait(2000);
+			GetRefresh().click();
+			Clib.StandardWait(2000);
+			String countString = driver.findElement(AllCount).getText();
+			String[] words = countString.split("\\s");
+			if (words[0].equalsIgnoreCase("0")) {
+				return 0;
+			}
+			count = Integer.parseInt(words[2]);
+			System.out.println(count);
+
 		}
 		flag = true;
 		return count;
@@ -74,24 +87,31 @@ public class DesignStudioPage extends TestBase {
 		}
 	}
 
-	public int GetSnippetsCount() throws Throwable {
+	public String GetSnippetsCount() throws Throwable {
 		Clib.StandardWait(10000);
 		String countString = driver.findElement(UploadCount).getText();
 		String[] words = countString.split("\\s");
 		if (countString.equalsIgnoreCase("No snippets exist")) {
-			return 0;
+			return "0";
 		} else {
-			return Integer.parseInt(words[0]);
+			if (mAP.GetPage().getText().equalsIgnoreCase("Of 1")) {
+				return words[0];
+			} else {
+				return words[2];
+			}
 		}
+
 	}
 
 	public int FetchTreeNodeCount(String value, int row, int cell) throws Throwable {
 		homepage.SelectTreeNode(value);
-		Clib.StandardWait(2000);
+		logger.info("Select " + value);
+		Clib.StandardWait(3000);
+		int count = GetCount();
 		Clib.WriteExcelData("Sheet1", row, 0, value);
-		System.out.println(GetCount());
-		Clib.WriteExcelData("Sheet1", row, cell, GetCount());
-		return GetCount();
+		Clib.WriteExcelData("Sheet1", row, cell, count);
+		logger.info("Fetch " + value + " Count");
+		return count;
 	}
 
 	public int FetchUploadCount(String value, int row, int cell) throws Throwable {
@@ -108,11 +128,14 @@ public class DesignStudioPage extends TestBase {
 	public int FetchSnippetsCount(String value, int row, int cell) throws Throwable {
 		driver.switchTo().defaultContent();
 		homepage.SelectTreeNode(value);
+		logger.info("Select " + value);
 		driver.switchTo().frame(GetIFrame());
 		Clib.StandardWait(2000);
 		Clib.WriteExcelData("Sheet1", row, 0, value);
 		Clib.WriteExcelData("Sheet1", row, cell, GetSnippetsCount());
-		return GetSnippetsCount();
+		logger.info("Fetch " + value + " Count");
+		int SnippetsCount = Integer.parseInt(GetSnippetsCount());
+		return SnippetsCount;
 
 	}
 
@@ -122,11 +145,14 @@ public class DesignStudioPage extends TestBase {
 		List<WebElement> workSpace = driver.findElements(WorkSpace);
 
 		for (WebElement value : workSpace) {
-
+			workSpaceTree = null;
 			if (value.getText().equalsIgnoreCase(workSpaceName)) {
 				workSpaceTree = value;
 				break;
 			}
+		}
+		if (workSpaceTree == null) {
+			logger.info("Opps!! WorkSpace is Not Available");
 		}
 		return workSpaceTree;
 
@@ -158,7 +184,7 @@ public class DesignStudioPage extends TestBase {
 			} catch (Exception e) {
 				Actions act = new Actions(driver);
 				act.doubleClick(value).perform();
-				break;
+				logger.info("View " + value.getText() + " Workspace");
 
 			}
 
@@ -172,6 +198,7 @@ public class DesignStudioPage extends TestBase {
 
 			Actions act = new Actions(driver);
 			act.doubleClick(value).perform();
+			logger.info("Close " + value.getText() + " Workspace");
 
 			Clib.WriteExcelData("Sheet1", 1, 0, "Asset Data");
 			Clib.WriteExcelData("Sheet1", 1, cell, value.getText());
@@ -188,7 +215,7 @@ public class DesignStudioPage extends TestBase {
 
 	}
 
-	public void ExcludeDefault() throws Throwable {
+	public void CloseDefaultTreeView() throws Throwable {
 		Clib.StandardWait(4000);
 		try {
 			GetExpandBtn("Default").isDisplayed();
@@ -201,6 +228,7 @@ public class DesignStudioPage extends TestBase {
 	}
 
 	public void SpecificWorkspaceRequiredCount(int NoOfWorkspace) throws Throwable {
+
 		Clib.ClearExcelData("Sheet1", 1);
 		Clib.ClearExcelData("Sheet1", 2);
 		Clib.ClearExcelData("Sheet1", 3);
@@ -208,7 +236,7 @@ public class DesignStudioPage extends TestBase {
 		Clib.ClearExcelData("Sheet1", 5);
 		Clib.ClearExcelData("Sheet1", 6);
 
-		ExcludeDefault();
+		CloseDefaultTreeView();
 		for (int i = 1; i <= NoOfWorkspace; i++) {
 			String Workspace = prop.getProperty("WorkSpace" + i);
 			try {
@@ -216,25 +244,28 @@ public class DesignStudioPage extends TestBase {
 
 			} catch (Exception e) {
 				Actions act = new Actions(driver);
-				act.doubleClick(ChooseWorkSpace(Workspace)).perform();
+				try {
+					act.doubleClick(ChooseWorkSpace(Workspace)).perform();
+					logger.info("view " + ChooseWorkSpace(Workspace).getText() + " Workspace");
 
+					AllForms += FetchTreeNodeCount("Forms", 3, cell);
+					AllLandingPages += FetchTreeNodeCount("Landing Pages", 4, cell);
+					AllEmails += FetchTreeNodeCount("Emails", 2, cell);
+					AllImages_and_Files += FetchTreeNodeCount("Images and Files", 5, cell);
+					AllSnippets += FetchSnippetsCount("Snippets", 6, cell);
+
+					driver.switchTo().defaultContent();
+
+					act.doubleClick(ChooseWorkSpace(Workspace)).perform();
+					logger.info("Close " + ChooseWorkSpace(Workspace).getText() + " Workspace");
+
+					Clib.WriteExcelData("Sheet1", 1, 0, "Asset Data");
+					Clib.WriteExcelData("Sheet1", 1, cell, ChooseWorkSpace(Workspace).getText());
+					cell++;
+				} catch (Exception ee) {
+					logger.info("Opps!! " + Workspace + " Workspace is not available");
+				}
 			}
-
-			AllEmails += FetchTreeNodeCount("Emails", 2, cell);
-			AllForms += FetchTreeNodeCount("Forms", 3, cell);
-			AllLandingPages += FetchTreeNodeCount("Landing Pages", 4, cell);
-			AllImages_and_Files += FetchTreeNodeCount("Images and Files", 5, cell);
-			AllSnippets += FetchSnippetsCount("Snippets", 6, cell);
-
-			driver.switchTo().defaultContent();
-
-			Actions act = new Actions(driver);
-			act.doubleClick(workSpaceTree).perform();
-
-			Clib.WriteExcelData("Sheet1", 1, 0, "Asset Data");
-			Clib.WriteExcelData("Sheet1", 1, cell, workSpaceTree.getText());
-			cell++;
-
 		}
 
 		Clib.WriteExcelData("Sheet1", 1, 1, "Total");

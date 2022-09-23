@@ -2,6 +2,8 @@ package com.marketo.qa.Pages;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -10,6 +12,7 @@ import com.marketo.qa.base.TestBase;
 import com.marketo.qa.utility.screenshotUtility;
 
 public class MarketingActivitePage extends TestBase {
+	private static Logger logger = LogManager.getLogger(TestBase.class);
 
 	boolean flag = false;
 	By GlobalTreeSearch = By.xpath("//input[@data-id='globalTreeSearchInput_input']");
@@ -136,6 +139,7 @@ public class MarketingActivitePage extends TestBase {
 		} else {
 			if (GetPage().getText().equalsIgnoreCase("Of 1")) {
 				return words[0];
+
 			} else {
 				return words[2];
 			}
@@ -147,6 +151,7 @@ public class MarketingActivitePage extends TestBase {
 		GetCampaignInspectorOption(CampaignType);
 		new CommonLib().WriteExcelData("Sheet1", row, 0, CampaignType);
 		new CommonLib().WriteExcelData("Sheet1", row, cell, GetCount());
+		logger.info("Fetch " + CampaignType + " Count");
 		return Integer.parseInt(GetCount());
 
 	}
@@ -156,7 +161,7 @@ public class MarketingActivitePage extends TestBase {
 		new CommonLib().StandardWait(2000);
 	}
 
-	public void GetProgrameLibrary(int row) throws Throwable {
+	public void GetProgramLibrary(int row) throws Throwable {
 
 		GetGlobalTreeSearch().sendKeys("Template");
 		Thread.sleep(2000);
@@ -164,11 +169,13 @@ public class MarketingActivitePage extends TestBase {
 			driver.findElement(NoResult).isDisplayed();
 			new CommonLib().WriteExcelData("Sheet1", row, 0, "Programe Library");
 			new CommonLib().WriteExcelData("Sheet1", row, 1, "False");
+			logger.info("No Template's are Present");
 
 		} catch (Exception e) {
 			new CommonLib().WriteExcelData("Sheet1", row, 0, "Programe Library");
 			new CommonLib().WriteExcelData("Sheet1", row, 1, "True");
 			screenshotUtility.TakeScreenshot(GetTemplate(), "Template");
+			logger.info("Fetch Template's are Screenshot");
 
 		}
 
@@ -182,7 +189,7 @@ public class MarketingActivitePage extends TestBase {
 		new CommonLib().WriteExcelData("Sheet1", row, 0, CampaignType);
 		new CommonLib().WriteExcelData("Sheet1", row, cell, GetCount());
 		int value = Integer.parseInt(GetCount());
-		System.out.println(value);
+		logger.info("Fetch " + CampaignType + " Count");
 		return value;
 
 	}
@@ -254,7 +261,7 @@ public class MarketingActivitePage extends TestBase {
 		new CommonLib().ClearExcelData("Sheet1", 26);
 
 		for (WebElement value : workSpace) {
-
+			logger.info("view " + value.getText() + " Workspace");
 			value.click();
 			switchFrame();
 			All_Triggered_Campaigns += GetMoreCampaignCount("All Triggered Campaigns", 8, cell);
@@ -267,6 +274,7 @@ public class MarketingActivitePage extends TestBase {
 			new CommonLib().WriteExcelData("Sheet1", 7, 0, "Campaign Data");
 			new CommonLib().WriteExcelData("Sheet1", 7, cell, value.getText());
 			cell++;
+			logger.info("Close " + value.getText() + " Workspace");
 
 		}
 
@@ -279,6 +287,7 @@ public class MarketingActivitePage extends TestBase {
 		new CommonLib().WriteExcelData("Sheet1", 11, 1, All_Batch_Campaigns);
 		new CommonLib().WriteExcelData("Sheet1", 12, 1, AllCampaigns);
 		new CommonLib().WriteExcelData("Sheet1", 13, 1, Active_Campaigns);
+		logger.info("Marketing Activite Page Task is done");
 
 	}
 
@@ -296,6 +305,8 @@ public class MarketingActivitePage extends TestBase {
 		for (int i = 1; i <= NoOfWorkSpace; i++) {
 
 			SelectWorkSpace(prop.getProperty("WorkSpace" + i));
+			logger.info("view " + prop.getProperty("WorkSpace" + i) + " Workspace");
+
 			switchFrame();
 			All_Triggered_Campaigns += GetMoreCampaignCount("All Triggered Campaigns", 8, cell);
 			Active_Triggered_Campaigns += GetMoreCampaignCount("Active Triggered Campaigns", 9, cell);
@@ -307,6 +318,7 @@ public class MarketingActivitePage extends TestBase {
 			new CommonLib().WriteExcelData("Sheet1", 7, 0, "Campaign Data");
 			new CommonLib().WriteExcelData("Sheet1", 7, cell, prop.getProperty("WorkSpace" + i));
 			cell++;
+			logger.info("close " + prop.getProperty("WorkSpace" + i) + " Workspace");
 
 		}
 
