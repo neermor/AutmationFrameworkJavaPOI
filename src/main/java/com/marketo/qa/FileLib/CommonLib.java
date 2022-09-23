@@ -25,7 +25,7 @@ import com.marketo.qa.base.TestBase;
 
 public class CommonLib extends TestBase{
 	 
-	String ExcelPath=System.getProperty("user.dir") + "/Config/MarketoData.xlsx";
+	String ExcelPath=System.getProperty("user.dir") + "//Config//MarketoData.xlsx";
 	public  void waitForPageLoad(int time) {
 		driver.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
 	}

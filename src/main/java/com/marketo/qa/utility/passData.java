@@ -14,7 +14,7 @@ public class passData  {
 	
 	public static String FetchScreenshot(String screenshotName) {
 		
-		 String path = System.getProperty("user.dir") + "/Config/ScreenShot/"+screenshotName +".png";
+		 String path = System.getProperty("user.dir") + "//Config/ScreenShot//"+screenshotName +".png";
 		return path;
 	}
 	
@@ -343,27 +343,19 @@ public static String Segmentation() throws IOException {
 //Program Library
 public static String Library() throws IOException {	
 	try {
-	int Library = Integer.parseInt(passData.Exceldata("Library"));
+	//int Library = Integer.parseInt(passData.Exceldata("Programe Library"));
 	
-	if (Library>=1)
+	if (passData.Exceldata("Programe Library").equalsIgnoreCase("true"));
 	{			
 		return "It appears that\n"+passData.Exceldata("Account Name")+Program_library ;
 	}
 	
-	else  {
 	}
+	catch (Exception e) {
+		// TODO: handle exception
 	}
-	catch(NumberFormatException ex){ // handle your exception
-	    
-	}
-	
-		return "It appears that\n" +passData.Exceldata("Account Name")+no_library ;
-				
-}
-
-
-	
-		
+	return "It appears that\n" +passData.Exceldata("Account Name")+no_library ;
+}		
 }
 	
 	

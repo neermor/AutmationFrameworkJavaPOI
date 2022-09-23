@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -24,13 +23,12 @@ public class TestBase {
 	public static Properties prop;
 
 	public TestBase() {
-		prop = new Properties();
+		prop = new Properties(); 
 
 		FileInputStream fis;
 		try {
-			fis = new FileInputStream(System.getProperty("user.dir") + "./Config/data.properties");
+			fis = new FileInputStream(System.getProperty("user.dir") + "//Config//data.properties");
 			prop.load(fis);
-
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,7 +69,7 @@ public class TestBase {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
-		driver.get(prop.getProperty("Ghosturl"));
+		driver.get(prop.getProperty("ghosturl"));
 		GhostLogin();
 
 	}

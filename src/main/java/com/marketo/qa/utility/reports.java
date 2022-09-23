@@ -9,7 +9,7 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 public class reports {
 
-	static String word = System.getProperty("user.dir") + "/Reports/";
+	static String word = System.getProperty("user.dir") + "//Reports//";
 
 	public static void docs() throws Exception {
 		Path outputDirectory = Paths.get(word);
