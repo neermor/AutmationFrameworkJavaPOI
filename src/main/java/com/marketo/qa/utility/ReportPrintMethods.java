@@ -15,7 +15,7 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.xmlbeans.XmlException;
 
 public class ReportPrintMethods {
-	
+
 	public static void stats(XWPFDocument document) throws IOException, XmlException 
 	{
 		XWPFParagraph Statsparagraph = document.createParagraph();
