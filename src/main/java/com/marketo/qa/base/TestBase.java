@@ -80,6 +80,19 @@ public class TestBase {
 
 	}
 
+	public static void clearScreenshots()
+	{
+		try {
+			
+		logger.info(" Clearing privouse screenshot");
+		}
+		catch (Exception e) {
+			logger.warn("Not able to clear privouse screenshot Data");
+			// TODO: handle exception
+		}
+		
+	}
+	
 	public static void OpenSupportTool() {
 		String url = driver.getCurrentUrl();
 		String[] words = url.split("/");
