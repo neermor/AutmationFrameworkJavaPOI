@@ -85,7 +85,6 @@ public class TestBase {
 		String[] words = url.split("/");
 		driver.get(words[0] + "//" + words[2] + "/supportTools");
 		logger.info(" supportTools navigating");
-
 	}
 
 	public static void GhostLogin() throws Throwable {
