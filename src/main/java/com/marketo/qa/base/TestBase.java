@@ -90,7 +90,6 @@ public class TestBase {
 	public static void GhostLogin() throws Throwable {
 		new GhostLoginPage().GhostLogin(prop.getProperty("prefix"), prop.getProperty("ghostpwd"),
 				prop.getProperty("id"));
-
 	}
 
 	public static void Login() throws Throwable {
