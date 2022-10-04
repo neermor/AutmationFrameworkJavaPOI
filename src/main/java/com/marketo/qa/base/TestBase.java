@@ -11,11 +11,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
@@ -50,13 +47,12 @@ public class TestBase {
 	}
 
 	@BeforeTest
-	public  void initialization() throws Throwable {
+	public static void initialization() throws Throwable {
 
 		String browserName = prop.getProperty("browser");
 
 		if (browserName.equals("Chrome")) {
 
-			
 			driver = WebDriverManager.chromedriver().create();
 
 		}
@@ -81,12 +77,33 @@ public class TestBase {
 		logger.info(browserName + " Browser launch");
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		
 		driver.manage().deleteAllCookies();
-		
 		driver.get(prop.getProperty("ghosturl"));
-		
+		new GhostLoginPage().verifyLoginPage();
 		GhostLogin();
+	}
+
+	public static void OpenSupportTool() {
+		String url = driver.getCurrentUrl();
+		String[] words = url.split("/");
+		driver.get(words[0] + "//" + words[2] + "/supportTools");
+		logger.info(" supportTools navigating");
+	}
+
+	public static void GhostLogin() throws Throwable {
+		new GhostLoginPage().GhostLogin(prop.getProperty("prefix"), prop.getProperty("ghostpwd"),
+				prop.getProperty("id"));
+	}
+
+	public static void Login() throws Throwable {
+		new LoginPage().Login(prop.getProperty("username"), prop.getProperty("password"));
+		new CommonLib().StandardWait(20000);
+
+	}
+
+	public static void Logout() {
+		new MyMarketoPage().GetAccountIcon().click();
+		new MyMarketoPage().GetLogoutBtn().click();
 
 	}
 
@@ -104,36 +121,7 @@ public class TestBase {
 		}
 	    logger.info("Screenshot Deleted");
 		}
-		
 	
-	
-	public static void OpenSupportTool() {
-		String url = driver.getCurrentUrl();
-		String[] words = url.split("/");
-		driver.get(words[0] + "//" + words[2] + "/supportTools");
-		logger.info(" supportTools navigating");
-
-	}
-
-	public static void GhostLogin() throws Throwable {
-		new GhostLoginPage().GhostLogin(prop.getProperty("prefix"), prop.getProperty("Ghostpwd"),
-				prop.getProperty("id"));
-		new CommonLib().StandardWait(20000);
-
-	}
-
-	public static void Login() throws Throwable {
-		new LoginPage().Login(prop.getProperty("username"), prop.getProperty("password"));
-		new CommonLib().StandardWait(20000);
-
-	}
-
-	public static void Logout() {
-		new MyMarketoPage().GetAccountIcon().click();
-		new MyMarketoPage().GetLogoutBtn().click();
-
-	}
-
 	@AfterTest
 	public void BackToMyMarketo() {
 		driver.switchTo().defaultContent();

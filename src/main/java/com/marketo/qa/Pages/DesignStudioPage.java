@@ -7,6 +7,8 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.base.TestBase;
@@ -52,17 +54,18 @@ public class DesignStudioPage extends TestBase {
 
 	public int GetCount() throws Throwable {
 		int count = 0;
+		WebDriverWait wait = new WebDriverWait(driver, 60);
 
 		try {
-			while (flag) {
-				GetNextPage().click();
-				Clib.WaitForElementToLoad(driver, 40, GetNextPage());
-				flag = GetNextPage().isEnabled();
-			}
-		} catch (Exception e) {
 			Clib.StandardWait(2000);
 			GetRefresh().click();
-			Clib.StandardWait(2000);
+			while (GetNextPage().isEnabled()) {
+				GetNextPage().click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(Refresh));
+			}
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Refresh));
+			GetRefresh().click();
+			Clib.StandardWait(4000);
 			String countString = driver.findElement(AllCount).getText();
 			String[] words = countString.split("\\s");
 			if (words[0].equalsIgnoreCase("0")) {
@@ -70,6 +73,8 @@ public class DesignStudioPage extends TestBase {
 			}
 			count = Integer.parseInt(words[2]);
 			System.out.println(count);
+		} catch (Exception e) {
+			logger.info("Oops!! Wrong Count");
 
 		}
 		flag = true;
@@ -106,7 +111,7 @@ public class DesignStudioPage extends TestBase {
 	public int FetchTreeNodeCount(String value, int row, int cell) throws Throwable {
 		homepage.SelectTreeNode(value);
 		logger.info("Select " + value);
-		Clib.StandardWait(3000);
+		Clib.StandardWait(5000);
 		int count = GetCount();
 		Clib.WriteExcelData("Sheet1", row, 0, value);
 		Clib.WriteExcelData("Sheet1", row, cell, count);
@@ -151,9 +156,6 @@ public class DesignStudioPage extends TestBase {
 				break;
 			}
 		}
-		if (workSpaceTree == null) {
-			logger.info("Opps!! WorkSpace is Not Available");
-		}
 		return workSpaceTree;
 
 	}
@@ -185,7 +187,7 @@ public class DesignStudioPage extends TestBase {
 				Actions act = new Actions(driver);
 				act.doubleClick(value).perform();
 				logger.info("View " + value.getText() + " Workspace");
-
+				Clib.StandardWait(4000);
 			}
 
 			AllEmails += FetchTreeNodeCount("Emails", 2, cell);
@@ -237,6 +239,7 @@ public class DesignStudioPage extends TestBase {
 		Clib.ClearExcelData("Sheet1", 6);
 
 		CloseDefaultTreeView();
+
 		for (int i = 1; i <= NoOfWorkspace; i++) {
 			String Workspace = prop.getProperty("WorkSpace" + i);
 			try {
@@ -248,9 +251,9 @@ public class DesignStudioPage extends TestBase {
 					act.doubleClick(ChooseWorkSpace(Workspace)).perform();
 					logger.info("view " + ChooseWorkSpace(Workspace).getText() + " Workspace");
 
+					AllEmails += FetchTreeNodeCount("Emails", 2, cell);
 					AllForms += FetchTreeNodeCount("Forms", 3, cell);
 					AllLandingPages += FetchTreeNodeCount("Landing Pages", 4, cell);
-					AllEmails += FetchTreeNodeCount("Emails", 2, cell);
 					AllImages_and_Files += FetchTreeNodeCount("Images and Files", 5, cell);
 					AllSnippets += FetchSnippetsCount("Snippets", 6, cell);
 
@@ -263,7 +266,9 @@ public class DesignStudioPage extends TestBase {
 					Clib.WriteExcelData("Sheet1", 1, cell, ChooseWorkSpace(Workspace).getText());
 					cell++;
 				} catch (Exception ee) {
-					logger.info("Opps!! " + Workspace + " Workspace is not available");
+					driver.switchTo().defaultContent();
+					logger.info("Oops!! " + Workspace + " Workspace is not available");
+					ee.printStackTrace();
 				}
 			}
 		}

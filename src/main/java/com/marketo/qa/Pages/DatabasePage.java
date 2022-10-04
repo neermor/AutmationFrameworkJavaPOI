@@ -184,23 +184,26 @@ public class DatabasePage extends TestBase {
 
 			} catch (Exception e) {
 				Actions act = new Actions(driver);
-				act.doubleClick(ChooseWorkSpace(Workspace)).perform();
-				logger.info("View " + ChooseWorkSpace(Workspace).getText() + " Workspace");
+				try {
+					act.doubleClick(ChooseWorkSpace(Workspace)).perform();
+					logger.info("View " + ChooseWorkSpace(Workspace).getText() + " Workspace");
+
+					Segmentations += SegmentationsCount(15, cell);
+					ExtendWorkshoptreenode("System Smart Lists", "All People");
+					Leads += GetLeadsCount(16, cell);
+
+					driver.switchTo().defaultContent();
+					act.doubleClick(workSpaceTree).perform();
+					logger.info("Close " + ChooseWorkSpace(Workspace).getText() + " Workspace");
+
+					new CommonLib().WriteExcelData("Sheet1", 14, 0, "Database Data");
+					new CommonLib().WriteExcelData("Sheet1", 14, cell, workSpaceTree.getText());
+					cell++;
+				} catch (Exception ee) {
+					logger.info("Oops!! " + Workspace + " Workspace is not available");
+				}
+
 			}
-
-			Segmentations += SegmentationsCount(15, cell);
-			ExtendWorkshoptreenode("System Smart Lists", "All People");
-			Leads += GetLeadsCount(16, cell);
-
-			driver.switchTo().defaultContent();
-			Actions act = new Actions(driver);
-			act.doubleClick(workSpaceTree).perform();
-			logger.info("Close " + ChooseWorkSpace(Workspace).getText() + " Workspace");
-
-			new CommonLib().WriteExcelData("Sheet1", 14, 0, "Database Data");
-			new CommonLib().WriteExcelData("Sheet1", 14, cell, workSpaceTree.getText());
-			cell++;
-
 		}
 		new CommonLib().WriteExcelData("Sheet1", 14, 1, "Total");
 		new CommonLib().WriteExcelData("Sheet1", 15, 1, Segmentations);

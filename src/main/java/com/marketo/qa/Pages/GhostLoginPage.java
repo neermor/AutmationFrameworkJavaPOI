@@ -5,15 +5,17 @@ import java.util.concurrent.TimeUnit;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
+import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.base.TestBase;
 
 public class GhostLoginPage extends TestBase {
 	private static Logger logger = LogManager.getLogger(TestBase.class);
-	
-	
+	CommonLib Clib = new CommonLib();
+	MyMarketoPage homePage = new MyMarketoPage();
+
 	private By Password = By.id("loginPassword");
 	private By GhostId = By.id("secondaryUsername");
 	private By Prifix = By.id("loginUsername");
@@ -23,9 +25,15 @@ public class GhostLoginPage extends TestBase {
 	private By OkatPassword = By.cssSelector("[name='password']");
 	private By OkatVerifyBtn = By.cssSelector("[value='Verify']");
 	private By OkatSendPush = By.cssSelector("[value='Send Push']");
+	private By OkatSPushsent = By.cssSelector("[value='Push sent!']");
+	private By OktaWarning = By.cssSelector("icon warning");
 
 	public WebElement GetPrfix() {
 		return driver.findElement(Prifix);
+	}
+
+	public WebElement GetOktaWarning() {
+		return driver.findElement(OktaWarning);
 	}
 
 	public WebElement getPassword() {
@@ -60,10 +68,44 @@ public class GhostLoginPage extends TestBase {
 		return driver.findElement(OkatSendPush);
 	}
 
+	public WebElement GetOktaPushSent() {
+		return driver.findElement(OkatSPushsent);
+	}
+
+	public boolean verifyLoginPage() {
+		boolean flag = false;
+		try {
+			flag = GetPrfix().isDisplayed();
+
+		} catch (Exception e) {
+			logger.info("Login Page is Not dispalyed !! Kindly Check once your Internet connection");
+		}
+		return flag;
+	}
+
+	public boolean OktaVerify() {
+		boolean flag = false;
+		String titel = driver.getTitle();
+		System.out.println(titel);
+		if (titel.equalsIgnoreCase("Adobe Marketo Engage") || titel.equalsIgnoreCase("My Marketo")) {
+			flag = true;
+		}
+
+		return flag;
+	}
+
+	public void OctaLogs() {
+		if (OktaVerify()) {
+			logger.info("Okta verified Sucessfully");
+		} else {
+			logger.info("Failed Okta verified");
+		}
+	}
+
 	int count = 0;
 
 	public void GhostLogin(String prefix, String pwd, String ghostId) throws Throwable {
-		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		GetPrfix().sendKeys(prefix);
 		getPassword().sendKeys(pwd);
 		getGhostID().clear();
@@ -72,19 +114,13 @@ public class GhostLoginPage extends TestBase {
 
 		boolean push = false;
 
-		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-		int flag = 0;
-		while ((driver.findElements(OkatSendPush).size() > 0)
-				|| (driver.findElements(OkatUsername).size() > 0) && flag < 3) {
-			Thread.sleep(500);
-			flag++;
-		}
-
 		try {
 			push = GetOktaPushBtn().isDisplayed();
 			if (push) {
 				GetOktaPushBtn().click();
-				logger.info("Okta verified");
+				new CommonLib().StandardWait(40000);
+				OctaLogs();
+				Assert.assertTrue(OktaVerify());
 			}
 
 		} catch (Exception e) {
@@ -95,22 +131,26 @@ public class GhostLoginPage extends TestBase {
 			try {
 				GetOktaUsername().isDisplayed();
 				Thread.sleep(2000);
-				GetOktaUsername().sendKeys(prop.getProperty("OcktaUserID"));
+				GetOktaUsername().sendKeys(prop.getProperty("OktaUserID"));
+				logger.info("Entered Okta Username");
 				GetOktaNextBtn().click();
 				Thread.sleep(2000);
-				GetOktaPassword().sendKeys(prop.getProperty("OcktaPassword"));
+				GetOktaPassword().sendKeys(prop.getProperty("OktaPassword"));
+				logger.info("Entered Okta Password");
 				GetOktaVerifyBtn().click();
 				Thread.sleep(2000);
 				GetOktaPushBtn().click();
-				logger.info("Okta verified");
-
+				logger.info("Clicked Push Sent Button");
+				new CommonLib().StandardWait(40000);
+				OctaLogs();
+				Assert.assertTrue(OktaVerify());
 				break;
 			}
 
 			catch (Exception e) {
-				logger.info("Failed Okta verified");
 			}
 		}
+
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 

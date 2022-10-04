@@ -1,5 +1,7 @@
 package com.marketo.qa.Tests;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -14,10 +16,13 @@ public class FetchLeadsCount extends TestBase {
 	MyMarketoPage homePage = new MyMarketoPage();
 	DatabasePage Db = new DatabasePage();
 	MarketingActivitePage mAP = new MarketingActivitePage();
+	private static Logger logger = LogManager.getLogger(TestBase.class);
 
 	@Test
 	public void CollectLeadsCount() throws Throwable {
 		homePage.OpenDatabaseTab();
+		logger.info("Database Page Task Opened");
+
 		String WorkspaceCondition = prop.getProperty("WorkspaceCondition");
 
 		switch (WorkspaceCondition) {
@@ -33,6 +38,8 @@ public class FetchLeadsCount extends TestBase {
 		default:
 			break;
 		}
+		logger.info("Database Page Task Closed");
+
 	}
 
 }
