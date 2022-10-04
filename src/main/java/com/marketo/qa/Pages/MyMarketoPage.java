@@ -117,6 +117,20 @@ public class MyMarketoPage extends TestBase {
 
 	}
 
+	public WebElement SelectElement(String value) {
+		WebElement wb = null;
+		List<WebElement> HomeTiles = driver.findElements(MyMarketoPageHeaderHomeTiles);
+		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+		for (WebElement option : HomeTiles) {
+
+			if (option.getText().equalsIgnoreCase(value)) {
+				wb = option;
+			}
+		}
+		return wb;
+
+	}
+
 	public boolean VerifyHomeTileElements() throws Throwable {
 		Thread.sleep(10000);
 

@@ -126,21 +126,27 @@ public class AnalyticsPage extends TestBase {
 
 			} catch (Exception e) {
 				Actions act = new Actions(driver);
-				act.doubleClick(ChooseWorkSpace(Workspace)).perform();
-				logger.info("View " + ChooseWorkSpace(Workspace).getText() + " Workspace");
+				try {
 
+					act.doubleClick(ChooseWorkSpace(Workspace)).perform();
+					logger.info("View " + ChooseWorkSpace(Workspace).getText() + " Workspace");
+
+					Model += ModelCount(18, cell);
+
+					driver.switchTo().defaultContent();
+					act.doubleClick(workSpaceTree).perform();
+					logger.info("Close " + ChooseWorkSpace(Workspace).getText() + " Workspace");
+
+					new CommonLib().WriteExcelData("Sheet1", 17, 0, "Program Data");
+					new CommonLib().WriteExcelData("Sheet1", 17, cell, workSpaceTree.getText());
+					cell++;
+				} catch (Exception ee) {
+					driver.switchTo().defaultContent();
+					logger.info("Oops!! " + Workspace + " Workspace is not available");
+					e.printStackTrace();
+
+				}
 			}
-			Model += ModelCount(18, cell);
-
-			driver.switchTo().defaultContent();
-			Actions act = new Actions(driver);
-			act.doubleClick(workSpaceTree).perform();
-			logger.info("Close " + ChooseWorkSpace(Workspace).getText() + " Workspace");
-
-			new CommonLib().WriteExcelData("Sheet1", 17, 0, "Program Data");
-			new CommonLib().WriteExcelData("Sheet1", 17, cell, workSpaceTree.getText());
-			cell++;
-
 		}
 		new CommonLib().WriteExcelData("Sheet1", 17, 1, "Total");
 		new CommonLib().WriteExcelData("Sheet1", 18, 1, Model);

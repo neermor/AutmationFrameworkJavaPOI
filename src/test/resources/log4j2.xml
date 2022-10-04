@@ -7,7 +7,7 @@
  xsi:noNamespaceSchemaLocation="log4j21.xsd" status="WARN">
  <Properties>
 
-    <Property name="logDir">//Reports//logs//</Property>
+    <Property name="logDir">Reports//logs</Property>
   </Properties> 
  	
     <Appenders>

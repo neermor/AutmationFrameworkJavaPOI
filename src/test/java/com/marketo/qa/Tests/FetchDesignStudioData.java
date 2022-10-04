@@ -1,5 +1,7 @@
 package com.marketo.qa.Tests;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -15,11 +17,13 @@ public class FetchDesignStudioData extends TestBase {
 	MyMarketoPage homePage = new MyMarketoPage();
 	DesignStudioPage Ds = new DesignStudioPage();
 	MarketingActivitePage mAP = new MarketingActivitePage();
+	private static Logger logger = LogManager.getLogger(TestBase.class);
 
 	@Test
 	public void TakeRequiredCount() throws Throwable {
 
 		homePage.OpenDesignStudioTab();
+		logger.info("Design Studio Page Task Opened");
 		String WorkspaceCondition = prop.getProperty("WorkspaceCondition");
 
 		switch (WorkspaceCondition) {
@@ -35,6 +39,7 @@ public class FetchDesignStudioData extends TestBase {
 		default:
 			break;
 		}
+		logger.info("Design Studio Page Task Closed");
 	}
 
 }

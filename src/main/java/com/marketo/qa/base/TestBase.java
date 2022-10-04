@@ -76,15 +76,14 @@ public class TestBase {
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.get(prop.getProperty("ghosturl"));
+		new GhostLoginPage().verifyLoginPage();
 		GhostLogin();
-
 	}
 
 	public static void OpenSupportTool() {
 		String url = driver.getCurrentUrl();
 		String[] words = url.split("/");
 		driver.get(words[0] + "//" + words[2] + "/supportTools");
-
 		logger.info(" supportTools navigating");
 
 	}
@@ -92,7 +91,6 @@ public class TestBase {
 	public static void GhostLogin() throws Throwable {
 		new GhostLoginPage().GhostLogin(prop.getProperty("prefix"), prop.getProperty("Ghostpwd"),
 				prop.getProperty("id"));
-		new CommonLib().StandardWait(20000);
 
 	}
 

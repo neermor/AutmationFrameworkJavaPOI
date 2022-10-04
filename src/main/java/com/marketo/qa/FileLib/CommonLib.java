@@ -48,9 +48,6 @@ public class CommonLib extends TestBase {
 	XSSFRow roww = null;
 
 	public void WriteExcelData(String sheetName, int row, int col, int cellValue) throws Exception {
-		// String
-		// ExcelPath=System.getProperty("user.dir")+"./src/test/resources/TestData/MarketoData.xlsx";
-
 		File file = new File(ExcelPath);
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook book = new XSSFWorkbook(fis);

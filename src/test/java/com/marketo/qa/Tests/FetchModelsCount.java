@@ -1,5 +1,7 @@
 package com.marketo.qa.Tests;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -12,10 +14,12 @@ import com.marketo.qa.base.TestBase;
 public class FetchModelsCount extends TestBase {
 	MyMarketoPage homePage = new MyMarketoPage();
 	AnalyticsPage Analytic = new AnalyticsPage();
+	private static Logger logger = LogManager.getLogger(TestBase.class);
 
 	@Test
 	public void ModelCount() throws Throwable {
 		homePage.OpenanalyticsTab();
+		logger.info("Analytics Page Task Opened");
 		String WorkspaceCondition = prop.getProperty("WorkspaceCondition");
 
 		switch (WorkspaceCondition) {
@@ -31,6 +35,8 @@ public class FetchModelsCount extends TestBase {
 		default:
 			break;
 		}
+		logger.info("Analytics Page Task Closed");
+
 	}
 
 }

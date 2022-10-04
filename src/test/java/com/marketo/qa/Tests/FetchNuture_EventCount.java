@@ -1,5 +1,7 @@
 package com.marketo.qa.Tests;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -18,14 +20,17 @@ public class FetchNuture_EventCount extends TestBase {
 	TargetAccountManagementPage Tam = new TargetAccountManagementPage();
 	PredictiveContentPage Pc = new PredictiveContentPage();
 	WebPersonalization Wp = new WebPersonalization();
+	private static Logger logger = LogManager.getLogger(TestBase.class);
 
 	@Test
 	public void ChampiensCount() throws Throwable {
 
 		homePage.OpenMarketingActivitiesTab();
+		logger.info("Marketing Activite Page Task Opened");
 		mAP.GetEventCount(27);
 		mAP.GetNurtureCount(28);
 		mAP.GetProgramLibrary(29);
+		logger.info("Marketing Activite Page Task Closed");
 
 		/*
 		 * homePage.OpenMyMarketo(); Wp.WebCampaignsScreenShot(32);

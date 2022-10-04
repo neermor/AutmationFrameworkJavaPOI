@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.base.TestBase;
@@ -13,6 +14,7 @@ import com.marketo.qa.utility.screenshotUtility;
 
 public class MarketingActivitePage extends TestBase {
 	private static Logger logger = LogManager.getLogger(TestBase.class);
+	CommonLib Clib = new CommonLib();
 
 	boolean flag = false;
 	By GlobalTreeSearch = By.xpath("//input[@data-id='globalTreeSearchInput_input']");
@@ -34,6 +36,7 @@ public class MarketingActivitePage extends TestBase {
 	By Nuture = By.xpath("//div[contains(@data-id,'treeNode_engagementprogram')]/..");
 	By Page = By.xpath("//td[@class='x-toolbar-cell'] //div[contains(text(),'of ')]");
 	By Template = By.xpath("//div[@data-id='Tree_TreeBodyLoadedFadedIn']");
+	By DefaultWP = By.xpath("//div[@data-id='treeNode_Label']//span[text()='Default']");
 
 	public WebElement GetTemplate() {
 		return driver.findElement(Template);
@@ -75,6 +78,10 @@ public class MarketingActivitePage extends TestBase {
 		return driver.findElement(CampaignInspector);
 	}
 
+	public WebElement GetDefaultWP() {
+		return driver.findElement(DefaultWP);
+	}
+
 	public WebElement GetMoreCampaign() {
 		return driver.findElement(MoreCampaigns);
 	}
@@ -84,23 +91,30 @@ public class MarketingActivitePage extends TestBase {
 
 	}
 
+	public WebElement GetExpandBtn(String Name) {
+		return driver.findElement(By.xpath("//div[contains(@data-id,'treeNode_workspace')]/..//div//span[text()='"
+				+ Name
+				+ "']/../preceding-sibling::button[contains(@data-id, 'treeNodeChevronIconButton')]//*[contains(@data-id, 'open')]"));
+	}
+
 	public void ClickCampaignInspector() throws Throwable {
-		new CommonLib().StandardWait(2000);
+		Clib.StandardWait(2000);
 		GetCampaignInspector().click();
 		GetCampaignDD().click();
 
 	}
 
-	public void SelectTreeNode(String TreeNodeName) throws Throwable {
-		new CommonLib().StandardWait(2000);
-		;
+	public WebElement SelectTreeNode(String TreeNodeName) throws Throwable {
+		Clib.StandardWait(2000);
 		List<WebElement> HomeTiles = driver.findElements(TreeNode);
+		WebElement wb = null;
 		for (WebElement option : HomeTiles) {
 
 			if (option.getText().equalsIgnoreCase(TreeNodeName)) {
-				option.click();
+				wb = option;
 			}
 		}
+		return wb;
 	}
 
 	public void GetMoreCampaignOption(String MoreCampaignValue) throws Throwable {
@@ -124,10 +138,6 @@ public class MarketingActivitePage extends TestBase {
 		}
 	}
 
-	public void SelectWorkSpace(String WorkspaceName) throws Throwable {
-		SelectTreeNode(WorkspaceName);
-	}
-
 	public String GetCount() throws Throwable {
 
 		Thread.sleep(4000);
@@ -149,16 +159,16 @@ public class MarketingActivitePage extends TestBase {
 	public int GetCampaignCount(String CampaignType, int row, int cell) throws Throwable {
 		ClickCampaignInspector();
 		GetCampaignInspectorOption(CampaignType);
-		new CommonLib().WriteExcelData("Sheet1", row, 0, CampaignType);
-		new CommonLib().WriteExcelData("Sheet1", row, cell, GetCount());
+		Clib.WriteExcelData("Sheet1", row, 0, CampaignType);
+		Clib.WriteExcelData("Sheet1", row, cell, GetCount());
 		logger.info("Fetch " + CampaignType + " Count");
 		return Integer.parseInt(GetCount());
 
 	}
 
 	public void HoverMoreCampaign() throws Throwable {
-		new CommonLib().MouseHover(GetMoreCampaign());
-		new CommonLib().StandardWait(2000);
+		Clib.MouseHover(GetMoreCampaign());
+		Clib.StandardWait(2000);
 	}
 
 	public void GetProgramLibrary(int row) throws Throwable {
@@ -167,15 +177,15 @@ public class MarketingActivitePage extends TestBase {
 		Thread.sleep(2000);
 		try {
 			driver.findElement(NoResult).isDisplayed();
-			new CommonLib().WriteExcelData("Sheet1", row, 0, "Programe Library");
-			new CommonLib().WriteExcelData("Sheet1", row, 1, "False");
+			Clib.WriteExcelData("Sheet1", row, 0, "Programe Library");
+			Clib.WriteExcelData("Sheet1", row, 1, "False");
 			logger.info("No Template's are Present");
 
 		} catch (Exception e) {
-			new CommonLib().WriteExcelData("Sheet1", row, 0, "Programe Library");
-			new CommonLib().WriteExcelData("Sheet1", row, 1, "True");
+			Clib.WriteExcelData("Sheet1", row, 0, "Programe Library");
+			Clib.WriteExcelData("Sheet1", row, 1, "True");
 			screenshotUtility.TakeScreenshot(GetTemplate(), "Template");
-			logger.info("Fetch Template's are Screenshot");
+			logger.info("Fetch Template's Screenshot");
 
 		}
 
@@ -185,9 +195,9 @@ public class MarketingActivitePage extends TestBase {
 		ClickCampaignInspector();
 		HoverMoreCampaign();
 		GetMoreCampaignOption(CampaignType);
-		new CommonLib().waitForElementVisibleFlunt(AllCount);
-		new CommonLib().WriteExcelData("Sheet1", row, 0, CampaignType);
-		new CommonLib().WriteExcelData("Sheet1", row, cell, GetCount());
+		Clib.waitForElementVisibleFlunt(AllCount);
+		Clib.WriteExcelData("Sheet1", row, 0, CampaignType);
+		Clib.WriteExcelData("Sheet1", row, cell, GetCount());
 		int value = Integer.parseInt(GetCount());
 		logger.info("Fetch " + CampaignType + " Count");
 		return value;
@@ -195,22 +205,22 @@ public class MarketingActivitePage extends TestBase {
 	}
 
 	public void GetEventCount(int row) throws Exception {
-		new CommonLib().WaitForElementToLoad(driver, 60, GetFilter());
+		Clib.WaitForElementToLoad(driver, 60, GetFilter());
 		GetFilter().click();
-		new CommonLib().WaitForElementToLoad(driver, 60, GetEventFilter());
+		Clib.WaitForElementToLoad(driver, 60, GetEventFilter());
 		GetEventFilter().click();
 		try {
 			boolean flag = driver.findElement(NoResult).isDisplayed();
 			if (flag) {
-				new CommonLib().WriteExcelData("Sheet1", row, 0, "Event Programs");
-				new CommonLib().WriteExcelData("Sheet1", row, 1, "0");
+				Clib.WriteExcelData("Sheet1", row, 0, "Event Programs");
+				Clib.WriteExcelData("Sheet1", row, 1, "0");
 
 			}
 
 		} catch (Exception e) {
 			List<WebElement> EventCount = driver.findElements(Event);
-			new CommonLib().WriteExcelData("Sheet1", row, 0, "Event Programs");
-			new CommonLib().WriteExcelData("Sheet1", row, 1, EventCount.size());
+			Clib.WriteExcelData("Sheet1", row, 0, "Event Programs");
+			Clib.WriteExcelData("Sheet1", row, 1, EventCount.size());
 		}
 		GetResetBtn().click();
 
@@ -218,24 +228,36 @@ public class MarketingActivitePage extends TestBase {
 
 	public void GetNurtureCount(int row) throws Throwable {
 
-		new CommonLib().WaitForElementToLoad(driver, 60, GetEngagementPrograms());
+		Clib.WaitForElementToLoad(driver, 60, GetEngagementPrograms());
 		GetEngagementPrograms().click();
 		try {
 			boolean flag = driver.findElement(NoResult).isDisplayed();
 			if (flag) {
-				new CommonLib().WriteExcelData("Sheet1", row, 0, "Nurture campaigns");
-				new CommonLib().WriteExcelData("Sheet1", row, 1, "0");
+				Clib.WriteExcelData("Sheet1", row, 0, "Nurture campaigns");
+				Clib.WriteExcelData("Sheet1", row, 1, "0");
 
 			}
 
 		} catch (Exception e) {
 			List<WebElement> NurturCount = driver.findElements(Nuture);
 
-			new CommonLib().WriteExcelData("Sheet1", row, 0, "Nurture campaigns");
-			new CommonLib().WriteExcelData("Sheet1", row, 1, NurturCount.size());
+			Clib.WriteExcelData("Sheet1", row, 0, "Nurture campaigns");
+			Clib.WriteExcelData("Sheet1", row, 1, NurturCount.size());
 		}
 		GetResetBtn().click();
 		GetFilter().click();
+
+	}
+
+	public void CloseDefaultTreeView() throws Throwable {
+		Clib.StandardWait(4000);
+		try {
+			GetExpandBtn("Default").isDisplayed();
+			Actions act = new Actions(driver);
+			act.doubleClick(GetDefaultWP()).perform();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 
 	}
 
@@ -251,14 +273,14 @@ public class MarketingActivitePage extends TestBase {
 	public void AllWorkspaceCampaignCount() throws Throwable {
 		List<WebElement> workSpace = driver.findElements(WorkSpace);
 
-		new CommonLib().ClearExcelData("Sheet1", 7);
-		new CommonLib().ClearExcelData("Sheet1", 8);
-		new CommonLib().ClearExcelData("Sheet1", 9);
-		new CommonLib().ClearExcelData("Sheet1", 10);
-		new CommonLib().ClearExcelData("Sheet1", 11);
-		new CommonLib().ClearExcelData("Sheet1", 12);
-		new CommonLib().ClearExcelData("Sheet1", 13);
-		new CommonLib().ClearExcelData("Sheet1", 26);
+		Clib.ClearExcelData("Sheet1", 7);
+		Clib.ClearExcelData("Sheet1", 8);
+		Clib.ClearExcelData("Sheet1", 9);
+		Clib.ClearExcelData("Sheet1", 10);
+		Clib.ClearExcelData("Sheet1", 11);
+		Clib.ClearExcelData("Sheet1", 12);
+		Clib.ClearExcelData("Sheet1", 13);
+		Clib.ClearExcelData("Sheet1", 26);
 
 		for (WebElement value : workSpace) {
 			logger.info("view " + value.getText() + " Workspace");
@@ -271,66 +293,77 @@ public class MarketingActivitePage extends TestBase {
 			AllCampaigns += GetCampaignCount("All Campaigns", 12, cell);
 			Active_Campaigns += GetCampaignCount("Active Campaigns", 13, cell);
 			driver.switchTo().defaultContent();
-			new CommonLib().WriteExcelData("Sheet1", 7, 0, "Campaign Data");
-			new CommonLib().WriteExcelData("Sheet1", 7, cell, value.getText());
+			Clib.WriteExcelData("Sheet1", 7, 0, "Campaign Data");
+			Clib.WriteExcelData("Sheet1", 7, cell, value.getText());
 			cell++;
 			logger.info("Close " + value.getText() + " Workspace");
 
 		}
 
-		new CommonLib().WriteExcelData("Sheet1", 7, 1, "Total");
-		new CommonLib().WriteExcelData("Sheet1", 26, 0, "Total WorkSpace");
-		new CommonLib().WriteExcelData("Sheet1", 26, 1, workSpace.size());
-		new CommonLib().WriteExcelData("Sheet1", 8, 1, All_Triggered_Campaigns);
-		new CommonLib().WriteExcelData("Sheet1", 9, 1, Active_Triggered_Campaigns);
-		new CommonLib().WriteExcelData("Sheet1", 10, 1, Batch_Campaigns);
-		new CommonLib().WriteExcelData("Sheet1", 11, 1, All_Batch_Campaigns);
-		new CommonLib().WriteExcelData("Sheet1", 12, 1, AllCampaigns);
-		new CommonLib().WriteExcelData("Sheet1", 13, 1, Active_Campaigns);
+		Clib.WriteExcelData("Sheet1", 7, 1, "Total");
+		Clib.WriteExcelData("Sheet1", 26, 0, "Total WorkSpace");
+		Clib.WriteExcelData("Sheet1", 26, 1, workSpace.size());
+		Clib.WriteExcelData("Sheet1", 8, 1, All_Triggered_Campaigns);
+		Clib.WriteExcelData("Sheet1", 9, 1, Active_Triggered_Campaigns);
+		Clib.WriteExcelData("Sheet1", 10, 1, Batch_Campaigns);
+		Clib.WriteExcelData("Sheet1", 11, 1, All_Batch_Campaigns);
+		Clib.WriteExcelData("Sheet1", 12, 1, AllCampaigns);
+		Clib.WriteExcelData("Sheet1", 13, 1, Active_Campaigns);
 		logger.info("Marketing Activite Page Task is done");
 
 	}
 
 	public void SpecificWorkspaceCampaignCount(int NoOfWorkSpace) throws Throwable {
 
-		new CommonLib().ClearExcelData("Sheet1", 7);
-		new CommonLib().ClearExcelData("Sheet1", 8);
-		new CommonLib().ClearExcelData("Sheet1", 9);
-		new CommonLib().ClearExcelData("Sheet1", 10);
-		new CommonLib().ClearExcelData("Sheet1", 11);
-		new CommonLib().ClearExcelData("Sheet1", 12);
-		new CommonLib().ClearExcelData("Sheet1", 13);
-		new CommonLib().ClearExcelData("Sheet1", 26);
+		Clib.ClearExcelData("Sheet1", 7);
+		Clib.ClearExcelData("Sheet1", 8);
+		Clib.ClearExcelData("Sheet1", 9);
+		Clib.ClearExcelData("Sheet1", 10);
+		Clib.ClearExcelData("Sheet1", 11);
+		Clib.ClearExcelData("Sheet1", 12);
+		Clib.ClearExcelData("Sheet1", 13);
+		Clib.ClearExcelData("Sheet1", 26);
+
+		driver.switchTo().defaultContent();
+
+		CloseDefaultTreeView();
 
 		for (int i = 1; i <= NoOfWorkSpace; i++) {
+			String Workspace = prop.getProperty("WorkSpace" + i);
+			try {
+				WebElement wSpace = SelectTreeNode(Workspace);
+				wSpace.click();
+				logger.info("view " + Workspace + " Workspace");
+				switchFrame();
+				All_Triggered_Campaigns += GetMoreCampaignCount("All Triggered Campaigns", 8, cell);
+				Active_Triggered_Campaigns += GetMoreCampaignCount("Active Triggered Campaigns", 9, cell);
+				Batch_Campaigns += GetMoreCampaignCount("Batch Campaigns - Repeating Schedule", 10, cell);
+				All_Batch_Campaigns += GetMoreCampaignCount("All Batch Campaigns", 11, cell);
+				AllCampaigns += GetCampaignCount("All Campaigns", 12, cell);
+				Active_Campaigns += GetCampaignCount("Active Campaigns", 13, cell);
+				driver.switchTo().defaultContent();
+				Clib.WriteExcelData("Sheet1", 7, 0, "Campaign Data");
+				Clib.WriteExcelData("Sheet1", 7, cell, prop.getProperty("WorkSpace" + i));
+				cell++;
+				logger.info("close " + Workspace + " Workspace");
+			} catch (Exception e) {
+				driver.switchTo().defaultContent();
+				logger.info("Oops!! " + Workspace + " Workspace is not available");
+				e.printStackTrace();
 
-			SelectWorkSpace(prop.getProperty("WorkSpace" + i));
-			logger.info("view " + prop.getProperty("WorkSpace" + i) + " Workspace");
-
-			switchFrame();
-			All_Triggered_Campaigns += GetMoreCampaignCount("All Triggered Campaigns", 8, cell);
-			Active_Triggered_Campaigns += GetMoreCampaignCount("Active Triggered Campaigns", 9, cell);
-			Batch_Campaigns += GetMoreCampaignCount("Batch Campaigns - Repeating Schedule", 10, cell);
-			All_Batch_Campaigns += GetMoreCampaignCount("All Batch Campaigns", 11, cell);
-			AllCampaigns += GetCampaignCount("All Campaigns", 12, cell);
-			Active_Campaigns += GetCampaignCount("Active Campaigns", 13, cell);
-			driver.switchTo().defaultContent();
-			new CommonLib().WriteExcelData("Sheet1", 7, 0, "Campaign Data");
-			new CommonLib().WriteExcelData("Sheet1", 7, cell, prop.getProperty("WorkSpace" + i));
-			cell++;
-			logger.info("close " + prop.getProperty("WorkSpace" + i) + " Workspace");
+			}
 
 		}
 
-		new CommonLib().WriteExcelData("Sheet1", 7, 1, "Total");
-		new CommonLib().WriteExcelData("Sheet1", 26, 0, "Total WorkSpace");
-		new CommonLib().WriteExcelData("Sheet1", 26, 1, NoOfWorkSpace);
-		new CommonLib().WriteExcelData("Sheet1", 8, 1, All_Triggered_Campaigns);
-		new CommonLib().WriteExcelData("Sheet1", 9, 1, Active_Triggered_Campaigns);
-		new CommonLib().WriteExcelData("Sheet1", 10, 1, Batch_Campaigns);
-		new CommonLib().WriteExcelData("Sheet1", 11, 1, All_Batch_Campaigns);
-		new CommonLib().WriteExcelData("Sheet1", 12, 1, AllCampaigns);
-		new CommonLib().WriteExcelData("Sheet1", 13, 1, Active_Campaigns);
+		Clib.WriteExcelData("Sheet1", 7, 1, "Total");
+		Clib.WriteExcelData("Sheet1", 26, 0, "Total WorkSpace");
+		Clib.WriteExcelData("Sheet1", 26, 1, NoOfWorkSpace);
+		Clib.WriteExcelData("Sheet1", 8, 1, All_Triggered_Campaigns);
+		Clib.WriteExcelData("Sheet1", 9, 1, Active_Triggered_Campaigns);
+		Clib.WriteExcelData("Sheet1", 10, 1, Batch_Campaigns);
+		Clib.WriteExcelData("Sheet1", 11, 1, All_Batch_Campaigns);
+		Clib.WriteExcelData("Sheet1", 12, 1, AllCampaigns);
+		Clib.WriteExcelData("Sheet1", 13, 1, Active_Campaigns);
 
 	}
 
