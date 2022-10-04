@@ -5,13 +5,15 @@ import java.util.concurrent.TimeUnit;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.marketo.qa.base.TestBase;
 
 public class GhostLoginPage extends TestBase {
 	private static Logger logger = LogManager.getLogger(TestBase.class);
-
+	
+	
 	private By Password = By.id("loginPassword");
 	private By GhostId = By.id("secondaryUsername");
 	private By Prifix = By.id("loginUsername");

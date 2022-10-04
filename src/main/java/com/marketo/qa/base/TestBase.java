@@ -1,16 +1,22 @@
 package com.marketo.qa.base;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
 import com.marketo.qa.FileLib.CommonLib;
@@ -44,12 +50,13 @@ public class TestBase {
 	}
 
 	@BeforeTest
-	public static void initialization() throws Throwable {
+	public  void initialization() throws Throwable {
 
 		String browserName = prop.getProperty("browser");
 
 		if (browserName.equals("Chrome")) {
 
+			
 			driver = WebDriverManager.chromedriver().create();
 
 		}
@@ -74,24 +81,31 @@ public class TestBase {
 		logger.info(browserName + " Browser launch");
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
+		
 		driver.manage().deleteAllCookies();
+		
 		driver.get(prop.getProperty("ghosturl"));
+		
 		GhostLogin();
 
 	}
 
+	@BeforeSuite 
 	public static void clearScreenshots()
 	{
-		try {
-			
-		logger.info(" Clearing privouse screenshot");
+		String filePath = System.getProperty("user.dir") + "//Config//ScreenShot";
+	    //Creating the File object
+	    File file = new File(filePath);
+	    try {
+			FileUtils.deleteDirectory(file);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		catch (Exception e) {
-			logger.warn("Not able to clear privouse screenshot Data");
-			// TODO: handle exception
+	    logger.info("Screenshot Deleted");
 		}
 		
-	}
+	
 	
 	public static void OpenSupportTool() {
 		String url = driver.getCurrentUrl();
