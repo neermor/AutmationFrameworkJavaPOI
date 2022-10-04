@@ -131,11 +131,11 @@ public class GhostLoginPage extends TestBase {
 			try {
 				GetOktaUsername().isDisplayed();
 				Thread.sleep(2000);
-				GetOktaUsername().sendKeys(prop.getProperty("OcktaUserID"));
+				GetOktaUsername().sendKeys(prop.getProperty("OktaUserID"));
 				logger.info("Entered Okta Username");
 				GetOktaNextBtn().click();
 				Thread.sleep(2000);
-				GetOktaPassword().sendKeys(prop.getProperty("OcktaPassword"));
+				GetOktaPassword().sendKeys(prop.getProperty("OktaPassword"));
 				logger.info("Entered Okta Password");
 				GetOktaVerifyBtn().click();
 				Thread.sleep(2000);
