@@ -1,9 +1,11 @@
 package com.marketo.qa.utility;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.util.Units;
 import org.apache.poi.xwpf.usermodel.BreakType;
@@ -15,7 +17,7 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.xmlbeans.XmlException;
 
 public class ReportPrintMethods {
-	
+
 	public static void stats(XWPFDocument document) throws IOException, XmlException 
 	{
 		XWPFParagraph Statsparagraph = document.createParagraph();
@@ -110,6 +112,22 @@ public class ReportPrintMethods {
 			
 		
 	}
-	
 
+	public static void main(String args[])
+	{
+		deleteScreen();
+	}
+public static void deleteScreen()
+{
+	String filePath = System.getProperty("user.dir") + "//Config//ScreenShot";
+    //Creating the File object
+    File file = new File(filePath);
+    try {
+		FileUtils.deleteDirectory(file);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+    System.out.println("Files deleted........");
+	}
 }

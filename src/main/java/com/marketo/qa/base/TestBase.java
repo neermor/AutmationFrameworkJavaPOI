@@ -1,16 +1,19 @@
 package com.marketo.qa.base;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
 import com.marketo.qa.FileLib.CommonLib;
@@ -75,9 +78,9 @@ public class TestBase {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
-		driver.get(prop.getProperty("url"));
+		driver.get(prop.getProperty("ghosturl"));
 		new GhostLoginPage().verifyLoginPage();
-		Login();
+		GhostLogin();
 	}
 
 	public static void OpenSupportTool() {
@@ -102,6 +105,20 @@ public class TestBase {
 		new MyMarketoPage().GetAccountIcon().click();
 		new MyMarketoPage().GetLogoutBtn().click();
 
+	}
+
+	@BeforeSuite
+	public static void clearScreenshots() {
+		String filePath = System.getProperty("user.dir") + "//Config//ScreenShot";
+		// Creating the File object
+		File file = new File(filePath);
+		try {
+			FileUtils.deleteDirectory(file);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		logger.info("Screenshot Deleted");
 	}
 
 	@AfterTest
