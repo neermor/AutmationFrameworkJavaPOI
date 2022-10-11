@@ -117,12 +117,14 @@ public class GhostLoginPage extends TestBase {
 		boolean push = false;
 
 		try {
+			Clib.StandardWait(4000);
 			push = GetOktaPushBtn().isDisplayed();
 			if (push) {
 				GetOktaPushBtn().click();
-				new CommonLib().StandardWait(40000);
+				Clib.StandardWait(40000);
 				OctaLogs();
 				Assert.assertTrue(OktaVerify());
+
 			}
 
 		} catch (Exception e) {
@@ -131,7 +133,6 @@ public class GhostLoginPage extends TestBase {
 		while (!push) {
 
 			try {
-				GetOktaUsername().isDisplayed();
 				Thread.sleep(2000);
 				GetOktaUsername().sendKeys(prop.getProperty("OktaUserID"));
 				logger.info("Entered Okta Username");
