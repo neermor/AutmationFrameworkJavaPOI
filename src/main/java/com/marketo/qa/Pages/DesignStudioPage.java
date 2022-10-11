@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.asserts.SoftAssert;
 
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.base.TestBase;
@@ -18,6 +19,7 @@ public class DesignStudioPage extends TestBase {
 	MarketingActivitePage mAP = new MarketingActivitePage();
 	CommonLib Clib = new CommonLib();
 	private static Logger logger = LogManager.getLogger(TestBase.class);
+	SoftAssert asrt = new SoftAssert();
 
 	By TreeNode = By.xpath("//div[contains(@data-id,'treeNodeRow' )]");
 	By AllCount = By.cssSelector("[data-id='dataGridFooter_pageInfo']");
@@ -27,9 +29,15 @@ public class DesignStudioPage extends TestBase {
 	By DefaultWP = By.xpath("//div[@data-id='treeNode_Label']//span[text()='Default']");
 	By CountNxtPage = By.xpath("//button[@data-id='dataGridFooter_nextPage']");
 	By Refresh = By.xpath("//button[@data-id='dataGridFooter_refresh']");
+	By NewExpToggle = By.xpath("//span[contains(@class,'spectrum-ToggleSwitch-switch')]");
+	By ToggleStatus = By.xpath("//input[contains(@data-id,'ToggleExperience')]");
 
 	public WebElement GetIFrame() {
 		return driver.findElement(Iframe);
+	}
+
+	public WebElement GetToggleStatus() {
+		return driver.findElement(ToggleStatus);
 	}
 
 	public WebElement GetDefaultWP() {
@@ -44,6 +52,10 @@ public class DesignStudioPage extends TestBase {
 		return driver.findElement(CountNxtPage);
 	}
 
+	public WebElement GetNewExpToggle() {
+		return driver.findElement(NewExpToggle);
+	}
+
 	public WebElement GetExpandBtn(String Name) {
 		return driver.findElement(By.xpath("//div[contains(@data-id,'treeNode_workspace')]/..//div//span[text()='"
 				+ Name
@@ -53,31 +65,67 @@ public class DesignStudioPage extends TestBase {
 	boolean flag = true;
 
 	public int GetCount() throws Throwable {
+		String value = null;
+		value = GetToggleStatus().getAttribute("aria-label");
 		int count = 0;
-		WebDriverWait wait = new WebDriverWait(driver, 60);
 
-		try {
-			Clib.StandardWait(2000);
-			GetRefresh().click();
-			while (GetNextPage().isEnabled()) {
-				GetNextPage().click();
+		switch (value) {
+		case "null":
+			WebDriverWait wait = new WebDriverWait(driver, 60);
+
+			try {
+				Clib.StandardWait(2000);
+				GetRefresh().click();
+				while (GetNextPage().isEnabled()) {
+					GetNextPage().click();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(Refresh));
+				}
 				wait.until(ExpectedConditions.visibilityOfElementLocated(Refresh));
+				GetRefresh().click();
+				Clib.StandardWait(4000);
+				String countString = driver.findElement(AllCount).getText();
+				String[] words = countString.split("\\s");
+				if (words[0].equalsIgnoreCase("0")) {
+					return 0;
+				}
+				count = Integer.parseInt(words[2]);
+				flag = true;
+				System.out.println(count);
+			} catch (Exception e) {
+				logger.info("Oops!! Wrong Count");
+				flag = false;
+				asrt.assertTrue(flag, "Wrong count available");
+
 			}
-			wait.until(ExpectedConditions.visibilityOfElementLocated(Refresh));
-			GetRefresh().click();
-			Clib.StandardWait(4000);
-			String countString = driver.findElement(AllCount).getText();
+			break;
+
+		case "New experience":
+
+			String status = GetToggleStatus().getAttribute("aria-checked");
+			boolean bool = Boolean.parseBoolean(status);
+			if (bool) {
+				GetToggleStatus().click();
+			}
+			driver.switchTo().defaultContent();
+			driver.switchTo().frame(GetIFrame());
+			Thread.sleep(4000);
+			String countString = driver.findElement(UploadCount).getText();
 			String[] words = countString.split("\\s");
-			if (words[0].equalsIgnoreCase("0")) {
+
+			if (words[0].equalsIgnoreCase("No")) {
 				return 0;
+			} else {
+				if (mAP.GetPage().getText().equalsIgnoreCase("Of 1")) {
+					count = Integer.parseInt(words[0]);
+
+				} else {
+					count = Integer.parseInt(words[2]);
+				}
 			}
-			count = Integer.parseInt(words[2]);
-			System.out.println(count);
-		} catch (Exception e) {
-			logger.info("Oops!! Wrong Count");
 
 		}
 		flag = true;
+		driver.switchTo().defaultContent();
 		return count;
 	}
 
@@ -92,7 +140,7 @@ public class DesignStudioPage extends TestBase {
 		}
 	}
 
-	public String GetSnippetsCount() throws Throwable {
+	public String GetOldExperienceCount() throws Throwable {
 		Clib.StandardWait(10000);
 		String countString = driver.findElement(UploadCount).getText();
 		String[] words = countString.split("\\s");
@@ -137,9 +185,9 @@ public class DesignStudioPage extends TestBase {
 		driver.switchTo().frame(GetIFrame());
 		Clib.StandardWait(2000);
 		Clib.WriteExcelData("Sheet1", row, 0, value);
-		Clib.WriteExcelData("Sheet1", row, cell, GetSnippetsCount());
+		Clib.WriteExcelData("Sheet1", row, cell, GetOldExperienceCount());
 		logger.info("Fetch " + value + " Count");
-		int SnippetsCount = Integer.parseInt(GetSnippetsCount());
+		int SnippetsCount = Integer.parseInt(GetOldExperienceCount());
 		return SnippetsCount;
 
 	}
@@ -161,7 +209,7 @@ public class DesignStudioPage extends TestBase {
 	}
 
 	int cell = 2;
-
+	boolean WorkspaceAvl = true;
 	int AllEmails = 0;
 	int AllForms = 0;
 	int AllLandingPages = 0;
@@ -269,6 +317,9 @@ public class DesignStudioPage extends TestBase {
 					driver.switchTo().defaultContent();
 					logger.info("Oops!! " + Workspace + " Workspace is not available");
 					ee.printStackTrace();
+					WorkspaceAvl = false;
+					cell++;
+					asrt.assertTrue(WorkspaceAvl, Workspace + " Workspace is not available");
 				}
 			}
 		}
@@ -279,7 +330,7 @@ public class DesignStudioPage extends TestBase {
 		Clib.WriteExcelData("Sheet1", 4, 1, AllLandingPages);
 		Clib.WriteExcelData("Sheet1", 5, 1, AllImages_and_Files);
 		Clib.WriteExcelData("Sheet1", 6, 1, AllSnippets);
+		asrt.assertAll();
 
 	}
-
 }

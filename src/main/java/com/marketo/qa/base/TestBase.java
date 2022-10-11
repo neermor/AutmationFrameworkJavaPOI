@@ -107,21 +107,20 @@ public class TestBase {
 
 	}
 
-	@BeforeSuite 
-	public static void clearScreenshots()
-	{
+	@BeforeSuite
+	public static void clearScreenshots() {
 		String filePath = System.getProperty("user.dir") + "//Config//ScreenShot";
-	    //Creating the File object
-	    File file = new File(filePath);
-	    try {
+		// Creating the File object
+		File file = new File(filePath);
+		try {
 			FileUtils.deleteDirectory(file);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    logger.info("Screenshot Deleted");
-		}
-	
+		logger.info("Screenshot Deleted");
+	}
+
 	@AfterTest
 	public void BackToMyMarketo() {
 		driver.switchTo().defaultContent();
@@ -133,7 +132,6 @@ public class TestBase {
 		reports.docs();
 		driver.quit();
 		System.out.println("Execution Over");
-
 	}
 
 }

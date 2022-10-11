@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.asserts.SoftAssert;
 
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.base.TestBase;
@@ -15,6 +16,8 @@ import com.marketo.qa.utility.screenshotUtility;
 public class DatabasePage extends TestBase {
 	MyMarketoPage homePage = new MyMarketoPage();
 	private static Logger logger = LogManager.getLogger(TestBase.class);
+	SoftAssert asrt = new SoftAssert();
+	CommonLib Clib = new CommonLib();
 
 	By TreeNode = By.xpath("//div[contains(@data-id,'treeNodeRow' )]");
 	By Iframe = By.cssSelector("#mlm");
@@ -174,7 +177,12 @@ public class DatabasePage extends TestBase {
 
 	}
 
+	boolean WorkspaceAvl = true;
+
 	public void SpecificWorkspaceCollectLeadsCount(int NoOfWorkspace) throws Throwable {
+		Clib.ClearExcelData("Sheet1", 14);
+		Clib.ClearExcelData("Sheet1", 15);
+		Clib.ClearExcelData("Sheet1", 16);
 
 		new DesignStudioPage().CloseDefaultTreeView();
 		for (int i = 1; i <= NoOfWorkspace; i++) {
@@ -201,6 +209,8 @@ public class DatabasePage extends TestBase {
 					cell++;
 				} catch (Exception ee) {
 					logger.info("Oops!! " + Workspace + " Workspace is not available");
+					asrt.assertTrue(WorkspaceAvl, Workspace + " Workspace is not available");
+
 				}
 
 			}
@@ -208,6 +218,7 @@ public class DatabasePage extends TestBase {
 		new CommonLib().WriteExcelData("Sheet1", 14, 1, "Total");
 		new CommonLib().WriteExcelData("Sheet1", 15, 1, Segmentations);
 		new CommonLib().WriteExcelData("Sheet1", 16, 1, Leads);
+		asrt.assertAll();
 
 	}
 }

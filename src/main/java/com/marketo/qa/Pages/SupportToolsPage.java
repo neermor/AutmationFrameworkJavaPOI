@@ -4,16 +4,18 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.asserts.SoftAssert;
 
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.base.TestBase;
 
 public class SupportToolsPage extends TestBase {
 	private static Logger logger = LogManager.getLogger(TestBase.class);
+	SoftAssert asrt = new SoftAssert();
 
 	private By flowAction = By.cssSelector("#actionId");
 	private By listCampaigns = By.xpath("//button[text()='List Campaigns']");
-	private By actionCount = By.xpath("//h3[contains(text(),'Campaign Flows with')]/..//table/tbody/tr");
+	private By actionCount = By.xpath("//form[@id='flowActionUsage']/a[@name ='results']/p");
 	private By resultTable = By.cssSelector("[name='results'] table");
 	private By backToSupport = By.xpath("//a[contains(text(),'back to Support Tools')]");
 
@@ -37,6 +39,8 @@ public class SupportToolsPage extends TestBase {
 		return driver.findElement(resultTable);
 	}
 
+	boolean WorkspaceAvl = true;
+
 	public void SelectValueFlowAction(String IndexName, String value, int row) throws Exception {
 		try {
 			GetSupportToolIndex(IndexName).click();
@@ -49,13 +53,17 @@ public class SupportToolsPage extends TestBase {
 			logger.info("Fetch " + value + " Count");
 		} catch (Exception e) {
 			logger.info(value + " Not Present..");
+			asrt.assertTrue(WorkspaceAvl, value + " Not Present..");
+
 		}
+		asrt.assertAll();
 
 	}
 
-	public int GetCount() {
-		int count = driver.findElements(actionCount).size();
-		return count - 1;
+	public String GetCount() {
+		String count = driver.findElement(actionCount).getText();
+		String[] words = count.split("\\s");
+		return words[6];
 	}
 
 	public void ClickBackToSupportLink() {
