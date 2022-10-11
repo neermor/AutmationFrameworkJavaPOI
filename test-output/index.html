@@ -26,7 +26,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 2 failed tests</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -40,7 +40,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Suite" class="navigator-link">
-              <span class="suite-name border-skipped">Suite</span>
+              <span class="suite-name border-failed">Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -93,10 +93,29 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">7 methods,  7 skipped,  </span>
+                    <span class="method-stats">14 methods, 2 failed,  8 skipped,  4 passed</span>
                   </li>
                   <li>
-                    <span class="method-list-title skipped">Skipped methods</span>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Suite" class="hide-methods failed suite-Suite"> (hide)</a> <!-- hide-methods failed suite-Suite -->
+                      <a href="#" panel-name="suite-Suite" class="show-methods failed suite-Suite"> (show)</a> <!-- show-methods failed suite-Suite -->
+                    </span>
+                    <div class="method-list-content failed suite-Suite">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite" title="com.marketo.qa.Tests.FetchNuture_EventCount" class="method navigator-link" hash-for-method="ChampiensCount">ChampiensCount</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite" title="com.marketo.qa.Tests.FetchAdminDatas" class="method navigator-link" hash-for-method="VerifyCountAndScreenshot">VerifyCountAndScreenshot</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Suite -->
+                  </li>
+                  <li>
+                    <span class="method-list-title skipped">Retried methods</span>
                     <span class="show-or-hide-methods skipped">
                       <a href="#" panel-name="suite-Suite" class="hide-methods skipped suite-Suite"> (hide)</a> <!-- hide-methods skipped suite-Suite -->
                       <a href="#" panel-name="suite-Suite" class="show-methods skipped suite-Suite"> (show)</a> <!-- show-methods skipped suite-Suite -->
@@ -104,7 +123,7 @@
                     <div class="method-list-content skipped suite-Suite">
                       <span>
                         <img src="skipped.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="com.marketo.qa.Tests.FetchCampaignCounts" class="method navigator-link" hash-for-method="CampaignsCount">CampaignsCount</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Suite" title="com.marketo.qa.Tests.FetchNuture_EventCount" class="method navigator-link" hash-for-method="ChampiensCount">ChampiensCount</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
@@ -114,22 +133,27 @@
                       <br/>
                       <span>
                         <img src="skipped.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="com.marketo.qa.Tests.FetchLeadsCount" class="method navigator-link" hash-for-method="CollectLeadsCount">CollectLeadsCount</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Suite" title="com.marketo.qa.Tests.FetchNuture_EventCount" class="method navigator-link" hash-for-method="ChampiensCount">ChampiensCount</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="skipped.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="com.marketo.qa.Tests.FetchModelsCount" class="method navigator-link" hash-for-method="ModelCount">ModelCount</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Suite" title="com.marketo.qa.Tests.FetchNuture_EventCount" class="method navigator-link" hash-for-method="ChampiensCount">ChampiensCount</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="skipped.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="com.marketo.qa.Tests.FetchDesignStudioData" class="method navigator-link" hash-for-method="TakeRequiredCount">TakeRequiredCount</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Suite" title="com.marketo.qa.Tests.FetchAdminDatas" class="method navigator-link" hash-for-method="VerifyCountAndScreenshot">VerifyCountAndScreenshot</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="skipped.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="com.marketo.qa.Tests.FetchDataFromChangeScore" class="method navigator-link" hash-for-method="VerifyChangeScoreCount">VerifyChangeScoreCount</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Suite" title="com.marketo.qa.Tests.FetchAdminDatas" class="method navigator-link" hash-for-method="VerifyCountAndScreenshot">VerifyCountAndScreenshot</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="skipped.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite" title="com.marketo.qa.Tests.FetchAdminDatas" class="method navigator-link" hash-for-method="VerifyCountAndScreenshot">VerifyCountAndScreenshot</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
@@ -138,6 +162,35 @@
                       </span>
                       <br/>
                     </div> <!-- method-list-content skipped suite-Suite -->
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Suite" class="hide-methods passed suite-Suite"> (hide)</a> <!-- hide-methods passed suite-Suite -->
+                      <a href="#" panel-name="suite-Suite" class="show-methods passed suite-Suite"> (show)</a> <!-- show-methods passed suite-Suite -->
+                    </span>
+                    <div class="method-list-content passed suite-Suite">
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite" title="com.marketo.qa.Tests.FetchCampaignCounts" class="method navigator-link" hash-for-method="CampaignsCount">CampaignsCount</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite" title="com.marketo.qa.Tests.FetchLeadsCount" class="method navigator-link" hash-for-method="CollectLeadsCount">CollectLeadsCount</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite" title="com.marketo.qa.Tests.FetchModelsCount" class="method navigator-link" hash-for-method="ModelCount">ModelCount</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite" title="com.marketo.qa.Tests.FetchDesignStudioData" class="method navigator-link" hash-for-method="TakeRequiredCount">TakeRequiredCount</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-Suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -149,64 +202,211 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Suite" class="panel Suite">
-          <div class="suite-Suite-class-skipped">
+          <div class="suite-Suite-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="skipped.png"/>
-              <span class="class-name">com.marketo.qa.Tests.FetchCampaignCounts</span>
+              <img src="failed.png"/>
+              <span class="class-name">com.marketo.qa.Tests.FetchAdminDatas</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="CampaignsCount">
-                  </a> <!-- CampaignsCount -->
-                  <span class="method-name">CampaignsCount</span>
-                  <div class="stack-trace">java.lang.AssertionError: expected [true] but found [false]
-	at com.marketo.qa.Pages.GhostLoginPage.GhostLogin(GhostLoginPage.java:146)
-	at com.marketo.qa.base.TestBase.GhostLogin(TestBase.java:94)
-	at com.marketo.qa.base.TestBase.initialization(TestBase.java:83)
-... Removed 26 stack frames
+                  <a name="VerifyCountAndScreenshot">
+                  </a> <!-- VerifyCountAndScreenshot -->
+                  <span class="method-name">VerifyCountAndScreenshot</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//li[@class=&apos;x-tree-node&apos;]//span[text()=&apos;Tags&apos;]&quot;}
+  (Session info: chrome=106.0.5249.103)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;NAG1-LHP-N66635&apos;, ip: &apos;10.173.52.21&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;18.0.2.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.103, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:65426}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: c639936d9ee172382e12c54317c453ad
+*** Element info: {Using=xpath, value=//li[@class=&apos;x-tree-node&apos;]//span[text()=&apos;Tags&apos;]}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at com.marketo.qa.Pages.AdminPage.GetTags(AdminPage.java:46)
+	at com.marketo.qa.Pages.AdminPage.TagsCountAndScreenshot(AdminPage.java:95)
+	at com.marketo.qa.Tests.FetchAdminDatas.VerifyCountAndScreenshot(FetchAdminDatas.java:22)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 28 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Suite-class-skipped -->
-          <div class="suite-Suite-class-skipped">
+          </div> <!-- suite-Suite-class-failed -->
+          <div class="suite-Suite-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="skipped.png"/>
-              <span class="class-name">com.marketo.qa.Tests.FetchDataFromChangeScore</span>
+              <img src="failed.png"/>
+              <span class="class-name">com.marketo.qa.Tests.FetchNuture_EventCount</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="VerifyChangeScoreCount">
-                  </a> <!-- VerifyChangeScoreCount -->
-                  <span class="method-name">VerifyChangeScoreCount</span>
-                  <div class="stack-trace">java.lang.AssertionError: expected [true] but found [false]
-	at com.marketo.qa.Pages.GhostLoginPage.GhostLogin(GhostLoginPage.java:146)
-	at com.marketo.qa.base.TestBase.GhostLogin(TestBase.java:94)
-	at com.marketo.qa.base.TestBase.initialization(TestBase.java:83)
-... Removed 26 stack frames
+                  <a name="ChampiensCount">
+                  </a> <!-- ChampiensCount -->
+                  <span class="method-name">ChampiensCount</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//button[@data-id=&apos;global_treeFilterButton&apos;]&quot;}
+  (Session info: chrome=106.0.5249.103)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;NAG1-LHP-N66635&apos;, ip: &apos;10.173.52.21&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;18.0.2.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.103, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:65426}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: c639936d9ee172382e12c54317c453ad
+*** Element info: {Using=xpath, value=//button[@data-id=&apos;global_treeFilterButton&apos;]}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at com.marketo.qa.Pages.MarketingActivitePage.GetFilter(MarketingActivitePage.java:62)
+	at com.marketo.qa.Pages.MarketingActivitePage.GetEventCount(MarketingActivitePage.java:208)
+	at com.marketo.qa.Tests.FetchNuture_EventCount.ChampiensCount(FetchNuture_EventCount.java:30)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 28 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Suite-class-skipped -->
+          </div> <!-- suite-Suite-class-failed -->
           <div class="suite-Suite-class-skipped">
             <div class="main-panel-header rounded-window-top">
               <img src="skipped.png"/>
-              <span class="class-name">com.marketo.qa.Tests.FetchDesignStudioData</span>
+              <span class="class-name">com.marketo.qa.Tests.FetchAdminDatas</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="TakeRequiredCount">
-                  </a> <!-- TakeRequiredCount -->
-                  <span class="method-name">TakeRequiredCount</span>
-                  <div class="stack-trace">java.lang.AssertionError: expected [true] but found [false]
-	at com.marketo.qa.Pages.GhostLoginPage.GhostLogin(GhostLoginPage.java:146)
-	at com.marketo.qa.base.TestBase.GhostLogin(TestBase.java:94)
-	at com.marketo.qa.base.TestBase.initialization(TestBase.java:83)
-... Removed 26 stack frames
+                  <a name="VerifyCountAndScreenshot">
+                  </a> <!-- VerifyCountAndScreenshot -->
+                  <span class="method-name">VerifyCountAndScreenshot</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//li[@class=&apos;x-tree-node&apos;]//span[text()=&apos;Tags&apos;]&quot;}
+  (Session info: chrome=106.0.5249.103)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;NAG1-LHP-N66635&apos;, ip: &apos;10.173.52.21&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;18.0.2.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.103, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:65426}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: c639936d9ee172382e12c54317c453ad
+*** Element info: {Using=xpath, value=//li[@class=&apos;x-tree-node&apos;]//span[text()=&apos;Tags&apos;]}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at com.marketo.qa.Pages.AdminPage.GetTags(AdminPage.java:46)
+	at com.marketo.qa.Pages.AdminPage.TagsCountAndScreenshot(AdminPage.java:95)
+	at com.marketo.qa.Tests.FetchAdminDatas.VerifyCountAndScreenshot(FetchAdminDatas.java:22)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 28 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="VerifyCountAndScreenshot">
+                  </a> <!-- VerifyCountAndScreenshot -->
+                  <span class="method-name">VerifyCountAndScreenshot</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//li[@class=&apos;x-tree-node&apos;]//span[text()=&apos;Tags&apos;]&quot;}
+  (Session info: chrome=106.0.5249.103)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;NAG1-LHP-N66635&apos;, ip: &apos;10.173.52.21&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;18.0.2.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.103, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:65426}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: c639936d9ee172382e12c54317c453ad
+*** Element info: {Using=xpath, value=//li[@class=&apos;x-tree-node&apos;]//span[text()=&apos;Tags&apos;]}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at com.marketo.qa.Pages.AdminPage.GetTags(AdminPage.java:46)
+	at com.marketo.qa.Pages.AdminPage.TagsCountAndScreenshot(AdminPage.java:95)
+	at com.marketo.qa.Tests.FetchAdminDatas.VerifyCountAndScreenshot(FetchAdminDatas.java:22)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 28 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="VerifyCountAndScreenshot">
+                  </a> <!-- VerifyCountAndScreenshot -->
+                  <span class="method-name">VerifyCountAndScreenshot</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: timeout: Timed out receiving message from renderer: 300.000
+  (Session info: chrome=106.0.5249.103)
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;NAG1-LHP-N66635&apos;, ip: &apos;10.173.52.21&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;18.0.2.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.103, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:65426}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: c639936d9ee172382e12c54317c453ad
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver$RemoteTargetLocator.frame(RemoteWebDriver.java:892)
+	at com.marketo.qa.Pages.AdminPage.switchFrame(AdminPage.java:79)
+	at com.marketo.qa.Tests.FetchAdminDatas.VerifyCountAndScreenshot(FetchAdminDatas.java:21)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 28 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="VerifyCountAndScreenshot">
+                  </a> <!-- VerifyCountAndScreenshot -->
+                  <span class="method-name">VerifyCountAndScreenshot</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//li[@class=&apos;x-tree-node&apos;]//span[text()=&apos;Tags&apos;]&quot;}
+  (Session info: chrome=106.0.5249.103)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;NAG1-LHP-N66635&apos;, ip: &apos;10.173.52.21&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;18.0.2.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.103, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:65426}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: c639936d9ee172382e12c54317c453ad
+*** Element info: {Using=xpath, value=//li[@class=&apos;x-tree-node&apos;]//span[text()=&apos;Tags&apos;]}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at com.marketo.qa.Pages.AdminPage.GetTags(AdminPage.java:46)
+	at com.marketo.qa.Pages.AdminPage.TagsCountAndScreenshot(AdminPage.java:95)
+	at com.marketo.qa.Tests.FetchAdminDatas.VerifyCountAndScreenshot(FetchAdminDatas.java:22)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 28 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
@@ -223,61 +423,149 @@
                   <a name="ChampiensCount">
                   </a> <!-- ChampiensCount -->
                   <span class="method-name">ChampiensCount</span>
-                  <div class="stack-trace">java.lang.AssertionError: expected [true] but found [false]
-	at com.marketo.qa.Pages.GhostLoginPage.GhostLogin(GhostLoginPage.java:146)
-	at com.marketo.qa.base.TestBase.GhostLogin(TestBase.java:94)
-	at com.marketo.qa.base.TestBase.initialization(TestBase.java:83)
-... Removed 26 stack frames
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//button[@data-id=&apos;global_treeFilterButton&apos;]&quot;}
+  (Session info: chrome=106.0.5249.103)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;NAG1-LHP-N66635&apos;, ip: &apos;10.173.52.21&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;18.0.2.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.103, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:65426}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: c639936d9ee172382e12c54317c453ad
+*** Element info: {Using=xpath, value=//button[@data-id=&apos;global_treeFilterButton&apos;]}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at com.marketo.qa.Pages.MarketingActivitePage.GetFilter(MarketingActivitePage.java:62)
+	at com.marketo.qa.Pages.MarketingActivitePage.GetEventCount(MarketingActivitePage.java:208)
+	at com.marketo.qa.Tests.FetchNuture_EventCount.ChampiensCount(FetchNuture_EventCount.java:30)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 28 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="ChampiensCount">
+                  </a> <!-- ChampiensCount -->
+                  <span class="method-name">ChampiensCount</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//button[@data-id=&apos;global_treeFilterButton&apos;]&quot;}
+  (Session info: chrome=106.0.5249.103)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;NAG1-LHP-N66635&apos;, ip: &apos;10.173.52.21&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;18.0.2.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.103, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:65426}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: c639936d9ee172382e12c54317c453ad
+*** Element info: {Using=xpath, value=//button[@data-id=&apos;global_treeFilterButton&apos;]}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at com.marketo.qa.Pages.MarketingActivitePage.GetFilter(MarketingActivitePage.java:62)
+	at com.marketo.qa.Pages.MarketingActivitePage.GetEventCount(MarketingActivitePage.java:208)
+	at com.marketo.qa.Tests.FetchNuture_EventCount.ChampiensCount(FetchNuture_EventCount.java:30)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 28 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="ChampiensCount">
+                  </a> <!-- ChampiensCount -->
+                  <span class="method-name">ChampiensCount</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//button[@data-id=&apos;global_treeFilterButton&apos;]&quot;}
+  (Session info: chrome=106.0.5249.103)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;NAG1-LHP-N66635&apos;, ip: &apos;10.173.52.21&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;18.0.2.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.103, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:65426}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: c639936d9ee172382e12c54317c453ad
+*** Element info: {Using=xpath, value=//button[@data-id=&apos;global_treeFilterButton&apos;]}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at com.marketo.qa.Pages.MarketingActivitePage.GetFilter(MarketingActivitePage.java:62)
+	at com.marketo.qa.Pages.MarketingActivitePage.GetEventCount(MarketingActivitePage.java:208)
+	at com.marketo.qa.Tests.FetchNuture_EventCount.ChampiensCount(FetchNuture_EventCount.java:30)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 28 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="ChampiensCount">
+                  </a> <!-- ChampiensCount -->
+                  <span class="method-name">ChampiensCount</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//button[@data-id=&apos;global_treeFilterButton&apos;]&quot;}
+  (Session info: chrome=106.0.5249.103)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;NAG1-LHP-N66635&apos;, ip: &apos;10.173.52.21&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;18.0.2.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.103, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: C:\Users\NEERAJ~1.MOU\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:65426}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: c639936d9ee172382e12c54317c453ad
+*** Element info: {Using=xpath, value=//button[@data-id=&apos;global_treeFilterButton&apos;]}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at com.marketo.qa.Pages.MarketingActivitePage.GetFilter(MarketingActivitePage.java:62)
+	at com.marketo.qa.Pages.MarketingActivitePage.GetEventCount(MarketingActivitePage.java:208)
+	at com.marketo.qa.Tests.FetchNuture_EventCount.ChampiensCount(FetchNuture_EventCount.java:30)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 28 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
           </div> <!-- suite-Suite-class-skipped -->
-          <div class="suite-Suite-class-skipped">
+          <div class="suite-Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
-              <img src="skipped.png"/>
-              <span class="class-name">com.marketo.qa.Tests.FetchAdminDatas</span>
+              <img src="passed.png"/>
+              <span class="class-name">com.marketo.qa.Tests.FetchCampaignCounts</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="VerifyCountAndScreenshot">
-                  </a> <!-- VerifyCountAndScreenshot -->
-                  <span class="method-name">VerifyCountAndScreenshot</span>
-                  <div class="stack-trace">java.lang.AssertionError: expected [true] but found [false]
-	at com.marketo.qa.Pages.GhostLoginPage.GhostLogin(GhostLoginPage.java:146)
-	at com.marketo.qa.base.TestBase.GhostLogin(TestBase.java:94)
-	at com.marketo.qa.base.TestBase.initialization(TestBase.java:83)
-... Removed 26 stack frames
-</div> <!-- stack-trace -->
+                  <a name="CampaignsCount">
+                  </a> <!-- CampaignsCount -->
+                  <span class="method-name">CampaignsCount</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Suite-class-skipped -->
-          <div class="suite-Suite-class-skipped">
+          </div> <!-- suite-Suite-class-passed -->
+          <div class="suite-Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
-              <img src="skipped.png"/>
-              <span class="class-name">com.marketo.qa.Tests.FetchModelsCount</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="ModelCount">
-                  </a> <!-- ModelCount -->
-                  <span class="method-name">ModelCount</span>
-                  <div class="stack-trace">java.lang.AssertionError: expected [true] but found [false]
-	at com.marketo.qa.Pages.GhostLoginPage.GhostLogin(GhostLoginPage.java:146)
-	at com.marketo.qa.base.TestBase.GhostLogin(TestBase.java:94)
-	at com.marketo.qa.base.TestBase.initialization(TestBase.java:83)
-... Removed 26 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Suite-class-skipped -->
-          <div class="suite-Suite-class-skipped">
-            <div class="main-panel-header rounded-window-top">
-              <img src="skipped.png"/>
+              <img src="passed.png"/>
               <span class="class-name">com.marketo.qa.Tests.FetchLeadsCount</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
@@ -286,16 +574,40 @@
                   <a name="CollectLeadsCount">
                   </a> <!-- CollectLeadsCount -->
                   <span class="method-name">CollectLeadsCount</span>
-                  <div class="stack-trace">java.lang.AssertionError: expected [true] but found [false]
-	at com.marketo.qa.Pages.GhostLoginPage.GhostLogin(GhostLoginPage.java:146)
-	at com.marketo.qa.base.TestBase.GhostLogin(TestBase.java:94)
-	at com.marketo.qa.base.TestBase.initialization(TestBase.java:83)
-... Removed 26 stack frames
-</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Suite-class-skipped -->
+          </div> <!-- suite-Suite-class-passed -->
+          <div class="suite-Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.marketo.qa.Tests.FetchDesignStudioData</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="TakeRequiredCount">
+                  </a> <!-- TakeRequiredCount -->
+                  <span class="method-name">TakeRequiredCount</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Suite-class-passed -->
+          <div class="suite-Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.marketo.qa.Tests.FetchModelsCount</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ModelCount">
+                  </a> <!-- ModelCount -->
+                  <span class="method-name">ModelCount</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Suite-class-passed -->
         </div> <!-- panel Suite -->
         <div panel-name="test-xml-Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
@@ -306,7 +618,10 @@
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite name=&quot;Suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
-  &lt;test thread-count=&quot;5&quot; name=&quot;Test&quot;&gt;
+  &lt;listeners&gt;
+    &lt;listener class-name=&quot;com.marketo.qa.utility.AnnotationTransformer&quot;/&gt;
+  &lt;/listeners&gt;
+  &lt;test thread-count=&quot;7&quot; name=&quot;Test&quot;&gt;
     &lt;classes&gt;
       &lt;class name=&quot;com.marketo.qa.Tests.FetchCampaignCounts&quot;/&gt;
       &lt;class name=&quot;com.marketo.qa.Tests.FetchAdminDatas&quot;/&gt;
@@ -314,7 +629,6 @@
       &lt;class name=&quot;com.marketo.qa.Tests.FetchNuture_EventCount&quot;/&gt;
       &lt;class name=&quot;com.marketo.qa.Tests.FetchLeadsCount&quot;/&gt;
       &lt;class name=&quot;com.marketo.qa.Tests.FetchDesignStudioData&quot;/&gt;
-      &lt;class name=&quot;com.marketo.qa.Tests.FetchDataFromChangeScore&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Test --&gt;
 &lt;/suite&gt; &lt;!-- Suite --&gt;
@@ -328,7 +642,7 @@
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">Test (7 classes)</span>
+                <span class="test-name">Test (6 classes)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -354,40 +668,68 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(7);
+data.addRows(14);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'ChampiensCount')
-data.setCell(0, 2, 'com.marketo.qa.Tests.FetchNuture_EventCount')
-data.setCell(0, 3, 0);
+data.setCell(0, 1, 'VerifyCountAndScreenshot')
+data.setCell(0, 2, 'com.marketo.qa.Tests.FetchAdminDatas')
+data.setCell(0, 3, 302174);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'CollectLeadsCount')
-data.setCell(1, 2, 'com.marketo.qa.Tests.FetchLeadsCount')
-data.setCell(1, 3, 0);
+data.setCell(1, 1, 'VerifyCountAndScreenshot')
+data.setCell(1, 2, 'com.marketo.qa.Tests.FetchAdminDatas')
+data.setCell(1, 3, 85418);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'TakeRequiredCount')
-data.setCell(2, 2, 'com.marketo.qa.Tests.FetchDesignStudioData')
-data.setCell(2, 3, 0);
+data.setCell(2, 1, 'VerifyCountAndScreenshot')
+data.setCell(2, 2, 'com.marketo.qa.Tests.FetchAdminDatas')
+data.setCell(2, 3, 84404);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'CampaignsCount')
-data.setCell(3, 2, 'com.marketo.qa.Tests.FetchCampaignCounts')
-data.setCell(3, 3, 0);
+data.setCell(3, 1, 'VerifyCountAndScreenshot')
+data.setCell(3, 2, 'com.marketo.qa.Tests.FetchAdminDatas')
+data.setCell(3, 3, 84394);
 data.setCell(4, 0, 4)
 data.setCell(4, 1, 'VerifyCountAndScreenshot')
 data.setCell(4, 2, 'com.marketo.qa.Tests.FetchAdminDatas')
-data.setCell(4, 3, 0);
+data.setCell(4, 3, 84324);
 data.setCell(5, 0, 5)
-data.setCell(5, 1, 'VerifyChangeScoreCount')
-data.setCell(5, 2, 'com.marketo.qa.Tests.FetchDataFromChangeScore')
-data.setCell(5, 3, 0);
+data.setCell(5, 1, 'ChampiensCount')
+data.setCell(5, 2, 'com.marketo.qa.Tests.FetchNuture_EventCount')
+data.setCell(5, 3, 80179);
 data.setCell(6, 0, 6)
-data.setCell(6, 1, 'ModelCount')
-data.setCell(6, 2, 'com.marketo.qa.Tests.FetchModelsCount')
-data.setCell(6, 3, 0);
+data.setCell(6, 1, 'ChampiensCount')
+data.setCell(6, 2, 'com.marketo.qa.Tests.FetchNuture_EventCount')
+data.setCell(6, 3, 80148);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'ChampiensCount')
+data.setCell(7, 2, 'com.marketo.qa.Tests.FetchNuture_EventCount')
+data.setCell(7, 3, 80138);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'ChampiensCount')
+data.setCell(8, 2, 'com.marketo.qa.Tests.FetchNuture_EventCount')
+data.setCell(8, 3, 80125);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'ChampiensCount')
+data.setCell(9, 2, 'com.marketo.qa.Tests.FetchNuture_EventCount')
+data.setCell(9, 3, 80093);
+data.setCell(10, 0, 10)
+data.setCell(10, 1, 'ModelCount')
+data.setCell(10, 2, 'com.marketo.qa.Tests.FetchModelsCount')
+data.setCell(10, 3, 40073);
+data.setCell(11, 0, 11)
+data.setCell(11, 1, 'TakeRequiredCount')
+data.setCell(11, 2, 'com.marketo.qa.Tests.FetchDesignStudioData')
+data.setCell(11, 3, 40043);
+data.setCell(12, 0, 12)
+data.setCell(12, 1, 'CollectLeadsCount')
+data.setCell(12, 2, 'com.marketo.qa.Tests.FetchLeadsCount')
+data.setCell(12, 3, 40037);
+data.setCell(13, 0, 13)
+data.setCell(13, 1, 'CampaignsCount')
+data.setCell(13, 2, 'com.marketo.qa.Tests.FetchCampaignCounts')
+data.setCell(13, 3, 35040);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 0 ms</span>
+              <span class="suite-total-time">Total running time: 19 minutes</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -402,50 +744,11 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">24 ignored methods</span>
+            <span class="header-content">20 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">com.marketo.qa.Tests.FetchDataFromChangeScore</span>
-              <div class="ignored-methods-div">
-                <span class="ignored-method-name">clearScreenshots</span>
-                <br/>
-                <span class="ignored-method-name">initialization</span>
-                <br/>
-                <span class="ignored-method-name">BackToMyMarketo</span>
-                <br/>
-                <span class="ignored-method-name">teardown</span>
-                <br/>
-              </div> <!-- ignored-methods-div -->
-            </div> <!-- ignored-class-div -->
-            <div class="ignored-class-div">
               <span class="ignored-class-name">com.marketo.qa.Tests.FetchDesignStudioData</span>
-              <div class="ignored-methods-div">
-                <span class="ignored-method-name">clearScreenshots</span>
-                <br/>
-                <span class="ignored-method-name">initialization</span>
-                <br/>
-                <span class="ignored-method-name">BackToMyMarketo</span>
-                <br/>
-                <span class="ignored-method-name">teardown</span>
-                <br/>
-              </div> <!-- ignored-methods-div -->
-            </div> <!-- ignored-class-div -->
-            <div class="ignored-class-div">
-              <span class="ignored-class-name">com.marketo.qa.Tests.FetchNuture_EventCount</span>
-              <div class="ignored-methods-div">
-                <span class="ignored-method-name">clearScreenshots</span>
-                <br/>
-                <span class="ignored-method-name">initialization</span>
-                <br/>
-                <span class="ignored-method-name">BackToMyMarketo</span>
-                <br/>
-                <span class="ignored-method-name">teardown</span>
-                <br/>
-              </div> <!-- ignored-methods-div -->
-            </div> <!-- ignored-class-div -->
-            <div class="ignored-class-div">
-              <span class="ignored-class-name">com.marketo.qa.Tests.FetchAdminDatas</span>
               <div class="ignored-methods-div">
                 <span class="ignored-method-name">clearScreenshots</span>
                 <br/>
@@ -483,6 +786,32 @@ return data;
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.marketo.qa.Tests.FetchNuture_EventCount</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">clearScreenshots</span>
+                <br/>
+                <span class="ignored-method-name">initialization</span>
+                <br/>
+                <span class="ignored-method-name">BackToMyMarketo</span>
+                <br/>
+                <span class="ignored-method-name">teardown</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.marketo.qa.Tests.FetchAdminDatas</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">clearScreenshots</span>
+                <br/>
+                <span class="ignored-method-name">initialization</span>
+                <br/>
+                <span class="ignored-method-name">BackToMyMarketo</span>
+                <br/>
+                <span class="ignored-method-name">teardown</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="chronological-Suite" class="panel">
@@ -497,67 +826,94 @@ return data;
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="configuration-test before">
-                <img src="failed.png">
-                </img>
                 <span class="method-name">initialization</span>
-                <span class="method-start">40 ms</span>
+                <span class="method-start">62 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">CampaignsCount</span>
-                <span class="method-start">88948 ms</span>
+                <span class="method-start">42648 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.marketo.qa.Tests.FetchAdminDatas</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">VerifyCountAndScreenshot</span>
-                <span class="method-start">88955 ms</span>
+                <span class="method-start">77695 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">VerifyCountAndScreenshot</span>
+                <span class="method-start">379874 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">VerifyCountAndScreenshot</span>
+                <span class="method-start">465297 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">VerifyCountAndScreenshot</span>
+                <span class="method-start">549704 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">VerifyCountAndScreenshot</span>
+                <span class="method-start">634032 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.marketo.qa.Tests.FetchModelsCount</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">ModelCount</span>
-                <span class="method-start">88960 ms</span>
+                <span class="method-start">718847 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.marketo.qa.Tests.FetchNuture_EventCount</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">ChampiensCount</span>
-                <span class="method-start">88965 ms</span>
+                <span class="method-start">758922 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">ChampiensCount</span>
+                <span class="method-start">839018 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">ChampiensCount</span>
+                <span class="method-start">919200 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">ChampiensCount</span>
+                <span class="method-start">999351 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">ChampiensCount</span>
+                <span class="method-start">1079492 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.marketo.qa.Tests.FetchLeadsCount</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">CollectLeadsCount</span>
-                <span class="method-start">88969 ms</span>
+                <span class="method-start">1160038 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.marketo.qa.Tests.FetchDesignStudioData</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">TakeRequiredCount</span>
-                <span class="method-start">88974 ms</span>
-              </div> <!-- test-method -->
-            </div> <!-- chronological-class -->
-            <div class="chronological-class">
-              <div class="chronological-class-name">com.marketo.qa.Tests.FetchDataFromChangeScore</div> <!-- chronological-class-name -->
-              <div class="test-method">
-                <span class="method-name">VerifyChangeScoreCount</span>
-                <span class="method-start">88981 ms</span>
+                <span class="method-start">1200079 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.marketo.qa.Tests.FetchCampaignCounts</div> <!-- chronological-class-name -->
               <div class="configuration-test after">
                 <span class="method-name">BackToMyMarketo</span>
-                <span class="method-start">88984 ms</span>
+                <span class="method-start">1240123 ms</span>
               </div> <!-- configuration-test after -->
               <div class="configuration-suite after">
                 <span class="method-name">teardown</span>
-                <span class="method-start">89024 ms</span>
+                <span class="method-start">1240837 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

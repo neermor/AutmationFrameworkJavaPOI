@@ -93,12 +93,10 @@ public class passData {
 			+ " the client can use in their emails and landing pages, and it is a great timesaver!";
 
 	// No Lead_scoring Data
-	static String Lead_scoring = "\n has advanced lead scoring built out taking into account behavior, demographics, successes and decay.. How are we checking this? Is the automation opeing the campaign and checking the flow step? "
-			+ "Need to know how this is being checked.";
+	static String Lead_scoring = "\nadvanced lead scoring built out taking into account behavior, demographics, successes and decay.";
 	static String No_lead_scoring = "\n has not built out any lead scoring campaigns in Marketo";
-	static String Lead_scoring_Less5 = "\nlead scoring campaigns built out taking into account behavior,successes and decay."
-			+ " How are we checking this? Is the automation opeing the campaign and checking the flow step? Need to know how this is being checked.";
-
+	static String Lead_scoring_Less5 = "\nlead scoring campaigns built out taking into account behavior,successes and decay.";
+			
 	static String tokens = "\nis using MyTokens in their lead scoring campaigns which allows for a Marketer to quickly, "
 			+ "and easily, control from a high level their lead change scores";
 

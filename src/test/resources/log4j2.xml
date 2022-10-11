@@ -19,7 +19,7 @@
                  <HTMLLayout charset="UTF-8" title="Marketo Logs " locationInfo="true" />
          <Policies>        
       <TimeBasedTriggeringPolicy interval="10000" modulate="true"/>
-        <SizeBasedTriggeringPolicy size="12KB"/>   
+        <SizeBasedTriggeringPolicy size="100KB"/>   
       </Policies>
       
       <PatternLayout 

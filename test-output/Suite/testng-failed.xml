@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="com.marketo.qa.utility.AnnotationTransformer"/>
+  </listeners>
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="com.marketo.qa.Tests.FetchCampaignCounts">
-        <methods>
-          <include name="clearScreenshots"/>
-          <include name="initialization"/>
-          <include name="BackToMyMarketo"/>
-          <include name="teardown"/>
-          <include name="CampaignsCount"/>
-        </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchCampaignCounts -->
       <class name="com.marketo.qa.Tests.FetchNuture_EventCount">
         <methods>
           <include name="ChampiensCount"/>
@@ -21,24 +15,6 @@
           <include name="teardown"/>
         </methods>
       </class> <!-- com.marketo.qa.Tests.FetchNuture_EventCount -->
-      <class name="com.marketo.qa.Tests.FetchDesignStudioData">
-        <methods>
-          <include name="clearScreenshots"/>
-          <include name="initialization"/>
-          <include name="TakeRequiredCount"/>
-          <include name="BackToMyMarketo"/>
-          <include name="teardown"/>
-        </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchDesignStudioData -->
-      <class name="com.marketo.qa.Tests.FetchDataFromChangeScore">
-        <methods>
-          <include name="VerifyChangeScoreCount"/>
-          <include name="clearScreenshots"/>
-          <include name="initialization"/>
-          <include name="BackToMyMarketo"/>
-          <include name="teardown"/>
-        </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchDataFromChangeScore -->
       <class name="com.marketo.qa.Tests.FetchAdminDatas">
         <methods>
           <include name="VerifyCountAndScreenshot"/>
@@ -48,24 +24,6 @@
           <include name="teardown"/>
         </methods>
       </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
-      <class name="com.marketo.qa.Tests.FetchModelsCount">
-        <methods>
-          <include name="ModelCount"/>
-          <include name="clearScreenshots"/>
-          <include name="initialization"/>
-          <include name="BackToMyMarketo"/>
-          <include name="teardown"/>
-        </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchModelsCount -->
-      <class name="com.marketo.qa.Tests.FetchLeadsCount">
-        <methods>
-          <include name="clearScreenshots"/>
-          <include name="initialization"/>
-          <include name="CollectLeadsCount"/>
-          <include name="BackToMyMarketo"/>
-          <include name="teardown"/>
-        </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchLeadsCount -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

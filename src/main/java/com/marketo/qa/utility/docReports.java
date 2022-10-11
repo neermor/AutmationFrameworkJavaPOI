@@ -172,7 +172,7 @@ public class docReports {
 		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setSpacingAfter(0);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
-		run.setText(passData.Exceldata("Leads") + "\nLeads");
+		run.setText(passData.Exceldata("Leads")+ "\nLeads");
 
 		Statsparagraph = document.createParagraph();
 		run = Statsparagraph.createRun();
@@ -420,7 +420,7 @@ public class docReports {
 
 					stylingDoc.setNoProof(InterestingDatarun);
 					stylingDoc.FontFamilySize(InterestingDatarun);
-					InterestingDatarun.setText("The following Interesting Moments have been defined to support\n"
+					InterestingDatarun.setText("Client has "+passData.Exceldata("Interesting Moment")+"\nInteresting Moments"+".\nThe following Interesting Moments have been defined to support\n"
 							+ passData.intresting_moment);
 
 					InterestingDatarun = InterestingData.createRun();
@@ -776,6 +776,7 @@ public class docReports {
 	}
 
 	public static void webPersonalize(XWPFDocument document) throws IOException, InvalidFormatException {
+		try {
 		if (passData.Exceldata("Web Personalize").equalsIgnoreCase("true")) {
 			XWPFParagraph Web_Personalize = document.createParagraph();
 			XWPFRun Web_PersonalizeRun = Web_Personalize.createRun();
@@ -824,11 +825,16 @@ public class docReports {
 					Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Change Score"), Units.toEMU(470),
 					Units.toEMU(80));
 			PersonalizeImg1.addCarriageReturn();
-
 		}
-	}
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		}
+	
 
 	public static void TAM(XWPFDocument document) throws IOException, InvalidFormatException {
+		try {
 		if (passData.Exceldata("Target Account Management").equalsIgnoreCase("true")) {
 			XWPFParagraph Target_Account = document.createParagraph();
 			XWPFRun Target_AccountRun = Target_Account.createRun();
@@ -937,10 +943,15 @@ public class docReports {
 					"To learn more about using Account Lists in Marketo, visit: http://docs.marketo.com/display/public/DOCS/Account+Lists");
 
 		}
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
 
 	}
 
 	public static void PredictiveContent(XWPFDocument document) throws IOException, InvalidFormatException {
+		try {
 		if (passData.Exceldata("Predictive Content").equalsIgnoreCase("true")) {
 			XWPFParagraph Target_Account = document.createParagraph();
 			XWPFRun Target_AccountRun = Target_Account.createRun();
@@ -958,6 +969,10 @@ public class docReports {
 
 		}
 
+	}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 }
