@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.asserts.SoftAssert;
 
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.base.TestBase;
@@ -15,6 +16,7 @@ import com.marketo.qa.utility.screenshotUtility;
 public class MarketingActivitePage extends TestBase {
 	private static Logger logger = LogManager.getLogger(TestBase.class);
 	CommonLib Clib = new CommonLib();
+	SoftAssert asrt = new SoftAssert();
 
 	boolean flag = false;
 	By GlobalTreeSearch = By.xpath("//input[@data-id='globalTreeSearchInput_input']");
@@ -102,6 +104,20 @@ public class MarketingActivitePage extends TestBase {
 		GetCampaignInspector().click();
 		GetCampaignDD().click();
 
+	}
+
+	public boolean CheckDataAvailable(String Name) {
+		boolean Value = false;
+		try {
+			Value = driver
+					.findElement(By.xpath("//div[contains(@data-id,'treeNode_workspace')]/..//div//span[text()='" + Name
+							+ "']/../preceding-sibling::button[contains(@data-id, 'treeNodeChevronIconButton')]"))
+					.isDisplayed();
+
+		} catch (Exception e) {
+			logger.info(Name + " Data is not available");
+		}
+		return Value;
 	}
 
 	public WebElement SelectTreeNode(String TreeNodeName) throws Throwable {
@@ -262,7 +278,7 @@ public class MarketingActivitePage extends TestBase {
 	}
 
 	int cell = 2;
-
+	boolean WorkspaceAvl = true;
 	int All_Triggered_Campaigns = 0;
 	int Active_Triggered_Campaigns = 0;
 	int Batch_Campaigns = 0;
@@ -284,20 +300,31 @@ public class MarketingActivitePage extends TestBase {
 
 		for (WebElement value : workSpace) {
 			logger.info("view " + value.getText() + " Workspace");
-			value.click();
-			switchFrame();
-			All_Triggered_Campaigns += GetMoreCampaignCount("All Triggered Campaigns", 8, cell);
-			Active_Triggered_Campaigns += GetMoreCampaignCount("Active Triggered Campaigns", 9, cell);
-			Batch_Campaigns += GetMoreCampaignCount("Batch Campaigns - Repeating Schedule", 10, cell);
-			All_Batch_Campaigns += GetMoreCampaignCount("All Batch Campaigns", 11, cell);
-			AllCampaigns += GetCampaignCount("All Campaigns", 12, cell);
-			Active_Campaigns += GetCampaignCount("Active Campaigns", 13, cell);
-			driver.switchTo().defaultContent();
-			Clib.WriteExcelData("Sheet1", 7, 0, "Campaign Data");
-			Clib.WriteExcelData("Sheet1", 7, cell, value.getText());
-			cell++;
-			logger.info("Close " + value.getText() + " Workspace");
+			System.out.println(CheckDataAvailable(value.getText()));
+			if (CheckDataAvailable(value.getText())) {
+				try {
+					value.click();
+					switchFrame();
+					All_Triggered_Campaigns += GetMoreCampaignCount("All Triggered Campaigns", 8, cell);
+					Active_Triggered_Campaigns += GetMoreCampaignCount("Active Triggered Campaigns", 9, cell);
+					Batch_Campaigns += GetMoreCampaignCount("Batch Campaigns - Repeating Schedule", 10, cell);
+					All_Batch_Campaigns += GetMoreCampaignCount("All Batch Campaigns", 11, cell);
+					AllCampaigns += GetCampaignCount("All Campaigns", 12, cell);
+					Active_Campaigns += GetCampaignCount("Active Campaigns", 13, cell);
+					driver.switchTo().defaultContent();
+					Clib.WriteExcelData("Sheet1", 7, 0, "Campaign Data");
+					Clib.WriteExcelData("Sheet1", 7, cell, value.getText());
+					cell++;
+					logger.info("Close " + value.getText() + " Workspace");
 
+				} catch (Exception e) {
+					driver.switchTo().defaultContent();
+					logger.info("Oops!! " + value.getText() + " Workspace is not available");
+					e.printStackTrace();
+					WorkspaceAvl = false;
+					asrt.assertTrue(WorkspaceAvl, value.getText() + " Workspace is not available");
+				}
+			}
 		}
 
 		Clib.WriteExcelData("Sheet1", 7, 1, "Total");
@@ -330,27 +357,33 @@ public class MarketingActivitePage extends TestBase {
 
 		for (int i = 1; i <= NoOfWorkSpace; i++) {
 			String Workspace = prop.getProperty("WorkSpace" + i);
-			try {
-				WebElement wSpace = SelectTreeNode(Workspace);
-				wSpace.click();
-				logger.info("view " + Workspace + " Workspace");
-				switchFrame();
-				All_Triggered_Campaigns += GetMoreCampaignCount("All Triggered Campaigns", 8, cell);
-				Active_Triggered_Campaigns += GetMoreCampaignCount("Active Triggered Campaigns", 9, cell);
-				Batch_Campaigns += GetMoreCampaignCount("Batch Campaigns - Repeating Schedule", 10, cell);
-				All_Batch_Campaigns += GetMoreCampaignCount("All Batch Campaigns", 11, cell);
-				AllCampaigns += GetCampaignCount("All Campaigns", 12, cell);
-				Active_Campaigns += GetCampaignCount("Active Campaigns", 13, cell);
-				driver.switchTo().defaultContent();
-				Clib.WriteExcelData("Sheet1", 7, 0, "Campaign Data");
-				Clib.WriteExcelData("Sheet1", 7, cell, prop.getProperty("WorkSpace" + i));
-				cell++;
-				logger.info("close " + Workspace + " Workspace");
-			} catch (Exception e) {
-				driver.switchTo().defaultContent();
-				logger.info("Oops!! " + Workspace + " Workspace is not available");
-				e.printStackTrace();
+			System.out.println(CheckDataAvailable(Workspace));
 
+			if (CheckDataAvailable(Workspace)) {
+				try {
+					CheckDataAvailable(Workspace);
+					WebElement wSpace = SelectTreeNode(Workspace);
+					wSpace.click();
+					logger.info("view " + Workspace + " Workspace");
+					switchFrame();
+					All_Triggered_Campaigns += GetMoreCampaignCount("All Triggered Campaigns", 8, cell);
+					Active_Triggered_Campaigns += GetMoreCampaignCount("Active Triggered Campaigns", 9, cell);
+					Batch_Campaigns += GetMoreCampaignCount("Batch Campaigns - Repeating Schedule", 10, cell);
+					All_Batch_Campaigns += GetMoreCampaignCount("All Batch Campaigns", 11, cell);
+					AllCampaigns += GetCampaignCount("All Campaigns", 12, cell);
+					Active_Campaigns += GetCampaignCount("Active Campaigns", 13, cell);
+					driver.switchTo().defaultContent();
+					Clib.WriteExcelData("Sheet1", 7, 0, "Campaign Data");
+					Clib.WriteExcelData("Sheet1", 7, cell, prop.getProperty("WorkSpace" + i));
+					cell++;
+					logger.info("close " + Workspace + " Workspace");
+				} catch (Exception e) {
+					driver.switchTo().defaultContent();
+					logger.info("Oops!! " + Workspace + " Workspace is not available");
+					e.printStackTrace();
+					WorkspaceAvl = false;
+					asrt.assertTrue(WorkspaceAvl, Workspace + " Workspace is not available");
+				}
 			}
 
 		}
@@ -364,6 +397,7 @@ public class MarketingActivitePage extends TestBase {
 		Clib.WriteExcelData("Sheet1", 11, 1, All_Batch_Campaigns);
 		Clib.WriteExcelData("Sheet1", 12, 1, AllCampaigns);
 		Clib.WriteExcelData("Sheet1", 13, 1, Active_Campaigns);
+		asrt.assertAll();
 
 	}
 

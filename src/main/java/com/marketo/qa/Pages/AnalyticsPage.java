@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.asserts.SoftAssert;
 
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.base.TestBase;
@@ -17,6 +18,7 @@ public class AnalyticsPage extends TestBase {
 	MyMarketoPage homepage = new MyMarketoPage();
 	private static Logger logger = LogManager.getLogger(TestBase.class);
 	CommonLib Clib = new CommonLib();
+	SoftAssert asrt = new SoftAssert();
 
 	By Models = By.xpath("//div[contains(@data-id,'treeNode_revenuecyclemodel')]");
 	By Rcm = By.cssSelector("#treeBodyAnchor > div > div > div:nth-child(4)");
@@ -79,7 +81,7 @@ public class AnalyticsPage extends TestBase {
 	}
 
 	int cell = 2;
-
+	boolean WorkspaceAvl = true;
 	int Model = 0;
 
 	public void AllWorkspaceModelCount() throws Throwable {
@@ -118,6 +120,9 @@ public class AnalyticsPage extends TestBase {
 
 	public void SpecificWorkspaceModelCount(int NoOfWorkspace) throws Throwable {
 
+		Clib.ClearExcelData("Sheet1", 17);
+		Clib.ClearExcelData("Sheet1", 18);
+
 		new DesignStudioPage().CloseDefaultTreeView();
 		for (int i = 1; i <= NoOfWorkspace; i++) {
 			String Workspace = prop.getProperty("WorkSpace" + i);
@@ -144,13 +149,14 @@ public class AnalyticsPage extends TestBase {
 					driver.switchTo().defaultContent();
 					logger.info("Oops!! " + Workspace + " Workspace is not available");
 					e.printStackTrace();
+					asrt.assertTrue(WorkspaceAvl, Workspace + " Workspace is not available");
 
 				}
 			}
 		}
 		new CommonLib().WriteExcelData("Sheet1", 17, 1, "Total");
 		new CommonLib().WriteExcelData("Sheet1", 18, 1, Model);
-
+		asrt.assertAll();
 	}
 
 }
