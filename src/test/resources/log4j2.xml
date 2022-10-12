@@ -2,31 +2,35 @@
 <!-- Extra logging related to initialization of Log4j. 
  Set to debug or trace if log4j initialization is failing. -->
  
- 
 <Configuration debug="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:noNamespaceSchemaLocation="log4j21.xsd" status="WARN">
  <Properties>
 
-    <Property name="logDir">Reports//logs</Property>
+
+    <Property name="logDir">Reports//logs//</Property>
+
   </Properties> 
  	
     <Appenders>
    
         
- <RollingRandomAccessFile name="File" fileName="${sys:logDir}/ReportLog.log"
-                 filePattern="${sys:logDir}/Reportlog-%d{HH-mm-ss}.log">
-                 
+ <RollingRandomAccessFile name="File" 
+                 filePattern="${sys:logDir}/Reportlog-%d{HH-mm-ss}.html">
+                 <HTMLLayout charset="UTF-8" title="Marketo Logs " locationInfo="true" />
          <Policies>        
-      <TimeBasedTriggeringPolicy interval="1000000" modulate="false"/>
-        <SizeBasedTriggeringPolicy size="10 KB"/>   
+      <TimeBasedTriggeringPolicy interval="10000" modulate="true"/>
+        <SizeBasedTriggeringPolicy size="12KB"/>   
       </Policies>
       
       <PatternLayout 
                 pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
-        <DefaultRolloverStrategy max="24"/>
+       
       
     </RollingRandomAccessFile>  
     
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d{ddMMMyyyy HH:mm:ss,SSS}^[%X{l4j_mdc_key}]^[%c{1}]^ %-5p %m%n" />
+   </layout>
     	<!-- Console appender configuration -->
         
      <Console name="Console" target="SYSTEM_OUT">
@@ -46,3 +50,4 @@
         </Root>
     </Loggers>
 </Configuration>
+
