@@ -6,24 +6,15 @@
   </listeners>
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="com.marketo.qa.Tests.FetchNuture_EventCount">
+      <class name="com.marketo.qa.Tests.FetchDesignStudioData">
         <methods>
-          <include name="ChampiensCount"/>
           <include name="clearScreenshots"/>
           <include name="initialization"/>
+          <include name="TakeRequiredCount"/>
           <include name="BackToMyMarketo"/>
           <include name="teardown"/>
         </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchNuture_EventCount -->
-      <class name="com.marketo.qa.Tests.FetchAdminDatas">
-        <methods>
-          <include name="VerifyCountAndScreenshot"/>
-          <include name="clearScreenshots"/>
-          <include name="initialization"/>
-          <include name="BackToMyMarketo"/>
-          <include name="teardown"/>
-        </methods>
-      </class> <!-- com.marketo.qa.Tests.FetchAdminDatas -->
+      </class> <!-- com.marketo.qa.Tests.FetchDesignStudioData -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

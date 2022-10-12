@@ -196,7 +196,9 @@ public class stylingDoc {
 					String.valueOf(passData.Exceldata("Change Data Value")),String.valueOf(passData.Exceldata("Event Programs")),String.valueOf(passData.Exceldata("Nurture campaigns")),
 					String.valueOf(passData.Exceldata("Segment Data")),String.valueOf(passData.Exceldata("Library")),String.valueOf(passData.Exceldata("Integrations")),
 					String.valueOf(passData.Exceldata("All Batch Campaigns")),String.valueOf(passData.Exceldata("All Triggered Campaigns")),
-					String.valueOf(passData.Exceldata("Models")),String.valueOf(passData.Exceldata("Leads")),String.valueOf(passData.Exceldata("Tags")),String.valueOf(passData.Exceldata("Account Name")),"null"};
+					String.valueOf(passData.Exceldata("Models")),String.valueOf(passData.Exceldata("Leads")),String.valueOf(passData.Exceldata("Tags")),String.valueOf(passData.Exceldata("Account Name")),String.valueOf("null"),
+					String.valueOf("1"),String.valueOf("2"),String.valueOf("3"),String.valueOf("4"),String.valueOf("5"),String.valueOf("6"),String.valueOf("7"),
+					String.valueOf("8"),String.valueOf("9")};
 		
 			Map<String, String> formats = new HashMap<String, String>();
 			formats.put("bold", "true");

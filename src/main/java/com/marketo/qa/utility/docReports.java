@@ -420,7 +420,7 @@ public class docReports {
 
 					stylingDoc.setNoProof(InterestingDatarun);
 					stylingDoc.FontFamilySize(InterestingDatarun);
-					InterestingDatarun.setText("Client has "+passData.Exceldata("Interesting Moment")+"\nInteresting Moments"+".\nThe following Interesting Moments have been defined to support\n"
+					InterestingDatarun.setText("Client has "+passData.Exceldata("Interesting Moment")+"\nInteresting Moments"+".\nThe following screenshot shows some Interesting Moments that have been defined by the client.\n"
 							+ passData.intresting_moment);
 
 					InterestingDatarun = InterestingData.createRun();
@@ -493,20 +493,20 @@ public class docReports {
 		stylingDoc.setNoProof(EventsDatarun);
 		EventsDatarun.setText(passData.Events());
 
-		XWPFRun EventsDatarun2 = EventsData.createRun();
-		stylingDoc.FontFamilySize(EventsDatarun2);
-		stylingDoc.setNoProof(EventsDatarun2);
-		EventsDatarun2.addCarriageReturn();
-		EventsDatarun2.addCarriageReturn();
-		EventsDatarun2.setText(passData.event2);
-
-		XWPFRun EventsDatarunLink = EventsData.createRun();
-		EventsDatarunLink.setUnderline(UnderlinePatterns.SINGLE);
-		stylingDoc.FontFamilySize(EventsDatarunLink);
-		stylingDoc.setNoProof(EventsDatarunLink);
-		EventsDatarunLink.setUnderlineColor("3333cc");
-		EventsDatarunLink.setColor("3333cc");
-		EventsDatarunLink.setText("\nhttps://docs.marketo.com/display/public/DOCS/Create+a+New+Event+Program.");
+//		XWPFRun EventsDatarun2 = EventsData.createRun();
+//		stylingDoc.FontFamilySize(EventsDatarun2);
+//		stylingDoc.setNoProof(EventsDatarun2);
+//		EventsDatarun2.addCarriageReturn();
+//		EventsDatarun2.addCarriageReturn();
+//		EventsDatarun2.setText(passData.event2);
+//
+//		XWPFRun EventsDatarunLink = EventsData.createRun();
+//		EventsDatarunLink.setUnderline(UnderlinePatterns.SINGLE);
+//		stylingDoc.FontFamilySize(EventsDatarunLink);
+//		stylingDoc.setNoProof(EventsDatarunLink);
+//		EventsDatarunLink.setUnderlineColor("3333cc");
+//		EventsDatarunLink.setColor("3333cc");
+//		EventsDatarunLink.setText("\nhttps://docs.marketo.com/display/public/DOCS/Create+a+New+Event+Program.");
 		logger.info("Events data printing  is done");
 	}
 
@@ -522,9 +522,9 @@ public class docReports {
 		;
 
 		try {
-			int NurtureDataint = Integer.parseInt(passData.Exceldata("Nurture campaigns"));
+			int NurtureData_int = Integer.parseInt(passData.Exceldata("Nurture campaigns"));
 
-			if (NurtureDataint > 0)
+			if (NurtureData_int > 0)
 
 			{
 				NurtureDataRun = NurtureData.createRun();
@@ -572,21 +572,20 @@ public class docReports {
 				stylingDoc.FontFamilySize(NurtureDatarun5);
 				NurtureDatarun5.setBold(true);
 				NurtureData5.setNumID(stylingDoc.bullet(document));
-				NurtureDatarun5
-						.setText("Understand content performance based on engagement with each piece of content.");
-
-				XWPFParagraph NurtureData6 = document.createParagraph();
-				XWPFRun NurtureDatarun6 = NurtureData6.createRun();
-				stylingDoc.FontFamilySize(NurtureDatarun6);
-				NurtureDatarun6.setText(passData.Nurture2);
-
-				XWPFRun NurtureDatarunLink = NurtureData6.createRun();
-				stylingDoc.FontFamilySize(NurtureDatarunLink);
-				stylingDoc.setNoProof(NurtureDatarunLink);
-				NurtureDatarunLink.setUnderline(UnderlinePatterns.SINGLE);
-				NurtureDatarunLink.setColor("3333cc");
-				NurtureDatarunLink.setText(
-						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en .”");
+				NurtureDatarun5.setText("Understand content performance based on engagement with each piece of content.");
+//
+//				XWPFParagraph NurtureData6 = document.createParagraph();
+//				XWPFRun NurtureDatarun6 = NurtureData6.createRun();
+//				stylingDoc.FontFamilySize(NurtureDatarun6);
+//				NurtureDatarun6.setText(passData.Nurture2);
+//
+//				XWPFRun NurtureDatarunLink = NurtureData6.createRun();
+//				stylingDoc.FontFamilySize(NurtureDatarunLink);
+//				stylingDoc.setNoProof(NurtureDatarunLink);
+//				NurtureDatarunLink.setUnderline(UnderlinePatterns.SINGLE);
+//				NurtureDatarunLink.setColor("3333cc");
+//				NurtureDatarunLink.setText(
+//						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en .”");
 			}
 
 			else {
@@ -596,13 +595,13 @@ public class docReports {
 				NurtureDataRun.addCarriageReturn();
 				NurtureDataRun.setText(passData.Exceldata("Account Name") + passData.No_Nurture);
 
-				XWPFRun NurtureDataRunlink = NurtureData.createRun();
-				stylingDoc.FontFamilySize(NurtureDataRunlink);
-				// NurtureData.createHyperlinkRun("https://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en\r\n");
-				NurtureDataRunlink.setUnderline(UnderlinePatterns.SINGLE);
-				NurtureDataRunlink.setColor("3333cc");
-				NurtureDataRunlink.setText(
-						"https://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en");
+//				XWPFRun NurtureDataRunlink = NurtureData.createRun();
+//				stylingDoc.FontFamilySize(NurtureDataRunlink);
+//				// NurtureData.createHyperlinkRun("https://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en\r\n");
+//				NurtureDataRunlink.setUnderline(UnderlinePatterns.SINGLE);
+//				NurtureDataRunlink.setColor("3333cc");
+//				NurtureDataRunlink.setText(
+//						"https://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en");
 
 				XWPFParagraph NurtureData1 = document.createParagraph();
 				XWPFRun NurtureDatarun1 = NurtureData1.createRun();
@@ -640,8 +639,23 @@ public class docReports {
 				NurtureDatarun5
 						.setText("Understand content performance based on engagement with each piece of content.");
 				NurtureDatarun5.addCarriageReturn();
+				
+				XWPFParagraph NurtureData6 = document.createParagraph();
+				XWPFRun NurtureDatarun6 = NurtureData6.createRun();
+				stylingDoc.FontFamilySize(NurtureDatarun6);
+				NurtureDatarun6.setText(passData.Nurture2);
 
+				XWPFRun NurtureDatarunLink = NurtureData6.createRun();
+				stylingDoc.FontFamilySize(NurtureDatarunLink);
+				stylingDoc.setNoProof(NurtureDatarunLink);
+				NurtureDatarunLink.setUnderline(UnderlinePatterns.SINGLE);
+				NurtureDatarunLink.setColor("3333cc");
+				NurtureDatarunLink.setText(
+						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en .”");
 			}
+
+
+			
 			logger.info(" Nurture data part is done......");
 		} catch (NumberFormatException ex) {
 			logger.error("Nurture Data Test is failed Hence we have null value\n");
@@ -651,8 +665,8 @@ public class docReports {
 
 	}
 
-	public static void segment(XWPFDocument document)
-			throws NumberFormatException, IOException, InvalidFormatException {
+	public static void segment(XWPFDocument document) throws NumberFormatException, IOException, InvalidFormatException {
+		try {
 		XWPFParagraph Segment = document.createParagraph();
 		XWPFRun SegmentHeading = Segment.createRun();
 		SegmentHeading.setBold(true);
@@ -669,7 +683,7 @@ public class docReports {
 				SegmentRun.setText(passData.Exceldata("Account Name") + passData.segment);
 
 				SegmentRun = SegmentData.createRun();
-				SegmentRun.addBreak();
+			
 				SegmentRun.addBreak();
 
 				for (int i = 1; i < 4; i++) {
@@ -690,16 +704,38 @@ public class docReports {
 				XWPFRun InterestingDatarun = InterestingData.createRun();
 				stylingDoc.FontFamilySize(InterestingDatarun);
 				stylingDoc.setNoProof(InterestingDatarun);
-				InterestingDatarun.setText(passData.Exceldata("Account Name") + passData.no_segment);
+				InterestingDatarun.setText(passData.Exceldata("Account Name") + passData.no_segment);	
+				
+//				
+//				XWPFParagraph segment = document.createParagraph();
+//				XWPFRun segmentalalternet = segment.createRun();
+//				stylingDoc.FontFamilySize(segmentalalternet);
+//				segmentalalternet.addCarriageReturn();
+//				segmentalalternet.setText("They are also not utilizing segmentation. I would direct them to the docs below:\r\n");
 
+//				XWPFRun segmentLink = segment.createRun();
+//				stylingDoc.FontFamilySize(segmentLink);
+//				stylingDoc.setNoProof(segmentLink);
+//				segmentLink.setUnderline(UnderlinePatterns.SINGLE);
+//				segmentLink.setColor("3333cc");
+//				segmentLink.setText("https://docs.marketo.com/display/public/DOCS/Understanding+Dynamic+Content\r\n");
+//				segmentLink.addCarriageReturn();
+//				segmentLink.addCarriageReturn();
+//				segmentLink.setText("https://docs.marketo.com/display/public/DOCS/Create+a+Segmentation\r\n");
+				
 			}
 		} catch (NumberFormatException ex) { // handle your exception
 			logger.error("Test is skipped or failed so we have null value here\n");
 		}
 		logger.info(" Segmentation data part is done......");
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 	public static void programLibrary(XWPFDocument document) throws IOException, InvalidFormatException {
+		try {
 		XWPFParagraph program = document.createParagraph();
 		XWPFRun programRun = program.createRun();
 		programRun.addCarriageReturn();
@@ -725,6 +761,9 @@ public class docReports {
 				// TODO: handle exception
 				logger.warn("There is no image in Program Library");
 			}
+		}}
+		catch (Exception e) {
+			// TODO: handle exception
 		}
 	}
 

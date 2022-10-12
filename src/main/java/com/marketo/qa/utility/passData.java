@@ -42,8 +42,7 @@ public class passData {
 
 	// Interesting Moment Data
 
-	static String intresting_moment = "’s marketing campaigns."
-			+ " When a lead exhibits any of the below behavior, it will be documented and tracked.";
+	static String intresting_moment = " When a lead exhibits any of the below behavior, it will be documented and tracked.";
 
 	static String intresting_moment_below = "If you have Marketo Sales Insight, you can use the interesting moment flow step to give your"
 			+ " sales team visibility into the cool things your leads are doing in a Smart Campaign. Interesting Moments allow the marketer "
@@ -186,10 +185,10 @@ public class passData {
 		try {
 			int ChangeScore = Integer.parseInt(passData.Exceldata("Change Score"));
 			if (ChangeScore >= 5) {
-				return passData.Exceldata("Account Name") + "\nhas\n" + Lead_scoring;
+				return passData.Exceldata("Account Name") + "\nhas a total of\n" + passData.Exceldata("Change Score") +"\nlead scoring campaigns.";
 			} else if (ChangeScore < 5 && ChangeScore > 0) {
 
-				return passData.Exceldata("Account Name") + "\nhas\n" + leads + Lead_scoring_Less5;
+				return passData.Exceldata("Account Name") +"\nhas a total of\n" + passData.Exceldata("Change Score") +"\nlead scoring campaigns.";
 			} else {
 			}
 			// return passData.Exceldata("Account Name") + No_lead_scoring;
