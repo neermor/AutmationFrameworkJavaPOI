@@ -23,8 +23,8 @@ public class DatabasePage extends TestBase {
 	By Iframe = By.cssSelector("#mlm");
 	By People = By.id("canvas__cp_ldbCanvasLeadList");
 	By LeadsCount = By.cssSelector("[class='x-toolbar-right-row'] [class='xtb-text']");
-	By Sag = By.xpath("//div[contains(@data-id,'treeNode_segmentation')]");
-	By SagHar = By.cssSelector("#treeBodyAnchor > div > div > div:nth-child(6)");
+	By Sag = By.xpath("//div[contains(@data-id,'treeNode_segmentation')]/following-sibling::div");
+	By SagHar = By.xpath("//span[text()=\"Segmentations\"]/../../../../..");
 	By WorkSpace = By.xpath("//div[contains(@data-id,'treeNode_workspace')]/..//div//span");
 
 	public WebElement GetIFrame() {
@@ -102,6 +102,7 @@ public class DatabasePage extends TestBase {
 		new CommonLib().StandardWait(2000);
 		driver.switchTo().frame(GetIFrame());
 		GetPeople().click();
+		new CommonLib().StandardWait(4000);
 		new CommonLib().WriteExcelData("Sheet1", row, 0, "Leads");
 		new CommonLib().WriteExcelData("Sheet1", row, cell, GetCount());
 		logger.info("Fetch Leads Count");
@@ -116,6 +117,7 @@ public class DatabasePage extends TestBase {
 					.isDisplayed();
 			if (flag) {
 				homePage.ExtendTreeNode("Segmentations");
+				new CommonLib().StandardWait(4000);
 				new CommonLib().WriteExcelData("Sheet1", row, 0, "Segmentations");
 				new CommonLib().WriteExcelData("Sheet1", row, cell, GetSag().size());
 				logger.info("Fetch Segmentations Count");
@@ -135,18 +137,18 @@ public class DatabasePage extends TestBase {
 
 	}
 
-	int cell = 2;
-
-	int Segmentations = 0;
-	int Leads = 0;
-
 	public void AllWorkspaceCollectLeadsCount() throws Throwable {
 
 		List<WebElement> workSpace = driver.findElements(WorkSpace);
-		new CommonLib().ClearExcelData("Sheet1", 14);
-		new CommonLib().ClearExcelData("Sheet1", 15);
-		new CommonLib().ClearExcelData("Sheet1", 16);
+		int cell = 2;
+		int Segmentations = 0;
+		int Leads = 0;
 
+		/*
+		 * new CommonLib().ClearExcelData("Sheet1", 14); new
+		 * CommonLib().ClearExcelData("Sheet1", 15); new
+		 * CommonLib().ClearExcelData("Sheet1", 16);
+		 */
 		for (WebElement value : workSpace) {
 			try {
 				GetExpandBtn(value.getText()).isDisplayed();
@@ -177,12 +179,16 @@ public class DatabasePage extends TestBase {
 
 	}
 
-	boolean WorkspaceAvl = true;
-
 	public void SpecificWorkspaceCollectLeadsCount(int NoOfWorkspace) throws Throwable {
+
 		Clib.ClearExcelData("Sheet1", 14);
 		Clib.ClearExcelData("Sheet1", 15);
 		Clib.ClearExcelData("Sheet1", 16);
+
+		boolean WorkspaceAvl = true;
+		int cell = 2;
+		int Segmentations = 0;
+		int Leads = 0;
 
 		new DesignStudioPage().CloseDefaultTreeView();
 		for (int i = 1; i <= NoOfWorkspace; i++) {

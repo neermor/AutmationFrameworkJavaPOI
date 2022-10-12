@@ -459,7 +459,7 @@ public class docReports {
 				logger.info("Test is skipped or fail hence data is missing for Intresting Moment\n");
 			}
 		}
-		logger.info("Intresting Moment part is done");
+		logger.info("Interesting Moment part is done");
 	}
 
 	public static void DataManagment(XWPFDocument document) throws IOException {
