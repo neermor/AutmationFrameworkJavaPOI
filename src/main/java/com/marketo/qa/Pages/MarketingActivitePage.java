@@ -277,17 +277,17 @@ public class MarketingActivitePage extends TestBase {
 
 	}
 
-	int cell = 2;
-	boolean WorkspaceAvl = true;
-	int All_Triggered_Campaigns = 0;
-	int Active_Triggered_Campaigns = 0;
-	int Batch_Campaigns = 0;
-	int All_Batch_Campaigns = 0;
-	int AllCampaigns = 0;
-	int Active_Campaigns = 0;
-
 	public void AllWorkspaceCampaignCount() throws Throwable {
 		List<WebElement> workSpace = driver.findElements(WorkSpace);
+
+		int cell = 2;
+		boolean WorkspaceAvl = true;
+		int All_Triggered_Campaigns = 0;
+		int Active_Triggered_Campaigns = 0;
+		int Batch_Campaigns = 0;
+		int All_Batch_Campaigns = 0;
+		int AllCampaigns = 0;
+		int Active_Campaigns = 0;
 
 		Clib.ClearExcelData("Sheet1", 7);
 		Clib.ClearExcelData("Sheet1", 8);
@@ -341,6 +341,15 @@ public class MarketingActivitePage extends TestBase {
 	}
 
 	public void SpecificWorkspaceCampaignCount(int NoOfWorkSpace) throws Throwable {
+
+		int cell = 2;
+		boolean WorkspaceAvl = true;
+		int All_Triggered_Campaigns = 0;
+		int Active_Triggered_Campaigns = 0;
+		int Batch_Campaigns = 0;
+		int All_Batch_Campaigns = 0;
+		int AllCampaigns = 0;
+		int Active_Campaigns = 0;
 
 		Clib.ClearExcelData("Sheet1", 7);
 		Clib.ClearExcelData("Sheet1", 8);

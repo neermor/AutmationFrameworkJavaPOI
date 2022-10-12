@@ -47,7 +47,6 @@ public class SupportToolsPage extends TestBase {
 			logger.info(IndexName + " Selected");
 			new CommonLib().SelectDropDownValue(GetFlowAction(), value);
 			GetListCampaign().click();
-			new CommonLib().ClearExcelData("Sheet1", row);
 			new CommonLib().WriteExcelData("Sheet1", row, 0, value);
 			new CommonLib().WriteExcelData("Sheet1", row, 1, GetCount());
 			logger.info("Fetch " + value + " Count");

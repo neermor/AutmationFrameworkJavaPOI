@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.FileLib.ListImpClass;
 import com.marketo.qa.Pages.MarketingActivitePage;
 import com.marketo.qa.Pages.MyMarketoPage;
@@ -24,6 +25,9 @@ public class FetchNuture_EventCount extends TestBase {
 
 	@Test
 	public void ChampiensCount() throws Throwable {
+		new CommonLib().ClearExcelData("Sheet1", 27);
+		new CommonLib().ClearExcelData("Sheet1", 28);
+		new CommonLib().ClearExcelData("Sheet1", 29);
 
 		homePage.OpenMarketingActivitiesTab();
 		logger.info("Marketing Activite Page Task Opened");

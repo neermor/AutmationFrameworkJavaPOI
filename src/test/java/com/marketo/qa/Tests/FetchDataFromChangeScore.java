@@ -3,6 +3,7 @@ package com.marketo.qa.Tests;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.FileLib.ListImpClass;
 import com.marketo.qa.Pages.MarketingActivitePage;
 import com.marketo.qa.Pages.MyMarketoPage;
@@ -18,6 +19,10 @@ public class FetchDataFromChangeScore extends TestBase {
 
 	@Test
 	public void VerifyChangeScoreCount() throws Throwable {
+		new CommonLib().ClearExcelData("Sheet1", 23);
+		new CommonLib().ClearExcelData("Sheet1", 24);
+		new CommonLib().ClearExcelData("Sheet1", 25);
+
 		OpenSupportTool();
 		Support.SelectValueFlowAction("Flow Actions Used", "Change Score", 23);
 		screenshotUtility.TakeScreenshot(Support.GetResultTable(), "Change Score1");

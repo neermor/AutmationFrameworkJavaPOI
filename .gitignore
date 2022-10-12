@@ -1,6 +1,7 @@
  ## Output files  
  /target/ 
  /test-output/
+  /target/classes/ 
  /Reports/
  /Config/ScreenShot/
  
@@ -8,6 +9,7 @@
 .DS_Store
 .DS_Store?
 markketo-instance/*.log
+MarketoInstance/*.log
 
 # Intellij project files
 *.iml
@@ -21,4 +23,6 @@ markketo-instance/*.log
 
 # WebDriver files
 markketo-instance/src/main/resources/
+MarketoInstance/src/main/resources/
 .metadata/*
+/target/
