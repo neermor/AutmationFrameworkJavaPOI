@@ -114,6 +114,8 @@ public class DesignStudioPage extends TestBase {
 
 			if (words[0].equalsIgnoreCase("No")) {
 				return 0;
+			} else if (words[0].equalsIgnoreCase("Displaying")) {
+				count = Integer.parseInt(words[1]);
 			} else {
 				if (mAP.GetPage().getText().equalsIgnoreCase("Of 1")) {
 					count = Integer.parseInt(words[0]);
@@ -208,17 +210,17 @@ public class DesignStudioPage extends TestBase {
 
 	}
 
-	int cell = 2;
-	boolean WorkspaceAvl = true;
-	int AllEmails = 0;
-	int AllForms = 0;
-	int AllLandingPages = 0;
-	int AllImages_and_Files = 0;
-	int AllSnippets = 0;
-
 	public void AllWorkspaceRequiredCount() throws Throwable {
 
 		List<WebElement> workSpace = driver.findElements(WorkSpace);
+
+		int cell = 2;
+		boolean WorkspaceAvl = true;
+		int AllEmails = 0;
+		int AllForms = 0;
+		int AllLandingPages = 0;
+		int AllImages_and_Files = 0;
+		int AllSnippets = 0;
 
 		Clib.ClearExcelData("Sheet1", 1);
 		Clib.ClearExcelData("Sheet1", 2);
@@ -278,6 +280,14 @@ public class DesignStudioPage extends TestBase {
 	}
 
 	public void SpecificWorkspaceRequiredCount(int NoOfWorkspace) throws Throwable {
+
+		int cell = 2;
+		boolean WorkspaceAvl = true;
+		int AllEmails = 0;
+		int AllForms = 0;
+		int AllLandingPages = 0;
+		int AllImages_and_Files = 0;
+		int AllSnippets = 0;
 
 		Clib.ClearExcelData("Sheet1", 1);
 		Clib.ClearExcelData("Sheet1", 2);

@@ -80,14 +80,13 @@ public class AnalyticsPage extends TestBase {
 
 	}
 
-	int cell = 2;
-	boolean WorkspaceAvl = true;
-	int Model = 0;
-
 	public void AllWorkspaceModelCount() throws Throwable {
 
 		List<WebElement> workSpace = driver.findElements(WorkSpace);
-		workSpace.size();
+
+		int cell = 2;
+		int Model = 0;
+
 		new CommonLib().ClearExcelData("Sheet1", 17);
 		new CommonLib().ClearExcelData("Sheet1", 18);
 
@@ -119,6 +118,10 @@ public class AnalyticsPage extends TestBase {
 	}
 
 	public void SpecificWorkspaceModelCount(int NoOfWorkspace) throws Throwable {
+
+		int cell = 2;
+		boolean WorkspaceAvl = true;
+		int Model = 0;
 
 		Clib.ClearExcelData("Sheet1", 17);
 		Clib.ClearExcelData("Sheet1", 18);
