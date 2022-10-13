@@ -102,6 +102,7 @@ public class MarketingActivitePage extends TestBase {
 	public void ClickCampaignInspector() throws Throwable {
 		Clib.StandardWait(2000);
 		GetCampaignInspector().click();
+		Clib.StandardWait(4000);
 		GetCampaignDD().click();
 
 	}
