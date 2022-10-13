@@ -62,8 +62,8 @@ public class AnalyticsPage extends TestBase {
 					.isDisplayed();
 			if (flag) {
 				homepage.ExtendTreeNode("Group Models");
-				new CommonLib().WriteExcelData("Sheet1", row, 0, "Models");
-				new CommonLib().WriteExcelData("Sheet1", row, cell, GetModels().size());
+				Clib.WriteExcelData("Sheet1", row, 0, "Models");
+				Clib.WriteExcelData("Sheet1", row, cell, GetModels().size());
 				logger.info("Fetch Models Count");
 				screenshotUtility.TakeScreenshot(GetRcm(), "Models" + cell);
 				logger.info("Fetch Models Screenshot");
@@ -71,8 +71,8 @@ public class AnalyticsPage extends TestBase {
 			}
 
 		} catch (Exception e) {
-			new CommonLib().WriteExcelData("Sheet1", row, 0, "Models");
-			new CommonLib().WriteExcelData("Sheet1", row, cell, 0);
+			Clib.WriteExcelData("Sheet1", row, 0, "Models");
+			Clib.WriteExcelData("Sheet1", row, cell, 0);
 			logger.info("Models are Not Available");
 
 		}
@@ -87,8 +87,8 @@ public class AnalyticsPage extends TestBase {
 		int cell = 2;
 		int Model = 0;
 
-		new CommonLib().ClearExcelData("Sheet1", 17);
-		new CommonLib().ClearExcelData("Sheet1", 18);
+		Clib.ClearExcelData("Sheet1", 17);
+		Clib.ClearExcelData("Sheet1", 18);
 
 		for (WebElement value : workSpace) {
 			try {
@@ -107,13 +107,13 @@ public class AnalyticsPage extends TestBase {
 			Actions act = new Actions(driver);
 			act.doubleClick(value).perform();
 			logger.info("Close " + value.getText() + " Workspace");
-			new CommonLib().WriteExcelData("Sheet1", 17, 0, "Program Data");
-			new CommonLib().WriteExcelData("Sheet1", 17, cell, value.getText());
+			Clib.WriteExcelData("Sheet1", 17, 0, "Program Data");
+			Clib.WriteExcelData("Sheet1", 17, cell, value.getText());
 			cell++;
 
 		}
-		new CommonLib().WriteExcelData("Sheet1", 17, 1, "Total");
-		new CommonLib().WriteExcelData("Sheet1", 18, 1, Model);
+		Clib.WriteExcelData("Sheet1", 17, 1, "Total");
+		Clib.WriteExcelData("Sheet1", 18, 1, Model);
 
 	}
 
@@ -145,8 +145,8 @@ public class AnalyticsPage extends TestBase {
 					act.doubleClick(workSpaceTree).perform();
 					logger.info("Close " + ChooseWorkSpace(Workspace).getText() + " Workspace");
 
-					new CommonLib().WriteExcelData("Sheet1", 17, 0, "Program Data");
-					new CommonLib().WriteExcelData("Sheet1", 17, cell, workSpaceTree.getText());
+					Clib.WriteExcelData("Sheet1", 17, 0, "Program Data");
+					Clib.WriteExcelData("Sheet1", 17, cell, workSpaceTree.getText());
 					cell++;
 				} catch (Exception ee) {
 					driver.switchTo().defaultContent();
@@ -157,8 +157,8 @@ public class AnalyticsPage extends TestBase {
 				}
 			}
 		}
-		new CommonLib().WriteExcelData("Sheet1", 17, 1, "Total");
-		new CommonLib().WriteExcelData("Sheet1", 18, 1, Model);
+		Clib.WriteExcelData("Sheet1", 17, 1, "Total");
+		Clib.WriteExcelData("Sheet1", 18, 1, Model);
 		asrt.assertAll();
 	}
 
