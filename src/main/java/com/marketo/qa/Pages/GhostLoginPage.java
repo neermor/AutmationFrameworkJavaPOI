@@ -6,6 +6,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.marketo.qa.FileLib.CommonLib;
@@ -116,20 +118,28 @@ public class GhostLoginPage extends TestBase {
 
 		boolean push = false;
 
-		try {
-			Clib.StandardWait(4000);
-			push = GetOktaPushBtn().isDisplayed();
-			if (push) {
-				GetOktaPushBtn().click();
-				Clib.StandardWait(40000);
-				OctaLogs();
-				Assert.assertTrue(OktaVerify());
+		for (int i = 1; i <= 3; i++) {
+			try {
+				WebDriverWait wait = new WebDriverWait(driver, 60);
+				wait.until(ExpectedConditions.elementToBeClickable(GetOktaPushBtn()));
 
+				push = GetOktaPushBtn().isDisplayed();
+				if (push) {
+					GetOktaPushBtn().click();
+					Clib.StandardWait(40000);
+					OctaLogs();
+					Assert.assertTrue(OktaVerify());
+					break;
+				}
 			}
 
-		} catch (Exception e) {
-			logger.info("Direct Okta Push Button Is Not Presnet");
+			catch (Exception e) {
+				logger.info("Attempt " + i);
+				continue;
+			}
 		}
+		logger.info("Direct Okta Push Button Is Not Presnet");
+
 		while (!push) {
 
 			try {
