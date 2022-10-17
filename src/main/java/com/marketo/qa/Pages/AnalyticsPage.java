@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.asserts.SoftAssert;
@@ -23,6 +24,7 @@ public class AnalyticsPage extends TestBase {
 	By Models = By.xpath("//div[contains(@data-id,'treeNode_revenuecyclemodel')]");
 	By Rcm = By.cssSelector("#treeBodyAnchor > div > div > div:nth-child(4)");
 	By WorkSpace = By.xpath("//div[contains(@data-id,'treeNode_workspace')]/..//div//span");
+	By win = By.xpath("//*[@id=\"AppContainer\"]/div/div/div/div[2]/span");
 
 	public List<WebElement> GetModels() {
 		return driver.findElements(Models);
@@ -64,13 +66,20 @@ public class AnalyticsPage extends TestBase {
 				homepage.ExtendTreeNode("Group Models");
 				Clib.WriteExcelData("Sheet1", row, 0, "Models");
 				Clib.WriteExcelData("Sheet1", row, cell, GetModels().size());
-				logger.info("Fetch Models Count");
+				Thread.sleep(1000);
+
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				WebElement element = driver.findElement(By.xpath("//div[@data-id='globalTreeDrawerExpanderContent']"));
+				js.executeScript("arguments[0].setAttribute('style', 'width: 900px;')", element);
 				screenshotUtility.TakeScreenshot(GetRcm(), "Models" + cell);
+
+				logger.info("Fetch Models Count");
 				logger.info("Fetch Models Screenshot");
 				return GetModels().size();
 			}
+		}
 
-		} catch (Exception e) {
+		catch (Exception e) {
 			Clib.WriteExcelData("Sheet1", row, 0, "Models");
 			Clib.WriteExcelData("Sheet1", row, cell, 0);
 			logger.info("Models are Not Available");
