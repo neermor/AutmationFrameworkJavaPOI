@@ -149,7 +149,7 @@ public class MyMarketoPage extends TestBase {
 	}
 
 	public void SelectTreeNode(String TreeNodeName) throws Throwable {
-		Thread.sleep(10000);
+		Thread.sleep(5000);
 		List<WebElement> HomeTiles = driver.findElements(TreeNode);
 		for (WebElement option : HomeTiles) {
 

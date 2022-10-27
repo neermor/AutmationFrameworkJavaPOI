@@ -10,11 +10,14 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
 
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.Pages.GhostLoginPage;
@@ -46,7 +49,7 @@ public class TestBase {
 		}
 	}
 
-	@BeforeTest
+	@BeforeSuite
 	public static void initialization() throws Throwable {
 
 		String browserName = prop.getProperty("browser");
@@ -81,7 +84,7 @@ public class TestBase {
 		driver.get(prop.getProperty("ghosturl"));
 		new GhostLoginPage().verifyLoginPage();
 		GhostLogin();
-		//Login();
+
 	}
 
 	public static void OpenSupportTool() {
@@ -128,11 +131,25 @@ public class TestBase {
 		new MyMarketoPage().OpenMyMarketo();
 	}
 
+	@BeforeClass
+	public void CloseErrorPopup() {
+		for (int i = 1; i < 3; i++) {
+			Actions act = new Actions(driver);
+			act.sendKeys(Keys.ESCAPE).perform();
+		}
+	}
+
+	@BeforeMethod
+	public void ReturnIframe() {
+		driver.switchTo().defaultContent();
+	}
+
 	@AfterSuite
 	public void teardown() throws Exception {
 		reports.docs();
 		driver.quit();
 		System.out.println("Execution Over");
+
 	}
 
 }

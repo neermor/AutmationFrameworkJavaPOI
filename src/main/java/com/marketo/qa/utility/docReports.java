@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -17,7 +16,6 @@ import org.apache.poi.xwpf.usermodel.Document;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.UnderlinePatterns;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFNumbering;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.xmlbeans.XmlException;
@@ -57,9 +55,6 @@ public class docReports {
 
 	public static void stats(XWPFDocument document)
 			throws NumberFormatException, InvalidFormatException, FileNotFoundException, IOException, XmlException {
-		
-			 
-		
 		XWPFParagraph Statsparagraph = document.createParagraph();
 		XWPFRun run = Statsparagraph.createRun();
 		Statsparagraph = document.createParagraph();
@@ -95,7 +90,6 @@ public class docReports {
 		Statsparagraph.setSpacingAfter(0);
 		run = Statsparagraph.createRun();
 		stylingDoc.FontFamilySize(run);
-		Statsparagraph.setNumILvl( BigInteger.ONE);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		logger.info("Writing Active Campaigns count in doc file.....");
 		run.setText("They have " + passData.Exceldata("Active Campaigns") + " active campaigns");
@@ -112,9 +106,7 @@ public class docReports {
 		run = Statsparagraph.createRun();
 		Statsparagraph.setSpacingAfter(0);
 		stylingDoc.FontFamilySize(run);
-		Statsparagraph.setNumILvl( BigInteger.ONE);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
-		
 		logger.info("Writing Active Triggered Campaigns count in doc file.....");
 		run.setText("They have " + passData.Exceldata("Active Triggered Campaigns") + " Active triggered campaigns");
 

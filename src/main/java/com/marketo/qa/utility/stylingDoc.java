@@ -19,7 +19,6 @@ import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.UnderlinePatterns;
 import org.apache.poi.xwpf.usermodel.XWPFAbstractNum;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFNum;
 import org.apache.poi.xwpf.usermodel.XWPFNumbering;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
@@ -79,22 +78,7 @@ public class stylingDoc {
 	}
 	
 	
-	public static BigInteger bulletn(XWPFDocument document,BigInteger lvl) throws IOException, XmlException
-	{
-		
-		CTNumbering cTNumbering = CTNumbering.Factory.parse(cTAbstractNumBulletXML);
-        CTAbstractNum cTAbstractNum = cTNumbering.getAbstractNumArray(0);
-
-        XWPFAbstractNum abstractNum = new XWPFAbstractNum(cTAbstractNum);
-        XWPFNumbering numbering = document.createNumbering();
-        
-      BigInteger abstractNumID = numbering.addAbstractNum(abstractNum);
-
-        BigInteger numID =numbering.addNum(abstractNumID);
-        return numID;
-        
-       
-	}
+	
 	
 	
 	 public static void HeaderFooter(XWPFDocument doc ) throws IOException, InvalidFormatException
@@ -237,8 +221,7 @@ public class stylingDoc {
 			return dateformat.format(date);
 			
 		}
-
-
+	 
 	
 
 

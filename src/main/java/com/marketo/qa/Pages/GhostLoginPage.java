@@ -23,9 +23,7 @@ public class GhostLoginPage extends TestBase {
 	private By Prifix = By.id("loginUsername");
 	private By Signup = By.id("loginButton");
 	private By OkatUsername = By.cssSelector("#okta-signin-username");
-	//private By OkatUsername = By.cssSelector("#input28");
 	private By OkatNextBtn = By.cssSelector("#okta-signin-submit");
-	//private By OkatNextBtn = By.cssSelector("input[value='Next']");
 	private By OkatPassword = By.cssSelector("[name='password']");
 	private By OkatVerifyBtn = By.cssSelector("[value='Verify']");
 	private By OkatSendPush = By.cssSelector("[value='Send Push']");
@@ -161,6 +159,7 @@ public class GhostLoginPage extends TestBase {
 			}
 
 			catch (Exception e) {
+				Assert.assertTrue(OktaVerify());
 			}
 		}
 
