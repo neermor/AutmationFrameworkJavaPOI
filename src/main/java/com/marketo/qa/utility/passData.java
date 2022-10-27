@@ -73,11 +73,10 @@ public class passData {
 			+ "types of Content you can add to engagement program streams — emails and programs. Emails will be sent"
 			+ "to leads at cast time. Marketo's smart streams also offer:";
 
-	static String Nurture2 = "\nWe should include the Alternate Verbiage note here since this instance has less than 5 nurture campaigns:\r\n"
-			+ "“Since the client has less than 5 nurture campaigns we do suggest that you provide the following document on event campaigns:";
+	static String Nurture2 = "“\nSince the client has less than 5 nurture campaigns we do suggest that you provide the following document on event campaigns:";
 
-	static String No_Nurture = "\ndoes not have any Nurture campaigns set up in their instance. They might need a refresher on how"
-			+ " useful Nurture Campaigns can be: ";
+	static String No_Nurture = "\ndoes not have any Nurture campaigns set up in their instance. There are two types of Content you can add to engagement"
+			+ " program streams — emails and programs. Emails will be sent to leads at cast time. Marketo's smart streams also offer: ";
 
 	// Segments
 	static String no_segment = "\ndoes not have any segments defined. Segmentation categorizes your audience into different"
@@ -168,10 +167,17 @@ public class passData {
 			+ "";
 
 	public static String Exceldata(String key) throws IOException {
+		try {
 		Map<String, String> testdata = excelReader.getMapData();
 
 		return testdata.get(key);
 
+	}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		Map<String, String> testdata = excelReader.getMapData();
+		return testdata.get(key);
 	}
 
 	public static String GenricMethod(String snippets) throws IOException {
@@ -182,20 +188,20 @@ public class passData {
 
 	// No Lead_scoring Data
 	public static String LeadScoring(String leads) throws IOException {
-		try {
+		
 			int ChangeScore = Integer.parseInt(passData.Exceldata("Change Score"));
 			if (ChangeScore >= 5) {
 				return passData.Exceldata("Account Name") + "\nhas a total of\n" + passData.Exceldata("Change Score") +"\nlead scoring campaigns.";
 			} else if (ChangeScore < 5 && ChangeScore > 0) {
 
 				return passData.Exceldata("Account Name") +"\nhas a total of\n" + passData.Exceldata("Change Score") +"\nlead scoring campaigns.";
-			} else {
+			} else if(ChangeScore <= 0) {
+				return passData.Exceldata("Account Name") + No_lead_scoring;
 			}
 			// return passData.Exceldata("Account Name") + No_lead_scoring;
-		} catch (NumberFormatException ex) { // handle your exception
-
-		}
+		
 		return passData.Exceldata("Account Name") + No_lead_scoring;
+		
 	}
 
 //my tokens method for Lead scoring
@@ -236,24 +242,32 @@ public class passData {
 
 //Method for Data Management
 	public static String DataManagement() throws IOException {
-		try {
-			int DataManagment = Integer.parseInt(passData.Exceldata("Change Data Value"));
-
+		  int DataManagment = Integer.parseInt(passData.Exceldata("Change Data Value"));
+			try {
+			//int DataManagment = Integer.parseInt(passData.Exceldata("Change Data Value"));
+			
 			if (DataManagment > 5) {
 				return passData.Exceldata("Account Name") + Data;
-			} else if (DataManagment < 5 && DataManagment > 0) {
+				} 
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+			}
+			try {
+			 if (DataManagment < 5 && DataManagment > 0) {
 				return passData.Exceldata("Account Name") + Data_less5 + No_data_link;
+			}}
+			 catch (Exception e) {
+				// TODO: handle exception
 			}
-
-			else {
-			}
-		} catch (NumberFormatException ex) { // handle your exception
-
-		}
-
+			
+		
 		return passData.Exceldata("Account Name") + No_Data + No_data_link;
+		}
+		
+		
 
-	}
+	
 
 //Method for Events
 	public static String Events() throws IOException {

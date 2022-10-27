@@ -116,54 +116,56 @@ public class GhostLoginPage extends TestBase {
 		getGhostID().sendKeys(ghostId);
 		getLoginButton().click();
 
-		boolean push = false;
-
-		for (int i = 1; i <= 6; i++) {
-			try {
-				WebDriverWait wait = new WebDriverWait(driver, 60);
-				wait.until(ExpectedConditions.elementToBeClickable(GetOktaPushBtn()));
-
-				push = GetOktaPushBtn().isDisplayed();
-				if (push) {
-					GetOktaPushBtn().click();
-					Clib.StandardWait(40000);
-					OctaLogs();
-					Assert.assertTrue(OktaVerify());
-					break;
-				}
-			}
-
-			catch (Exception e) {
-				logger.info("Attempt " + i);
-				continue;
-			}
-		}
-		logger.info("Direct Okta Push Button Is Not Presnet");
-
-		while (!push) {
-
-			try {
-				Thread.sleep(2000);
-				GetOktaUsername().sendKeys(prop.getProperty("OktaUserID"));
-				logger.info("Entered Okta Username");
-				GetOktaNextBtn().click();
-				Thread.sleep(2000);
-				GetOktaPassword().sendKeys(prop.getProperty("OktaPassword"));
-				logger.info("Entered Okta Password");
-				GetOktaVerifyBtn().click();
-				Thread.sleep(2000);
-				GetOktaPushBtn().click();
-				logger.info("Clicked Push Sent Button");
-				new CommonLib().StandardWait(40000);
-				OctaLogs();
-				Assert.assertTrue(OktaVerify());
-				break;
-			}
-
-			catch (Exception e) {
-			}
-		}
-
+//		boolean push = false;
+//
+//		for (int i = 1; i <= 6; i++) {
+//			try {
+//				WebDriverWait wait = new WebDriverWait(driver, 60);
+//				wait.until(ExpectedConditions.elementToBeClickable(GetOktaPushBtn()));
+//
+//				push = GetOktaPushBtn().isDisplayed();
+//				if (push) {
+//					GetOktaPushBtn().click();
+//					Clib.StandardWait(40000);
+//					OctaLogs();
+//					Assert.assertTrue(OktaVerify());
+//					break;
+//				}
+//			}
+//
+//			catch (Exception e) {
+//				logger.info("Attempt " + i);
+//				continue;
+//			}
+//		}
+//		logger.info("Direct Okta Push Button Is Not Presnet");
+//
+//		while (!push) {
+//
+//			try {
+//				Thread.sleep(2000);
+//				GetOktaUsername().sendKeys(prop.getProperty("OktaUserID"));
+//				logger.info("Entered Okta Username");
+//				GetOktaNextBtn().click();
+//				Thread.sleep(2000);
+//				GetOktaPassword().sendKeys(prop.getProperty("OktaPassword"));
+//				logger.info("Entered Okta Password");
+//				GetOktaVerifyBtn().click();
+//				Thread.sleep(2000);
+//				GetOktaPushBtn().click();
+//				logger.info("Clicked Push Sent Button");
+//				new CommonLib().StandardWait(40000);
+//				OctaLogs();
+//				Assert.assertTrue(OktaVerify());
+//				
+//				break;
+//			}
+//
+//			catch (Exception e) {
+//				Assert.assertTrue(OktaVerify());
+//			}
+//		}
+		Thread.sleep(25000);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 

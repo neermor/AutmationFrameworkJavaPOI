@@ -23,25 +23,13 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.xmlbeans.XmlException;
 
 public class docReports {
-
+ 
 	static String word = System.getProperty("user.dir") + "//Reports//";
 	static String fileName = new SimpleDateFormat("dd_MM_yy_HH_mm").format(new Date());
 
 	private static final Logger logger = LogManager.getLogger(docReports.class);
 
-//	public  docReports()
-//	{
-//		String currentDir =System.getProperty("user.dir")+"\\Config\\log4j2.xml";
-//	String test =	System.setProperty("logDir", currentDir);
-//		PropertyConfigurator.configure(test);	
-//		
-//		String currentDir =System.getProperty("user.dir")+"\\Config\\log4j2.xml";
-//		System.setProperty("logDir", currentDir);
-//		final LoggerContext ctx = (LoggerContext)LogManager.getContext(false);
-//		ctx.reconfigure();
-//		
-//		
-//	}
+
 
 	public static void close(XWPFDocument document) throws InvalidFormatException, IOException {
 		stylingDoc.HeaderFooter(document);// Styling of Header and footer
@@ -73,6 +61,8 @@ public class docReports {
 					+ "\nworkspaces. Stats below are a sum of assets found across all workspaces.");
 		} catch (Exception e) {
 			// TODO: handle exception
+			run.setText(passData.Exceldata("Account Name") + "\nhas\n" + passData.Exceldata("Total WorkSpace")
+			+ "\nworkspaces. Stats below are a sum of assets found across all workspaces.");
 			logger.info("Work Space counting is missing\n");
 		}
 		Statsparagraph = document.createParagraph();
@@ -191,6 +181,7 @@ public class docReports {
 		try {
 			int Snippets = Integer.parseInt(passData.Exceldata("Snippets"));
 			if (Snippets < 5) {
+			
 				logger.info("Cont is less then 5 and it printing corresponding text");
 				XWPFParagraph paragraphModel = document.createParagraph();
 				XWPFRun model = paragraphModel.createRun();
@@ -218,6 +209,7 @@ public class docReports {
 
 			}
 		} catch (Exception e) {
+			
 			logger.warn("Test is failed hence some data is missing from Stats Section\n");
 			// TODO: handle exception
 		}
@@ -255,7 +247,7 @@ public class docReports {
 
 				img.addCarriageReturn();
 				img.addPicture(new FileInputStream(passData.FetchScreenshot("Tags" + i)), Document.PICTURE_TYPE_PNG,
-						passData.FetchScreenshot("Tags" + i), Units.toEMU(380), Units.toEMU(120));
+						passData.FetchScreenshot("Tags" + i), Units.toEMU(400), Units.toEMU(210));
 				img.addCarriageReturn();
 			}
 
@@ -268,13 +260,13 @@ public class docReports {
 
 	}
 
-	public static void models(XWPFDocument document) throws IOException, InvalidFormatException {
+	public static void models(XWPFDocument document) throws InvalidFormatException, FileNotFoundException, IOException, XmlException {
 		// TODO Auto-generated method stub
 
 		XWPFParagraph paragraphModel = document.createParagraph();
 		XWPFRun model = paragraphModel.createRun();
 		model.setBold(true);
-		model.addBreak(BreakType.PAGE);
+		
 		model.addCarriageReturn();
 		model.addCarriageReturn();
 		logger.info("Printing Models Data");
@@ -289,12 +281,15 @@ public class docReports {
 				XWPFRun modelData = paragraphModelData.createRun();
 				stylingDoc.setNoProof(modelData);
 				stylingDoc.FontFamilySize(modelData);
-
+				try {
 				modelData.setText(passData.Exceldata("Account Name") + ",\nHas previously built\n"
 						+ passData.Exceldata("Models") + "\n models in Marketo. Revenue cycle models take marketing"
 						+ " to the next level. They model all the stages of your entire revenue funnel—from when you first interact with a lead "
 						+ "all the way until the lead is a won customer.");
-
+				}
+				catch (Exception e) {
+					// TODO: handle exception
+				}
 				modelData = paragraphModelData.createRun();
 				modelData.addBreak();
 				stylingDoc.setNoProof(modelData);
@@ -304,12 +299,12 @@ public class docReports {
 				XWPFParagraph model_img = document.createParagraph();
 				logger.info("Printing images in doc");
 				XWPFRun img1 = model_img.createRun();
-				for (int i = 1; i < 6; i++) {
+				for (int i = 1; i < 3; i++) {
 					try {
 
 						img1.addPicture(new FileInputStream(passData.FetchScreenshot("Models" + i)),
 								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Models" + i).toString(),
-								Units.toEMU(170), Units.toEMU(130));
+								Units.toEMU(250), Units.toEMU(130));
 
 					} catch (Exception e) {
 						// TODO: handle exception
@@ -339,7 +334,8 @@ public class docReports {
 
 	}
 
-	public static void lead(XWPFDocument document) throws IOException, XmlException {
+	public static void lead(XWPFDocument document) throws NumberFormatException, InvalidFormatException, FileNotFoundException, IOException, XmlException {
+	
 		XWPFParagraph LeadParagraph = document.createParagraph();
 		XWPFRun LeadRun = LeadParagraph.createRun();
 
@@ -347,69 +343,79 @@ public class docReports {
 		LeadRun.setBold(true);
 		logger.info("Printing Lead scoring Section");
 		LeadRun.setText("Lead Scoring");
-
+		
 		// adding lead scoring bullet point data into report
+		
 		XWPFParagraph LeadData = document.createParagraph();
-
+		
 		XWPFRun LeadDataRun = LeadData.createRun();
 		stylingDoc.FontFamilySize(LeadDataRun);
 		stylingDoc.setNoProof(LeadDataRun);
 		LeadData.setSpacingAfter(0);
 		LeadData.setNumID(stylingDoc.bullet(document));
-		LeadDataRun.setText(passData.LeadScoring(passData.Exceldata("Change Score")));
-
 		try {
-			int ChangeScore = Integer.parseInt(passData.Exceldata("Change Score"));
-			if (ChangeScore > 1)
-				logger.info("Change Score count is greater then 1");
-			{
-
-				XWPFParagraph LeadData1 = document.createParagraph();
-				XWPFRun runData = LeadData1.createRun();
-				stylingDoc.setNoProof(runData);
-				LeadData1.setSpacingAfter(0);
-				stylingDoc.FontFamilySize(runData);
-				LeadData1.setNumID(stylingDoc.bullet(document));
-				runData.setText(passData.Exceldata("Account Name") + ","
-						+ "\nis executing multiple score changes with single campaigns.");
-			}
-
-			XWPFParagraph LeadData2 = document.createParagraph();
-			XWPFRun runData2 = LeadData2.createRun();
-			stylingDoc.FontFamilySize(runData2);
-			LeadData2.setNumID(stylingDoc.bullet(document));
-			stylingDoc.setNoProof(runData2);
-			LeadData2.setSpacingAfter(0);
-			runData2.setText(passData.MyTokens());
-
-			XWPFParagraph LeadData3 = document.createParagraph();
-			XWPFRun LeadDatarun3 = LeadData3.createRun();
-			stylingDoc.FontFamilySize(LeadDatarun3);
-			stylingDoc.setNoProof(LeadDatarun3);
-
-			LeadData3.setNumID(stylingDoc.bullet(document));
-			LeadDatarun3.setText(passData.BatchCampaigns());
-
+		LeadDataRun.setText(passData.LeadScoring(passData.Exceldata("Change Score")));
+		
+		}
+		catch (Exception e) {
+					
+					// TODO: handle exception
+				}
+					
+		
+		
+//			int ChangeScore = Integer.parseInt(passData.Exceldata("Change Score"));
+//			if (ChangeScore >= 1)
+//				logger.info("Change Score count is greater then 1");
+//			{
+//
+//				XWPFParagraph LeadData1 = document.createParagraph();
+//				XWPFRun runData = LeadData1.createRun();
+//				stylingDoc.setNoProof(runData);
+//				LeadData1.setSpacingAfter(0);
+//				stylingDoc.FontFamilySize(runData);
+//				LeadData1.setNumID(stylingDoc.bullet(document));
+//				runData.setText(passData.Exceldata("Account Name") + ","
+//						+ "\nis executing multiple score changes with single campaigns.");
+//			}
+//
+//			XWPFParagraph LeadData2 = document.createParagraph();
+//			XWPFRun runData2 = LeadData2.createRun();
+//			stylingDoc.FontFamilySize(runData2);
+//			LeadData2.setNumID(stylingDoc.bullet(document));
+//			stylingDoc.setNoProof(runData2);
+//			LeadData2.setSpacingAfter(0);
+//			runData2.setText(passData.MyTokens());
+//
+//			XWPFParagraph LeadData3 = document.createParagraph();
+//			XWPFRun LeadDatarun3 = LeadData3.createRun();
+//			stylingDoc.FontFamilySize(LeadDatarun3);
+//			stylingDoc.setNoProof(LeadDatarun3);
+//
+//			LeadData3.setNumID(stylingDoc.bullet(document));
+//			LeadDatarun3.setText(passData.BatchCampaigns());
+//
 			XWPFParagraph LeadData4 = document.createParagraph();
 			XWPFRun LeadDataRun4 = LeadData4.createRun();
-
 			stylingDoc.FontFamilySize(LeadDataRun4);
 			stylingDoc.setNoProof(LeadDataRun4);
+			LeadDataRun4.addBreak();
 			LeadDataRun4.setText(passData.lead_scoring);
+		
 		}
+			
+		
+		
 
-		catch (NumberFormatException ex) {
-
-			logger.error("Lead Scoring having Null Data, So this section skipped\n");
-			// handle your exception
-
-		}
-		logger.info("Completed Lead Scoring Section");
-	}
+		
+		
+		
+		
+	
 
 	public static void intrestingMoment(XWPFDocument document)
 			throws NumberFormatException, InvalidFormatException, FileNotFoundException, IOException {
-
+		
 		if (passData.Exceldata("Interesting Moment Subscription").equalsIgnoreCase("true")) {
 			logger.info("User have Interesting Moment Subscription");
 			XWPFParagraph Interesting = document.createParagraph();
@@ -418,20 +424,28 @@ public class docReports {
 			InterestingRun.addCarriageReturn();
 			InterestingRun.addCarriageReturn();
 			InterestingRun.setText("Interesting Moment");
+			
 			try {
 				int Interesting_Moment = Integer.parseInt(passData.Exceldata("Interesting Moment"));
-
+			
+				
 				if (Interesting_Moment > 0) {
-
+					
+					
 					XWPFParagraph InterestingData = document.createParagraph();
 					XWPFRun InterestingDatarun = InterestingData.createRun();
 
 					stylingDoc.setNoProof(InterestingDatarun);
 					stylingDoc.FontFamilySize(InterestingDatarun);
+					try {
 					InterestingDatarun.setText("Client has "+passData.Exceldata("Interesting Moment")+"\nInteresting Moments"+".\nThe following screenshot shows some Interesting Moments that have been defined by the client.\n"
 							+ passData.intresting_moment);
-
-					InterestingDatarun = InterestingData.createRun();
+					}
+					catch (Exception e) {
+						// TODO: handle exception
+					}
+				
+				InterestingDatarun = InterestingData.createRun();
 					for (int i = 1; i < 4; i++) {
 						try {
 							InterestingDatarun.addCarriageReturn();
@@ -445,14 +459,17 @@ public class docReports {
 							// TODO: handle exception
 						}
 					}
+					
 					InterestingData = document.createParagraph();
 					InterestingDatarun = InterestingData.createRun();
 
 					stylingDoc.setNoProof(InterestingDatarun);
 					stylingDoc.FontFamilySize(InterestingDatarun);
 					InterestingDatarun.setText(passData.intresting_moment_below);
+					}
+				
 
-				} else {
+				 else {
 
 					XWPFParagraph InterestingData = document.createParagraph();
 					XWPFRun InterestingDatarun = InterestingData.createRun();
@@ -461,16 +478,21 @@ public class docReports {
 					InterestingDatarun.setText(passData.Exceldata("Account Name") + passData.intresting_moment_else);
 
 				}
+		
+		
 			}
 
 			catch (NumberFormatException ex) { // handle your exception
 				logger.info("Test is skipped or fail hence data is missing for Intresting Moment\n");
 			}
-		}
-		logger.info("Interesting Moment part is done");
-	}
+			logger.info("Interesting Moment part is done");}
+			}
+		
+		
+	
 
-	public static void DataManagment(XWPFDocument document) throws IOException {
+	public static void DataManagment(XWPFDocument document) throws IOException   {
+		
 		XWPFParagraph DataManagement = document.createParagraph();
 		XWPFRun DataManagementRun = DataManagement.createRun();
 		DataManagementRun.setBold(true);
@@ -483,7 +505,13 @@ public class docReports {
 		XWPFRun DataManagementDatarun = DataManagementData.createRun();
 		stylingDoc.FontFamilySize(DataManagementDatarun);
 		stylingDoc.setNoProof(DataManagementDatarun);
+		try {
 		DataManagementDatarun.setText(passData.DataManagement());
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 	}
 
 	public static void Events(XWPFDocument document) throws IOException {
@@ -521,15 +549,16 @@ public class docReports {
 	public static void nurtureData(XWPFDocument document) throws NumberFormatException, IOException, XmlException
 
 	{
+		
 		logger.info("Printing Nurture data");
 		XWPFParagraph NurtureData = document.createParagraph();
 		XWPFRun NurtureDataRun = NurtureData.createRun();
 		NurtureDataRun.setBold(true);
 		NurtureDataRun.addCarriageReturn();
 		NurtureDataRun.setText("Nurture");
-		;
+		
 
-		try {
+			try {
 			int NurtureData_int = Integer.parseInt(passData.Exceldata("Nurture campaigns"));
 
 			if (NurtureData_int > 0)
@@ -539,8 +568,13 @@ public class docReports {
 				stylingDoc.FontFamilySize(NurtureDataRun);
 				stylingDoc.setNoProof(NurtureDataRun);
 				NurtureDataRun.addCarriageReturn();
+				try {
 				NurtureDataRun.setText(passData.Exceldata("Account Name") + "\nhas\n"
 						+ passData.Exceldata("Nurture campaigns") + passData.Nurture);
+				}
+				catch (Exception e) {
+					// TODO: handle exception
+				}
 
 				XWPFParagraph NurtureData1 = document.createParagraph();
 				XWPFRun NurtureDatarun1 = NurtureData1.createRun();
@@ -674,7 +708,7 @@ public class docReports {
 	}
 
 	public static void segment(XWPFDocument document) throws NumberFormatException, IOException, InvalidFormatException {
-		try {
+		
 		XWPFParagraph Segment = document.createParagraph();
 		XWPFRun SegmentHeading = Segment.createRun();
 		SegmentHeading.setBold(true);
@@ -698,8 +732,8 @@ public class docReports {
 					try {
 						SegmentRun.addCarriageReturn();
 						SegmentRun.addPicture(new FileInputStream(passData.FetchScreenshot("Segmentations" + i)),
-								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Segmentations"), Units.toEMU(230),
-								Units.toEMU(50));
+								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Segmentations"), Units.toEMU(500),
+								Units.toEMU(80));
 						SegmentRun.addCarriageReturn();
 					} catch (Exception e) {
 						// TODO: handle exception
@@ -736,10 +770,8 @@ public class docReports {
 			logger.error("Test is skipped or failed so we have null value here\n");
 		}
 		logger.info(" Segmentation data part is done......");
-		}
-		catch (Exception e) {
-			// TODO: handle exception
-		}
+		
+		
 	}
 
 	public static void programLibrary(XWPFDocument document) throws IOException, InvalidFormatException {

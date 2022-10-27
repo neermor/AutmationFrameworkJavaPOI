@@ -11,6 +11,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
+import org.testng.ITestNGMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
@@ -20,6 +22,7 @@ import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.Pages.GhostLoginPage;
 import com.marketo.qa.Pages.LoginPage;
 import com.marketo.qa.Pages.MyMarketoPage;
+import com.marketo.qa.utility.Retry;
 import com.marketo.qa.utility.reports;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -80,8 +83,8 @@ public class TestBase {
 		driver.manage().deleteAllCookies();
 		driver.get(prop.getProperty("ghosturl"));
 		new GhostLoginPage().verifyLoginPage();
-		GhostLogin();
-		//Login();
+		//GhostLogin();
+		Login();
 	}
 
 	public static void OpenSupportTool() {
@@ -122,6 +125,13 @@ public class TestBase {
 		logger.info("Screenshot Deleted");
 	}
 
+//	@BeforeSuite(alwaysRun = true)
+//	  public void beforeSuite(ITestContext context) {
+//	      for (ITestNGMethod method : context.getAllTestMethods()) {
+//	          method.setRetryAnalyzer(new Retry());
+//	      }
+//	  }
+	
 	@AfterTest
 	public void BackToMyMarketo() {
 		driver.switchTo().defaultContent();
