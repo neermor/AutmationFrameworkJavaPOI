@@ -72,6 +72,7 @@ public class AnalyticsPage extends TestBase {
 				WebElement element = driver.findElement(By.xpath("//div[@data-id='globalTreeDrawerExpanderContent']"));
 				js.executeScript("arguments[0].setAttribute('style', 'width: 900px;')", element);
 				screenshotUtility.TakeScreenshot(GetRcm(), "Models" + cell);
+				js.executeScript("arguments[0].setAttribute('style', 'width: 310px;')", element);
 
 				logger.info("Fetch Models Count");
 				logger.info("Fetch Models Screenshot");

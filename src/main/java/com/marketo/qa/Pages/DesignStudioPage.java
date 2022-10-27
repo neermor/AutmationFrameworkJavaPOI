@@ -86,7 +86,7 @@ public class DesignStudioPage extends TestBase {
 				String countString = driver.findElement(AllCount).getText();
 				String[] words = countString.split("\\s");
 				if (words[0].equalsIgnoreCase("0")) {
-					return 0;
+					count = 0;
 				}
 				count = Integer.parseInt(words[2]);
 				flag = true;
@@ -113,7 +113,7 @@ public class DesignStudioPage extends TestBase {
 			String[] words = countString.split("\\s");
 
 			if (words[0].equalsIgnoreCase("No")) {
-				return 0;
+				count = 0;
 			} else if (words[0].equalsIgnoreCase("Displaying")) {
 				count = Integer.parseInt(words[1]);
 			} else {
@@ -161,7 +161,6 @@ public class DesignStudioPage extends TestBase {
 	public int FetchTreeNodeCount(String value, int row, int cell) throws Throwable {
 		homepage.SelectTreeNode(value);
 		logger.info("Select " + value);
-		Clib.StandardWait(5000);
 		int count = GetCount();
 		Clib.WriteExcelData("Sheet1", row, 0, value);
 		Clib.WriteExcelData("Sheet1", row, cell, count);
@@ -215,7 +214,6 @@ public class DesignStudioPage extends TestBase {
 		List<WebElement> workSpace = driver.findElements(WorkSpace);
 
 		int cell = 2;
-		boolean WorkspaceAvl = true;
 		int AllEmails = 0;
 		int AllForms = 0;
 		int AllLandingPages = 0;
@@ -324,6 +322,8 @@ public class DesignStudioPage extends TestBase {
 					Clib.WriteExcelData("Sheet1", 1, cell, ChooseWorkSpace(Workspace).getText());
 					cell++;
 				} catch (Exception ee) {
+					act.doubleClick(ChooseWorkSpace(Workspace)).perform();
+					logger.info("Close " + ChooseWorkSpace(Workspace).getText() + " Workspace");
 					driver.switchTo().defaultContent();
 					logger.info("Oops!! " + Workspace + " Workspace is not available");
 					ee.printStackTrace();
