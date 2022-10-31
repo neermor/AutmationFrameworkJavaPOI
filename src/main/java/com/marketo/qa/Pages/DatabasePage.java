@@ -15,9 +15,11 @@ import com.marketo.qa.utility.screenshotUtility;
 
 public class DatabasePage extends TestBase {
 	MyMarketoPage homePage = new MyMarketoPage();
+	MarketingActivitePage mAP = new MarketingActivitePage();
 	private static Logger logger = LogManager.getLogger(TestBase.class);
 	SoftAssert asrt = new SoftAssert();
 	CommonLib Clib = new CommonLib();
+	int count = 0;
 
 	By TreeNode = By.xpath("//div[contains(@data-id,'treeNodeRow' )]");
 	By Iframe = By.cssSelector("#mlm");
@@ -72,8 +74,14 @@ public class DatabasePage extends TestBase {
 		if (words[0].equalsIgnoreCase("No")) {
 			return 0;
 		} else {
-			return Integer.parseInt(words[2]);
+			if (mAP.GetPage().getText().equalsIgnoreCase("Of 1")) {
+				count = Integer.parseInt(words[0]);
+
+			} else {
+				count = Integer.parseInt(words[2]);
+			}
 		}
+		return count;
 
 	}
 

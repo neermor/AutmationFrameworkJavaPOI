@@ -23,9 +23,7 @@ public class GhostLoginPage extends TestBase {
 	private By Prifix = By.id("loginUsername");
 	private By Signup = By.id("loginButton");
 	private By OkatUsername = By.cssSelector("#okta-signin-username");
-	//private By OkatUsername = By.cssSelector("#input28");
 	private By OkatNextBtn = By.cssSelector("#okta-signin-submit");
-	//private By OkatNextBtn = By.cssSelector("input[value='Next']");
 	private By OkatPassword = By.cssSelector("[name='password']");
 	private By OkatVerifyBtn = By.cssSelector("[value='Verify']");
 	private By OkatSendPush = By.cssSelector("[value='Send Push']");
@@ -116,56 +114,55 @@ public class GhostLoginPage extends TestBase {
 		getGhostID().sendKeys(ghostId);
 		getLoginButton().click();
 
-//		boolean push = false;
-//
-//		for (int i = 1; i <= 6; i++) {
-//			try {
-//				WebDriverWait wait = new WebDriverWait(driver, 60);
-//				wait.until(ExpectedConditions.elementToBeClickable(GetOktaPushBtn()));
-//
-//				push = GetOktaPushBtn().isDisplayed();
-//				if (push) {
-//					GetOktaPushBtn().click();
-//					Clib.StandardWait(40000);
-//					OctaLogs();
-//					Assert.assertTrue(OktaVerify());
-//					break;
-//				}
-//			}
-//
-//			catch (Exception e) {
-//				logger.info("Attempt " + i);
-//				continue;
-//			}
-//		}
-//		logger.info("Direct Okta Push Button Is Not Presnet");
-//
-//		while (!push) {
-//
-//			try {
-//				Thread.sleep(2000);
-//				GetOktaUsername().sendKeys(prop.getProperty("OktaUserID"));
-//				logger.info("Entered Okta Username");
-//				GetOktaNextBtn().click();
-//				Thread.sleep(2000);
-//				GetOktaPassword().sendKeys(prop.getProperty("OktaPassword"));
-//				logger.info("Entered Okta Password");
-//				GetOktaVerifyBtn().click();
-//				Thread.sleep(2000);
-//				GetOktaPushBtn().click();
-//				logger.info("Clicked Push Sent Button");
-//				new CommonLib().StandardWait(40000);
-//				OctaLogs();
-//				Assert.assertTrue(OktaVerify());
-//				
-//				break;
-//			}
-//
-//			catch (Exception e) {
-//				Assert.assertTrue(OktaVerify());
-//			}
-//		}
-		Thread.sleep(25000);
+		boolean push = false;
+
+		for (int i = 1; i <= 6; i++) {
+			try {
+				WebDriverWait wait = new WebDriverWait(driver, 60);
+				wait.until(ExpectedConditions.elementToBeClickable(GetOktaPushBtn()));
+
+				push = GetOktaPushBtn().isDisplayed();
+				if (push) {
+					GetOktaPushBtn().click();
+					Clib.StandardWait(40000);
+					OctaLogs();
+					Assert.assertTrue(OktaVerify());
+					break;
+				}
+			}
+
+			catch (Exception e) {
+				logger.info("Attempt " + i);
+				continue;
+			}
+		}
+		logger.info("Direct Okta Push Button Is Not Presnet");
+
+		while (!push) {
+
+			try {
+				Thread.sleep(2000);
+				GetOktaUsername().sendKeys(prop.getProperty("OktaUserID"));
+				logger.info("Entered Okta Username");
+				GetOktaNextBtn().click();
+				Thread.sleep(2000);
+				GetOktaPassword().sendKeys(prop.getProperty("OktaPassword"));
+				logger.info("Entered Okta Password");
+				GetOktaVerifyBtn().click();
+				Thread.sleep(2000);
+				GetOktaPushBtn().click();
+				logger.info("Clicked Push Sent Button");
+				new CommonLib().StandardWait(40000);
+				OctaLogs();
+				Assert.assertTrue(OktaVerify());
+				break;
+			}
+
+			catch (Exception e) {
+				Assert.assertTrue(OktaVerify());
+			}
+		}
+
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 

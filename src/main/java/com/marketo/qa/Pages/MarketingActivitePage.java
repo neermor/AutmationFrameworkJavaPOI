@@ -367,7 +367,6 @@ public class MarketingActivitePage extends TestBase {
 
 		for (int i = 1; i <= NoOfWorkSpace; i++) {
 			String Workspace = prop.getProperty("WorkSpace" + i);
-			System.out.println(CheckDataAvailable(Workspace));
 
 			if (CheckDataAvailable(Workspace)) {
 				try {
