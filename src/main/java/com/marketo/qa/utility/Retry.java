@@ -11,7 +11,7 @@ public class Retry implements IRetryAnalyzer {
 	private static Logger logger = LogManager.getLogger(Retry.class);
 	
     private int count = 0;
-    private static int maxTry = 4;
+    private static int maxTry = 1;
     @Override
     public boolean retry(ITestResult iTestResult) {
         if (!iTestResult.isSuccess()) {                      //Check if test not succeed
@@ -19,9 +19,9 @@ public class Retry implements IRetryAnalyzer {
                 count++;                                     //Increase the maxTry count by 1
                 logger.info("for test: "+ iTestResult.getMethod().getMethodName()+ "\nRetring test case Methods "+count+ " times");
                 
-                iTestResult.setStatus(ITestResult.FAILURE);  //Mark test as failed
+               // iTestResult.setStatus(ITestResult.FAILURE);  //Mark test as failed
               
-                
+                iTestResult.getTestContext().getFailedTests().removeResult( iTestResult.getMethod() );
                 return true;                                 //Tells TestNG to re-run the test
                 
             } else {
@@ -31,5 +31,13 @@ public class Retry implements IRetryAnalyzer {
             iTestResult.setStatus(ITestResult.SUCCESS);      //If test passes, TestNG marks it as passed
         }
         return false;
-    }
+    
+    
+//  }
+    
+   
+     } 
+    
+    
+    
 }

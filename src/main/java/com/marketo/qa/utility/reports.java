@@ -60,6 +60,8 @@ public class reports {
 			docReports.PredictiveContent(document);
 			//closing the document
 			docReports.close(document);
+		}
+		
 	}
 
-}
+

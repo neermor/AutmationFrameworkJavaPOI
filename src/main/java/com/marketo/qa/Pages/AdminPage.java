@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
 
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.base.TestBase;
@@ -101,7 +102,7 @@ public class AdminPage extends TestBase {
 		logger.info("Read Tags Count");
 
 	}
-
+	
 	public void OpenLunchPoint(int row) throws Throwable {
 		new CommonLib().ClearExcelData("Sheet1", row);
 
