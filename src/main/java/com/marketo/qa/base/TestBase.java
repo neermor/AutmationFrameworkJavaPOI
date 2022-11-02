@@ -84,7 +84,7 @@ public class TestBase {
 		driver.get(prop.getProperty("ghosturl"));
 		new GhostLoginPage().verifyLoginPage();
 		GhostLogin();
-		//Login();
+
 	}
 
 	public static void OpenSupportTool() {
