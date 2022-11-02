@@ -370,7 +370,6 @@ public class MarketingActivitePage extends TestBase {
 
 			if (CheckDataAvailable(Workspace)) {
 				try {
-					CheckDataAvailable(Workspace);
 					WebElement wSpace = SelectTreeNode(Workspace);
 					wSpace.click();
 					logger.info("view " + Workspace + " Workspace");
