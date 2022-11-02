@@ -109,7 +109,9 @@ public class GhostLoginPage extends TestBase {
 	public void GhostLogin(String prefix, String pwd, String ghostId) throws Throwable {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		GetPrfix().sendKeys(prefix);
+		System.out.println(GetPrfix().getText());
 		getPassword().sendKeys(pwd);
+		System.out.println(getPassword().getText());
 		getGhostID().clear();
 		getGhostID().sendKeys(ghostId);
 		getLoginButton().click();
