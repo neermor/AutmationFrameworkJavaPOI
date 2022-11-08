@@ -1,6 +1,8 @@
 package com.marketo.qa.Pages;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,11 +22,17 @@ public class AnalyticsPage extends TestBase {
 	private static Logger logger = LogManager.getLogger(TestBase.class);
 	CommonLib Clib = new CommonLib();
 	SoftAssert asrt = new SoftAssert();
+	MarketingActivitePage mAP = new MarketingActivitePage();
 
 	By Models = By.xpath("//div[contains(@data-id,'treeNode_revenuecyclemodel')]");
 	By Rcm = By.cssSelector("#treeBodyAnchor > div > div > div:nth-child(4)");
 	By WorkSpace = By.xpath("//div[contains(@data-id,'treeNode_workspace')]/..//div//span");
 	By win = By.xpath("//*[@id=\"AppContainer\"]/div/div/div/div[2]/span");
+	By ApprovedModels = By
+			.xpath("//*[name()='use' and @*='#icon-meue-badge-green-check']/../../following-sibling::div/span");
+	By PriviewBtn = By.xpath("//button[@class=' x-btn-text mkiPackageView']");
+	By Toggle = By.xpath("//div[@class = 'x-tool x-tool-toggle x-tool-collapse-south']");
+	By Modeler = By.xpath("//div[@class = 'WireIt-Layer']");
 
 	public List<WebElement> GetModels() {
 		return driver.findElements(Models);
@@ -38,6 +46,62 @@ public class AnalyticsPage extends TestBase {
 
 	public WebElement GetRcm() {
 		return driver.findElement(Rcm);
+	}
+
+	public WebElement GetPBtn() {
+		return driver.findElement(PriviewBtn);
+	}
+
+	public WebElement GetToggle() {
+		return driver.findElement(Toggle);
+	}
+
+	public WebElement GetModeler() {
+		return driver.findElement(Modeler);
+	}
+
+	String Parent_window = null;
+	int i = 0;
+	int cell = 0;
+
+	public void FetchApprovedModelScreenshot() throws Throwable {
+		List<WebElement> ApprovedModel = driver.findElements(ApprovedModels);
+		System.out.println(ApprovedModel.size());
+		Clib.WriteExcelData("Sheet1", 17, cell, "Approved ModelS");
+
+		for (WebElement option : ApprovedModel) {
+			String WindowTitle = option.getText();
+			Clib.WriteExcelData("Sheet1", 33, cell++, WindowTitle);
+
+			option.click();
+			mAP.switchFrame();
+			Clib.StandardWait(2000);
+			System.out.println(WindowTitle);
+			GetPBtn().click();
+
+			Set<String> s = driver.getWindowHandles();
+			Iterator<String> I1 = s.iterator();
+
+			while (I1.hasNext()) {
+				Parent_window = I1.next();
+
+				String child_window = I1.next();
+
+				driver.switchTo().window(child_window);
+
+				if (driver.getTitle().equalsIgnoreCase("Marketo | " + WindowTitle + " (Preview) • Analytics")) {
+
+					Clib.StandardWait(4000);
+					GetToggle().click();
+					screenshotUtility.TakeScreenshot(GetModeler(), WindowTitle);
+					driver.close();
+					driver.switchTo().window(Parent_window);
+
+				}
+
+			}
+
+		}
 	}
 
 	WebElement workSpaceTree = null;
@@ -73,7 +137,11 @@ public class AnalyticsPage extends TestBase {
 				js.executeScript("arguments[0].setAttribute('style', 'width: 900px;')", element);
 				screenshotUtility.TakeScreenshot(GetRcm(), "Models" + cell);
 				js.executeScript("arguments[0].setAttribute('style', 'width: 310px;')", element);
-
+				try {
+					FetchApprovedModelScreenshot();
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
 				logger.info("Fetch Models Count");
 				logger.info("Fetch Models Screenshot");
 				return GetModels().size();
@@ -96,6 +164,7 @@ public class AnalyticsPage extends TestBase {
 
 		int cell = 2;
 		int Model = 0;
+		int ModelCount = 1;
 
 		Clib.ClearExcelData("Sheet1", 17);
 		Clib.ClearExcelData("Sheet1", 18);
@@ -111,7 +180,7 @@ public class AnalyticsPage extends TestBase {
 
 			}
 
-			Model += ModelCount(18, cell);
+			Model += ModelCount(18, ModelCount++);
 
 			driver.switchTo().defaultContent();
 			Actions act = new Actions(driver);
