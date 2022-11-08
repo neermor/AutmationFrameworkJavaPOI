@@ -39,9 +39,14 @@ public class MarketingActivitePage extends TestBase {
 	By Page = By.xpath("//td[@class='x-toolbar-cell'] //div[contains(text(),'of ')]");
 	By Template = By.xpath("//div[@data-id='Tree_TreeBodyLoadedFadedIn']");
 	By DefaultWP = By.xpath("//div[@data-id='treeNode_Label']//span[text()='Default']");
+	By MAO = By.cssSelector("#treeBodyAnchor");
 
 	public WebElement GetTemplate() {
 		return driver.findElement(Template);
+	}
+
+	public WebElement GetMAO() {
+		return driver.findElement(MAO);
 	}
 
 	public WebElement GetIFrame() {
@@ -238,6 +243,8 @@ public class MarketingActivitePage extends TestBase {
 			List<WebElement> EventCount = driver.findElements(Event);
 			Clib.WriteExcelData("Sheet1", row, 0, "Event Programs");
 			Clib.WriteExcelData("Sheet1", row, 1, EventCount.size());
+			screenshotUtility.TakeScreenshot(GetMAO(), "Event");
+
 		}
 		GetResetBtn().click();
 
@@ -260,6 +267,8 @@ public class MarketingActivitePage extends TestBase {
 
 			Clib.WriteExcelData("Sheet1", row, 0, "Nurture campaigns");
 			Clib.WriteExcelData("Sheet1", row, 1, NurturCount.size());
+			screenshotUtility.TakeScreenshot(GetMAO(), "Nurture campaigns");
+
 		}
 		GetResetBtn().click();
 		GetFilter().click();
