@@ -16,15 +16,16 @@ public class passData {
 		return path;
 	}
 
-	static String Org_info = " has created a lot of campaigns and content in Marketo."
+	static String Org_info = "\nhas created campaigns and content in Marketo."
 			+ " There are two types of smart campaigns: Batch and Trigger. A batch campaign launches "
 			+ "at a specific time and affects a specific set of leads all at once. A triggered smart"
 			+ " campaign affects one lead at a time, based on a triggered event."
 			+ " To learn more about Smart campaigns in Marketo. visit :";
 
-	static String No_models = "\nhas not built models in Marketo. Revenue cycle models take marketing to the next level."
-			+ " They model all the stages of your entire revenue funnel—from when you first interact with a lead all "
-			+ "the way until the lead is a won customer.";
+	static String No_models = "\nClient has not built out any Revenue Cycle Models in their instance yet."
+			+ " Models are generally for customers who are comfortable with smart campaigns and programs and want to take "
+			+ "their analytics to the next level. If they would like to learn more about Revenue Cycle Models you can share the "
+			+ "following Revenue Model resources:";
 
 	static String models = "\nbuilt models in Marketo. Revenue cycle models take marketing to the next level. They model all the stages"
 			+ " of your entire revenue funnel—from when you first interact with a lead all the way until the lead is"
@@ -43,14 +44,27 @@ public class passData {
 	// Interesting Moment Data
 
 	static String intresting_moment = " When a lead exhibits any of the below behavior, it will be documented and tracked.";
-
+	
+	
+    static String intresting_moment_less_5 = "\nhas ONLY built (1-5) Event programs in Marketo. One of the greatest features of Marketo is the ability "
+    		+ "to clone an entire program—which copies all underlying assets and campaigns that are part of that program. Events allow you to automate "
+    		+ "online and offline events! Capture the status of your leads as they progress through different stages and get accurate measures of the "
+    		+ "ROI for your marketing initiatives.";
+    
+    static String intresting_momentData= "\nInteresting Moments allow the marketer to define what information is relevant to their sales team. When a lead"
+    		+ " takes a specific action, that action is logged and recorded for the team to see. There is nothing comparable to interesting moments with"
+    		+ " other vendors.";
+    
+    
 	static String intresting_moment_below = "If you have Marketo Sales Insight, you can use the interesting moment flow step to give your"
 			+ " sales team visibility into the cool things your leads are doing in a Smart Campaign. Interesting Moments allow the marketer "
 			+ "to define what information is relevant to their sales team. "
 			+ "When a lead takes a specific action, that action is logged and recorded for the team to see.";
 
-	static String intresting_moment_else = "\nhas not defined any Interesting Moments to support their marketing campaigns in Marketo. Interesting Moments are used to document and track any lead behaviors exhibited that are of importance to the Sales Team and the Marketing Team.\r\n"
-			+ "Interesting Moments allow the marketer to define what information is relevant to their sales team. When a lead takes a specific action, that action is logged and recorded for the team to see. There is nothing comparable to interesting moments with other vendors.";
+	static String intresting_moment_else = "Client does not have any Event campaigns set up in their instance. One of the greatest features of Marketo is "
+			+ "the ability to clone an entire program—which copies all underlying assets and campaigns that are part of that program. Events allow you to "
+			+ "automate online and offline events! Capture the status of your leads as they progress through different stages and get accurate measures of "
+			+ "the ROI for your marketing initiatives. ";
 
 	// Event Data
 
@@ -59,13 +73,15 @@ public class passData {
 			+ "offline events! Capture the status of your leads as they progress through different stages and get accurate"
 			+ " measures of the ROI for your marketing initiatives.";
 
-	static String event2 = "\nWe should include the Alternate Verbiage note here since this instance has less than 5 event campaigns:\r\n"
-			+ "“Since the client has less than 5 event campaigns we do suggest that you provide the following document on event campaigns:\r\n"
-			+ "";
+	static String event2 = "\nhas ONLY built (1-5) Event programs in Marketo. One of the greatest features of Marketo is the ability to"
+			+ " clone an entire program—which copies all underlying assets and campaigns that are part of that program. Events allow you"
+			+ " to automate online and offline events! Capture the status of your leads as they progress through different stages and get "
+			+ "accurate measures of the ROI for your marketing initiatives.";
 
-	static String No_events = "\ndoes not have any Event campaigns set up in their instance. Here is a good doc to share"
-			+ " on how to create a new event campaign:\r\n"
-			+ " https://docs.marketo.com/display/public/DOCS/Create+a+New+Event+Program";
+	static String No_events = "\nClient does not have any Event campaigns set up in their instance. One of the greatest features of Marketo is"
+			+ " the ability to clone an entire program—which copies all underlying assets and campaigns that are part of that program. Events "
+			+ "allow you to automate online and offline events! Capture the status of your leads as they progress through different stages and "
+			+ "get accurate measures of the ROI for your marketing initiatives.";
 
 	// Nurture Data
 
@@ -73,33 +89,51 @@ public class passData {
 			+ "types of Content you can add to engagement program streams — emails and programs. Emails will be sent"
 			+ "to leads at cast time. Marketo's smart streams also offer:";
 
-	static String Nurture2 = "“\nSince the client has less than 5 nurture campaigns we do suggest that you provide the following document on event campaigns:";
+	static String Nurture2 = "“\nNurture campaigns using the Marketo Nurture Stream engine. There are two types of Content you can add to"
+			+ " engagement program streams — emails and programs. Emails will be sentto leads at cast time. Marketo's smart streams also offer:";
 
 	static String No_Nurture = "\ndoes not have any Nurture campaigns set up in their instance. There are two types of Content you can add to engagement"
 			+ " program streams — emails and programs. Emails will be sent to leads at cast time. Marketo's smart streams also offer: ";
 
 	// Segments
-	static String no_segment = "\ndoes not have any segments defined. Segmentation categorizes your audience into different"
-			+ " subgroups based on a Smart List rule. These groups are called segments. Segments allow the marketer"
-			+ " to target leads based on the segment that they fall into.\n";
+	static String no_segment = "\nClient does not have any segments defined. Segmentation categorizes your audience into different subgroups"
+			+ " based on a Smart List rule. These groups are called segments. Segments allow the marketer to target leads based on the segment"
+			+ " that they fall into.";
 
 	static String segment = "\nhas the following segments defined. Segments allow the marketer to target leads based on the"
 			+ " segment that they fall into.";
 
 	// Snippet
-	static String No_Snippets = "\nis not taking advantage of snippets. Snippets are reusable blocks of rich text and graphics that"
-			+ " the client can use in their emails and landing pages, and it is a great timesaver!";
+	static String No_Snippets = "\nClient is not taking advantage of snippets (they have 5 or less snippets). "
+			+ "Snippets are reusable blocks of rich text and graphics that the client can use in their emails and landing "
+			+ "pages, and it is a great timesaver! Here is a helpful document you can provide:";
 
 	// No Lead_scoring Data
 	static String Lead_scoring = "\nadvanced lead scoring built out taking into account behavior, demographics, successes and decay.";
-	static String No_lead_scoring = "\n has not built out any lead scoring campaigns in Marketo";
+	
+	static String No_lead_scoring = "\n The client does not appear to be making good use of lead scoring (they have 10 or less lead scoring campaigns)."
+			+ " Marketo’s lead scoring capabilities are far more robust than any other vendor offerings. Other vendors do have lead scoring functionality, "
+			+ "but from a complexity and decay perspective, they cannot replicate what Marketo lead scoring can do. ";
+	
+	static String No_lead_scoring2= "Marketo also allows the usage of My Tokens in lead scoring campaigns. This allows the marketer to have the ability "
+			+ "to control at a high level all of the lead scoring attributes assigned to their campaigns. Additionally, Marketo allows the marketer to"
+			+ " add detailed constraints to their lead scoring campaigns, which add another layer of complexity. For example – leads active during a "
+			+ "specific date/time AND who visit the web page numerous times within a certain time window.";
+	
 	static String Lead_scoring_Less5 = "\nlead scoring campaigns built out taking into account behavior,successes and decay.";
 			
 	static String tokens = "\nis using MyTokens in their lead scoring campaigns which allows for a Marketer to quickly, "
 			+ "and easily, control from a high level their lead change scores";
+	
+	static String lead_data = "\nMarketo’s lead scoring capabilities are far more robust than any other vendor offerings.  Lead scoring allows you to "
+			+ "identify which prospects are most interested and engaged with your brand. Marketo also allows the usage of My Tokens in lead scoring campaigns."
+			+ " This allows the marketer to have the ability to control at a high level all of the lead scoring attributes assigned to their campaigns."
+			+ " Additionally, Marketo allows the marketer to add detailed constraints to their lead scoring campaigns, which add another layer of complexity."
+			+ " For example – leads active during a specific date/time AND who visit the web page numerous times within a certain time window.";
 
-	static String no_tokens = "\nis Not using MyTokens in their lead scoring campaigns which allows for a Marketer to quickly, "
-			+ "and easily, control from a high level their lead change scores";
+	static String no_tokens = "If client is not making use of MyTokens, we suggest taking advantage of MyTokens in lead scoring campaigns."
+			+ " Using MyTokens can simplify the customer’s efforts in Marketo. They can use My Tokens (custom tokens) in flow steps, webhooks,"
+			+ " emails, and landing pages. Here is a document that shows how to create, edit, and delete MyTokens:";
 
 	static String no_batch = "\nhas Not built out campaigns reducing lead scores when leads exhibit undesirable behavior";
 
@@ -116,10 +150,11 @@ public class passData {
 			+ "would be any steps taken to clean up lead data, for example, adding leads to a blacklist triggered by\"\r\n"
 			+ "a certain action. Here is a walkthrough of how to do that: https://experienceleague.adobe.com/docs/marketo/using/product-docs/core-marketo-concepts/smart-lists-and-static-lists/managing-people-in-smart-lists/add-person-to-blocklist.html?lang=en";
 
-	static String No_Data = "\ndoes not appear to have data management actions set up. Good examples of data management "
-			+ "would be any steps taken to clean up lead data, for example, adding leads to a blacklist triggered by"
-			+ " a certain action. Here is a walkthrough of how to do that: https://experienceleague.adobe.com/docs/marketo/using/product-docs/core-marketo-concepts/smart-lists-and-static-lists/managing-people-in-smart-lists/add-person-to-blocklist.html?lang=en";
-	static String No_data_link = "\nHere is a high overview on how to create Change Data Value flow actions: https://docs.marketo.com/display/public/DOCS/Change+Data+Value";
+	static String No_Data = "\nClient does not appear to have data management actions set up. To determine this metric our team looks at the ‘Change Data Value’ flow step in the client’s campaigns. Each ‘Change Data Value’ flow step "
+			+ "counts as a data management action. Marketo’s data management tools allow a marketer to configure actions to automatically manage leads. For example,"
+			+ " Data Management actions can be set up to de-duplicate data, clean up bad data, and modify data based on predetermined actions and values. ";
+	
+	static String No_data_below = "Good examples of data management would be any steps taken to clean up lead data, for example, adding leads to a blacklist triggered by a certain action. Here is a walkthrough of how to do that: ";
 
 	// Library Data
 
@@ -128,7 +163,7 @@ public class passData {
 			+ " into the Marketo Program Library that our customers are free to import when they are needed as their marketing "
 			+ "strategies evolve and call for different types of programs and campaigns.";
 
-	static String no_library = "\nhas Not imported templates from the Marketo Program Library.\r\n"
+	static String no_library = "\nhas not imported templates from the Marketo Program Library.\r\n"
 			+ "Marketo is committed to our customers' success and has seeded a ton of pre-built programs for almost any use "
 			+ "case into the Marketo Program Library that our customers are free to import when they are needed as"
 			+ " their marketing strategies evolve and call for different types of programs and campaigns.";
@@ -240,34 +275,10 @@ public class passData {
 
 	}
 
-//Method for Data Management
-	public static String DataManagement() throws IOException {
-		  int DataManagment = Integer.parseInt(passData.Exceldata("Change Data Value"));
-			try {
-			//int DataManagment = Integer.parseInt(passData.Exceldata("Change Data Value"));
-			
-			if (DataManagment > 5) {
-				return passData.Exceldata("Account Name") + Data;
-				} 
-			}
-			catch (Exception e) {
-				// TODO: handle exception
-			}
-			try {
-			 if (DataManagment < 5 && DataManagment > 0) {
-				return passData.Exceldata("Account Name") + Data_less5 + No_data_link;
-			}}
-			 catch (Exception e) {
-				// TODO: handle exception
-			}
-			
-		
-		return passData.Exceldata("Account Name") + No_Data + No_data_link;
-		}
-		
-		
 
 	
+		
+		
 
 //Method for Events
 	public static String Events() throws IOException {
@@ -283,8 +294,8 @@ public class passData {
 
 				return passData.Exceldata("Account Name") + "\nhas\n" + Exceldata("Event Programs")
 						+ "\nEvent campaigns in Marketo.\n" + events;
-
-			} else {
+		} 
+			else {
 			}
 		} catch (NumberFormatException ex) {
 			logger.error("Event Program having null data hance section is skiped ");
