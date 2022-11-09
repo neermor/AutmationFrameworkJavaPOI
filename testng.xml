@@ -13,12 +13,12 @@
     <classes>    
     
 
-	      <class name="com.marketo.qa.Tests.FetchCampaignCounts"/> 
+	   	  <class name="com.marketo.qa.Tests.FetchCampaignCounts"/> 
 	      <class name="com.marketo.qa.Tests.FetchAdminDatas"/>
-	      <class name="com.marketo.qa.Tests.FetchModelsCount"/>
-	      <class name="com.marketo.qa.Tests.FetchNuture_EventCount"/>      
-	      <class name="com.marketo.qa.Tests.FetchLeadsCount"/>
-	      <class name="com.marketo.qa.Tests.FetchDesignStudioData"/>
+	      <class name="com.marketo.qa.Tests.FetchModelsCount"/>           
+	      <class name="com.marketo.qa.Tests.FetchLeadsCount"/>  
+	      <class name="com.marketo.qa.Tests.FetchDesignStudioData"/> 
+	      <class name="com.marketo.qa.Tests.FetchNuture_EventCount"/> 
 		 <class name="com.marketo.qa.Tests.FetchDataFromChangeScore"/> 
 	      
       
