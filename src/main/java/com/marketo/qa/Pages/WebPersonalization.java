@@ -66,7 +66,7 @@ public class WebPersonalization extends TestBase {
 
 		try {
 
-			homepage.GetHometileUnderFrame("Real-Time Personalization").click();
+			homepage.GetHometileUnderFrame("Web Personalization").click();
 
 			Clib.WriteExcelData("Sheet1", row, 0, "Web Personalization");
 			Clib.WriteExcelData("Sheet1", row, 1, "True");
@@ -86,59 +86,65 @@ public class WebPersonalization extends TestBase {
 		String Parent_window = null;
 		for (int i = 0; i <= size; i++) {
 			mAP.switchFrame();
+			try {
+				if (VerifyAndFetchScreenshots(row)) {
+					Set<String> s = driver.getWindowHandles();
+					Iterator<String> I1 = s.iterator();
 
-			if (VerifyAndFetchScreenshots(row)) {
-				Set<String> s = driver.getWindowHandles();
-				Iterator<String> I1 = s.iterator();
+					Parent_window = I1.next();
+					String child_window = I1.next();
+					driver.switchTo().window(child_window);
 
-				Parent_window = I1.next();
-				String child_window = I1.next();
-				driver.switchTo().window(child_window);
-
-				Clib.WaitForElementToLoad(driver, 60, GetWorkSpaceDropDown());
-				GetWorkSpaceDropDown().click();
-				Clib.StandardWait(2000);
-				String wp = driver.findElements(WorkSpace).get(i).getText();
-				Clib.StandardWait(2000);
-				List<WebElement> SlipperyElement = driver.findElements(WorkSpace);
-				size = SlipperyElement.size() - 1;
-
-				for (WebElement value : SlipperyElement) {
+					Clib.WaitForElementToLoad(driver, 60, GetWorkSpaceDropDown());
+					GetWorkSpaceDropDown().click();
 					Clib.StandardWait(2000);
-					if (value.getText().equalsIgnoreCase(wp)) {
-						value.click();
-						Clib.StandardWait(2000);
-						Clib.WaitForElementToLoad(driver, 60, GetDashboard("Top Campaigns"));
-						screenshotUtility.TakeScreenshot(GetDashboard("Top Campaigns"), "Top Campaigns_" + wp);
-						screenshotUtility.TakeScreenshot(GetDashboard("Top Content"), "Top Content_" + wp);
-						screenshotUtility.TakeScreenshot(GetTopIndustries(), "Top Industries_" + wp);
-						screenshotUtility.TakeScreenshot(GetDashboard("Total Organizations"),
-								"Total Organizations_" + wp);
-						screenshotUtility.TakeScreenshot(GetDashboard("Top Organizations"), "Top Organizations_" + wp);
+					String wp = driver.findElements(WorkSpace).get(i).getText();
+					Clib.StandardWait(2000);
+					List<WebElement> SlipperyElement = driver.findElements(WorkSpace);
+					size = SlipperyElement.size() - 1;
 
-						Actions actions = new Actions(driver);
-						actions.sendKeys(Keys.PAGE_UP).perform();
-						actions.sendKeys(Keys.PAGE_UP).perform();
-						actions.sendKeys(Keys.PAGE_UP).perform();
-
-						Clib.MouseHover(GetMktoBall());
+					for (WebElement value : SlipperyElement) {
 						Clib.StandardWait(2000);
-						GetWebCampaigns().click();
-						Clib.StandardWait(2000);
+						if (value.getText().equalsIgnoreCase(wp)) {
+							value.click();
+							Clib.StandardWait(2000);
+							Clib.WaitForElementToLoad(driver, 60, GetDashboard("Top Campaigns"));
+							screenshotUtility.TakeScreenshot(GetDashboard("Top Campaigns"), "Top Campaigns_" + wp);
+							screenshotUtility.TakeScreenshot(GetDashboard("Top Content"), "Top Content_" + wp);
+							screenshotUtility.TakeScreenshot(GetTopIndustries(), "Top Industries_" + wp);
+							screenshotUtility.TakeScreenshot(GetDashboard("Total Organizations"),
+									"Total Organizations_" + wp);
+							screenshotUtility.TakeScreenshot(GetDashboard("Top Organizations"),
+									"Top Organizations_" + wp);
 
-						try {
-							GetWebCampaignsNoResults().isDisplayed();
-							Reporter.log(wp + "No WebCampaigns are present");
-							break;
-						} catch (Exception e) {
-							screenshotUtility.TakeScreenshot(GetCampaignsList(), "Web Campaigns_" + wp);
-							break;
+							Actions actions = new Actions(driver);
+							actions.sendKeys(Keys.PAGE_UP).perform();
+							actions.sendKeys(Keys.PAGE_UP).perform();
+							actions.sendKeys(Keys.PAGE_UP).perform();
+
+							Clib.MouseHover(GetMktoBall());
+							Clib.StandardWait(2000);
+							GetWebCampaigns().click();
+							Clib.StandardWait(2000);
+
+							try {
+								GetWebCampaignsNoResults().isDisplayed();
+								Reporter.log(wp + "No WebCampaigns are present");
+								break;
+							} catch (Exception e) {
+								screenshotUtility.TakeScreenshot(GetCampaignsList(), "Web Campaigns_" + wp);
+								break;
+							}
 						}
+						driver.close();
+						driver.switchTo().window(Parent_window);
+
 					}
 				}
+
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-			driver.close();
-			driver.switchTo().window(Parent_window);
 		}
 
 	}

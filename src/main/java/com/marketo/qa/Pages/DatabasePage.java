@@ -152,11 +152,10 @@ public class DatabasePage extends TestBase {
 		int Segmentations = 0;
 		int Leads = 0;
 
-		/*
-		 * new CommonLib().ClearExcelData("Sheet1", 14); new
-		 * CommonLib().ClearExcelData("Sheet1", 15); new
-		 * CommonLib().ClearExcelData("Sheet1", 16);
-		 */
+		new CommonLib().ClearExcelData("Sheet1", 14);
+		new CommonLib().ClearExcelData("Sheet1", 15);
+		new CommonLib().ClearExcelData("Sheet1", 16);
+
 		for (WebElement value : workSpace) {
 			try {
 				GetExpandBtn(value.getText()).isDisplayed();
