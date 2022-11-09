@@ -108,7 +108,7 @@ public class stylingDoc {
 	  		headerRun.setColor("e60000");
 	  		headerRun.setBold(true);
 	  		headerRun.setText(passData.Exceldata("Account Name")+"– Instance Review –");
-	  		String curr_date=getCurrentDate(" dd-MM-yyyy");
+	  		String curr_date=getCurrentDate(" MM-dd-yyyy");
 	  		headerRun.setText(curr_date + "–"+getCurrentDate(" hh:mm ")+ getCurrentDate("a")+" MST" );
 	  		
 	  		
