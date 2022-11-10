@@ -26,6 +26,7 @@ public class FetchCampaignCounts extends TestBase {
 
 		switch (WorkspaceCondition) {
 		case "All":
+
 			mAP.AllWorkspaceCampaignCount();
 			break;
 

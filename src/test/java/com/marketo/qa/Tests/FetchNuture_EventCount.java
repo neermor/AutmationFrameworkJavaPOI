@@ -44,10 +44,10 @@ public class FetchNuture_EventCount extends TestBase {
 		mAP.switchFrame();
 		Pc.CheckPresentOrNot(31);
 		driver.switchTo().defaultContent();
-
-		homePage.OpenMyMarketo();
-		Wp.WebCampaignsScreenShot(32);
-		driver.switchTo().defaultContent();
+		/*
+		 * homePage.OpenMyMarketo(); Wp.WebCampaignsScreenShot(32);
+		 * driver.switchTo().defaultContent();
+		 */
 
 		logger.info("Marketing Activite Page Task Closed");
 

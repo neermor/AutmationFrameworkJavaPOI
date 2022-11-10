@@ -36,4 +36,16 @@ public class screenshotUtility {
 
 	}
 
+	public static void TakeScreenshotForModels(WebElement element, String screenshotName) {
+		File src = ((TakesScreenshot) element).getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(src, new File(
+					System.getProperty("user.dir") + "//Config/ScreenShot/Approved Models/" + screenshotName + ".png"));
+		} catch (IOException e) {
+			System.out.println("Screenshot Taken" + e.getMessage());
+			e.printStackTrace();
+		}
+
+	}
+
 }

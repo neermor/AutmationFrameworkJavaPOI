@@ -32,8 +32,8 @@ public class excelReader {
 					String key = getCellValue(Keycell);
 
 					Cell Valuecell = row.getCell(1, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
-
 					String value = getCellValue(Valuecell);
+
 					String valueformat = value.replaceAll("\\.0*$", ""); // Removing decimal value
 					testData.put(key, valueformat);
 				}
@@ -69,4 +69,49 @@ public class excelReader {
 		}
 		return CellData;
 	}
+
+	public static String excelModelReader(int row, int cell) throws NumberFormatException, IOException {
+		String ExcelPath = System.getProperty("user.dir") + "//Config//MarketoData.xlsx";
+		FileInputStream FileInputStream = new FileInputStream(ExcelPath);
+		try (Workbook workbook = new XSSFWorkbook(FileInputStream)) {
+			Sheet sheet = workbook.getSheetAt(0);
+
+			String data = sheet.getRow(row).getCell(cell).toString();
+			return data;
+		}
+	}
+
+	public static Map<String, String> getMapData(int cell) throws IOException {
+		HashMap<String, String> testData = new HashMap<String, String>();
+
+		try {
+
+			String ExcelPath = System.getProperty("user.dir") + "//Config//MarketoData.xlsx";
+			FileInputStream FileInputStream = new FileInputStream(ExcelPath);
+			try (Workbook workbook = new XSSFWorkbook(FileInputStream)) {
+				Sheet sheet = workbook.getSheetAt(0);
+				int lastrownum = sheet.getLastRowNum();
+
+				for (int i = 1; i < lastrownum + 1; i++) {
+					Row row = sheet.getRow(i);
+
+					Cell Keycell = row.getCell(0, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
+					String key = getCellValue(Keycell);
+
+					Cell Valuecell = row.getCell(cell, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
+					String value = getCellValue(Valuecell);
+
+					String valueformat = value.replaceAll("\\.0*$", ""); // Removing decimal value
+					testData.put(key, valueformat);
+				}
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return testData;
+
+	}
+
 }
