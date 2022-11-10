@@ -23,6 +23,7 @@ public class AnalyticsPage extends TestBase {
 	CommonLib Clib = new CommonLib();
 	SoftAssert asrt = new SoftAssert();
 	MarketingActivitePage mAP = new MarketingActivitePage();
+	int i = 1;
 
 	By Models = By.xpath("//div[contains(@data-id,'treeNode_revenuecyclemodel')]");
 	By Rcm = By.cssSelector("#treeBodyAnchor > div > div > div:nth-child(4)");
@@ -61,17 +62,21 @@ public class AnalyticsPage extends TestBase {
 	}
 
 	String Parent_window = null;
-	int i = 0;
-	int cell = 0;
+	int cell = 3;
+	int row = 33;
 
-	public void FetchApprovedModelScreenshot() throws Throwable {
+	public void FetchApprovedModelScreenshot(String WorkspaceName) throws Throwable {
 		List<WebElement> ApprovedModel = driver.findElements(ApprovedModels);
+		row++;
 		System.out.println(ApprovedModel.size());
-		Clib.WriteExcelData("Sheet1", 17, cell, "Approved ModelS");
+		Clib.WriteExcelData("Sheet1", row, 0, "Approved Models" + i);
+		Clib.WriteExcelData("Sheet1", row, 2, WorkspaceName);
+		Clib.WriteExcelData("Sheet1", row, 1, ApprovedModel.size());
 
 		for (WebElement option : ApprovedModel) {
+
 			String WindowTitle = option.getText();
-			Clib.WriteExcelData("Sheet1", 33, cell++, WindowTitle);
+			Clib.WriteExcelData("Sheet1", row, cell++, WindowTitle);
 
 			option.click();
 			mAP.switchFrame();
@@ -91,9 +96,9 @@ public class AnalyticsPage extends TestBase {
 
 				if (driver.getTitle().equalsIgnoreCase("Marketo | " + WindowTitle + " (Preview) • Analytics")) {
 
-					Clib.StandardWait(4000);
+					Clib.StandardWait(6000);
 					GetToggle().click();
-					screenshotUtility.TakeScreenshot(GetModeler(), WindowTitle);
+					screenshotUtility.TakeScreenshotForModels(GetModeler(), WindowTitle);
 					driver.close();
 					driver.switchTo().window(Parent_window);
 
@@ -120,7 +125,7 @@ public class AnalyticsPage extends TestBase {
 
 	}
 
-	public int ModelCount(int row, int cell) throws Throwable {
+	public int ModelCount(int row, int cell, String WorkSpace) throws Throwable {
 		homepage.ExtendTreeNode("Revenue Cycle Modeler");
 		try {
 			boolean flag = driver.findElement(By.xpath(
@@ -135,10 +140,12 @@ public class AnalyticsPage extends TestBase {
 				JavascriptExecutor js = (JavascriptExecutor) driver;
 				WebElement element = driver.findElement(By.xpath("//div[@data-id='globalTreeDrawerExpanderContent']"));
 				js.executeScript("arguments[0].setAttribute('style', 'width: 900px;')", element);
-				screenshotUtility.TakeScreenshot(GetRcm(), "Models" + cell);
+				screenshotUtility.TakeScreenshot(GetRcm(), WorkSpace);
 				js.executeScript("arguments[0].setAttribute('style', 'width: 310px;')", element);
 				try {
-					FetchApprovedModelScreenshot();
+					FetchApprovedModelScreenshot(WorkSpace);
+					i++;
+
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
@@ -180,7 +187,7 @@ public class AnalyticsPage extends TestBase {
 
 			}
 
-			Model += ModelCount(18, ModelCount++);
+			Model += ModelCount(18, ModelCount++, value.getText());
 
 			driver.switchTo().defaultContent();
 			Actions act = new Actions(driver);
@@ -218,7 +225,7 @@ public class AnalyticsPage extends TestBase {
 					act.doubleClick(ChooseWorkSpace(Workspace)).perform();
 					logger.info("View " + ChooseWorkSpace(Workspace).getText() + " Workspace");
 
-					Model += ModelCount(18, cell);
+					Model += ModelCount(18, cell, Workspace);
 
 					driver.switchTo().defaultContent();
 					act.doubleClick(workSpaceTree).perform();

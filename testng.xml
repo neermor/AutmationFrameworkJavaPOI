@@ -3,7 +3,6 @@
 
 <suite name="Suite">
 
-
  <listeners>
        
         <listener class-name="com.marketo.qa.utility.AnnotationTransformer"/>
@@ -20,11 +19,13 @@
 	      <class name="com.marketo.qa.Tests.FetchDesignStudioData"/> 
 	      <class name="com.marketo.qa.Tests.FetchNuture_EventCount"/> 
 		 <class name="com.marketo.qa.Tests.FetchDataFromChangeScore"/> 
-	      
+
+ 
       
     </classes>
   </test> <!-- Test -->  
 </suite> <!-- Suite -->
 
 
+	
 	

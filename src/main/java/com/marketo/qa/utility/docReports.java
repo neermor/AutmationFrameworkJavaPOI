@@ -275,31 +275,72 @@ public class docReports {
 							+ passData.Exceldata("Models") + "\n models in Marketo. Revenue cycle models take marketing"
 							+ " to the next level. They model all the stages of your entire revenue funnel—from when you first interact with a lead "
 							+ "all the way until the lead is a won customer.");
+					modelData = paragraphModelData.createRun();
+					modelData.addBreak();
+					stylingDoc.setNoProof(modelData);
+					stylingDoc.FontFamilySize(modelData);
+					modelData.setText(passData.Exceldata("Account Name") + passData.models2);
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				modelData = paragraphModelData.createRun();
-				modelData.addBreak();
-				stylingDoc.setNoProof(modelData);
-				stylingDoc.FontFamilySize(modelData);
-				modelData.setText(passData.Exceldata("Account Name") + passData.models2);
 
-				XWPFParagraph model_img = document.createParagraph();
-				logger.info("Printing images in doc");
-				XWPFRun img1 = model_img.createRun();
-				for (int i = 1; i < 3; i++) {
+				int j = 1;
+				int WPCount = Integer.parseInt(passData.Exceldata("Total WorkSpace"));
+
+				for (int i = 1; i <= WPCount; i++) {
+					String data = "Approved Models" + j++;
+
 					try {
 
-						img1.addPicture(new FileInputStream(passData.FetchScreenshot("Models" + i)),
-								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Models" + i).toString(),
-								Units.toEMU(250), Units.toEMU(130));
+						modelData = paragraphModelData.createRun();
+						modelData.addBreak();
+						modelData.setBold(true);
+						modelData.setText("Workspace:" + passData.Exceldata(data, 2));
 
-					} catch (Exception e) {
+						XWPFParagraph model_img = document.createParagraph();
+						logger.info("Printing images in doc");
+						XWPFRun img1 = model_img.createRun();
+
+						img1.addPicture(new FileInputStream(passData.FetchScreenshot(passData.Exceldata(data, 2))),
+								Document.PICTURE_TYPE_PNG,
+								passData.FetchScreenshot(passData.Exceldata(data, 2)).toString(), Units.toEMU(250),
+								Units.toEMU(130));
+
+					}
+
+					catch (Exception e) {
 						// TODO: handle exception
 						logger.warn("Test is failed to retrive models images\n");
+						continue;
+					}
+
+					int ModelsCount = Integer.parseInt(passData.Exceldata(data));
+					ModelsCount = ModelsCount + 3;
+					logger.info(ModelsCount);
+
+					if (ModelsCount > 0) {
+
+						XWPFParagraph model_i = document.createParagraph();
+						logger.info("Printing images in doc");
+						XWPFRun img = model_i.createRun();
+						img.addBreak();
+						img.setFontSize(11);
+						img.setBold(true);
+						img.setText("");
+
+						for (int k = 3; k <= ModelsCount; k++) {
+							img.setText(passData.Exceldata(data, k));
+							img.addBreak();
+							img.addPicture(
+									new FileInputStream(
+											passData.FetchScreenshotForApprovedModels(passData.Exceldata(data, k))),
+									Document.PICTURE_TYPE_PNG,
+									passData.FetchScreenshotForApprovedModels(passData.Exceldata(data, k)).toString(),
+									Units.toEMU(250), Units.toEMU(130));
+							img.addCarriageReturn();
+						}
 					}
 				}
-
 			}
 
 			else {
@@ -381,7 +422,10 @@ public class docReports {
 				logger.info("Model section completed");
 
 			}
-		} catch (Exception e) {
+
+		} catch (
+
+		Exception e) {
 			logger.error("Test is failed hence does not found any data it having null values\n");
 			// TODO: handle exception
 		}
@@ -390,14 +434,12 @@ public class docReports {
 
 	public static void lead(XWPFDocument document)
 			throws NumberFormatException, InvalidFormatException, FileNotFoundException, IOException, XmlException {
-
 		XWPFParagraph LeadParagraph = document.createParagraph();
 		XWPFRun LeadRun = LeadParagraph.createRun();
 		LeadRun.addCarriageReturn();
 		LeadRun.setBold(true);
 		logger.info("Printing Lead scoring Section");
 		LeadRun.setText("Lead Scoring");
-
 		// adding lead scoring bullet point data into report
 		try {
 			int ChangeScore = Integer.parseInt(passData.Exceldata("Change Score"));
@@ -410,7 +452,6 @@ public class docReports {
 				LeadData.setNumID(stylingDoc.bullet(document));
 				stylingDoc.FontFamilySize(LeadDataRun);
 				LeadDataRun.setText(passData.LeadScoring(passData.Exceldata("Change Score")));
-
 				XWPFParagraph LeadDatatoken = document.createParagraph();
 				XWPFRun LeadDataRuntoken = LeadDatatoken.createRun();
 				stylingDoc.FontFamilySize(LeadDataRuntoken);
@@ -419,7 +460,6 @@ public class docReports {
 				LeadDatatoken.setNumID(stylingDoc.bullet(document));
 				stylingDoc.FontFamilySize(LeadDataRuntoken);
 				LeadDataRuntoken.setText(passData.no_tokens);
-
 				XWPFParagraph LeadDatatlink = document.createParagraph();
 				XWPFRun LeadDataLink = LeadDatatlink.createRun();
 				stylingDoc.FontFamilySize(LeadDataLink);
@@ -428,17 +468,13 @@ public class docReports {
 				LeadDataLink.setColor("3333cc");
 				LeadDatatlink.setSpacingAfter(0);
 				LeadDataLink.setText("https://docs.marketo.com/display/public/DOCS/Managing+My+Tokens");
-
 				XWPFRun LeadDatabelow = LeadDatatlink.createRun();
 				LeadDatabelow.addCarriageReturn();
 				LeadDatabelow.addCarriageReturn();
 				stylingDoc.FontFamilySize(LeadDatabelow);
 				stylingDoc.setNoProof(LeadDatabelow);
 				LeadDatabelow.setText(passData.lead_data);
-
-			}
-
-			else if (ChangeScore <= 10 && ChangeScore >= 0) {
+			} else if (ChangeScore <= 10 && ChangeScore >= 0) {
 				XWPFParagraph LeadData = document.createParagraph();
 				XWPFRun LeadDataRun = LeadData.createRun();
 				stylingDoc.FontFamilySize(LeadDataRun);
@@ -448,7 +484,6 @@ public class docReports {
 				stylingDoc.FontFamilySize(LeadDataRun);
 				LeadDataRun.setText(
 						passData.Exceldata("Account Name") + "\nhas a total of (0-10) lead scoring campaigns.");
-
 				XWPFParagraph LeadDatatoken = document.createParagraph();
 				XWPFRun LeadDataRuntoken = LeadDatatoken.createRun();
 				stylingDoc.FontFamilySize(LeadDataRuntoken);
@@ -457,7 +492,6 @@ public class docReports {
 				LeadDatatoken.setNumID(stylingDoc.bullet(document));
 				stylingDoc.FontFamilySize(LeadDataRuntoken);
 				LeadDataRuntoken.setText(passData.no_tokens);
-
 				XWPFParagraph LeadDatatlink = document.createParagraph();
 				XWPFRun LeadDataLink = LeadDatatlink.createRun();
 				stylingDoc.FontFamilySize(LeadDataLink);
@@ -466,21 +500,18 @@ public class docReports {
 				LeadDataLink.setColor("3333cc");
 				LeadDatatlink.setSpacingAfter(0);
 				LeadDataLink.setText("https://docs.marketo.com/display/public/DOCS/Managing+My+Tokens");
-
 				XWPFRun LeadDatapara1 = LeadData.createRun();
 				LeadDatapara1.addCarriageReturn();
 				LeadDatapara1.addCarriageReturn();
 				stylingDoc.FontFamilySize(LeadDatapara1);
 				stylingDoc.setNoProof(LeadDatapara1);
 				LeadDatapara1.setText(passData.No_lead_scoring);
-
 				XWPFRun LeadDatapara2 = LeadData.createRun();
 				LeadDatapara2.addCarriageReturn();
 				LeadDatapara2.addCarriageReturn();
 				stylingDoc.FontFamilySize(LeadDatapara2);
 				stylingDoc.setNoProof(LeadDatapara2);
 				LeadDatapara2.setText(passData.No_lead_scoring2);
-
 				XWPFRun LeadDatapara3 = LeadData.createRun();
 				stylingDoc.FontFamilySize(LeadDatapara3);
 				LeadDatapara3.addCarriageReturn();
@@ -488,43 +519,36 @@ public class docReports {
 				LeadDatapara3.setText("I would strongly encourage you to share the following lead scoring resources:");
 				LeadDatapara3.addCarriageReturn();
 				LeadDatapara3.setText("Marketo Resources: Lead Scoing:");
-
 				XWPFRun LeadDataparaLink3 = LeadData.createRun();
 				stylingDoc.FontFamilySize(LeadDataparaLink3);
 				stylingDoc.setNoProof(LeadDataparaLink3);
 				LeadDataparaLink3.setUnderline(UnderlinePatterns.SINGLE);
 				LeadDataparaLink3.setColor("3333cc");
 				LeadDataparaLink3.setText("\nhttps://www.marketo.com/resources/lead-scoring/");
-
 				XWPFRun LeadDatapara4 = LeadData.createRun();
 				stylingDoc.FontFamilySize(LeadDatapara4);
 				LeadDatapara4.addCarriageReturn();
 				LeadDatapara4.setText("Marketo's Definitive Guide to Lead Scoring");
-
 				XWPFRun LeadDataparaLink4 = LeadData.createRun();
 				stylingDoc.FontFamilySize(LeadDataparaLink4);
 				stylingDoc.setNoProof(LeadDataparaLink4);
 				LeadDataparaLink4.setUnderline(UnderlinePatterns.SINGLE);
 				LeadDataparaLink4.setColor("3333cc");
 				LeadDataparaLink4.setText("\nhttps://www.marketo.com/definitive-guides/lead-scoring/");
-
 				XWPFRun LeadDatapara5 = LeadData.createRun();
 				stylingDoc.FontFamilySize(LeadDatapara5);
 				LeadDatapara5.addCarriageReturn();
 				LeadDatapara5.setText("Lead Scoring Cheat Sheet:");
-
 				XWPFRun LeadDataparaLink5 = LeadData.createRun();
 				stylingDoc.FontFamilySize(LeadDataparaLink5);
 				stylingDoc.setNoProof(LeadDataparaLink5);
 				LeadDataparaLink5.setUnderline(UnderlinePatterns.SINGLE);
 				LeadDataparaLink5.setColor("3333cc");
 				LeadDataparaLink5.setText("\nhttps://www.marketo.com/cheat-sheets/lead-scoring/");
-
 				XWPFRun LeadDatapara6 = LeadData.createRun();
 				stylingDoc.FontFamilySize(LeadDatapara6);
 				LeadDatapara6.addCarriageReturn();
 				LeadDatapara6.setText("Marketo Docs: Simple Scoring:");
-
 				XWPFRun LeadDataparaLink6 = LeadData.createRun();
 				stylingDoc.FontFamilySize(LeadDataparaLink6);
 				stylingDoc.setNoProof(LeadDataparaLink6);
@@ -532,7 +556,6 @@ public class docReports {
 				LeadDataparaLink6.setColor("3333cc");
 				LeadDataparaLink6.setText(
 						"\nhttps://experienceleague.adobe.com/docs/marketo/using/getting-started-with-marketo/quick-wins/simple-scoring.html?lang=en");
-
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -804,7 +827,6 @@ public class docReports {
 	}
 
 	public static void DataManagment(XWPFDocument document) throws IOException {
-
 		XWPFParagraph DataManagement = document.createParagraph();
 		XWPFRun DataManagementRun = DataManagement.createRun();
 		DataManagementRun.setBold(true);
@@ -813,61 +835,51 @@ public class docReports {
 		logger.info("Printing data of Data Management...");
 		DataManagementRun.setText("Data Management");
 		try {
-		int DataManagment = Integer.parseInt(passData.Exceldata("Change Data Value"));
-		if (DataManagment > 0) {
-
-			XWPFParagraph DataManagementData = document.createParagraph();
-			XWPFRun DataManagementDatarun = DataManagementData.createRun();
-			stylingDoc.FontFamilySize(DataManagementDatarun);
-			stylingDoc.setNoProof(DataManagementDatarun);
-			DataManagementDatarun.setText(passData.Exceldata("Account Name") + passData.Data);
-		}
-
-		else {
-
-			XWPFParagraph DataManagementData = document.createParagraph();
-			XWPFRun DataManagementDatarun = DataManagementData.createRun();
-			stylingDoc.FontFamilySize(DataManagementDatarun);
-			stylingDoc.setNoProof(DataManagementDatarun);
-			DataManagementDatarun.setText(passData.No_Data);
-
-			XWPFRun DataManagementDatarun2 = DataManagementData.createRun();
-			stylingDoc.FontFamilySize(DataManagementDatarun2);
-			DataManagementDatarun2.addCarriageReturn();
-			DataManagementDatarun2.addCarriageReturn();
-			stylingDoc.setNoProof(DataManagementDatarun2);
-			DataManagementDatarun2.setText(passData.No_data_below);
-
-			XWPFRun DataManagementLink = DataManagementData.createRun();
-			stylingDoc.FontFamilySize(DataManagementLink);
-			stylingDoc.setNoProof(DataManagementLink);
-			DataManagementLink.setUnderline(UnderlinePatterns.SINGLE);
-			DataManagementLink.setColor("3333cc");
-			DataManagementLink.setText(
-					"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/core-marketo-concepts/smart-lists-and-static-lists/managing-people-in-smart-lists/add-person-to-blocklist.html?lang=en  ");
-
-			XWPFRun DataManagementDatarun3 = DataManagementData.createRun();
-			stylingDoc.FontFamilySize(DataManagementDatarun3);
-			DataManagementDatarun3.addCarriageReturn();
-			stylingDoc.setNoProof(DataManagementDatarun3);
-			DataManagementDatarun3.setText("Here is a high overview on how to create Change Data Value flow actions:");
-
-			XWPFRun DataManagementLink1 = DataManagementData.createRun();
-			stylingDoc.FontFamilySize(DataManagementLink1);
-			stylingDoc.setNoProof(DataManagementLink1);
-			DataManagementLink1.setUnderline(UnderlinePatterns.SINGLE);
-			DataManagementLink1.setColor("3333cc");
-			DataManagementLink1.setText("\nhttps://docs.marketo.com/display/public/DOCS/Change+Data+Value");
-
-		}
-		}
-		catch (Exception e) {
+			int DataManagment = Integer.parseInt(passData.Exceldata("Change Data Value"));
+			if (DataManagment > 0) {
+				XWPFParagraph DataManagementData = document.createParagraph();
+				XWPFRun DataManagementDatarun = DataManagementData.createRun();
+				stylingDoc.FontFamilySize(DataManagementDatarun);
+				stylingDoc.setNoProof(DataManagementDatarun);
+				DataManagementDatarun.setText(passData.Exceldata("Account Name") + passData.Data);
+			} else {
+				XWPFParagraph DataManagementData = document.createParagraph();
+				XWPFRun DataManagementDatarun = DataManagementData.createRun();
+				stylingDoc.FontFamilySize(DataManagementDatarun);
+				stylingDoc.setNoProof(DataManagementDatarun);
+				DataManagementDatarun.setText(passData.No_Data);
+				XWPFRun DataManagementDatarun2 = DataManagementData.createRun();
+				stylingDoc.FontFamilySize(DataManagementDatarun2);
+				DataManagementDatarun2.addCarriageReturn();
+				DataManagementDatarun2.addCarriageReturn();
+				stylingDoc.setNoProof(DataManagementDatarun2);
+				DataManagementDatarun2.setText(passData.No_data_below);
+				XWPFRun DataManagementLink = DataManagementData.createRun();
+				stylingDoc.FontFamilySize(DataManagementLink);
+				stylingDoc.setNoProof(DataManagementLink);
+				DataManagementLink.setUnderline(UnderlinePatterns.SINGLE);
+				DataManagementLink.setColor("3333cc");
+				DataManagementLink.setText(
+						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/core-marketo-concepts/smart-lists-and-static-lists/managing-people-in-smart-lists/add-person-to-blocklist.html?lang=en  ");
+				XWPFRun DataManagementDatarun3 = DataManagementData.createRun();
+				stylingDoc.FontFamilySize(DataManagementDatarun3);
+				DataManagementDatarun3.addCarriageReturn();
+				stylingDoc.setNoProof(DataManagementDatarun3);
+				DataManagementDatarun3
+						.setText("Here is a high overview on how to create Change Data Value flow actions:");
+				XWPFRun DataManagementLink1 = DataManagementData.createRun();
+				stylingDoc.FontFamilySize(DataManagementLink1);
+				stylingDoc.setNoProof(DataManagementLink1);
+				DataManagementLink1.setUnderline(UnderlinePatterns.SINGLE);
+				DataManagementLink1.setColor("3333cc");
+				DataManagementLink1.setText("\nhttps://docs.marketo.com/display/public/DOCS/Change+Data+Value");
+			}
+		} catch (Exception e) {
 			// TODO: handle exception
 		}
 	}
 
 	public static void Events(XWPFDocument document) throws IOException {
-
 		XWPFParagraph Events = document.createParagraph();
 		XWPFRun Eventsrun = Events.createRun();
 		Eventsrun.setBold(true);
@@ -883,6 +895,17 @@ public class docReports {
 				stylingDoc.setNoProof(EventsDatarun);
 				EventsDatarun.setText(passData.Exceldata("Account Name") + "\nhas\n"
 						+ passData.Exceldata("Event Programs") + "\nEvent campaigns in Marketo.\n" + passData.events);
+
+				XWPFParagraph imgPara = document.createParagraph();
+				XWPFRun img = imgPara.createRun();
+				for (int i = 1; i < 2; i++) {
+
+					img.addCarriageReturn();
+					img.addPicture(new FileInputStream(passData.FetchScreenshot("Event")), Document.PICTURE_TYPE_PNG,
+							passData.FetchScreenshot("Event"), Units.toEMU(200), Units.toEMU(380));
+					img.addCarriageReturn();
+				}
+
 			}
 
 			else if (Event_Program < 5 && Event_Program > 0) {
@@ -892,6 +915,20 @@ public class docReports {
 				stylingDoc.setNoProof(EventsDatarun);
 				EventsDatarun.setText(passData.Exceldata("Account Name") + passData.event2);
 
+				XWPFParagraph imgPara = document.createParagraph();
+				XWPFRun img = imgPara.createRun();
+				for (int i = 1; i < 2; i++) {
+					try {
+					img.addCarriageReturn();
+					img.addPicture(new FileInputStream(passData.FetchScreenshot("Event")), Document.PICTURE_TYPE_PNG,
+							passData.FetchScreenshot("Event"), Units.toEMU(200), Units.toEMU(380));
+					img.addCarriageReturn();
+					}
+					catch (Exception e) {
+						// TODO: handle exception
+					}
+				}
+				try {
 				XWPFRun EventsData1 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsData1);
 				EventsData1.addCarriageReturn();
@@ -899,7 +936,6 @@ public class docReports {
 				EventsData1.setText("Share the following resources:\r\n");
 				EventsData1.addCarriageReturn();
 				EventsData1.setText("\nUnderstanding Event Programs:");
-
 				XWPFRun EventsDataLink1 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsDataLink1);
 				stylingDoc.setNoProof(EventsDataLink1);
@@ -908,12 +944,10 @@ public class docReports {
 				EventsDataLink1.setText(
 						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/demand-generation/events/understanding-events/understanding-event-programs.html");
 				EventsDataLink1.addCarriageReturn();
-
 				XWPFRun EventsData2 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsData2);
 				stylingDoc.setNoProof(EventsData2);
 				EventsData2.setText("Create a New Event Program:");
-
 				XWPFRun EventsDataLink2 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsDataLink2);
 				stylingDoc.setNoProof(EventsDataLink2);
@@ -921,13 +955,11 @@ public class docReports {
 				EventsDataLink2.setColor("3333cc");
 				EventsDataLink2.setText(
 						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en");
-
 				XWPFRun EventsData3 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsData3);
 				stylingDoc.setNoProof(EventsData3);
 				EventsData3.addCarriageReturn();
 				EventsData3.setText("Edit an Event Channel:");
-
 				XWPFRun EventsDataLink3 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsDataLink3);
 				stylingDoc.setNoProof(EventsDataLink3);
@@ -935,13 +967,11 @@ public class docReports {
 				EventsDataLink3.setColor("3333cc");
 				EventsDataLink3.setText(
 						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/demand-generation/events/understanding-events/edit-an-event-channel.html");
-
 				XWPFRun EventsData4 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsData4);
 				stylingDoc.setNoProof(EventsData4);
 				EventsData4.addCarriageReturn();
 				EventsData4.setText("Adding Members to an Event Program:");
-
 				XWPFRun EventsDataLink4 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsDataLink4);
 				stylingDoc.setNoProof(EventsDataLink4);
@@ -949,13 +979,11 @@ public class docReports {
 				EventsDataLink4.setColor("3333cc");
 				EventsDataLink4.setText(
 						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/demand-generation/events/understanding-events/adding-members-to-an-event-program.html?src=contextnavpagetreemode");
-
 				XWPFRun EventsData5 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsData5);
 				stylingDoc.setNoProof(EventsData5);
 				EventsData5.addCarriageReturn();
 				EventsData5.setText("LaunchPoint Event Partners:");
-
 				XWPFRun EventsDataLink5 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsDataLink5);
 				stylingDoc.setNoProof(EventsDataLink5);
@@ -963,15 +991,18 @@ public class docReports {
 				EventsDataLink5.setColor("3333cc");
 				EventsDataLink5.setText(
 						"\n: https://experienceleague.adobe.com/docs/marketo/using/product-docs/demand-generation/events/understanding-events/event-partners.html?src=contextnavpagetreemode");
-
-			} else {
-
+			
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+			}}
+				
+				else {
 				XWPFParagraph EventsData = document.createParagraph();
 				XWPFRun EventsDatarun = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsDatarun);
 				stylingDoc.setNoProof(EventsDatarun);
 				EventsDatarun.setText(passData.No_events);
-
 				XWPFRun EventsData1 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsData1);
 				EventsData1.addCarriageReturn();
@@ -979,7 +1010,6 @@ public class docReports {
 				EventsData1.setText("Share the following resources:\r\n");
 				EventsData1.addCarriageReturn();
 				EventsData1.setText("\nUnderstanding Event Programs:");
-
 				XWPFRun EventsDataLink1 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsDataLink1);
 				stylingDoc.setNoProof(EventsDataLink1);
@@ -988,12 +1018,10 @@ public class docReports {
 				EventsDataLink1.setText(
 						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/demand-generation/events/understanding-events/understanding-event-programs.html");
 				EventsDataLink1.addCarriageReturn();
-
 				XWPFRun EventsData2 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsData2);
 				stylingDoc.setNoProof(EventsData2);
 				EventsData2.setText("Create a New Event Program:");
-
 				XWPFRun EventsDataLink2 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsDataLink2);
 				stylingDoc.setNoProof(EventsDataLink2);
@@ -1001,13 +1029,11 @@ public class docReports {
 				EventsDataLink2.setColor("3333cc");
 				EventsDataLink2.setText(
 						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en");
-
 				XWPFRun EventsData3 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsData3);
 				stylingDoc.setNoProof(EventsData3);
 				EventsData3.addCarriageReturn();
 				EventsData3.setText("Edit an Event Channel:");
-
 				XWPFRun EventsDataLink3 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsDataLink3);
 				stylingDoc.setNoProof(EventsDataLink3);
@@ -1015,13 +1041,11 @@ public class docReports {
 				EventsDataLink3.setColor("3333cc");
 				EventsDataLink3.setText(
 						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/demand-generation/events/understanding-events/edit-an-event-channel.html");
-
 				XWPFRun EventsData4 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsData4);
 				stylingDoc.setNoProof(EventsData4);
 				EventsData4.addCarriageReturn();
 				EventsData4.setText("Adding Members to an Event Program:");
-
 				XWPFRun EventsDataLink4 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsDataLink4);
 				stylingDoc.setNoProof(EventsDataLink4);
@@ -1029,13 +1053,11 @@ public class docReports {
 				EventsDataLink4.setColor("3333cc");
 				EventsDataLink4.setText(
 						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/demand-generation/events/understanding-events/adding-members-to-an-event-program.html?src=contextnavpagetreemode");
-
 				XWPFRun EventsData5 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsData5);
 				stylingDoc.setNoProof(EventsData5);
 				EventsData5.addCarriageReturn();
 				EventsData5.setText("LaunchPoint Event Partners:");
-
 				XWPFRun EventsDataLink5 = EventsData.createRun();
 				stylingDoc.FontFamilySize(EventsDataLink5);
 				stylingDoc.setNoProof(EventsDataLink5);
@@ -1047,7 +1069,6 @@ public class docReports {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-
 		logger.info("Events data printing  is done");
 	}
 
@@ -1113,19 +1134,23 @@ public class docReports {
 				NurtureData5.setNumID(stylingDoc.bullet(document));
 				NurtureDatarun5
 						.setText("Understand content performance based on engagement with each piece of content.");
-//
-//				XWPFParagraph NurtureData6 = document.createParagraph();
-//				XWPFRun NurtureDatarun6 = NurtureData6.createRun();
-//				stylingDoc.FontFamilySize(NurtureDatarun6);
-//				NurtureDatarun6.setText(passData.Nurture2);
-//
-//				XWPFRun NurtureDatarunLink = NurtureData6.createRun();
-//				stylingDoc.FontFamilySize(NurtureDatarunLink);
-//				stylingDoc.setNoProof(NurtureDatarunLink);
-//				NurtureDatarunLink.setUnderline(UnderlinePatterns.SINGLE);
-//				NurtureDatarunLink.setColor("3333cc");
-//				NurtureDatarunLink.setText(
-//						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en .”");
+
+				XWPFParagraph Nurture_img = document.createParagraph();
+				logger.info("Printing images in doc");
+				XWPFRun img1 = Nurture_img.createRun();
+				for (int i = 1; i < 2; i++) {
+					try {
+
+						img1.addPicture(new FileInputStream(passData.FetchScreenshot("Nurture campaigns")),
+								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Nurture campaigns").toString(),
+								Units.toEMU(220), Units.toEMU(380));
+
+					} catch (Exception e) {
+						// TODO: handle exception
+						logger.warn("Test is failed to retrive models images\n");
+					}
+				}
+
 			} else if (NurtureData_int <= 5 && NurtureData_int >= 1) {
 				NurtureDataRun = NurtureData.createRun();
 				stylingDoc.FontFamilySize(NurtureDataRun);
@@ -1172,6 +1197,22 @@ public class docReports {
 				NurtureData5.setNumID(stylingDoc.bullet(document));
 				NurtureDatarun5
 						.setText("Understand content performance based on engagement with each piece of content.");
+
+				XWPFParagraph Nurture_img = document.createParagraph();
+				logger.info("Printing images in doc");
+				XWPFRun img1 = Nurture_img.createRun();
+				for (int i = 1; i < 2; i++) {
+					try {
+
+						img1.addPicture(new FileInputStream(passData.FetchScreenshot("Nurture campaigns")),
+								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Nurture campaigns").toString(),
+								Units.toEMU(220), Units.toEMU(380));
+
+					} catch (Exception e) {
+						// TODO: handle exception
+						logger.warn("Test is failed to retrive models images\n");
+					}
+				}
 
 				XWPFParagraph NurtureLink = document.createParagraph();
 				XWPFRun NurtureLinkdata = NurtureLink.createRun();
