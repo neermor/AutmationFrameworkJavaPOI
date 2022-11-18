@@ -1,5 +1,7 @@
 package com.marketo.qa.Pages;
 
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -68,7 +70,6 @@ public class AnalyticsPage extends TestBase {
 	public void FetchApprovedModelScreenshot(String WorkspaceName) throws Throwable {
 		List<WebElement> ApprovedModel = driver.findElements(ApprovedModels);
 		row++;
-		System.out.println(ApprovedModel.size());
 		Clib.WriteExcelData("Sheet1", row, 0, "Approved Models" + i);
 		Clib.WriteExcelData("Sheet1", row, 2, WorkspaceName);
 		Clib.WriteExcelData("Sheet1", row, 1, ApprovedModel.size());
@@ -80,33 +81,55 @@ public class AnalyticsPage extends TestBase {
 
 			option.click();
 			mAP.switchFrame();
-			Clib.StandardWait(2000);
-			System.out.println(WindowTitle);
+			Clib.StandardWait(4000);
 			GetPBtn().click();
+			try {
+				Set<String> s = driver.getWindowHandles();
+				Iterator<String> I1 = s.iterator();
 
-			Set<String> s = driver.getWindowHandles();
-			Iterator<String> I1 = s.iterator();
+				while (I1.hasNext()) {
+					Parent_window = I1.next();
 
-			while (I1.hasNext()) {
-				Parent_window = I1.next();
+					String child_window = I1.next();
 
-				String child_window = I1.next();
+					driver.switchTo().window(child_window);
 
-				driver.switchTo().window(child_window);
+					Clib.StandardWait(4000);
 
-				if (driver.getTitle().equalsIgnoreCase("Marketo | " + WindowTitle + " (Preview) • Analytics")) {
+					if (driver.getTitle().equalsIgnoreCase("Marketo | " + WindowTitle + " (Preview) • Analytics")) {
 
-					Clib.StandardWait(6000);
-					GetToggle().click();
-					screenshotUtility.TakeScreenshotForModels(GetModeler(), WindowTitle);
-					driver.close();
-					driver.switchTo().window(Parent_window);
+						Clib.StandardWait(8000);
+						GetToggle().click();
+						Clib.StandardWait(2000);
+						Robot robot = new Robot();
+						for (int i = 0; i < 4; i++) {
+							robot.keyPress(KeyEvent.VK_CONTROL);
+							robot.keyPress(KeyEvent.VK_SUBTRACT);
+							robot.keyRelease(KeyEvent.VK_SUBTRACT);
+							robot.keyRelease(KeyEvent.VK_CONTROL);
+						}
+						Clib.StandardWait(4000);
+						screenshotUtility.TakeScreenshotForModels(GetModeler(), WindowTitle);
 
+						for (int i = 0; i < 4; i++) {
+							robot.keyPress(KeyEvent.VK_CONTROL);
+							robot.keyPress(KeyEvent.VK_ADD);
+							Clib.StandardWait(2000);
+							robot.keyRelease(KeyEvent.VK_ADD);
+							robot.keyRelease(KeyEvent.VK_CONTROL);
+						}
+						driver.close();
+						driver.switchTo().window(Parent_window);
+
+					}
 				}
-
+			} catch (Exception e) {
+				driver.close();
+				driver.switchTo().window(Parent_window);
 			}
 
 		}
+
 	}
 
 	WebElement workSpaceTree = null;

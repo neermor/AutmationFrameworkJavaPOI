@@ -15,12 +15,6 @@ public class passData {
 		String path = System.getProperty("user.dir") + "//Config/ScreenShot//" + screenshotName + ".png";
 		return path;
 	}
-	
-	public static String FetchScreenshotApproved(String screenshotName) {
-
-		String path = System.getProperty("user.dir") + "//Config/ScreenShot//Approved//" + screenshotName + ".png";
-		return path;
-	}
 
 	public static String FetchScreenshotForApprovedModels(String screenshotName) {
 
@@ -227,7 +221,7 @@ public class passData {
 
 	public static String GenricMethod(String snippets) throws IOException {
 
-		return snippets + "\nSnippets"; 
+		return snippets + "\nSnippets";
 
 	}
 

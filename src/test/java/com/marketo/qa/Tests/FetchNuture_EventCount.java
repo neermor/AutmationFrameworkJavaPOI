@@ -25,6 +25,7 @@ public class FetchNuture_EventCount extends TestBase {
 
 	@Test
 	public void ChampiensCount() throws Throwable {
+
 		new CommonLib().ClearExcelData("Sheet1", 27);
 		new CommonLib().ClearExcelData("Sheet1", 28);
 		new CommonLib().ClearExcelData("Sheet1", 29);
@@ -44,10 +45,10 @@ public class FetchNuture_EventCount extends TestBase {
 		mAP.switchFrame();
 		Pc.CheckPresentOrNot(31);
 		driver.switchTo().defaultContent();
-		/*
-		 * homePage.OpenMyMarketo(); Wp.WebCampaignsScreenShot(32);
-		 * driver.switchTo().defaultContent();
-		 */
+
+		homePage.OpenMyMarketo();
+		Wp.WebCampaignsScreenShot(32, prop.getProperty("WorkspaceCondition"));
+		driver.switchTo().defaultContent();
 
 		logger.info("Marketing Activite Page Task Closed");
 

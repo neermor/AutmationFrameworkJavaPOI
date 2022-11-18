@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.asserts.SoftAssert;
@@ -17,6 +18,7 @@ public class MarketingActivitePage extends TestBase {
 	private static Logger logger = LogManager.getLogger(TestBase.class);
 	CommonLib Clib = new CommonLib();
 	SoftAssert asrt = new SoftAssert();
+	JavascriptExecutor js = (JavascriptExecutor) driver;
 
 	boolean flag = false;
 	By GlobalTreeSearch = By.xpath("//input[@data-id='globalTreeSearchInput_input']");
@@ -206,7 +208,12 @@ public class MarketingActivitePage extends TestBase {
 		} catch (Exception e) {
 			Clib.WriteExcelData("Sheet1", row, 0, "Programe Library");
 			Clib.WriteExcelData("Sheet1", row, 1, "True");
+
+			WebElement element = driver.findElement(By.xpath("//div[@data-id='globalTreeDrawerExpanderContent']"));
+			js.executeScript("arguments[0].setAttribute('style', 'width: 900px;')", element);
 			screenshotUtility.TakeScreenshot(GetTemplate(), "Template");
+			js.executeScript("arguments[0].setAttribute('style', 'width: 310px;')", element);
+
 			logger.info("Fetch Template's Screenshot");
 
 		}
@@ -236,14 +243,16 @@ public class MarketingActivitePage extends TestBase {
 			if (flag) {
 				Clib.WriteExcelData("Sheet1", row, 0, "Event Programs");
 				Clib.WriteExcelData("Sheet1", row, 1, "0");
-
 			}
 
 		} catch (Exception e) {
 			List<WebElement> EventCount = driver.findElements(Event);
 			Clib.WriteExcelData("Sheet1", row, 0, "Event Programs");
 			Clib.WriteExcelData("Sheet1", row, 1, EventCount.size());
+			WebElement element = driver.findElement(By.xpath("//div[@data-id='globalTreeDrawerExpanderContent']"));
+			js.executeScript("arguments[0].setAttribute('style', 'width: 900px;')", element);
 			screenshotUtility.TakeScreenshot(GetMAO(), "Event");
+			js.executeScript("arguments[0].setAttribute('style', 'width: 310px;')", element);
 
 		}
 		GetResetBtn().click();
@@ -267,7 +276,10 @@ public class MarketingActivitePage extends TestBase {
 
 			Clib.WriteExcelData("Sheet1", row, 0, "Nurture campaigns");
 			Clib.WriteExcelData("Sheet1", row, 1, NurturCount.size());
+			WebElement element = driver.findElement(By.xpath("//div[@data-id='globalTreeDrawerExpanderContent']"));
+			js.executeScript("arguments[0].setAttribute('style', 'width: 900px;')", element);
 			screenshotUtility.TakeScreenshot(GetMAO(), "Nurture campaigns");
+			js.executeScript("arguments[0].setAttribute('style', 'width: 310px;')", element);
 
 		}
 		GetResetBtn().click();
