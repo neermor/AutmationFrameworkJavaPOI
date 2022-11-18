@@ -17,7 +17,7 @@ public class reports {
 			assertTrue(new File(String.valueOf(outputDirectory)).mkdirs(), "Unable to create output directory");
 
 		}
-	
+		
 		
 		//word format data pasting 
 		XWPFDocument document = new XWPFDocument();
@@ -63,8 +63,5 @@ public class reports {
 		}
 		
 	}
-
-		
-	
 
 

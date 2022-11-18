@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.asserts.SoftAssert;
@@ -129,8 +130,13 @@ public class DatabasePage extends TestBase {
 				new CommonLib().WriteExcelData("Sheet1", row, 0, "Segmentations");
 				new CommonLib().WriteExcelData("Sheet1", row, cell, GetSag().size());
 				logger.info("Fetch Segmentations Count");
+				JavascriptExecutor js = (JavascriptExecutor) driver;
 				new CommonLib().StandardWait(2000);
+				WebElement element = driver.findElement(By.xpath("//div[@data-id='globalTreeDrawerExpanderContent']"));
+				js.executeScript("arguments[0].setAttribute('style', 'width: 900px;')", element);
 				screenshotUtility.TakeScreenshot(GetSagHar(), "Segmentations" + cell);
+				js.executeScript("arguments[0].setAttribute('style', 'width: 310px;')", element);
+
 				logger.info("Fetch Segmentations Screenshot");
 
 				return GetSag().size();
