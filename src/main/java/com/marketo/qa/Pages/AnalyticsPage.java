@@ -63,7 +63,7 @@ public class AnalyticsPage extends TestBase {
 
 	String Parent_window = null;
 	int cell = 3;
-	int row = 33;
+	int row = 32;
 
 	public void FetchApprovedModelScreenshot(String WorkspaceName) throws Throwable {
 		List<WebElement> ApprovedModel = driver.findElements(ApprovedModels);
