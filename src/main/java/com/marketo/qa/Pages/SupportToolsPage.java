@@ -61,8 +61,12 @@ public class SupportToolsPage extends TestBase {
 
 	public String GetCount() {
 		String count = driver.findElement(actionCount).getText();
-		String[] words = count.split("\\s");
-		return words[6];
+		if (count.startsWith("Showing actions")) {
+			String[] words = count.split("\\s");
+			return words[6];
+		} else {
+			return "0";
+		}
 	}
 
 	public void ClickBackToSupportLink() {

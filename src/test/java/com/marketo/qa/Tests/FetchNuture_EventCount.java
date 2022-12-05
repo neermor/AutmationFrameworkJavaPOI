@@ -32,23 +32,11 @@ public class FetchNuture_EventCount extends TestBase {
 
 		homePage.OpenMarketingActivitiesTab();
 		logger.info("Marketing Activite Page Task Opened");
+		new CommonLib().WaitForElementToLoad(driver, 60, mAP.GetFilter());
+		mAP.GetFilter().click();
 		mAP.GetEventCount(27);
 		mAP.GetNurtureCount(28);
 		mAP.GetProgramLibrary(29);
-
-		homePage.OpenMyMarketo();
-		mAP.switchFrame();
-		Tam.VerifyAndFetchScreenshot(30);
-		driver.switchTo().defaultContent();
-
-		homePage.OpenMyMarketo();
-		mAP.switchFrame();
-		Pc.CheckPresentOrNot(31);
-		driver.switchTo().defaultContent();
-
-		homePage.OpenMyMarketo();
-		Wp.WebCampaignsScreenShot(32, prop.getProperty("WorkspaceCondition"));
-		driver.switchTo().defaultContent();
 
 		logger.info("Marketing Activite Page Task Closed");
 

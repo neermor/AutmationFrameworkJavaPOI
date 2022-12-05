@@ -31,7 +31,6 @@ public class docReports {
 		stylingDoc.bold(document);
 		FileOutputStream out = new FileOutputStream(word + passData.Exceldata("Account Name") + fileName + ".docx");
 
-		
 		document.write(out);
 		out.close();
 		logger.info("Doc file is Ready for " + passData.Exceldata("Account Name"));
@@ -51,10 +50,10 @@ public class docReports {
 		try {
 			run.setText(passData.Exceldata("Account Name") + "\nhas\n" + passData.Exceldata("Total WorkSpace")
 					+ "\nworkspaces. Stats below are a sum of assets found across all workspaces.");
-			
 		} catch (Exception e) {
 			// TODO: handle exception
-			
+			run.setText(passData.Exceldata("Account Name") + "\nhas\n" + passData.Exceldata("Total WorkSpace")
+					+ "\nworkspaces. Stats below are a sum of assets found across all workspaces.");
 			logger.info("Work Space counting is missing\n");
 		}
 		Statsparagraph = document.createParagraph();
@@ -63,7 +62,7 @@ public class docReports {
 		run.setBold(true);
 		logger.info("Printing Stats Section.....");
 		run.setText("Stats");
-		try {
+
 		Statsparagraph = document.createParagraph();
 		Statsparagraph.setSpacingAfter(0);
 		run = Statsparagraph.createRun();
@@ -71,12 +70,7 @@ public class docReports {
 		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		logger.info("Writing All Campaigns count in doc file.....");
-		try {
 		run.setText("They have " + passData.Exceldata("All Campaigns") + " campaigns");
-		}
-		catch (Exception e) {
-			// TODO: handle exception
-		}
 
 		Statsparagraph = document.createParagraph();
 		Statsparagraph.setSpacingAfter(0);
@@ -171,14 +165,11 @@ public class docReports {
 		stylingDoc.FontFamilySize(run);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		run.setText(passData.Exceldata("Tags") + " programs");
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
 
 		try {
 			int Snippets = Integer.parseInt(passData.Exceldata("Snippets"));
 			if (Snippets < 5) {
-				
+
 				logger.info("Cont is less then 5 and it printing corresponding text");
 				XWPFParagraph paragraphModel = document.createParagraph();
 //				XWPFRun model = paragraphModel.createRun();
@@ -289,14 +280,11 @@ public class docReports {
 					stylingDoc.setNoProof(modelData);
 					stylingDoc.FontFamilySize(modelData);
 					modelData.setText(passData.Exceldata("Account Name") + passData.models2);
-					
-				} 
-				catch (Exception e) {
+				} catch (Exception e) {
 					// TODO: handle exception
 				}
 
 				int j = 1;
-				try {
 				int WPCount = Integer.parseInt(passData.Exceldata("Total WorkSpace"));
 
 				for (int i = 1; i <= WPCount; i++) {
@@ -307,7 +295,7 @@ public class docReports {
 						modelData = paragraphModelData.createRun();
 						modelData.addBreak();
 						modelData.setBold(true);
-						modelData.setText("Workspace:" + passData.Exceldata(data, 2));
+						modelData.setText("Workspace: " + passData.Exceldata(data, 2));
 
 						XWPFParagraph model_img = document.createParagraph();
 						logger.info("Printing images in doc");
@@ -331,7 +319,7 @@ public class docReports {
 					logger.info(ModelsCount);
 
 					if (ModelsCount > 0) {
-						try {
+
 						XWPFParagraph model_i = document.createParagraph();
 						logger.info("Printing images in doc");
 						XWPFRun img = model_i.createRun();
@@ -341,7 +329,6 @@ public class docReports {
 						img.setText("");
 
 						for (int k = 3; k <= ModelsCount; k++) {
-							try {
 							img.setText(passData.Exceldata(data, k));
 							img.addBreak();
 							img.addPicture(
@@ -350,23 +337,9 @@ public class docReports {
 									Document.PICTURE_TYPE_PNG,
 									passData.FetchScreenshotForApprovedModels(passData.Exceldata(data, k)).toString(),
 									Units.toEMU(250), Units.toEMU(130));
-								img.addCarriageReturn();
-							}
-							catch (Exception e) {
-								// TODO: handle exception
-							}
-							
-			
+							img.addCarriageReturn();
 						}
-						}
-						catch (Exception e) {
-							// TODO: handle exception
-						}
-						
 					}
-				}}
-				catch (Exception e) {
-					// TODO: handle exception
 				}
 			}
 
@@ -591,7 +564,7 @@ public class docReports {
 
 	public static void intrestingMoment(XWPFDocument document)
 			throws NumberFormatException, InvalidFormatException, FileNotFoundException, IOException {
-			try {
+
 		if (passData.Exceldata("Interesting Moment Subscription").equalsIgnoreCase("true")) {
 			logger.info("User have Interesting Moment Subscription");
 			XWPFParagraph Interesting = document.createParagraph();
@@ -850,10 +823,7 @@ public class docReports {
 				logger.info("Test is skipped or fail hence data is missing for Intresting Moment\n");
 			}
 			logger.info("Interesting Moment part is done");
-		}}
-			catch (Exception e) {
-				// TODO: handle exception
-			}
+		}
 	}
 
 	public static void DataManagment(XWPFDocument document) throws IOException {
@@ -1095,7 +1065,7 @@ public class docReports {
 	public static void nurtureData(XWPFDocument document) throws NumberFormatException, IOException, XmlException
 
 	{
-		try {
+
 		logger.info("Printing Nurture data");
 		XWPFParagraph NurtureData = document.createParagraph();
 		XWPFRun NurtureDataRun = NurtureData.createRun();
@@ -1450,22 +1420,18 @@ public class docReports {
 
 			}
 
-			
+			logger.info(" Nurture data part is done......");
 		} catch (NumberFormatException ex) {
 			logger.error("Nurture Data Test is failed Hence we have null value\n");
 			// handle your exception
 
-		}}
-		catch (Exception e) {
-			// TODO: handle exception
 		}
-		logger.info(" Nurture data part is done......");
 
 	}
 
 	public static void segment(XWPFDocument document)
 			throws NumberFormatException, IOException, InvalidFormatException {
-		
+
 		XWPFParagraph Segment = document.createParagraph();
 		XWPFRun SegmentHeading = Segment.createRun();
 		SegmentHeading.setBold(true);
@@ -1479,12 +1445,8 @@ public class docReports {
 				XWPFRun SegmentRun = SegmentData.createRun();
 				stylingDoc.FontFamilySize(SegmentRun);
 				stylingDoc.setNoProof(SegmentRun);
-				try {
 				SegmentRun.setText(passData.Exceldata("Account Name") + passData.segment);
-				}
-				catch (Exception e) {
-					// TODO: handle exception
-				}
+
 				SegmentRun = SegmentData.createRun();
 
 				SegmentRun.addBreak();
@@ -1627,7 +1589,7 @@ public class docReports {
 				segmentLink8.setText("\nhttps://www.marketo.com/ebooks/how-to-segment-and-target-your-emails/");
 
 			}
-		} catch (Exception e) { // handle your exception
+		} catch (NumberFormatException ex) { // handle your exception
 			logger.error("Test is skipped or failed so we have null value here\n");
 		}
 		logger.info(" Segmentation data part is done......");
@@ -1662,15 +1624,12 @@ public class docReports {
 					logger.warn("There is no image in Program Library");
 				}
 			}
-		}catch (Exception e) {
-			logger.info(" Program Library part is printing Null Values");
+		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		logger.info(" Program Library part is done");
 	}
 
 	public static void Integration(XWPFDocument document) throws IOException, InvalidFormatException {
-		try {
 		XWPFParagraph intigration = document.createParagraph();
 		XWPFRun intigrationRunHeading = intigration.createRun();
 		intigrationRunHeading.addCarriageReturn();
@@ -1678,16 +1637,15 @@ public class docReports {
 		intigrationRunHeading.setBold(true);
 		logger.info("Printing Integration Data");
 		intigrationRunHeading.setText("Integrations");
-			try {
+		try {
 			int intigration_Data = Integer.parseInt(passData.Exceldata("Integration"));
 			if (intigration_Data > 0) {
-			
-			
+
 				XWPFParagraph intigrationRun = document.createParagraph();
 				XWPFRun intigrationData = intigrationRun.createRun();
 				stylingDoc.FontFamilySize(intigrationData);
 				intigrationData.setText("The following integrations have been installed:");
-			
+
 				intigrationRun = document.createParagraph();
 				XWPFRun intigrationImg = intigrationRun.createRun();
 				for (int i = 1; i < 2; i++) {
@@ -1696,23 +1654,20 @@ public class docReports {
 						intigrationImg.addPicture(new FileInputStream(passData.FetchScreenshot("Integration")),
 								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Integration"), Units.toEMU(470),
 								Units.toEMU(200));
-						intigrationImg.addCarriageReturn();		
-					}
-					catch (Exception e) {
+						intigrationImg.addCarriageReturn();
+					} catch (Exception e) {
+						logger.warn("we dont have images to print\n");
 						// TODO: handle exception
-					}}
-			}
-				
-				
-			
-			
-			else {
-				
+					}
+				}
+
+			} else {
+
 				XWPFParagraph intigrationRun = document.createParagraph();
 				XWPFRun intigrationData = intigrationRun.createRun();
 				stylingDoc.FontFamilySize(intigrationData);
 				stylingDoc.setNoProof(intigrationData);
-				try {
+
 				intigrationData.setText(passData.Exceldata("Account Name") + passData.No_Integrations);
 
 				XWPFRun intigrationData1 = intigrationRun.createRun();
@@ -1731,26 +1686,13 @@ public class docReports {
 				intigrationDatalink.setColor("3333cc");
 				intigrationDatalink
 						.setText("\nhttps://docs.marketo.com/display/public/DOCS/LaunchPoint+Event+Partners.");
-			}catch (Exception e) {
-				// TODO: handle exception
 			}
-				}
-			
-		
+
+		} catch (NumberFormatException ex) { // handle your exception
+			logger.error("Intigration Test is skiped\n");
 		}
-		catch (Exception e) {
-			// TODO: handle exception
-		}
-			}
-		catch (Exception e) {
-			// TODO: handle exception
-		}
-		}
-	
-		
-			
-			
-	
+
+	}
 
 	public static void webPersonalize(XWPFDocument document) throws IOException, InvalidFormatException {
 		try {
