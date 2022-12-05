@@ -208,14 +208,14 @@ public class passData {
 
 	public static String Exceldata(String key) throws IOException {
 		try {
-			Map<String, String> testdata = excelReader.getMapData();
+			Map<String, String> testdata = excelReader.getMapData("Sheet1");
 
 			return testdata.get(key);
 
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		Map<String, String> testdata = excelReader.getMapData();
+		Map<String, String> testdata = excelReader.getMapData("Sheet1");
 		return testdata.get(key);
 	}
 
@@ -361,7 +361,7 @@ public class passData {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		Map<String, String> testdata = excelReader.getMapData();
+		Map<String, String> testdata = excelReader.getMapData("Sheet1");
 		return testdata.get(key);
 	}
 

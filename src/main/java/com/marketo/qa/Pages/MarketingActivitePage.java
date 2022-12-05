@@ -18,7 +18,6 @@ public class MarketingActivitePage extends TestBase {
 	private static Logger logger = LogManager.getLogger(TestBase.class);
 	CommonLib Clib = new CommonLib();
 	SoftAssert asrt = new SoftAssert();
-	JavascriptExecutor js = (JavascriptExecutor) driver;
 
 	boolean flag = false;
 	By GlobalTreeSearch = By.xpath("//input[@data-id='globalTreeSearchInput_input']");
@@ -195,10 +194,17 @@ public class MarketingActivitePage extends TestBase {
 		Clib.StandardWait(2000);
 	}
 
-	public void GetProgramLibrary(int row) throws Throwable {
+	public void ClickResetButtonIfActive() {
+		try {
+			GetResetBtn().click();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 
+	public void GetProgramLibrary(int row) throws Throwable {
+		Thread.sleep(4000);
 		GetGlobalTreeSearch().sendKeys("Template");
-		Thread.sleep(2000);
 		try {
 			driver.findElement(NoResult).isDisplayed();
 			Clib.WriteExcelData("Sheet1", row, 0, "Programe Library");
@@ -208,7 +214,7 @@ public class MarketingActivitePage extends TestBase {
 		} catch (Exception e) {
 			Clib.WriteExcelData("Sheet1", row, 0, "Programe Library");
 			Clib.WriteExcelData("Sheet1", row, 1, "True");
-
+			JavascriptExecutor js = (JavascriptExecutor) driver;
 			WebElement element = driver.findElement(By.xpath("//div[@data-id='globalTreeDrawerExpanderContent']"));
 			js.executeScript("arguments[0].setAttribute('style', 'width: 900px;')", element);
 			screenshotUtility.TakeScreenshot(GetTemplate(), "Template");
@@ -234,57 +240,52 @@ public class MarketingActivitePage extends TestBase {
 	}
 
 	public void GetEventCount(int row) throws Exception {
-		Clib.WaitForElementToLoad(driver, 60, GetFilter());
-		GetFilter().click();
+		ClickResetButtonIfActive();
 		Clib.WaitForElementToLoad(driver, 60, GetEventFilter());
 		GetEventFilter().click();
 		try {
-			boolean flag = driver.findElement(NoResult).isDisplayed();
-			if (flag) {
-				Clib.WriteExcelData("Sheet1", row, 0, "Event Programs");
-				Clib.WriteExcelData("Sheet1", row, 1, "0");
-			}
 
-		} catch (Exception e) {
 			List<WebElement> EventCount = driver.findElements(Event);
 			Clib.WriteExcelData("Sheet1", row, 0, "Event Programs");
 			Clib.WriteExcelData("Sheet1", row, 1, EventCount.size());
+			JavascriptExecutor js = (JavascriptExecutor) driver;
 			WebElement element = driver.findElement(By.xpath("//div[@data-id='globalTreeDrawerExpanderContent']"));
 			js.executeScript("arguments[0].setAttribute('style', 'width: 900px;')", element);
 			screenshotUtility.TakeScreenshot(GetMAO(), "Event");
+			ClickResetButtonIfActive();
 			js.executeScript("arguments[0].setAttribute('style', 'width: 310px;')", element);
 
+		} catch (Exception e) {
+			driver.findElement(NoResult).isDisplayed();
+			Clib.WriteExcelData("Sheet1", row, 0, "Event Programs");
+			Clib.WriteExcelData("Sheet1", row, 1, "0");
+
 		}
-		GetResetBtn().click();
 
 	}
 
 	public void GetNurtureCount(int row) throws Throwable {
-
+		ClickResetButtonIfActive();
 		Clib.WaitForElementToLoad(driver, 60, GetEngagementPrograms());
 		GetEngagementPrograms().click();
 		try {
-			boolean flag = driver.findElement(NoResult).isDisplayed();
-			if (flag) {
-				Clib.WriteExcelData("Sheet1", row, 0, "Nurture campaigns");
-				Clib.WriteExcelData("Sheet1", row, 1, "0");
 
-			}
-
-		} catch (Exception e) {
 			List<WebElement> NurturCount = driver.findElements(Nuture);
-
 			Clib.WriteExcelData("Sheet1", row, 0, "Nurture campaigns");
 			Clib.WriteExcelData("Sheet1", row, 1, NurturCount.size());
+			JavascriptExecutor js = (JavascriptExecutor) driver;
 			WebElement element = driver.findElement(By.xpath("//div[@data-id='globalTreeDrawerExpanderContent']"));
 			js.executeScript("arguments[0].setAttribute('style', 'width: 900px;')", element);
 			screenshotUtility.TakeScreenshot(GetMAO(), "Nurture campaigns");
+			ClickResetButtonIfActive();
 			js.executeScript("arguments[0].setAttribute('style', 'width: 310px;')", element);
 
-		}
-		GetResetBtn().click();
-		GetFilter().click();
+		} catch (Exception e) {
+			driver.findElement(NoResult).isDisplayed();
+			Clib.WriteExcelData("Sheet1", row, 0, "Nurture campaigns");
+			Clib.WriteExcelData("Sheet1", row, 1, "0");
 
+		}
 	}
 
 	public void CloseDefaultTreeView() throws Throwable {

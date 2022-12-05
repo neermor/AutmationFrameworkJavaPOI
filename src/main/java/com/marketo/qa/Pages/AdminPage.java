@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.Test;
 
 import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.base.TestBase;
@@ -26,13 +25,40 @@ public class AdminPage extends TestBase {
 	By IntegrationTag = By.xpath(
 			"//span [text()='Integration']/../preceding-sibling:: img[@class='x-tree-ec-icon x-tree-elbow-minus']");
 	By LunchPoint = By.xpath("//li[@class='x-tree-node']//span[text()='LaunchPoint']");
+	By TreasureChest = By.xpath("//li[@class='x-tree-node']//span[text()='Treasure Chest']");
 	By VerifyLunchPoint = By.xpath("//span[text()='No services configured']");
 	By InstalledService = By.cssSelector("[class='x-grid3-viewport']");
 	By LeadsCount = By.cssSelector("[class='x-toolbar-right-row'] [class='xtb-text']");
 	By SalesInsight = By.xpath("//li[@class='x-tree-node']//span[text()='Sales Insight']");
+	By CIstatus = By.xpath(
+			"//span[text()='Campaign Inspector']/../following-sibling::div//label[text()='Status:']/following-sibling::div/div[@class=' x-form-display-field']");
+
+	By CIedit = By.xpath("//span[text()='Campaign Inspector']/../following-sibling::div//div[text()='Edit']");
+	By EnabledCheckbox = By.cssSelector(".x-form-check-wrap input");
+	By CIsaveBtn = By.xpath("//button[text()='Save']");
 
 	public WebElement GetMyAccount() {
 		return driver.findElement(MyAccount);
+	}
+
+	public WebElement GetTreasureChest() {
+		return driver.findElement(TreasureChest);
+	}
+
+	public WebElement GetCIsaveBtn() {
+		return driver.findElement(CIsaveBtn);
+	}
+
+	public WebElement GetCIedit() {
+		return driver.findElement(CIedit);
+	}
+
+	public WebElement GetEnabledCheckbox() {
+		return driver.findElement(EnabledCheckbox);
+	}
+
+	public WebElement GetCIstatus() {
+		return driver.findElement(CIstatus);
 	}
 
 	public WebElement GetTagCount() {
@@ -102,7 +128,7 @@ public class AdminPage extends TestBase {
 		logger.info("Read Tags Count");
 
 	}
-	
+
 	public void OpenLunchPoint(int row) throws Throwable {
 		new CommonLib().ClearExcelData("Sheet1", row);
 

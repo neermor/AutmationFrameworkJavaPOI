@@ -72,7 +72,7 @@ public class DatabasePage extends TestBase {
 		Thread.sleep(4000);
 		String countString = driver.findElement(LeadsCount).getText();
 		String[] words = countString.split("\\s");
-		if (words[0].equalsIgnoreCase("No")) {
+		if (words[0].startsWith("No")) {
 			return 0;
 		} else {
 			if (mAP.GetPage().getText().equalsIgnoreCase("Of 1")) {
@@ -107,16 +107,18 @@ public class DatabasePage extends TestBase {
 		new CommonLib().StandardWait(2000);
 	}
 
-	public int GetLeadsCount(int row, int cell) throws Throwable {
+	public int GetLeadsCount(int row, int cell, String option) throws Throwable {
 		new CommonLib().StandardWait(2000);
 		driver.switchTo().frame(GetIFrame());
 		GetPeople().click();
 		new CommonLib().StandardWait(4000);
-		new CommonLib().WriteExcelData("Sheet1", row, 0, "Leads");
-		new CommonLib().WriteExcelData("Sheet1", row, cell, GetCount());
+		int value = GetCount();
+		new CommonLib().WriteExcelData("Sheet1", row, 0, option + "Leads");
+		new CommonLib().WriteExcelData("Sheet1", row, cell, value);
 		logger.info("Fetch Leads Count");
+		driver.switchTo().defaultContent();
 
-		return GetCount();
+		return value;
 	}
 
 	public int SegmentationsCount(int row, int cell) throws Throwable {
@@ -157,6 +159,9 @@ public class DatabasePage extends TestBase {
 		int cell = 2;
 		int Segmentations = 0;
 		int Leads = 0;
+		int Unsubscribed_Leads = 0;
+		int Possible_Duplicates = 0;
+		int Marketing_Suspended = 0;
 
 		new CommonLib().ClearExcelData("Sheet1", 14);
 		new CommonLib().ClearExcelData("Sheet1", 15);
@@ -174,7 +179,13 @@ public class DatabasePage extends TestBase {
 
 			Segmentations += SegmentationsCount(15, cell);
 			ExtendWorkshoptreenode("System Smart Lists", "All People");
-			Leads += GetLeadsCount(16, cell);
+			Leads += GetLeadsCount(16, cell, "All People");
+			SelectTreeNode("Unsubscribed People");
+			Unsubscribed_Leads += GetLeadsCount(17, cell, "Unsubscribed People");
+			SelectTreeNode("Possible Duplicates");
+			Possible_Duplicates += GetLeadsCount(18, cell, "Possible Duplicates");
+			SelectTreeNode("Marketing Suspended");
+			Marketing_Suspended += GetLeadsCount(19, cell, "Marketing Suspended");
 
 			driver.switchTo().defaultContent();
 			Actions act = new Actions(driver);
@@ -189,6 +200,9 @@ public class DatabasePage extends TestBase {
 		new CommonLib().WriteExcelData("Sheet1", 14, 1, "Total");
 		new CommonLib().WriteExcelData("Sheet1", 15, 1, Segmentations);
 		new CommonLib().WriteExcelData("Sheet1", 16, 1, Leads);
+		new CommonLib().WriteExcelData("Sheet1", 17, 1, Unsubscribed_Leads);
+		new CommonLib().WriteExcelData("Sheet1", 18, 1, Possible_Duplicates);
+		new CommonLib().WriteExcelData("Sheet1", 19, 1, Marketing_Suspended);
 
 	}
 
@@ -217,7 +231,10 @@ public class DatabasePage extends TestBase {
 
 					Segmentations += SegmentationsCount(15, cell);
 					ExtendWorkshoptreenode("System Smart Lists", "All People");
-					Leads += GetLeadsCount(16, cell);
+					Leads += GetLeadsCount(16, cell, "All People");
+
+					ExtendWorkshoptreenode("System Smart Lists", "Unsubscribed People");
+					Leads += GetLeadsCount(16, cell, "Unsubscribed People");
 
 					driver.switchTo().defaultContent();
 					act.doubleClick(workSpaceTree).perform();

@@ -25,13 +25,13 @@ public class FetchDataFromChangeScore extends TestBase {
 
 		OpenSupportTool();
 		Support.SelectValueFlowAction("Flow Actions Used", "Change Score", 23);
-		screenshotUtility.TakeScreenshot(Support.GetResultTable(), "Change Score1");
+		screenshotUtility.TakeScreenshot(Support.GetResultTable(), "Change Score");
 		Support.ClickBackToSupportLink();
 		Support.SelectValueFlowAction("Flow Actions Used", "Interesting Moment", 24);
-		screenshotUtility.TakeScreenshot(Support.GetResultTable(), "Interesting Moment1");
+		screenshotUtility.TakeScreenshot(Support.GetResultTable(), "Interesting Moment");
 		Support.ClickBackToSupportLink();
 		Support.SelectValueFlowAction("Flow Actions Used", "Change Data Value", 25);
-		screenshotUtility.TakeScreenshot(Support.GetResultTable(), "Change Data Value1");
+		screenshotUtility.TakeScreenshot(Support.GetResultTable(), "Change Data Value");
 
 	}
 

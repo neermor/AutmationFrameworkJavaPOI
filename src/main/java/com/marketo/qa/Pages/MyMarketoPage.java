@@ -25,7 +25,7 @@ public class MyMarketoPage extends TestBase {
 
 	public WebElement GetHometileUnderFrame(String Name) {
 		return driver
-				.findElement(By.xpath("//div[contains(@id,'CanvasContent-body')]//a//span[text()='" + Name + "']/.."));
+				.findElement(By.xpath("//div[contains(@id,'CanvasContent-body')]//*//span[text()='" + Name + "']/.."));
 	}
 
 	public WebElement GetLogoutBtn() {
@@ -100,6 +100,7 @@ public class MyMarketoPage extends TestBase {
 
 			if (option.getText().equalsIgnoreCase("My Marketo")) {
 				option.click();
+				break;
 			}
 		}
 	}

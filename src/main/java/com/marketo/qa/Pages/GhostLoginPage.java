@@ -118,7 +118,7 @@ public class GhostLoginPage extends TestBase {
 
 		boolean push = false;
 
-		for (int i = 1; i <= 6; i++) {
+		for (int i = 1; i <= 1; i++) {
 			try {
 				WebDriverWait wait = new WebDriverWait(driver, 60);
 				wait.until(ExpectedConditions.elementToBeClickable(GetOktaPushBtn()));

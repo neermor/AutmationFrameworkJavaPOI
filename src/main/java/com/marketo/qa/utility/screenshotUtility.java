@@ -9,7 +9,11 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class screenshotUtility {
+import com.assertthat.selenium_shutterbug.core.Capture;
+import com.assertthat.selenium_shutterbug.core.Shutterbug;
+import com.marketo.qa.base.TestBase;
+
+public class screenshotUtility extends TestBase {
 
 	public static void TakeScreenshot(WebDriver driver, String screenshotName) {
 		// take screenshot of the page
@@ -33,6 +37,13 @@ public class screenshotUtility {
 			System.out.println("Screenshot Taken" + e.getMessage());
 			e.printStackTrace();
 		}
+
+	}
+
+	public static void TakeFullPageScreenshot(String screenshotName) {
+
+		Shutterbug.shootPage(driver, Capture.FULL, true).withName(screenshotName)
+				.save(System.getProperty("user.dir") + "//Config/ScreenShot//");
 
 	}
 
