@@ -19,10 +19,10 @@ public class FetchAdminDatas extends TestBase {
 	public void VerifyCountAndScreenshot() throws Throwable {
 		homePage.OpenAdminTab();
 		admin.switchFrame();
-		admin.TagsCountAndScreenshot("Tags", 19);
-		admin.OpenLunchPoint(20);
-		admin.GetInterestingMomentSubscription(21);
-		admin.AccountName(22);
+		admin.TagsCountAndScreenshot("Tags", 21);
+		admin.OpenLunchPoint(22);
+		admin.GetInterestingMomentSubscription(23);
+		admin.AccountName(24);
 
 		driver.switchTo().defaultContent();
 	}

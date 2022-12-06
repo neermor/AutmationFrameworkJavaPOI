@@ -311,6 +311,7 @@ public class MarketingActivitePage extends TestBase {
 		int All_Batch_Campaigns = 0;
 		int AllCampaigns = 0;
 		int Active_Campaigns = 0;
+		int Scheduled_Batch_Campaigns = 0;
 
 		Clib.ClearExcelData("Sheet1", 7);
 		Clib.ClearExcelData("Sheet1", 8);
@@ -319,7 +320,7 @@ public class MarketingActivitePage extends TestBase {
 		Clib.ClearExcelData("Sheet1", 11);
 		Clib.ClearExcelData("Sheet1", 12);
 		Clib.ClearExcelData("Sheet1", 13);
-		Clib.ClearExcelData("Sheet1", 26);
+		Clib.ClearExcelData("Sheet1", 28);
 
 		for (WebElement value : workSpace) {
 			logger.info("view " + value.getText() + " Workspace");
@@ -334,6 +335,8 @@ public class MarketingActivitePage extends TestBase {
 					All_Batch_Campaigns += GetMoreCampaignCount("All Batch Campaigns", 11, cell);
 					AllCampaigns += GetCampaignCount("All Campaigns", 12, cell);
 					Active_Campaigns += GetCampaignCount("Active Campaigns", 13, cell);
+					Scheduled_Batch_Campaigns += GetCampaignCount("Scheduled Batch Campaigns", 14, cell);
+
 					driver.switchTo().defaultContent();
 					Clib.WriteExcelData("Sheet1", 7, 0, "Campaign Data");
 					Clib.WriteExcelData("Sheet1", 7, cell, value.getText());
@@ -351,14 +354,16 @@ public class MarketingActivitePage extends TestBase {
 		}
 
 		Clib.WriteExcelData("Sheet1", 7, 1, "Total");
-		Clib.WriteExcelData("Sheet1", 26, 0, "Total WorkSpace");
-		Clib.WriteExcelData("Sheet1", 26, 1, workSpace.size());
+		Clib.WriteExcelData("Sheet1", 28, 0, "Total WorkSpace");
+		Clib.WriteExcelData("Sheet1", 28, 1, workSpace.size());
 		Clib.WriteExcelData("Sheet1", 8, 1, All_Triggered_Campaigns);
 		Clib.WriteExcelData("Sheet1", 9, 1, Active_Triggered_Campaigns);
 		Clib.WriteExcelData("Sheet1", 10, 1, Batch_Campaigns);
 		Clib.WriteExcelData("Sheet1", 11, 1, All_Batch_Campaigns);
 		Clib.WriteExcelData("Sheet1", 12, 1, AllCampaigns);
 		Clib.WriteExcelData("Sheet1", 13, 1, Active_Campaigns);
+		Clib.WriteExcelData("Sheet1", 14, 1, Scheduled_Batch_Campaigns);
+
 		logger.info("Marketing Activite Page Task is done");
 
 	}
@@ -373,6 +378,7 @@ public class MarketingActivitePage extends TestBase {
 		int All_Batch_Campaigns = 0;
 		int AllCampaigns = 0;
 		int Active_Campaigns = 0;
+		int Scheduled_Batch_Campaigns = 0;
 
 		Clib.ClearExcelData("Sheet1", 7);
 		Clib.ClearExcelData("Sheet1", 8);
@@ -381,7 +387,8 @@ public class MarketingActivitePage extends TestBase {
 		Clib.ClearExcelData("Sheet1", 11);
 		Clib.ClearExcelData("Sheet1", 12);
 		Clib.ClearExcelData("Sheet1", 13);
-		Clib.ClearExcelData("Sheet1", 26);
+		Clib.ClearExcelData("Sheet1", 14);
+		Clib.ClearExcelData("Sheet1", 28);
 
 		driver.switchTo().defaultContent();
 
@@ -402,6 +409,8 @@ public class MarketingActivitePage extends TestBase {
 					All_Batch_Campaigns += GetMoreCampaignCount("All Batch Campaigns", 11, cell);
 					AllCampaigns += GetCampaignCount("All Campaigns", 12, cell);
 					Active_Campaigns += GetCampaignCount("Active Campaigns", 13, cell);
+					Scheduled_Batch_Campaigns += GetCampaignCount("Scheduled Batch Campaigns", 14, cell);
+
 					driver.switchTo().defaultContent();
 					Clib.WriteExcelData("Sheet1", 7, 0, "Campaign Data");
 					Clib.WriteExcelData("Sheet1", 7, cell, prop.getProperty("WorkSpace" + i));
@@ -419,14 +428,16 @@ public class MarketingActivitePage extends TestBase {
 		}
 
 		Clib.WriteExcelData("Sheet1", 7, 1, "Total");
-		Clib.WriteExcelData("Sheet1", 26, 0, "Total WorkSpace");
-		Clib.WriteExcelData("Sheet1", 26, 1, NoOfWorkSpace);
+		Clib.WriteExcelData("Sheet1", 28, 0, "Total WorkSpace");
+		Clib.WriteExcelData("Sheet1", 28, 1, NoOfWorkSpace);
 		Clib.WriteExcelData("Sheet1", 8, 1, All_Triggered_Campaigns);
 		Clib.WriteExcelData("Sheet1", 9, 1, Active_Triggered_Campaigns);
 		Clib.WriteExcelData("Sheet1", 10, 1, Batch_Campaigns);
 		Clib.WriteExcelData("Sheet1", 11, 1, All_Batch_Campaigns);
 		Clib.WriteExcelData("Sheet1", 12, 1, AllCampaigns);
 		Clib.WriteExcelData("Sheet1", 13, 1, Active_Campaigns);
+		Clib.WriteExcelData("Sheet1", 14, 1, Scheduled_Batch_Campaigns);
+
 		asrt.assertAll();
 
 	}
