@@ -163,9 +163,12 @@ public class DatabasePage extends TestBase {
 		int Possible_Duplicates = 0;
 		int Marketing_Suspended = 0;
 
-		new CommonLib().ClearExcelData("Sheet1", 14);
 		new CommonLib().ClearExcelData("Sheet1", 15);
 		new CommonLib().ClearExcelData("Sheet1", 16);
+		new CommonLib().ClearExcelData("Sheet1", 17);
+		new CommonLib().ClearExcelData("Sheet1", 18);
+		new CommonLib().ClearExcelData("Sheet1", 19);
+		new CommonLib().ClearExcelData("Sheet1", 20);
 
 		for (WebElement value : workSpace) {
 			try {
@@ -177,45 +180,51 @@ public class DatabasePage extends TestBase {
 
 			}
 
-			Segmentations += SegmentationsCount(15, cell);
+			Segmentations += SegmentationsCount(16, cell);
 			ExtendWorkshoptreenode("System Smart Lists", "All People");
-			Leads += GetLeadsCount(16, cell, "All People");
+			Leads += GetLeadsCount(17, cell, "All People");
 			SelectTreeNode("Unsubscribed People");
-			Unsubscribed_Leads += GetLeadsCount(17, cell, "Unsubscribed People");
+			Unsubscribed_Leads += GetLeadsCount(18, cell, "Unsubscribed People");
 			SelectTreeNode("Possible Duplicates");
-			Possible_Duplicates += GetLeadsCount(18, cell, "Possible Duplicates");
+			Possible_Duplicates += GetLeadsCount(19, cell, "Possible Duplicates");
 			SelectTreeNode("Marketing Suspended");
-			Marketing_Suspended += GetLeadsCount(19, cell, "Marketing Suspended");
+			Marketing_Suspended += GetLeadsCount(20, cell, "Marketing Suspended");
 
 			driver.switchTo().defaultContent();
 			Actions act = new Actions(driver);
 			act.doubleClick(value).perform();
 			logger.info("Close " + value.getText() + " Workspace");
 
-			new CommonLib().WriteExcelData("Sheet1", 14, 0, "Database Data");
-			new CommonLib().WriteExcelData("Sheet1", 14, cell, value.getText());
+			new CommonLib().WriteExcelData("Sheet1", 15, 0, "Database Data");
+			new CommonLib().WriteExcelData("Sheet1", 15, cell, value.getText());
 			cell++;
 
 		}
-		new CommonLib().WriteExcelData("Sheet1", 14, 1, "Total");
-		new CommonLib().WriteExcelData("Sheet1", 15, 1, Segmentations);
-		new CommonLib().WriteExcelData("Sheet1", 16, 1, Leads);
-		new CommonLib().WriteExcelData("Sheet1", 17, 1, Unsubscribed_Leads);
-		new CommonLib().WriteExcelData("Sheet1", 18, 1, Possible_Duplicates);
-		new CommonLib().WriteExcelData("Sheet1", 19, 1, Marketing_Suspended);
+		new CommonLib().WriteExcelData("Sheet1", 15, 1, "Total");
+		new CommonLib().WriteExcelData("Sheet1", 16, 1, Segmentations);
+		new CommonLib().WriteExcelData("Sheet1", 17, 1, Leads);
+		new CommonLib().WriteExcelData("Sheet1", 18, 1, Unsubscribed_Leads);
+		new CommonLib().WriteExcelData("Sheet1", 19, 1, Possible_Duplicates);
+		new CommonLib().WriteExcelData("Sheet1", 20, 1, Marketing_Suspended);
 
 	}
 
 	public void SpecificWorkspaceCollectLeadsCount(int NoOfWorkspace) throws Throwable {
 
-		Clib.ClearExcelData("Sheet1", 14);
-		Clib.ClearExcelData("Sheet1", 15);
-		Clib.ClearExcelData("Sheet1", 16);
+		new CommonLib().ClearExcelData("Sheet1", 15);
+		new CommonLib().ClearExcelData("Sheet1", 16);
+		new CommonLib().ClearExcelData("Sheet1", 17);
+		new CommonLib().ClearExcelData("Sheet1", 18);
+		new CommonLib().ClearExcelData("Sheet1", 19);
+		new CommonLib().ClearExcelData("Sheet1", 20);
 
 		boolean WorkspaceAvl = true;
 		int cell = 2;
 		int Segmentations = 0;
 		int Leads = 0;
+		int Unsubscribed_Leads = 0;
+		int Possible_Duplicates = 0;
+		int Marketing_Suspended = 0;
 
 		new DesignStudioPage().CloseDefaultTreeView();
 		for (int i = 1; i <= NoOfWorkspace; i++) {
@@ -229,19 +238,22 @@ public class DatabasePage extends TestBase {
 					act.doubleClick(ChooseWorkSpace(Workspace)).perform();
 					logger.info("View " + ChooseWorkSpace(Workspace).getText() + " Workspace");
 
-					Segmentations += SegmentationsCount(15, cell);
+					Segmentations += SegmentationsCount(16, cell);
 					ExtendWorkshoptreenode("System Smart Lists", "All People");
-					Leads += GetLeadsCount(16, cell, "All People");
-
-					ExtendWorkshoptreenode("System Smart Lists", "Unsubscribed People");
-					Leads += GetLeadsCount(16, cell, "Unsubscribed People");
+					Leads += GetLeadsCount(17, cell, "All People");
+					SelectTreeNode("Unsubscribed People");
+					Unsubscribed_Leads += GetLeadsCount(18, cell, "Unsubscribed People");
+					SelectTreeNode("Possible Duplicates");
+					Possible_Duplicates += GetLeadsCount(19, cell, "Possible Duplicates");
+					SelectTreeNode("Marketing Suspended");
+					Marketing_Suspended += GetLeadsCount(20, cell, "Marketing Suspended");
 
 					driver.switchTo().defaultContent();
 					act.doubleClick(workSpaceTree).perform();
 					logger.info("Close " + ChooseWorkSpace(Workspace).getText() + " Workspace");
 
-					new CommonLib().WriteExcelData("Sheet1", 14, 0, "Database Data");
-					new CommonLib().WriteExcelData("Sheet1", 14, cell, workSpaceTree.getText());
+					new CommonLib().WriteExcelData("Sheet1", 15, 0, "Database Data");
+					new CommonLib().WriteExcelData("Sheet1", 15, cell, workSpaceTree.getText());
 					cell++;
 				} catch (Exception ee) {
 					logger.info("Oops!! " + Workspace + " Workspace is not available");
@@ -251,9 +263,12 @@ public class DatabasePage extends TestBase {
 
 			}
 		}
-		new CommonLib().WriteExcelData("Sheet1", 14, 1, "Total");
-		new CommonLib().WriteExcelData("Sheet1", 15, 1, Segmentations);
-		new CommonLib().WriteExcelData("Sheet1", 16, 1, Leads);
+		new CommonLib().WriteExcelData("Sheet1", 15, 1, "Total");
+		new CommonLib().WriteExcelData("Sheet1", 16, 1, Segmentations);
+		new CommonLib().WriteExcelData("Sheet1", 17, 1, Leads);
+		new CommonLib().WriteExcelData("Sheet1", 18, 1, Unsubscribed_Leads);
+		new CommonLib().WriteExcelData("Sheet1", 19, 1, Possible_Duplicates);
+		new CommonLib().WriteExcelData("Sheet1", 20, 1, Marketing_Suspended);
 		asrt.assertAll();
 
 	}

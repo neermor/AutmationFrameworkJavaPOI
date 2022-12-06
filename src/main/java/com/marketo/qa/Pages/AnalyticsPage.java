@@ -65,7 +65,7 @@ public class AnalyticsPage extends TestBase {
 
 	String Parent_window = null;
 	int cell = 3;
-	int row = 32;
+	int row = 34;
 
 	public void FetchApprovedModelScreenshot(String WorkspaceName) throws Throwable {
 		List<WebElement> ApprovedModel = driver.findElements(ApprovedModels);
@@ -198,6 +198,7 @@ public class AnalyticsPage extends TestBase {
 
 		Clib.ClearExcelData("Sheet1", 17);
 		Clib.ClearExcelData("Sheet1", 18);
+		Clib.ClearExcelData("Sheet1", 35);
 
 		for (WebElement value : workSpace) {
 			try {
@@ -234,6 +235,7 @@ public class AnalyticsPage extends TestBase {
 
 		Clib.ClearExcelData("Sheet1", 17);
 		Clib.ClearExcelData("Sheet1", 18);
+		Clib.ClearExcelData("Sheet1", 35);
 
 		new DesignStudioPage().CloseDefaultTreeView();
 		for (int i = 1; i <= NoOfWorkspace; i++) {
