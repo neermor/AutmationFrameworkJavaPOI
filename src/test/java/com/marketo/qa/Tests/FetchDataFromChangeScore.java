@@ -19,18 +19,18 @@ public class FetchDataFromChangeScore extends TestBase {
 
 	@Test
 	public void VerifyChangeScoreCount() throws Throwable {
-		new CommonLib().ClearExcelData("Sheet1", 25);
-		new CommonLib().ClearExcelData("Sheet1", 26);
-		new CommonLib().ClearExcelData("Sheet1", 27);
+		new CommonLib().ClearExcelData("Sheet1", 28);
+		new CommonLib().ClearExcelData("Sheet1", 29);
+		new CommonLib().ClearExcelData("Sheet1", 30);
 
 		OpenSupportTool();
-		Support.SelectValueFlowAction("Flow Actions Used", "Change Score", 25);
+		Support.SelectValueFlowAction("Flow Actions Used", "Change Score", 28);
 		screenshotUtility.TakeScreenshot(Support.GetResultTable(), "Change Score");
 		Support.ClickBackToSupportLink();
-		Support.SelectValueFlowAction("Flow Actions Used", "Interesting Moment", 26);
+		Support.SelectValueFlowAction("Flow Actions Used", "Interesting Moment", 29);
 		screenshotUtility.TakeScreenshot(Support.GetResultTable(), "Interesting Moment");
 		Support.ClickBackToSupportLink();
-		Support.SelectValueFlowAction("Flow Actions Used", "Change Data Value", 27);
+		Support.SelectValueFlowAction("Flow Actions Used", "Change Data Value", 30);
 		screenshotUtility.TakeScreenshot(Support.GetResultTable(), "Change Data Value");
 
 	}

@@ -34,7 +34,7 @@ public class TargetAccountManagementPage extends TestBase {
 			actions.sendKeys(Keys.ESCAPE).perform();
 			new CommonLib().WriteExcelData("Sheet1", row, 0, "Target Account Management");
 			new CommonLib().WriteExcelData("Sheet1", row, 1, "True");
-			new CommonLib().StandardWait(4000);
+			new CommonLib().StandardWait(8000);
 			screenshotUtility.TakeFullPageScreenshot("Target Account Management");
 
 		} catch (Exception e) {

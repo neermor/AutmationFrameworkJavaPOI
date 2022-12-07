@@ -15,7 +15,7 @@ public class PredictiveContentPage extends TestBase {
 	private static Logger logger = LogManager.getLogger(TestBase.class);
 	String Parent_window = null;
 
-	public void CheckPresentOrNot(int row) throws Exception {
+	public void CheckPresentOrNot(int row) throws Throwable {
 		try {
 			homepage.GetHometileUnderFrame("Predictive Content").click();
 			logger.info("Predictive Content available");
@@ -25,7 +25,7 @@ public class PredictiveContentPage extends TestBase {
 			Parent_window = I1.next();
 			String child_window = I1.next();
 			driver.switchTo().window(child_window);
-
+			new CommonLib().StandardWait(6000);
 			screenshotUtility.TakeFullPageScreenshot("Predictive Content");
 			new CommonLib().WriteExcelData("Sheet1", row, 0, "Predictive Content");
 			new CommonLib().WriteExcelData("Sheet1", row, 1, "True");

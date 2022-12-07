@@ -21,16 +21,16 @@ public class AddOnFeature extends TestBase {
 
 		homePage.OpenMyMarketo();
 		mAP.switchFrame();
-		Tam.VerifyAndFetchScreenshot(32);
+		Tam.VerifyAndFetchScreenshot(34);
 		driver.switchTo().defaultContent();
 
 		homePage.OpenMyMarketo();
 		mAP.switchFrame();
-		Pc.CheckPresentOrNot(33);
+		Pc.CheckPresentOrNot(35);
 		driver.switchTo().defaultContent();
 
 		homePage.OpenMyMarketo();
-		Wp.WebCampaignsScreenShot(34, prop.getProperty("WorkspaceCondition"));
+		Wp.WebCampaignsScreenShot(36, prop.getProperty("WorkspaceCondition"));
 		driver.switchTo().defaultContent();
 
 	}

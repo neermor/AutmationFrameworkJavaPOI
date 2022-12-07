@@ -26,17 +26,17 @@ public class FetchNuture_EventCount extends TestBase {
 	@Test
 	public void ChampiensCount() throws Throwable {
 
-		new CommonLib().ClearExcelData("Sheet1", 29);
-		new CommonLib().ClearExcelData("Sheet1", 30);
 		new CommonLib().ClearExcelData("Sheet1", 31);
+		new CommonLib().ClearExcelData("Sheet1", 32);
+		new CommonLib().ClearExcelData("Sheet1", 33);
 
 		homePage.OpenMarketingActivitiesTab();
 		logger.info("Marketing Activite Page Task Opened");
 		new CommonLib().WaitForElementToLoad(driver, 60, mAP.GetFilter());
 		mAP.GetFilter().click();
-		mAP.GetEventCount(29);
-		mAP.GetNurtureCount(30);
-		mAP.GetProgramLibrary(31);
+		mAP.GetEventCount(31);
+		mAP.GetNurtureCount(32);
+		mAP.GetProgramLibrary(33);
 
 		logger.info("Marketing Activite Page Task Closed");
 
