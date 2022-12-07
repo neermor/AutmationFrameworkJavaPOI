@@ -65,7 +65,7 @@ public class AnalyticsPage extends TestBase {
 
 	String Parent_window = null;
 	int cell = 3;
-	int row = 34;
+	int row = 37;
 
 	public void FetchApprovedModelScreenshot(String WorkspaceName) throws Throwable {
 		List<WebElement> ApprovedModel = driver.findElements(ApprovedModels);
@@ -196,9 +196,9 @@ public class AnalyticsPage extends TestBase {
 		int Model = 0;
 		int ModelCount = 1;
 
-		Clib.ClearExcelData("Sheet1", 17);
-		Clib.ClearExcelData("Sheet1", 18);
-		Clib.ClearExcelData("Sheet1", 35);
+		Clib.ClearExcelData("Sheet1", 22);
+		Clib.ClearExcelData("Sheet1", 23);
+		Clib.ClearExcelData("Sheet1", 37);
 
 		for (WebElement value : workSpace) {
 			try {
@@ -211,19 +211,19 @@ public class AnalyticsPage extends TestBase {
 
 			}
 
-			Model += ModelCount(18, ModelCount++, value.getText());
+			Model += ModelCount(23, ModelCount++, value.getText());
 
 			driver.switchTo().defaultContent();
 			Actions act = new Actions(driver);
 			act.doubleClick(value).perform();
 			logger.info("Close " + value.getText() + " Workspace");
-			Clib.WriteExcelData("Sheet1", 17, 0, "Program Data");
-			Clib.WriteExcelData("Sheet1", 17, cell, value.getText());
+			Clib.WriteExcelData("Sheet1", 22, 0, "Program Data");
+			Clib.WriteExcelData("Sheet1", 22, cell, value.getText());
 			cell++;
 
 		}
-		Clib.WriteExcelData("Sheet1", 17, 1, "Total");
-		Clib.WriteExcelData("Sheet1", 18, 1, Model);
+		Clib.WriteExcelData("Sheet1", 22, 1, "Total");
+		Clib.WriteExcelData("Sheet1", 23, 1, Model);
 
 	}
 
@@ -233,9 +233,9 @@ public class AnalyticsPage extends TestBase {
 		boolean WorkspaceAvl = true;
 		int Model = 0;
 
-		Clib.ClearExcelData("Sheet1", 17);
-		Clib.ClearExcelData("Sheet1", 18);
-		Clib.ClearExcelData("Sheet1", 35);
+		Clib.ClearExcelData("Sheet1", 22);
+		Clib.ClearExcelData("Sheet1", 23);
+		Clib.ClearExcelData("Sheet1", 38);
 
 		new DesignStudioPage().CloseDefaultTreeView();
 		for (int i = 1; i <= NoOfWorkspace; i++) {
@@ -250,14 +250,14 @@ public class AnalyticsPage extends TestBase {
 					act.doubleClick(ChooseWorkSpace(Workspace)).perform();
 					logger.info("View " + ChooseWorkSpace(Workspace).getText() + " Workspace");
 
-					Model += ModelCount(18, cell, Workspace);
+					Model += ModelCount(23, cell, Workspace);
 
 					driver.switchTo().defaultContent();
 					act.doubleClick(workSpaceTree).perform();
 					logger.info("Close " + ChooseWorkSpace(Workspace).getText() + " Workspace");
 
-					Clib.WriteExcelData("Sheet1", 17, 0, "Program Data");
-					Clib.WriteExcelData("Sheet1", 17, cell, workSpaceTree.getText());
+					Clib.WriteExcelData("Sheet1", 22, 0, "Program Data");
+					Clib.WriteExcelData("Sheet1", 22, cell, workSpaceTree.getText());
 					cell++;
 				} catch (Exception ee) {
 					driver.switchTo().defaultContent();
@@ -268,8 +268,8 @@ public class AnalyticsPage extends TestBase {
 				}
 			}
 		}
-		Clib.WriteExcelData("Sheet1", 17, 1, "Total");
-		Clib.WriteExcelData("Sheet1", 18, 1, Model);
+		Clib.WriteExcelData("Sheet1", 22, 1, "Total");
+		Clib.WriteExcelData("Sheet1", 23, 1, Model);
 		asrt.assertAll();
 	}
 

@@ -320,7 +320,7 @@ public class MarketingActivitePage extends TestBase {
 		Clib.ClearExcelData("Sheet1", 11);
 		Clib.ClearExcelData("Sheet1", 12);
 		Clib.ClearExcelData("Sheet1", 13);
-		Clib.ClearExcelData("Sheet1", 28);
+		Clib.ClearExcelData("Sheet1", 37);
 
 		for (WebElement value : workSpace) {
 			logger.info("view " + value.getText() + " Workspace");
@@ -354,8 +354,8 @@ public class MarketingActivitePage extends TestBase {
 		}
 
 		Clib.WriteExcelData("Sheet1", 7, 1, "Total");
-		Clib.WriteExcelData("Sheet1", 28, 0, "Total WorkSpace");
-		Clib.WriteExcelData("Sheet1", 28, 1, workSpace.size());
+		Clib.WriteExcelData("Sheet1", 37, 0, "Total WorkSpace");
+		Clib.WriteExcelData("Sheet1", 37, 1, workSpace.size());
 		Clib.WriteExcelData("Sheet1", 8, 1, All_Triggered_Campaigns);
 		Clib.WriteExcelData("Sheet1", 9, 1, Active_Triggered_Campaigns);
 		Clib.WriteExcelData("Sheet1", 10, 1, Batch_Campaigns);
@@ -388,7 +388,7 @@ public class MarketingActivitePage extends TestBase {
 		Clib.ClearExcelData("Sheet1", 12);
 		Clib.ClearExcelData("Sheet1", 13);
 		Clib.ClearExcelData("Sheet1", 14);
-		Clib.ClearExcelData("Sheet1", 28);
+		Clib.ClearExcelData("Sheet1", 37);
 
 		driver.switchTo().defaultContent();
 
@@ -428,8 +428,8 @@ public class MarketingActivitePage extends TestBase {
 		}
 
 		Clib.WriteExcelData("Sheet1", 7, 1, "Total");
-		Clib.WriteExcelData("Sheet1", 28, 0, "Total WorkSpace");
-		Clib.WriteExcelData("Sheet1", 28, 1, NoOfWorkSpace);
+		Clib.WriteExcelData("Sheet1", 37, 0, "Total WorkSpace");
+		Clib.WriteExcelData("Sheet1", 37, 1, NoOfWorkSpace);
 		Clib.WriteExcelData("Sheet1", 8, 1, All_Triggered_Campaigns);
 		Clib.WriteExcelData("Sheet1", 9, 1, Active_Triggered_Campaigns);
 		Clib.WriteExcelData("Sheet1", 10, 1, Batch_Campaigns);

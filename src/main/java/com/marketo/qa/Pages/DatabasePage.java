@@ -29,6 +29,7 @@ public class DatabasePage extends TestBase {
 	By Sag = By.xpath("//div[contains(@data-id,'treeNode_segmentation')]/following-sibling::div");
 	By SagHar = By.xpath("//span[text()=\"Segmentations\"]/../../../../..");
 	By WorkSpace = By.xpath("//div[contains(@data-id,'treeNode_workspace')]/..//div//span");
+	By Marketable = By.xpath("//*[@text='Marketable']/following-sibling:: *//*");
 
 	public WebElement GetIFrame() {
 		return driver.findElement(Iframe);
@@ -42,6 +43,10 @@ public class DatabasePage extends TestBase {
 
 	public WebElement GetPeople() {
 		return driver.findElement(People);
+	}
+
+	public WebElement GetMarketable() {
+		return driver.findElement(Marketable);
 	}
 
 	public List<WebElement> GetSag() {
@@ -113,7 +118,7 @@ public class DatabasePage extends TestBase {
 		GetPeople().click();
 		new CommonLib().StandardWait(4000);
 		int value = GetCount();
-		new CommonLib().WriteExcelData("Sheet1", row, 0, option + "Leads");
+		new CommonLib().WriteExcelData("Sheet1", row, 0, option);
 		new CommonLib().WriteExcelData("Sheet1", row, cell, value);
 		logger.info("Fetch Leads Count");
 		driver.switchTo().defaultContent();
@@ -159,6 +164,7 @@ public class DatabasePage extends TestBase {
 		int cell = 2;
 		int Segmentations = 0;
 		int Leads = 0;
+		int Marketable_Leads = 0;
 		int Unsubscribed_Leads = 0;
 		int Possible_Duplicates = 0;
 		int Marketing_Suspended = 0;
@@ -169,6 +175,7 @@ public class DatabasePage extends TestBase {
 		new CommonLib().ClearExcelData("Sheet1", 18);
 		new CommonLib().ClearExcelData("Sheet1", 19);
 		new CommonLib().ClearExcelData("Sheet1", 20);
+		new CommonLib().ClearExcelData("Sheet1", 21);
 
 		for (WebElement value : workSpace) {
 			try {
@@ -181,8 +188,16 @@ public class DatabasePage extends TestBase {
 			}
 
 			Segmentations += SegmentationsCount(16, cell);
+			driver.switchTo().frame(GetIFrame());
+			Marketable_Leads = Integer.parseInt(GetMarketable().getText());
+			new CommonLib().WriteExcelData("Sheet1", 21, 0, "Marketable Leads");
+			new CommonLib().WriteExcelData("Sheet1", 21, cell, GetSag().size());
+			driver.switchTo().defaultContent();
 			ExtendWorkshoptreenode("System Smart Lists", "All People");
 			Leads += GetLeadsCount(17, cell, "All People");
+			Marketable_Leads = Integer.parseInt(GetMarketable().getText());
+			new CommonLib().WriteExcelData("Sheet1", 21, 0, "Marketable Leads");
+			new CommonLib().WriteExcelData("Sheet1", 21, cell, GetSag().size());
 			SelectTreeNode("Unsubscribed People");
 			Unsubscribed_Leads += GetLeadsCount(18, cell, "Unsubscribed People");
 			SelectTreeNode("Possible Duplicates");
@@ -206,6 +221,7 @@ public class DatabasePage extends TestBase {
 		new CommonLib().WriteExcelData("Sheet1", 18, 1, Unsubscribed_Leads);
 		new CommonLib().WriteExcelData("Sheet1", 19, 1, Possible_Duplicates);
 		new CommonLib().WriteExcelData("Sheet1", 20, 1, Marketing_Suspended);
+		new CommonLib().WriteExcelData("Sheet1", 21, 1, Marketable_Leads);
 
 	}
 
@@ -217,6 +233,7 @@ public class DatabasePage extends TestBase {
 		new CommonLib().ClearExcelData("Sheet1", 18);
 		new CommonLib().ClearExcelData("Sheet1", 19);
 		new CommonLib().ClearExcelData("Sheet1", 20);
+		new CommonLib().ClearExcelData("Sheet1", 21);
 
 		boolean WorkspaceAvl = true;
 		int cell = 2;
@@ -225,6 +242,7 @@ public class DatabasePage extends TestBase {
 		int Unsubscribed_Leads = 0;
 		int Possible_Duplicates = 0;
 		int Marketing_Suspended = 0;
+		int Marketable_Leads = 0;
 
 		new DesignStudioPage().CloseDefaultTreeView();
 		for (int i = 1; i <= NoOfWorkspace; i++) {
@@ -239,7 +257,16 @@ public class DatabasePage extends TestBase {
 					logger.info("View " + ChooseWorkSpace(Workspace).getText() + " Workspace");
 
 					Segmentations += SegmentationsCount(16, cell);
+					driver.switchTo().frame(GetIFrame());
+					String value = GetMarketable().getText();
+					value = value.replace(",", "");
+					Marketable_Leads = Integer.parseInt(value);
+					new CommonLib().WriteExcelData("Sheet1", 21, 0, "Marketable Leads");
+					new CommonLib().WriteExcelData("Sheet1", 21, cell, GetSag().size());
+					driver.switchTo().defaultContent();
+
 					ExtendWorkshoptreenode("System Smart Lists", "All People");
+
 					Leads += GetLeadsCount(17, cell, "All People");
 					SelectTreeNode("Unsubscribed People");
 					Unsubscribed_Leads += GetLeadsCount(18, cell, "Unsubscribed People");
@@ -269,6 +296,8 @@ public class DatabasePage extends TestBase {
 		new CommonLib().WriteExcelData("Sheet1", 18, 1, Unsubscribed_Leads);
 		new CommonLib().WriteExcelData("Sheet1", 19, 1, Possible_Duplicates);
 		new CommonLib().WriteExcelData("Sheet1", 20, 1, Marketing_Suspended);
+		new CommonLib().WriteExcelData("Sheet1", 21, 1, Marketable_Leads);
+
 		asrt.assertAll();
 
 	}
