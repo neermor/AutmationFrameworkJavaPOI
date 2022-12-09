@@ -36,9 +36,15 @@ public class AnalyticsPage extends TestBase {
 	By PriviewBtn = By.xpath("//button[@class=' x-btn-text mkiPackageView']");
 	By Toggle = By.xpath("//div[@class = 'x-tool x-tool-toggle x-tool-collapse-south']");
 	By Modeler = By.xpath("//div[@class = 'WireIt-Layer']");
+	By analyticsTile = By.xpath("//span[text()='Email Insights']/..");
+	By Iframe = By.cssSelector("#mlm");
 
 	public List<WebElement> GetModels() {
 		return driver.findElements(Models);
+	}
+
+	public WebElement GetIFrame() {
+		return driver.findElement(Iframe);
 	}
 
 	public WebElement GetExpandBtn(String Name) {
@@ -46,6 +52,10 @@ public class AnalyticsPage extends TestBase {
 				+ Name
 				+ "']/../preceding-sibling::button[contains(@data-id, 'treeNodeChevronIconButton')]//*[contains(@data-id, 'open')]"));
 	}
+
+	public WebElement SelectAnalyticsTile(String Name) {
+		return driver.findElement(By.xpath("//span[text()='" + Name + "']/.."));
+	};
 
 	public WebElement GetRcm() {
 		return driver.findElement(Rcm);
@@ -65,7 +75,7 @@ public class AnalyticsPage extends TestBase {
 
 	String Parent_window = null;
 	int cell = 3;
-	int row = 37;
+	int row = 41;
 
 	public void FetchApprovedModelScreenshot(String WorkspaceName) throws Throwable {
 		List<WebElement> ApprovedModel = driver.findElements(ApprovedModels);
@@ -220,6 +230,23 @@ public class AnalyticsPage extends TestBase {
 			Clib.WriteExcelData("Sheet1", 22, 0, "Program Data");
 			Clib.WriteExcelData("Sheet1", 22, cell, value.getText());
 			cell++;
+			try {
+				driver.switchTo().frame(GetIFrame());
+				SelectAnalyticsTile("Email Insights").click();
+
+				Set<String> s = driver.getWindowHandles();
+				Iterator<String> I1 = s.iterator();
+				Parent_window = I1.next();
+				String child_window = I1.next();
+				driver.switchTo().window(child_window);
+				Clib.StandardWait(9000);
+				screenshotUtility.TakeFullPageScreenshot("Email Insights");
+
+				driver.close();
+				driver.switchTo().window(Parent_window);
+			} catch (Exception nk) {
+				logger.info("Email Insights is not available");
+			}
 
 		}
 		Clib.WriteExcelData("Sheet1", 22, 1, "Total");
@@ -235,7 +262,7 @@ public class AnalyticsPage extends TestBase {
 
 		Clib.ClearExcelData("Sheet1", 22);
 		Clib.ClearExcelData("Sheet1", 23);
-		Clib.ClearExcelData("Sheet1", 38);
+		Clib.ClearExcelData("Sheet1", 42);
 
 		new DesignStudioPage().CloseDefaultTreeView();
 		for (int i = 1; i <= NoOfWorkspace; i++) {
@@ -259,6 +286,23 @@ public class AnalyticsPage extends TestBase {
 					Clib.WriteExcelData("Sheet1", 22, 0, "Program Data");
 					Clib.WriteExcelData("Sheet1", 22, cell, workSpaceTree.getText());
 					cell++;
+					try {
+						driver.switchTo().frame(GetIFrame());
+						SelectAnalyticsTile("Email Insights").click();
+
+						Set<String> s = driver.getWindowHandles();
+						Iterator<String> I1 = s.iterator();
+						Parent_window = I1.next();
+						String child_window = I1.next();
+						driver.switchTo().window(child_window);
+						Clib.StandardWait(9000);
+						screenshotUtility.TakeFullPageScreenshot("Email Insights");
+
+						driver.close();
+						driver.switchTo().window(Parent_window);
+					} catch (Exception nk) {
+						logger.info("Email Insights is not available");
+					}
 				} catch (Exception ee) {
 					driver.switchTo().defaultContent();
 					logger.info("Oops!! " + Workspace + " Workspace is not available");

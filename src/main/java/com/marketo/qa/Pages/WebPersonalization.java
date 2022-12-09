@@ -28,7 +28,7 @@ public class WebPersonalization extends TestBase {
 	By WebCampaigns = By.xpath("//a[@class='navMenuIcon menuItemCtas']");
 	By CampaignsList = By.id("campaignsGroupContainer");
 	By WorkSpace = By.xpath("//*[@class='navMenu']");
-
+	By TotalOrgCount = By.xpath("//div[@id='totalOrganizationCounter']");
 	By WSDP = By.id("workspacesMenuLabel");
 	By WebCampaignsNoResults = By.xpath("//div[@class='sort-list']//div[contains(text(),'Displaying')]");
 
@@ -42,6 +42,10 @@ public class WebPersonalization extends TestBase {
 
 	public WebElement GetWorkSpaceDropDown() {
 		return driver.findElement(WSDP);
+	}
+
+	public WebElement GetTotalOrgCount() {
+		return driver.findElement(TotalOrgCount);
 	}
 
 	public WebElement GetMktoBall() {
@@ -62,6 +66,10 @@ public class WebPersonalization extends TestBase {
 
 	public WebElement GetDashboard(String Name) {
 		return driver.findElement(By.xpath("//h4[text()='" + Name + "'] /../../../../../.."));
+	};
+
+	public WebElement GetTotalOrganizations_Top_Organizations() {
+		return driver.findElement(By.xpath("//h4[text()='Total Organizations'] /../../../../../../.."));
 	};
 
 	public boolean VerifyAndFetchScreenshots(int row) throws Throwable {
@@ -100,7 +108,7 @@ public class WebPersonalization extends TestBase {
 
 	String Parent_window = null;
 
-	public void WebCampaignsScreenShot(int row, String WorkspaceCondition) throws Throwable {
+	public void WebCampaignsScreenShot(int row, String WorkspaceCondition, int TotalOrgCountrow) throws Throwable {
 		int size = 1;
 		for (int i = 0; i < size; i++) {
 			mAP.switchFrame();
@@ -127,10 +135,11 @@ public class WebPersonalization extends TestBase {
 							screenshotUtility.TakeScreenshot(GetDashboard("Top Campaigns"), "Top Campaigns_" + wp);
 							screenshotUtility.TakeScreenshot(GetDashboard("Top Content"), "Top Content_" + wp);
 							screenshotUtility.TakeScreenshot(GetTopIndustries(), "Top Industries_" + wp);
-							screenshotUtility.TakeScreenshot(GetDashboard("Total Organizations"),
-									"Total Organizations_" + wp);
-							screenshotUtility.TakeScreenshot(GetDashboard("Top Organizations"),
-									"Top Organizations_" + wp);
+							screenshotUtility.TakeScreenshot(GetTotalOrganizations_Top_Organizations(),
+									"Total Organizations_Top Organizations" + wp);
+							Clib.WaitForElementToLoad(driver, 60, GetTotalOrgCount());
+							Clib.WriteExcelData("Sheet1", TotalOrgCountrow, 0, "Total Organizations");
+							Clib.WriteExcelData("Sheet1", TotalOrgCountrow, 1, GetTotalOrgCount().getText());
 
 							Actions actions = new Actions(driver);
 							actions.sendKeys(Keys.PAGE_UP).perform();
@@ -189,10 +198,11 @@ public class WebPersonalization extends TestBase {
 							screenshotUtility.TakeScreenshot(GetDashboard("Top Campaigns"), "Top Campaigns_" + wp);
 							screenshotUtility.TakeScreenshot(GetDashboard("Top Content"), "Top Content_" + wp);
 							screenshotUtility.TakeScreenshot(GetTopIndustries(), "Top Industries_" + wp);
-							screenshotUtility.TakeScreenshot(GetDashboard("Total Organizations"),
-									"Total Organizations_" + wp);
-							screenshotUtility.TakeScreenshot(GetDashboard("Top Organizations"),
-									"Top Organizations_" + wp);
+							screenshotUtility.TakeScreenshot(GetTotalOrganizations_Top_Organizations(),
+									"Total Organizations_Top Organizations" + wp);
+							Clib.WaitForElementToLoad(driver, 60, GetTotalOrgCount());
+							Clib.WriteExcelData("Sheet1", TotalOrgCountrow, 0, "Total Organizations");
+							Clib.WriteExcelData("Sheet1", TotalOrgCountrow, 1, GetTotalOrgCount().getText());
 
 							Actions actions = new Actions(driver);
 							actions.sendKeys(Keys.PAGE_UP).perform();
