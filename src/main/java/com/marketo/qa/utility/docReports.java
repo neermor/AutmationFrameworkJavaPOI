@@ -34,7 +34,6 @@ public class docReports {
 		document.write(out);
 		out.close();
 		logger.info("Doc file is Ready for " + passData.Exceldata("Account Name"));
-
 	}
 
 	public static void stats(XWPFDocument document)
@@ -50,10 +49,10 @@ public class docReports {
 		try {
 			run.setText(passData.Exceldata("Account Name") + "\nhas\n" + passData.Exceldata("Total WorkSpace")
 					+ "\nworkspaces. Stats below are a sum of assets found across all workspaces.");
+
 		} catch (Exception e) {
 			// TODO: handle exception
-			run.setText(passData.Exceldata("Account Name") + "\nhas\n" + passData.Exceldata("Total WorkSpace")
-					+ "\nworkspaces. Stats below are a sum of assets found across all workspaces.");
+
 			logger.info("Work Space counting is missing\n");
 		}
 		Statsparagraph = document.createParagraph();
@@ -62,109 +61,117 @@ public class docReports {
 		run.setBold(true);
 		logger.info("Printing Stats Section.....");
 		run.setText("Stats");
+		try {
+			Statsparagraph = document.createParagraph();
+			Statsparagraph.setSpacingAfter(0);
+			run = Statsparagraph.createRun();
+			stylingDoc.setNoProof(run);
+			stylingDoc.FontFamilySize(run);
+			Statsparagraph.setNumID(stylingDoc.bullet(document));
+			logger.info("Writing All Campaigns count in doc file.....");
+			try {
+				run.setText("They have " + passData.Exceldata("All Campaigns") + " campaigns");
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 
-		Statsparagraph = document.createParagraph();
-		Statsparagraph.setSpacingAfter(0);
-		run = Statsparagraph.createRun();
-		stylingDoc.setNoProof(run);
-		stylingDoc.FontFamilySize(run);
-		Statsparagraph.setNumID(stylingDoc.bullet(document));
-		logger.info("Writing All Campaigns count in doc file.....");
-		run.setText("They have " + passData.Exceldata("All Campaigns") + " campaigns");
+			Statsparagraph = document.createParagraph();
+			Statsparagraph.setSpacingAfter(0);
+			run = Statsparagraph.createRun();
+			stylingDoc.FontFamilySize(run);
+			Statsparagraph.setNumID(stylingDoc.bullet(document));
+			logger.info("Writing Active Campaigns count in doc file.....");
+			run.setText("They have " + passData.Exceldata("Active Campaigns") + " active campaigns");
 
-		Statsparagraph = document.createParagraph();
-		Statsparagraph.setSpacingAfter(0);
-		run = Statsparagraph.createRun();
-		stylingDoc.FontFamilySize(run);
-		Statsparagraph.setNumID(stylingDoc.bullet(document));
-		logger.info("Writing Active Campaigns count in doc file.....");
-		run.setText("They have " + passData.Exceldata("Active Campaigns") + " active campaigns");
+			Statsparagraph = document.createParagraph();
+			run = Statsparagraph.createRun();
+			Statsparagraph.setSpacingAfter(0);
+			stylingDoc.FontFamilySize(run);
+			Statsparagraph.setNumID(stylingDoc.bullet(document));
+			logger.info("Writing All Triggered Campaigns count in doc file.....");
+			run.setText("They have " + passData.Exceldata("All Triggered Campaigns") + " triggered campaigns");
 
-		Statsparagraph = document.createParagraph();
-		run = Statsparagraph.createRun();
-		Statsparagraph.setSpacingAfter(0);
-		stylingDoc.FontFamilySize(run);
-		Statsparagraph.setNumID(stylingDoc.bullet(document));
-		logger.info("Writing All Triggered Campaigns count in doc file.....");
-		run.setText("They have " + passData.Exceldata("All Triggered Campaigns") + " triggered campaigns");
+			Statsparagraph = document.createParagraph();
+			run = Statsparagraph.createRun();
+			Statsparagraph.setSpacingAfter(0);
+			stylingDoc.FontFamilySize(run);
+			Statsparagraph.setNumID(stylingDoc.bullet(document));
+			logger.info("Writing Active Triggered Campaigns count in doc file.....");
+			run.setText(
+					"They have " + passData.Exceldata("Active Triggered Campaigns") + " Active triggered campaigns");
 
-		Statsparagraph = document.createParagraph();
-		run = Statsparagraph.createRun();
-		Statsparagraph.setSpacingAfter(0);
-		stylingDoc.FontFamilySize(run);
-		Statsparagraph.setNumID(stylingDoc.bullet(document));
-		logger.info("Writing Active Triggered Campaigns count in doc file.....");
-		run.setText("They have " + passData.Exceldata("Active Triggered Campaigns") + " Active triggered campaigns");
+			Statsparagraph = document.createParagraph();
+			run = Statsparagraph.createRun();
+			Statsparagraph.setSpacingAfter(0);
+			stylingDoc.FontFamilySize(run);
+			Statsparagraph.setNumID(stylingDoc.bullet(document));
+			logger.info("Writing Batch Campaigns - Repeating Schedule count in doc file.....");
+			run.setText("They have " + passData.Exceldata("Batch Campaigns - Repeating Schedule")
+					+ " re-occurring batch campaigns");
 
-		Statsparagraph = document.createParagraph();
-		run = Statsparagraph.createRun();
-		Statsparagraph.setSpacingAfter(0);
-		stylingDoc.FontFamilySize(run);
-		Statsparagraph.setNumID(stylingDoc.bullet(document));
-		logger.info("Writing Batch Campaigns - Repeating Schedule count in doc file.....");
-		run.setText("They have " + passData.Exceldata("Batch Campaigns - Repeating Schedule")
-				+ " re-occurring batch campaigns");
+			Statsparagraph = document.createParagraph();
+			run = Statsparagraph.createRun();
+			stylingDoc.FontFamilySize(run);
+			Statsparagraph.setSpacingAfter(0);
+			Statsparagraph.setNumID(stylingDoc.bullet(document));
+			logger.info("Writing All Batch Campaigns count in doc file.....");
+			run.setText("They have " + passData.Exceldata("All Batch Campaigns") + " batch campaigns");
 
-		Statsparagraph = document.createParagraph();
-		run = Statsparagraph.createRun();
-		stylingDoc.FontFamilySize(run);
-		Statsparagraph.setSpacingAfter(0);
-		Statsparagraph.setNumID(stylingDoc.bullet(document));
-		logger.info("Writing All Batch Campaigns count in doc file.....");
-		run.setText("They have " + passData.Exceldata("All Batch Campaigns") + " batch campaigns");
+			Statsparagraph = document.createParagraph();
+			run = Statsparagraph.createRun();
+			stylingDoc.FontFamilySize(run);
+			Statsparagraph.setSpacingAfter(0);
+			Statsparagraph.setNumID(stylingDoc.bullet(document));
+			logger.info("Writing Landing Pages count in doc file.....");
+			run.setText(passData.Exceldata("Landing Pages") + " landing pages");
 
-		Statsparagraph = document.createParagraph();
-		run = Statsparagraph.createRun();
-		stylingDoc.FontFamilySize(run);
-		Statsparagraph.setSpacingAfter(0);
-		Statsparagraph.setNumID(stylingDoc.bullet(document));
-		logger.info("Writing Landing Pages count in doc file.....");
-		run.setText(passData.Exceldata("Landing Pages") + " landing pages");
+			Statsparagraph = document.createParagraph();
+			run = Statsparagraph.createRun();
+			stylingDoc.FontFamilySize(run);
+			Statsparagraph.setSpacingAfter(0);
+			Statsparagraph.setNumID(stylingDoc.bullet(document));
+			logger.info("Writing Forms count in doc file.....");
+			run.setText(passData.Exceldata("Forms") + " forms");
 
-		Statsparagraph = document.createParagraph();
-		run = Statsparagraph.createRun();
-		stylingDoc.FontFamilySize(run);
-		Statsparagraph.setSpacingAfter(0);
-		Statsparagraph.setNumID(stylingDoc.bullet(document));
-		logger.info("Writing Forms count in doc file.....");
-		run.setText(passData.Exceldata("Forms") + " forms");
+			Statsparagraph = document.createParagraph();
+			run = Statsparagraph.createRun();
+			stylingDoc.FontFamilySize(run);
+			Statsparagraph.setSpacingAfter(0);
+			Statsparagraph.setNumID(stylingDoc.bullet(document));
+			logger.info("Writing Emails count in doc file.....");
+			run.setText(passData.Exceldata("Emails") + " emails");
 
-		Statsparagraph = document.createParagraph();
-		run = Statsparagraph.createRun();
-		stylingDoc.FontFamilySize(run);
-		Statsparagraph.setSpacingAfter(0);
-		Statsparagraph.setNumID(stylingDoc.bullet(document));
-		logger.info("Writing Emails count in doc file.....");
-		run.setText(passData.Exceldata("Emails") + " emails");
+			Statsparagraph = document.createParagraph();
+			run = Statsparagraph.createRun();
+			stylingDoc.FontFamilySize(run);
+			Statsparagraph.setSpacingAfter(0);
+			Statsparagraph.setNumID(stylingDoc.bullet(document));
+			logger.info("Writing Snippets count in doc file.....");
+			run.setText(passData.GenricMethod(passData.Exceldata("Snippets")));
 
-		Statsparagraph = document.createParagraph();
-		run = Statsparagraph.createRun();
-		stylingDoc.FontFamilySize(run);
-		Statsparagraph.setSpacingAfter(0);
-		Statsparagraph.setNumID(stylingDoc.bullet(document));
-		logger.info("Writing Snippets count in doc file.....");
-		run.setText(passData.GenricMethod(passData.Exceldata("Snippets")));
+			Statsparagraph = document.createParagraph();
+			run = Statsparagraph.createRun();
+			stylingDoc.FontFamilySize(run);
+			Statsparagraph.setSpacingAfter(0);
+			Statsparagraph.setNumID(stylingDoc.bullet(document));
+			logger.info("Writing uploaded files count in doc file.....");
+			run.setText(passData.Exceldata("Images and Files") + " uploaded files");
 
-		Statsparagraph = document.createParagraph();
-		run = Statsparagraph.createRun();
-		stylingDoc.FontFamilySize(run);
-		Statsparagraph.setSpacingAfter(0);
-		Statsparagraph.setNumID(stylingDoc.bullet(document));
-		logger.info("Writing uploaded files count in doc file.....");
-		run.setText(passData.Exceldata("Images and Files") + " uploaded files");
+			Statsparagraph = document.createParagraph();
+			run = Statsparagraph.createRun();
+			stylingDoc.FontFamilySize(run);
+			Statsparagraph.setSpacingAfter(0);
+			Statsparagraph.setNumID(stylingDoc.bullet(document));
+			run.setText(passData.Exceldata("All People") + "\nLeads");
 
-		Statsparagraph = document.createParagraph();
-		run = Statsparagraph.createRun();
-		stylingDoc.FontFamilySize(run);
-		Statsparagraph.setSpacingAfter(0);
-		Statsparagraph.setNumID(stylingDoc.bullet(document));
-		run.setText(passData.Exceldata("Leads") + "\nLeads");
-
-		Statsparagraph = document.createParagraph();
-		run = Statsparagraph.createRun();
-		stylingDoc.FontFamilySize(run);
-		Statsparagraph.setNumID(stylingDoc.bullet(document));
-		run.setText(passData.Exceldata("Tags") + " programs");
+			Statsparagraph = document.createParagraph();
+			run = Statsparagraph.createRun();
+			stylingDoc.FontFamilySize(run);
+			Statsparagraph.setNumID(stylingDoc.bullet(document));
+			run.setText(passData.Exceldata("Tags") + " programs");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 
 		try {
 			int Snippets = Integer.parseInt(passData.Exceldata("Snippets"));
@@ -217,7 +224,7 @@ public class docReports {
 			r1.setBold(false);
 
 			stylingDoc.FontFamilySize(r1);
-			r1.setText(passData.Exceldata("Account Name") + "," + passData.Org_info);
+			r1.setText(passData.Exceldata("Account Name") + "," + passData.Org_prog);
 
 			XWPFRun r2 = paragraphStats.createRun();
 
@@ -280,66 +287,81 @@ public class docReports {
 					stylingDoc.setNoProof(modelData);
 					stylingDoc.FontFamilySize(modelData);
 					modelData.setText(passData.Exceldata("Account Name") + passData.models2);
+
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
 
 				int j = 1;
-				int WPCount = Integer.parseInt(passData.Exceldata("Total WorkSpace"));
+				try {
+					int WPCount = Integer.parseInt(passData.Exceldata("Total WorkSpace"));
 
-				for (int i = 1; i <= WPCount; i++) {
-					String data = "Approved Models" + j++;
+					for (int i = 1; i <= WPCount; i++) {
+						String data = "Approved Models" + j++;
 
-					try {
+						try {
 
-						modelData = paragraphModelData.createRun();
-						modelData.addBreak();
-						modelData.setBold(true);
-						modelData.setText("Workspace: " + passData.Exceldata(data, 2));
+							modelData = paragraphModelData.createRun();
+							modelData.addBreak();
+							modelData.setBold(true);
+							modelData.setText("Workspace: " + passData.Exceldata(data, 2));
 
-						XWPFParagraph model_img = document.createParagraph();
-						logger.info("Printing images in doc");
-						XWPFRun img1 = model_img.createRun();
+							XWPFParagraph model_img = document.createParagraph();
+							logger.info("Printing images in doc");
+							XWPFRun img1 = model_img.createRun();
 
-						img1.addPicture(new FileInputStream(passData.FetchScreenshot(passData.Exceldata(data, 2))),
-								Document.PICTURE_TYPE_PNG,
-								passData.FetchScreenshot(passData.Exceldata(data, 2)).toString(), Units.toEMU(250),
-								Units.toEMU(130));
-
-					}
-
-					catch (Exception e) {
-						// TODO: handle exception
-						logger.warn("Test is failed to retrive models images\n");
-						continue;
-					}
-
-					int ModelsCount = Integer.parseInt(passData.Exceldata(data));
-					ModelsCount = ModelsCount + 3;
-					logger.info(ModelsCount);
-
-					if (ModelsCount > 0) {
-
-						XWPFParagraph model_i = document.createParagraph();
-						logger.info("Printing images in doc");
-						XWPFRun img = model_i.createRun();
-						img.addBreak();
-						img.setFontSize(11);
-						img.setBold(true);
-						img.setText("");
-
-						for (int k = 3; k <= ModelsCount; k++) {
-							img.setText(passData.Exceldata(data, k));
-							img.addBreak();
-							img.addPicture(
-									new FileInputStream(
-											passData.FetchScreenshotForApprovedModels(passData.Exceldata(data, k))),
+							img1.addPicture(new FileInputStream(passData.FetchScreenshot(passData.Exceldata(data, 2))),
 									Document.PICTURE_TYPE_PNG,
-									passData.FetchScreenshotForApprovedModels(passData.Exceldata(data, k)).toString(),
-									Units.toEMU(250), Units.toEMU(130));
-							img.addCarriageReturn();
+									passData.FetchScreenshot(passData.Exceldata(data, 2)).toString(), Units.toEMU(250),
+									Units.toEMU(130));
+
+						}
+
+						catch (Exception e) {
+							// TODO: handle exception
+							logger.warn("Test is failed to retrive models images\n");
+							continue;
+						}
+
+						int ModelsCount = Integer.parseInt(passData.Exceldata(data));
+						ModelsCount = ModelsCount + 3;
+						logger.info(ModelsCount);
+
+						if (ModelsCount > 0) {
+							try {
+								XWPFParagraph model_i = document.createParagraph();
+								logger.info("Printing images in doc");
+								XWPFRun img = model_i.createRun();
+								img.addBreak();
+								img.setFontSize(11);
+								img.setBold(true);
+								img.setText("");
+
+								for (int k = 3; k <= ModelsCount; k++) {
+									try {
+										img.setText(passData.Exceldata(data, k));
+										img.addBreak();
+										img.addPicture(
+												new FileInputStream(passData
+														.FetchScreenshotForApprovedModels(passData.Exceldata(data, k))),
+												Document.PICTURE_TYPE_PNG,
+												passData.FetchScreenshotForApprovedModels(passData.Exceldata(data, k))
+														.toString(),
+												Units.toEMU(250), Units.toEMU(130));
+										img.addCarriageReturn();
+									} catch (Exception e) {
+										// TODO: handle exception
+									}
+
+								}
+							} catch (Exception e) {
+								// TODO: handle exception
+							}
+
 						}
 					}
+				} catch (Exception e) {
+					// TODO: handle exception
 				}
 			}
 
@@ -384,8 +406,6 @@ public class docReports {
 				modelTestLink2.setUnderline(UnderlinePatterns.SINGLE);
 				modelTestLink2.setText(
 						"https://experienceleague.adobe.com/docs/marketo/using/product-docs/reporting/revenue-cycle-analytics/revenue-cycle-models/understanding-revenue-models.html ");
-				// paragraphModelData.createHyperlinkRun("https://experienceleague.adobe.com/docs/marketo/using/product-docs/reporting/revenue-cycle-analytics/revenue-cycle-models/understanding-revenue-models.html
-				// ");
 
 				XWPFRun modelTest3 = paragraphModelData.createRun();
 				modelTest3.addCarriageReturn();
@@ -411,7 +431,7 @@ public class docReports {
 				modelTest4.setText("Marketo-Fu - Episode 15: Attribution Basics -");
 
 				XWPFRun modelTestLink4 = paragraphModelData.createRun();
-				stylingDoc.FontFamilySize(modelTestLink3);
+				stylingDoc.FontFamilySize(modelTestLink4);
 				modelTestLink4.setColor("3333cc");
 				stylingDoc.setNoProof(modelTestLink4);
 				modelTestLink4.setUnderline(UnderlinePatterns.SINGLE);
@@ -474,7 +494,10 @@ public class docReports {
 				stylingDoc.FontFamilySize(LeadDatabelow);
 				stylingDoc.setNoProof(LeadDatabelow);
 				LeadDatabelow.setText(passData.lead_data);
-			} else if (ChangeScore <= 10 && ChangeScore >= 0) {
+
+			} else if (ChangeScore <= 10 && ChangeScore >= 0)
+
+			{
 				XWPFParagraph LeadData = document.createParagraph();
 				XWPFRun LeadDataRun = LeadData.createRun();
 				stylingDoc.FontFamilySize(LeadDataRun);
@@ -564,265 +587,268 @@ public class docReports {
 
 	public static void intrestingMoment(XWPFDocument document)
 			throws NumberFormatException, InvalidFormatException, FileNotFoundException, IOException {
+		try {
+			if (passData.Exceldata("Interesting Moment Subscription").equalsIgnoreCase("true")) {
+				logger.info("User have Interesting Moment Subscription");
+				XWPFParagraph Interesting = document.createParagraph();
+				XWPFRun InterestingRun = Interesting.createRun();
+				InterestingRun.setBold(true);
+				InterestingRun.addCarriageReturn();
+				InterestingRun.addCarriageReturn();
+				InterestingRun.setText("Interesting Moment");
 
-		if (passData.Exceldata("Interesting Moment Subscription").equalsIgnoreCase("true")) {
-			logger.info("User have Interesting Moment Subscription");
-			XWPFParagraph Interesting = document.createParagraph();
-			XWPFRun InterestingRun = Interesting.createRun();
-			InterestingRun.setBold(true);
-			InterestingRun.addCarriageReturn();
-			InterestingRun.addCarriageReturn();
-			InterestingRun.setText("Interesting Moment");
+				try {
+					int Interesting_Moment = Integer.parseInt(passData.Exceldata("Interesting Moment"));
 
-			try {
-				int Interesting_Moment = Integer.parseInt(passData.Exceldata("Interesting Moment"));
+					if (Interesting_Moment > 5) {
 
-				if (Interesting_Moment > 5) {
+						XWPFParagraph InterestingData = document.createParagraph();
+						XWPFRun InterestingDatarun = InterestingData.createRun();
 
-					XWPFParagraph InterestingData = document.createParagraph();
-					XWPFRun InterestingDatarun = InterestingData.createRun();
-
-					stylingDoc.setNoProof(InterestingDatarun);
-					stylingDoc.FontFamilySize(InterestingDatarun);
-					try {
-						InterestingDatarun.setText("Client has " + passData.Exceldata("Interesting Moment")
-								+ "\nInteresting Moments"
-								+ ".\nThe following screenshot shows some Interesting Moments that have been defined by the client.\n"
-								+ passData.intresting_moment);
-					} catch (Exception e) {
-						// TODO: handle exception
-					}
-
-					InterestingDatarun = InterestingData.createRun();
-					for (int i = 1; i < 4; i++) {
+						stylingDoc.setNoProof(InterestingDatarun);
+						stylingDoc.FontFamilySize(InterestingDatarun);
 						try {
-							InterestingDatarun.addCarriageReturn();
-							InterestingDatarun.addPicture(
-									new FileInputStream(passData.FetchScreenshot("Interesting Moment" + i)),
-									Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Interesting Moment"),
-									Units.toEMU(470), Units.toEMU(80));
-							InterestingDatarun.addCarriageReturn();
+							InterestingDatarun.setText("Client has " + passData.Exceldata("Interesting Moment")
+									+ "\nInteresting Moments"
+									+ ".\nThe following screenshot shows some Interesting Moments that have been defined by the client.\n"
+									+ passData.intresting_moment);
 						} catch (Exception e) {
-
 							// TODO: handle exception
 						}
+
+						InterestingDatarun = InterestingData.createRun();
+						for (int i = 1; i < 2; i++) {
+							try {
+								InterestingDatarun.addCarriageReturn();
+								InterestingDatarun.addPicture(
+										new FileInputStream(passData.FetchScreenshot("Interesting Moment")),
+										Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Interesting Moment"),
+										Units.toEMU(470), Units.toEMU(80));
+								InterestingDatarun.addCarriageReturn();
+							} catch (Exception e) {
+
+								// TODO: handle exception
+							}
+						}
+
+						InterestingData = document.createParagraph();
+						InterestingDatarun = InterestingData.createRun();
+
+						stylingDoc.setNoProof(InterestingDatarun);
+						stylingDoc.FontFamilySize(InterestingDatarun);
+						InterestingDatarun.setText(passData.intresting_moment_below);
 					}
 
-					InterestingData = document.createParagraph();
-					InterestingDatarun = InterestingData.createRun();
+					else if (Interesting_Moment <= 5 && Interesting_Moment > 0) {
+						XWPFParagraph InterestingData = document.createParagraph();
+						XWPFRun InterestingDatarun = InterestingData.createRun();
 
-					stylingDoc.setNoProof(InterestingDatarun);
-					stylingDoc.FontFamilySize(InterestingDatarun);
-					InterestingDatarun.setText(passData.intresting_moment_below);
-				}
-
-				else if (Interesting_Moment <= 5 && Interesting_Moment > 0) {
-					XWPFParagraph InterestingData = document.createParagraph();
-					XWPFRun InterestingDatarun = InterestingData.createRun();
-
-					stylingDoc.setNoProof(InterestingDatarun);
-					stylingDoc.FontFamilySize(InterestingDatarun);
-					try {
-						InterestingDatarun
-								.setText(passData.Exceldata("Account Name") + passData.intresting_moment_less_5);
-
-					} catch (Exception e) {
-						// TODO: handle exception
-					}
-
-					InterestingDatarun = InterestingData.createRun();
-					for (int i = 1; i < 4; i++) {
+						stylingDoc.setNoProof(InterestingDatarun);
+						stylingDoc.FontFamilySize(InterestingDatarun);
 						try {
-							InterestingDatarun.addCarriageReturn();
-							InterestingDatarun.addPicture(
-									new FileInputStream(passData.FetchScreenshot("Interesting Moment" + i)),
-									Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Interesting Moment"),
-									Units.toEMU(470), Units.toEMU(80));
+							InterestingDatarun
+									.setText(passData.Exceldata("Account Name") + passData.intresting_moment_less_5);
 
 						} catch (Exception e) {
-
 							// TODO: handle exception
 						}
+
+						InterestingDatarun = InterestingData.createRun();
+						for (int i = 1; i < 4; i++) {
+							try {
+								InterestingDatarun.addCarriageReturn();
+								InterestingDatarun.addPicture(
+										new FileInputStream(passData.FetchScreenshot("Interesting Moment" + i)),
+										Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Interesting Moment"),
+										Units.toEMU(470), Units.toEMU(80));
+
+							} catch (Exception e) {
+
+								// TODO: handle exception
+							}
+						}
+
+						XWPFRun InterestingMomentdata = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMomentdata);
+						InterestingMomentdata.setText(passData.intresting_momentData);
+
+						XWPFRun InterestingMoment1 = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMoment1);
+						InterestingMoment1.addCarriageReturn();
+						InterestingMoment1.addCarriageReturn();
+						InterestingMoment1.setText(
+								"I would encourage you to share the following interesting moment’s resources:");
+						InterestingMoment1.addCarriageReturn();
+						InterestingMoment1.setText("Marketo Docs: Interesting Moment Overview: ");
+
+						XWPFRun InterestingMomentLink = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMomentLink);
+						stylingDoc.setNoProof(InterestingMomentLink);
+						InterestingMomentLink.setUnderline(UnderlinePatterns.SINGLE);
+						InterestingMomentLink.setColor("3333cc");
+						InterestingMomentLink.setText(
+								"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/core-marketo-concepts/smart-campaigns/flow-actions/interesting-moment.html");
+
+						XWPFRun InterestingMoment2 = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMoment2);
+						InterestingMoment2.addCarriageReturn();
+						InterestingMoment2.setText("Marketo Docs: Using Interesting Moments:");
+
+						// InterestingMoment2.setText("\nUnderstanding Event Programs:");
+
+						XWPFRun InterestingMomentLink2 = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMomentLink2);
+						stylingDoc.setNoProof(InterestingMomentLink2);
+						InterestingMomentLink2.setUnderline(UnderlinePatterns.SINGLE);
+						InterestingMomentLink2.setColor("3333cc");
+						InterestingMomentLink2.setText(
+								"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/marketo-sales-insight/msi-for-salesforce/features/tabs-in-the-msi-panel/interesting-moments/using-interesting-moments.html?lang=en");
+
+						XWPFRun InterestingMoment3 = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMoment3);
+						InterestingMoment3.addCarriageReturn();
+						InterestingMoment3.setText("How to Create a Custom Interesting Moment Type:");
+
+						// InterestingMoment2.setText("\nUnderstanding Event Programs:");
+
+						XWPFRun InterestingMomentLink3 = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMomentLink3);
+						stylingDoc.setNoProof(InterestingMomentLink3);
+						InterestingMomentLink3.setUnderline(UnderlinePatterns.SINGLE);
+						InterestingMomentLink3.setColor("3333cc");
+						InterestingMomentLink3.setText(
+								"\nhttps://nation.marketo.com/t5/knowledgebase/how-to-create-a-custom-interesting-moment-type/ta-p/253526");
+
+						XWPFRun InterestingMoment4 = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMoment4);
+						InterestingMoment4.addCarriageReturn();
+						InterestingMoment4.setText("Using Interesting Moments Best Practices – DemandSpring: ");
+
+						// InterestingMoment2.setText("\nUnderstanding Event Programs:");
+
+						XWPFRun InterestingMomentLink4 = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMomentLink4);
+						stylingDoc.setNoProof(InterestingMomentLink4);
+						InterestingMomentLink4.setUnderline(UnderlinePatterns.SINGLE);
+						InterestingMomentLink4.setColor("3333cc");
+						InterestingMomentLink4
+								.setText("\nhttps://demandspring.com/blog/using-interesting-moments-best-practices/");
+
+						XWPFRun InterestingMoment5 = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMoment5);
+						InterestingMoment5.addCarriageReturn();
+						InterestingMoment5.setText("Marketo Interesting Moments vs. Tasks – MarketingRockStarGuides:");
+
+						// InterestingMoment2.setText("\nUnderstanding Event Programs:");
+
+						XWPFRun InterestingMomentLink5 = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMomentLink5);
+						stylingDoc.setNoProof(InterestingMomentLink5);
+						InterestingMomentLink5.setUnderline(UnderlinePatterns.SINGLE);
+						InterestingMomentLink5.setColor("3333cc");
+						InterestingMomentLink5.setText(
+								"\nhttps://www.marketingrockstarguides.com/marketo-interesting-moments-vs-tasks-1206/");
+
+					} else {
+
+						XWPFParagraph InterestingData = document.createParagraph();
+						XWPFRun InterestingDatarun = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingDatarun);
+						stylingDoc.setNoProof(InterestingDatarun);
+						InterestingDatarun.setText(passData.intresting_moment_else);
+
+						XWPFRun InterestingMomentdata = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMomentdata);
+						InterestingMomentdata.setText(passData.intresting_momentData);
+
+						XWPFRun InterestingMoment1 = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMoment1);
+						InterestingMoment1.addCarriageReturn();
+						InterestingMoment1.addCarriageReturn();
+						InterestingMoment1.setText(
+								"I would encourage you to share the following interesting moment’s resources:");
+						InterestingMoment1.addCarriageReturn();
+						InterestingMoment1.setText("Marketo Docs: Interesting Moment Overview: ");
+
+						XWPFRun InterestingMomentLink = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMomentLink);
+						stylingDoc.setNoProof(InterestingMomentLink);
+						InterestingMomentLink.setUnderline(UnderlinePatterns.SINGLE);
+						InterestingMomentLink.setColor("3333cc");
+						InterestingMomentLink.setText(
+								"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/core-marketo-concepts/smart-campaigns/flow-actions/interesting-moment.html");
+
+						XWPFRun InterestingMoment2 = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMoment2);
+						InterestingMoment2.addCarriageReturn();
+						InterestingMoment2.setText("Marketo Docs: Using Interesting Moments:");
+
+						// InterestingMoment2.setText("\nUnderstanding Event Programs:");
+
+						XWPFRun InterestingMomentLink2 = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMomentLink2);
+						stylingDoc.setNoProof(InterestingMomentLink2);
+						InterestingMomentLink2.setUnderline(UnderlinePatterns.SINGLE);
+						InterestingMomentLink2.setColor("3333cc");
+						InterestingMomentLink2.setText(
+								"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/marketo-sales-insight/msi-for-salesforce/features/tabs-in-the-msi-panel/interesting-moments/using-interesting-moments.html?lang=en");
+
+						XWPFRun InterestingMoment3 = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMoment3);
+						InterestingMoment3.addCarriageReturn();
+						InterestingMoment3.setText("How to Create a Custom Interesting Moment Type:");
+
+						// InterestingMoment2.setText("\nUnderstanding Event Programs:");
+
+						XWPFRun InterestingMomentLink3 = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMomentLink3);
+						stylingDoc.setNoProof(InterestingMomentLink3);
+						InterestingMomentLink3.setUnderline(UnderlinePatterns.SINGLE);
+						InterestingMomentLink3.setColor("3333cc");
+						InterestingMomentLink3.setText(
+								"\nhttps://nation.marketo.com/t5/knowledgebase/how-to-create-a-custom-interesting-moment-type/ta-p/253526");
+
+						XWPFRun InterestingMoment4 = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMoment4);
+						InterestingMoment4.addCarriageReturn();
+						InterestingMoment4.setText("Using Interesting Moments Best Practices – DemandSpring: ");
+
+						// InterestingMoment2.setText("\nUnderstanding Event Programs:");
+
+						XWPFRun InterestingMomentLink4 = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMomentLink4);
+						stylingDoc.setNoProof(InterestingMomentLink4);
+						InterestingMomentLink4.setUnderline(UnderlinePatterns.SINGLE);
+						InterestingMomentLink4.setColor("3333cc");
+						InterestingMomentLink4
+								.setText("\nhttps://demandspring.com/blog/using-interesting-moments-best-practices/");
+
+						XWPFRun InterestingMoment5 = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMoment5);
+						InterestingMoment5.addCarriageReturn();
+						InterestingMoment5.setText("Marketo Interesting Moments vs. Tasks – MarketingRockStarGuides:");
+
+						// InterestingMoment2.setText("\nUnderstanding Event Programs:");
+
+						XWPFRun InterestingMomentLink5 = InterestingData.createRun();
+						stylingDoc.FontFamilySize(InterestingMomentLink5);
+						stylingDoc.setNoProof(InterestingMomentLink5);
+						InterestingMomentLink5.setUnderline(UnderlinePatterns.SINGLE);
+						InterestingMomentLink5.setColor("3333cc");
+						InterestingMomentLink5.setText(
+								"\nhttps://www.marketingrockstarguides.com/marketo-interesting-moments-vs-tasks-1206/");
+
 					}
-
-					XWPFRun InterestingMomentdata = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMomentdata);
-					InterestingMomentdata.setText(passData.intresting_momentData);
-
-					XWPFRun InterestingMoment1 = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMoment1);
-					InterestingMoment1.addCarriageReturn();
-					InterestingMoment1.addCarriageReturn();
-					InterestingMoment1
-							.setText("I would encourage you to share the following interesting moment’s resources:");
-					InterestingMoment1.addCarriageReturn();
-					InterestingMoment1.setText("Marketo Docs: Interesting Moment Overview: ");
-
-					XWPFRun InterestingMomentLink = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMomentLink);
-					stylingDoc.setNoProof(InterestingMomentLink);
-					InterestingMomentLink.setUnderline(UnderlinePatterns.SINGLE);
-					InterestingMomentLink.setColor("3333cc");
-					InterestingMomentLink.setText(
-							"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/core-marketo-concepts/smart-campaigns/flow-actions/interesting-moment.html");
-
-					XWPFRun InterestingMoment2 = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMoment2);
-					InterestingMoment2.addCarriageReturn();
-					InterestingMoment2.setText("Marketo Docs: Using Interesting Moments:");
-
-					// InterestingMoment2.setText("\nUnderstanding Event Programs:");
-
-					XWPFRun InterestingMomentLink2 = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMomentLink2);
-					stylingDoc.setNoProof(InterestingMomentLink2);
-					InterestingMomentLink2.setUnderline(UnderlinePatterns.SINGLE);
-					InterestingMomentLink2.setColor("3333cc");
-					InterestingMomentLink2.setText(
-							"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/marketo-sales-insight/msi-for-salesforce/features/tabs-in-the-msi-panel/interesting-moments/using-interesting-moments.html?lang=en");
-
-					XWPFRun InterestingMoment3 = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMoment3);
-					InterestingMoment3.addCarriageReturn();
-					InterestingMoment3.setText("How to Create a Custom Interesting Moment Type:");
-
-					// InterestingMoment2.setText("\nUnderstanding Event Programs:");
-
-					XWPFRun InterestingMomentLink3 = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMomentLink3);
-					stylingDoc.setNoProof(InterestingMomentLink3);
-					InterestingMomentLink3.setUnderline(UnderlinePatterns.SINGLE);
-					InterestingMomentLink3.setColor("3333cc");
-					InterestingMomentLink3.setText(
-							"\nhttps://nation.marketo.com/t5/knowledgebase/how-to-create-a-custom-interesting-moment-type/ta-p/253526");
-
-					XWPFRun InterestingMoment4 = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMoment4);
-					InterestingMoment4.addCarriageReturn();
-					InterestingMoment4.setText("Using Interesting Moments Best Practices – DemandSpring: ");
-
-					// InterestingMoment2.setText("\nUnderstanding Event Programs:");
-
-					XWPFRun InterestingMomentLink4 = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMomentLink4);
-					stylingDoc.setNoProof(InterestingMomentLink4);
-					InterestingMomentLink4.setUnderline(UnderlinePatterns.SINGLE);
-					InterestingMomentLink4.setColor("3333cc");
-					InterestingMomentLink4
-							.setText("\nhttps://demandspring.com/blog/using-interesting-moments-best-practices/");
-
-					XWPFRun InterestingMoment5 = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMoment5);
-					InterestingMoment5.addCarriageReturn();
-					InterestingMoment5.setText("Marketo Interesting Moments vs. Tasks – MarketingRockStarGuides:");
-
-					// InterestingMoment2.setText("\nUnderstanding Event Programs:");
-
-					XWPFRun InterestingMomentLink5 = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMomentLink5);
-					stylingDoc.setNoProof(InterestingMomentLink5);
-					InterestingMomentLink5.setUnderline(UnderlinePatterns.SINGLE);
-					InterestingMomentLink5.setColor("3333cc");
-					InterestingMomentLink5.setText(
-							"\nhttps://www.marketingrockstarguides.com/marketo-interesting-moments-vs-tasks-1206/");
-
-				} else {
-
-					XWPFParagraph InterestingData = document.createParagraph();
-					XWPFRun InterestingDatarun = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingDatarun);
-					stylingDoc.setNoProof(InterestingDatarun);
-					InterestingDatarun.setText(passData.intresting_moment_else);
-
-					XWPFRun InterestingMomentdata = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMomentdata);
-					InterestingMomentdata.setText(passData.intresting_momentData);
-
-					XWPFRun InterestingMoment1 = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMoment1);
-					InterestingMoment1.addCarriageReturn();
-					InterestingMoment1.addCarriageReturn();
-					InterestingMoment1
-							.setText("I would encourage you to share the following interesting moment’s resources:");
-					InterestingMoment1.addCarriageReturn();
-					InterestingMoment1.setText("Marketo Docs: Interesting Moment Overview: ");
-
-					XWPFRun InterestingMomentLink = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMomentLink);
-					stylingDoc.setNoProof(InterestingMomentLink);
-					InterestingMomentLink.setUnderline(UnderlinePatterns.SINGLE);
-					InterestingMomentLink.setColor("3333cc");
-					InterestingMomentLink.setText(
-							"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/core-marketo-concepts/smart-campaigns/flow-actions/interesting-moment.html");
-
-					XWPFRun InterestingMoment2 = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMoment2);
-					InterestingMoment2.addCarriageReturn();
-					InterestingMoment2.setText("Marketo Docs: Using Interesting Moments:");
-
-					// InterestingMoment2.setText("\nUnderstanding Event Programs:");
-
-					XWPFRun InterestingMomentLink2 = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMomentLink2);
-					stylingDoc.setNoProof(InterestingMomentLink2);
-					InterestingMomentLink2.setUnderline(UnderlinePatterns.SINGLE);
-					InterestingMomentLink2.setColor("3333cc");
-					InterestingMomentLink2.setText(
-							"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/marketo-sales-insight/msi-for-salesforce/features/tabs-in-the-msi-panel/interesting-moments/using-interesting-moments.html?lang=en");
-
-					XWPFRun InterestingMoment3 = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMoment3);
-					InterestingMoment3.addCarriageReturn();
-					InterestingMoment3.setText("How to Create a Custom Interesting Moment Type:");
-
-					// InterestingMoment2.setText("\nUnderstanding Event Programs:");
-
-					XWPFRun InterestingMomentLink3 = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMomentLink3);
-					stylingDoc.setNoProof(InterestingMomentLink3);
-					InterestingMomentLink3.setUnderline(UnderlinePatterns.SINGLE);
-					InterestingMomentLink3.setColor("3333cc");
-					InterestingMomentLink3.setText(
-							"\nhttps://nation.marketo.com/t5/knowledgebase/how-to-create-a-custom-interesting-moment-type/ta-p/253526");
-
-					XWPFRun InterestingMoment4 = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMoment4);
-					InterestingMoment4.addCarriageReturn();
-					InterestingMoment4.setText("Using Interesting Moments Best Practices – DemandSpring: ");
-
-					// InterestingMoment2.setText("\nUnderstanding Event Programs:");
-
-					XWPFRun InterestingMomentLink4 = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMomentLink4);
-					stylingDoc.setNoProof(InterestingMomentLink4);
-					InterestingMomentLink4.setUnderline(UnderlinePatterns.SINGLE);
-					InterestingMomentLink4.setColor("3333cc");
-					InterestingMomentLink4
-							.setText("\nhttps://demandspring.com/blog/using-interesting-moments-best-practices/");
-
-					XWPFRun InterestingMoment5 = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMoment5);
-					InterestingMoment5.addCarriageReturn();
-					InterestingMoment5.setText("Marketo Interesting Moments vs. Tasks – MarketingRockStarGuides:");
-
-					// InterestingMoment2.setText("\nUnderstanding Event Programs:");
-
-					XWPFRun InterestingMomentLink5 = InterestingData.createRun();
-					stylingDoc.FontFamilySize(InterestingMomentLink5);
-					stylingDoc.setNoProof(InterestingMomentLink5);
-					InterestingMomentLink5.setUnderline(UnderlinePatterns.SINGLE);
-					InterestingMomentLink5.setColor("3333cc");
-					InterestingMomentLink5.setText(
-							"\nhttps://www.marketingrockstarguides.com/marketo-interesting-moments-vs-tasks-1206/");
 
 				}
 
+				catch (NumberFormatException ex) { // handle your exception
+					logger.info("Test is skipped or fail hence data is missing for Intresting Moment\n");
+				}
+				logger.info("Interesting Moment part is done");
 			}
-
-			catch (NumberFormatException ex) { // handle your exception
-				logger.info("Test is skipped or fail hence data is missing for Intresting Moment\n");
-			}
-			logger.info("Interesting Moment part is done");
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 	}
 
@@ -1065,367 +1091,370 @@ public class docReports {
 	public static void nurtureData(XWPFDocument document) throws NumberFormatException, IOException, XmlException
 
 	{
-
-		logger.info("Printing Nurture data");
-		XWPFParagraph NurtureData = document.createParagraph();
-		XWPFRun NurtureDataRun = NurtureData.createRun();
-		NurtureDataRun.setBold(true);
-		NurtureDataRun.addCarriageReturn();
-		NurtureDataRun.setText("Nurture");
-
 		try {
-			int NurtureData_int = Integer.parseInt(passData.Exceldata("Nurture campaigns"));
+			logger.info("Printing Nurture data");
+			XWPFParagraph NurtureData = document.createParagraph();
+			XWPFRun NurtureDataRun = NurtureData.createRun();
+			NurtureDataRun.setBold(true);
+			NurtureDataRun.addCarriageReturn();
+			NurtureDataRun.setText("Nurture");
 
-			if (NurtureData_int > 5)
+			try {
+				int NurtureData_int = Integer.parseInt(passData.Exceldata("Nurture campaigns"));
 
-			{
-				NurtureDataRun = NurtureData.createRun();
-				stylingDoc.FontFamilySize(NurtureDataRun);
-				stylingDoc.setNoProof(NurtureDataRun);
-				NurtureDataRun.addCarriageReturn();
-				try {
-					NurtureDataRun.setText(passData.Exceldata("Account Name") + "\nhas\n"
-							+ passData.Exceldata("Nurture campaigns") + passData.Nurture);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
+				if (NurtureData_int > 5)
 
-				XWPFParagraph NurtureData1 = document.createParagraph();
-				XWPFRun NurtureDatarun1 = NurtureData1.createRun();
-				stylingDoc.FontFamilySize(NurtureDatarun1);
-
-				NurtureData1.setNumID(stylingDoc.bullet(document));
-
-				NurtureDatarun1.setText("Intelligently and automatically deliver content to a target audience.");
-
-				XWPFParagraph NurtureData2 = document.createParagraph();
-				XWPFRun NurtureDatarun2 = NurtureData2.createRun();
-				stylingDoc.FontFamilySize(NurtureDatarun2);
-
-				NurtureData2.setNumID(stylingDoc.bullet(document));
-				NurtureDatarun2.setText(
-						"Easily build dialogue with prospects and customers while preventing customers who have already received content from receiving the same content again.");
-
-				XWPFParagraph NurtureData3 = document.createParagraph();
-				XWPFRun NurtureDatarun3 = NurtureData3.createRun();
-				stylingDoc.FontFamilySize(NurtureDatarun3);
-				NurtureData3.setNumID(stylingDoc.bullet(document));
-				NurtureDatarun3.setText("Add new content and entire programs to nurture streams.");
-
-				XWPFParagraph NurtureData4 = document.createParagraph();
-				XWPFRun NurtureDatarun4 = NurtureData4.createRun();
-				stylingDoc.FontFamilySize(NurtureDatarun4);
-				NurtureData4.setNumID(stylingDoc.bullet(document));
-				NurtureDatarun4.setText("Edit the availability of content.");
-
-				XWPFParagraph NurtureData5 = document.createParagraph();
-				XWPFRun NurtureDatarun5 = NurtureData5.createRun();
-				stylingDoc.FontFamilySize(NurtureDatarun5);
-				NurtureData5.setNumID(stylingDoc.bullet(document));
-				NurtureDatarun5
-						.setText("Understand content performance based on engagement with each piece of content.");
-
-				XWPFParagraph Nurture_img = document.createParagraph();
-				logger.info("Printing images in doc");
-				XWPFRun img1 = Nurture_img.createRun();
-				for (int i = 1; i < 2; i++) {
+				{
+					NurtureDataRun = NurtureData.createRun();
+					stylingDoc.FontFamilySize(NurtureDataRun);
+					stylingDoc.setNoProof(NurtureDataRun);
+					NurtureDataRun.addCarriageReturn();
 					try {
-
-						img1.addPicture(new FileInputStream(passData.FetchScreenshot("Nurture campaigns")),
-								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Nurture campaigns").toString(),
-								Units.toEMU(220), Units.toEMU(380));
-
+						NurtureDataRun.setText(passData.Exceldata("Account Name") + "\nhas\n"
+								+ passData.Exceldata("Nurture campaigns") + passData.Nurture);
 					} catch (Exception e) {
 						// TODO: handle exception
-						logger.warn("Test is failed to retrive models images\n");
 					}
-				}
 
-			} else if (NurtureData_int <= 5 && NurtureData_int >= 1) {
-				NurtureDataRun = NurtureData.createRun();
-				stylingDoc.FontFamilySize(NurtureDataRun);
-				stylingDoc.setNoProof(NurtureDataRun);
-				NurtureDataRun.addCarriageReturn();
-				try {
-					NurtureDataRun
-							.setText(passData.Exceldata("Account Name") + "\nONLY has (1-5)\n" + passData.Nurture2);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
+					XWPFParagraph NurtureData1 = document.createParagraph();
+					XWPFRun NurtureDatarun1 = NurtureData1.createRun();
+					stylingDoc.FontFamilySize(NurtureDatarun1);
 
-				XWPFParagraph NurtureData1 = document.createParagraph();
-				XWPFRun NurtureDatarun1 = NurtureData1.createRun();
-				stylingDoc.FontFamilySize(NurtureDatarun1);
+					NurtureData1.setNumID(stylingDoc.bullet(document));
 
-				NurtureData1.setNumID(stylingDoc.bullet(document));
+					NurtureDatarun1.setText("Intelligently and automatically deliver content to a target audience.");
 
-				NurtureDatarun1.setText("Intelligently and automatically deliver content to a target audience.");
+					XWPFParagraph NurtureData2 = document.createParagraph();
+					XWPFRun NurtureDatarun2 = NurtureData2.createRun();
+					stylingDoc.FontFamilySize(NurtureDatarun2);
 
-				XWPFParagraph NurtureData2 = document.createParagraph();
-				XWPFRun NurtureDatarun2 = NurtureData2.createRun();
-				stylingDoc.FontFamilySize(NurtureDatarun2);
+					NurtureData2.setNumID(stylingDoc.bullet(document));
+					NurtureDatarun2.setText(
+							"Easily build dialogue with prospects and customers while preventing customers who have already received content from receiving the same content again.");
 
-				NurtureData2.setNumID(stylingDoc.bullet(document));
-				NurtureDatarun2.setText(
-						"Easily build dialogue with prospects and customers while preventing customers who have already received content from receiving the same content again.");
+					XWPFParagraph NurtureData3 = document.createParagraph();
+					XWPFRun NurtureDatarun3 = NurtureData3.createRun();
+					stylingDoc.FontFamilySize(NurtureDatarun3);
+					NurtureData3.setNumID(stylingDoc.bullet(document));
+					NurtureDatarun3.setText("Add new content and entire programs to nurture streams.");
 
-				XWPFParagraph NurtureData3 = document.createParagraph();
-				XWPFRun NurtureDatarun3 = NurtureData3.createRun();
-				stylingDoc.FontFamilySize(NurtureDatarun3);
-				NurtureData3.setNumID(stylingDoc.bullet(document));
-				NurtureDatarun3.setText("Add new content and entire programs to nurture streams.");
+					XWPFParagraph NurtureData4 = document.createParagraph();
+					XWPFRun NurtureDatarun4 = NurtureData4.createRun();
+					stylingDoc.FontFamilySize(NurtureDatarun4);
+					NurtureData4.setNumID(stylingDoc.bullet(document));
+					NurtureDatarun4.setText("Edit the availability of content.");
 
-				XWPFParagraph NurtureData4 = document.createParagraph();
-				XWPFRun NurtureDatarun4 = NurtureData4.createRun();
-				stylingDoc.FontFamilySize(NurtureDatarun4);
-				NurtureData4.setNumID(stylingDoc.bullet(document));
-				NurtureDatarun4.setText("Edit the availability of content.");
+					XWPFParagraph NurtureData5 = document.createParagraph();
+					XWPFRun NurtureDatarun5 = NurtureData5.createRun();
+					stylingDoc.FontFamilySize(NurtureDatarun5);
+					NurtureData5.setNumID(stylingDoc.bullet(document));
+					NurtureDatarun5
+							.setText("Understand content performance based on engagement with each piece of content.");
 
-				XWPFParagraph NurtureData5 = document.createParagraph();
-				XWPFRun NurtureDatarun5 = NurtureData5.createRun();
-				stylingDoc.FontFamilySize(NurtureDatarun5);
-				NurtureData5.setNumID(stylingDoc.bullet(document));
-				NurtureDatarun5
-						.setText("Understand content performance based on engagement with each piece of content.");
+					XWPFParagraph Nurture_img = document.createParagraph();
+					logger.info("Printing images in doc");
+					XWPFRun img1 = Nurture_img.createRun();
+					for (int i = 1; i < 2; i++) {
+						try {
 
-				XWPFParagraph Nurture_img = document.createParagraph();
-				logger.info("Printing images in doc");
-				XWPFRun img1 = Nurture_img.createRun();
-				for (int i = 1; i < 2; i++) {
+							img1.addPicture(new FileInputStream(passData.FetchScreenshot("Nurture campaigns")),
+									Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Nurture campaigns").toString(),
+									Units.toEMU(220), Units.toEMU(380));
+
+						} catch (Exception e) {
+							// TODO: handle exception
+							logger.warn("Test is failed to retrive models images\n");
+						}
+					}
+
+				} else if (NurtureData_int <= 5 && NurtureData_int >= 1) {
+					NurtureDataRun = NurtureData.createRun();
+					stylingDoc.FontFamilySize(NurtureDataRun);
+					stylingDoc.setNoProof(NurtureDataRun);
+					NurtureDataRun.addCarriageReturn();
 					try {
-
-						img1.addPicture(new FileInputStream(passData.FetchScreenshot("Nurture campaigns")),
-								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Nurture campaigns").toString(),
-								Units.toEMU(220), Units.toEMU(380));
-
+						NurtureDataRun
+								.setText(passData.Exceldata("Account Name") + "\nONLY has (1-5)\n" + passData.Nurture2);
 					} catch (Exception e) {
 						// TODO: handle exception
-						logger.warn("Test is failed to retrive models images\n");
 					}
+
+					XWPFParagraph NurtureData1 = document.createParagraph();
+					XWPFRun NurtureDatarun1 = NurtureData1.createRun();
+					stylingDoc.FontFamilySize(NurtureDatarun1);
+
+					NurtureData1.setNumID(stylingDoc.bullet(document));
+
+					NurtureDatarun1.setText("Intelligently and automatically deliver content to a target audience.");
+
+					XWPFParagraph NurtureData2 = document.createParagraph();
+					XWPFRun NurtureDatarun2 = NurtureData2.createRun();
+					stylingDoc.FontFamilySize(NurtureDatarun2);
+
+					NurtureData2.setNumID(stylingDoc.bullet(document));
+					NurtureDatarun2.setText(
+							"Easily build dialogue with prospects and customers while preventing customers who have already received content from receiving the same content again.");
+
+					XWPFParagraph NurtureData3 = document.createParagraph();
+					XWPFRun NurtureDatarun3 = NurtureData3.createRun();
+					stylingDoc.FontFamilySize(NurtureDatarun3);
+					NurtureData3.setNumID(stylingDoc.bullet(document));
+					NurtureDatarun3.setText("Add new content and entire programs to nurture streams.");
+
+					XWPFParagraph NurtureData4 = document.createParagraph();
+					XWPFRun NurtureDatarun4 = NurtureData4.createRun();
+					stylingDoc.FontFamilySize(NurtureDatarun4);
+					NurtureData4.setNumID(stylingDoc.bullet(document));
+					NurtureDatarun4.setText("Edit the availability of content.");
+
+					XWPFParagraph NurtureData5 = document.createParagraph();
+					XWPFRun NurtureDatarun5 = NurtureData5.createRun();
+					stylingDoc.FontFamilySize(NurtureDatarun5);
+					NurtureData5.setNumID(stylingDoc.bullet(document));
+					NurtureDatarun5
+							.setText("Understand content performance based on engagement with each piece of content.");
+
+					XWPFParagraph Nurture_img = document.createParagraph();
+					logger.info("Printing images in doc");
+					XWPFRun img1 = Nurture_img.createRun();
+					for (int i = 1; i < 2; i++) {
+						try {
+
+							img1.addPicture(new FileInputStream(passData.FetchScreenshot("Nurture campaigns")),
+									Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Nurture campaigns").toString(),
+									Units.toEMU(220), Units.toEMU(380));
+
+						} catch (Exception e) {
+							// TODO: handle exception
+							logger.warn("Test is failed to retrive models images\n");
+						}
+					}
+
+					XWPFParagraph NurtureLink = document.createParagraph();
+					XWPFRun NurtureLinkdata = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLinkdata);
+					NurtureLinkdata.addCarriageReturn();
+					NurtureLinkdata.setText("Please share the following resources with your customer: \r\n");
+					NurtureLinkdata.addCarriageReturn();
+					NurtureLinkdata.setText("\nMarketo Docs: Understanding Engagement Programs:");
+
+					XWPFRun NurtureLink1 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLink1);
+					stylingDoc.setNoProof(NurtureLink1);
+					NurtureLink1.setUnderline(UnderlinePatterns.SINGLE);
+					NurtureLink1.setColor("3333cc");
+					NurtureLink1.setText(
+							"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/understanding-engagement-programs.html?lang=en");
+					NurtureLink1.addCarriageReturn();
+
+					XWPFRun NurtureLinkdata1 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLinkdata1);
+					stylingDoc.setNoProof(NurtureLinkdata1);
+					NurtureLinkdata1.setText("Marketo Docs: Create an Engagement Program: ");
+
+					XWPFRun NurtureLink2 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLink2);
+					stylingDoc.setNoProof(NurtureLink2);
+					NurtureLink2.setUnderline(UnderlinePatterns.SINGLE);
+					NurtureLink2.setColor("3333cc");
+					NurtureLink2.setText(
+							"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en");
+
+					XWPFRun NurtureLinkdata2 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLinkdata2);
+					stylingDoc.setNoProof(NurtureLinkdata2);
+					NurtureLinkdata2.addCarriageReturn();
+					NurtureLinkdata2.setText("Marketo Best Practices – Pathway to Nurture ");
+
+					XWPFRun NurtureLink3 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLink3);
+					stylingDoc.setNoProof(NurtureLink3);
+					NurtureLink3.setUnderline(UnderlinePatterns.SINGLE);
+					NurtureLink3.setColor("3333cc");
+					NurtureLink3.setText("\nhttps://go.marketo.com/nurture-resources.html");
+
+					XWPFRun NurtureLinkdata3 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLinkdata3);
+					stylingDoc.setNoProof(NurtureLinkdata3);
+					NurtureLinkdata3.addCarriageReturn();
+					NurtureLinkdata3.setText("Marketo University: Lead Nurturing: ");
+
+					XWPFRun NurtureLink4 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLink4);
+					stylingDoc.setNoProof(NurtureLink4);
+					NurtureLink4.setUnderline(UnderlinePatterns.SINGLE);
+					NurtureLink4.setColor("3333cc");
+					NurtureLink4.setText(
+							"\nhttps://www.marketo.com/education/training/email-marketing/#lead-nurturing/learn");
+
+					XWPFRun NurtureLinkdata4 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLinkdata4);
+					stylingDoc.setNoProof(NurtureLinkdata4);
+					NurtureLinkdata4.addCarriageReturn();
+					NurtureLinkdata4.setText("Nurture Campaign Setup Discussion:");
+
+					XWPFRun NurtureLink5 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLink5);
+					stylingDoc.setNoProof(NurtureLink5);
+					NurtureLink5.setUnderline(UnderlinePatterns.SINGLE);
+					NurtureLink5.setColor("3333cc");
+					NurtureLink5.setText(
+							"\nhttps://nation.marketo.com/t5/product-discussions/nurture-campaign-setup/td-p/124770");
+
+					XWPFRun NurtureLinkdata5 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLinkdata5);
+					stylingDoc.setNoProof(NurtureLinkdata5);
+					NurtureLinkdata5.addCarriageReturn();
+					NurtureLinkdata5.setText("Creating an Adaptable, Scalable Nurture Program Template in Marketo:");
+
+					XWPFRun NurtureLink6 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLink6);
+					stylingDoc.setNoProof(NurtureLink6);
+					NurtureLink6.setUnderline(UnderlinePatterns.SINGLE);
+					NurtureLink6.setColor("3333cc");
+					NurtureLink6.setText(
+							"\n: https://nation.marketo.com/t5/champion-program-blogs/creating-an-adaptable-scalable-nurture-program-template-in/ba-p/300442");
+
+				} else {
+					NurtureDataRun = NurtureData.createRun();
+					stylingDoc.FontFamilySize(NurtureDataRun);
+					stylingDoc.setNoProof(NurtureDataRun);
+					NurtureDataRun.addCarriageReturn();
+					NurtureDataRun.setText(passData.Exceldata("Account Name") + passData.No_Nurture);
+
+					XWPFParagraph NurtureData1 = document.createParagraph();
+					XWPFRun NurtureDatarun1 = NurtureData1.createRun();
+					stylingDoc.FontFamilySize(NurtureDatarun1);
+					NurtureData1.setNumID(stylingDoc.bullet(document));
+					NurtureData1.setSpacingAfter(0);
+					NurtureDatarun1.setText("Intelligently and automatically deliver content to a target audience.");
+
+					XWPFParagraph NurtureData2 = document.createParagraph();
+					XWPFRun NurtureDatarun2 = NurtureData2.createRun();
+					stylingDoc.FontFamilySize(NurtureDatarun2);
+					NurtureData2.setSpacingAfter(0);
+					NurtureData2.setNumID(stylingDoc.bullet(document));
+					NurtureDatarun2.setText(
+							"Easily build dialogue with prospects and customers while preventing customers who have already received content from receiving the same content again.");
+
+					XWPFParagraph NurtureData3 = document.createParagraph();
+					XWPFRun NurtureDatarun3 = NurtureData3.createRun();
+					stylingDoc.FontFamilySize(NurtureDatarun3);
+					NurtureData3.setSpacingAfter(0);
+					NurtureData3.setNumID(stylingDoc.bullet(document));
+					NurtureDatarun3.setText("Add new content and entire programs to nurture streams.");
+
+					XWPFParagraph NurtureData4 = document.createParagraph();
+					XWPFRun NurtureDatarun4 = NurtureData4.createRun();
+					stylingDoc.FontFamilySize(NurtureDatarun4);
+					NurtureData4.setSpacingAfter(0);
+					NurtureData4.setNumID(stylingDoc.bullet(document));
+					NurtureDatarun4.setText("Edit the availability of content.");
+
+					XWPFParagraph NurtureData5 = document.createParagraph();
+					XWPFRun NurtureDatarun5 = NurtureData5.createRun();
+					stylingDoc.FontFamilySize(NurtureDatarun5);
+					NurtureData5.setNumID(stylingDoc.bullet(document));
+					NurtureDatarun5
+							.setText("Understand content performance based on engagement with each piece of content.");
+					NurtureDatarun5.addCarriageReturn();
+
+					XWPFParagraph NurtureLink = document.createParagraph();
+					XWPFRun NurtureLinkdata = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLinkdata);
+
+					NurtureLinkdata.setText("Please share the following resources with your customer: ");
+					NurtureLinkdata.addBreak();
+					NurtureLinkdata.setText("\nMarketo Docs: Understanding Engagement Programs:");
+
+					XWPFRun NurtureLink1 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLink1);
+					stylingDoc.setNoProof(NurtureLink1);
+					NurtureLink1.setUnderline(UnderlinePatterns.SINGLE);
+					NurtureLink1.setColor("3333cc");
+					NurtureLink1.setText(
+							"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/understanding-engagement-programs.html?lang=en");
+					NurtureLink1.addCarriageReturn();
+
+					XWPFRun NurtureLinkdata1 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLinkdata1);
+					stylingDoc.setNoProof(NurtureLinkdata1);
+					NurtureLinkdata1.setText("Marketo Docs: Create an Engagement Program: ");
+
+					XWPFRun NurtureLink2 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLink2);
+					stylingDoc.setNoProof(NurtureLink2);
+					NurtureLink2.setUnderline(UnderlinePatterns.SINGLE);
+					NurtureLink2.setColor("3333cc");
+					NurtureLink2.setText(
+							"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en");
+
+					XWPFRun NurtureLinkdata2 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLinkdata2);
+					stylingDoc.setNoProof(NurtureLinkdata2);
+					NurtureLinkdata2.addCarriageReturn();
+					NurtureLinkdata2.setText("Marketo Best Practices – Pathway to Nurture ");
+
+					XWPFRun NurtureLink3 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLink3);
+					stylingDoc.setNoProof(NurtureLink3);
+					NurtureLink3.setUnderline(UnderlinePatterns.SINGLE);
+					NurtureLink3.setColor("3333cc");
+					NurtureLink3.setText("\nhttps://go.marketo.com/nurture-resources.html");
+
+					XWPFRun NurtureLinkdata3 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLinkdata3);
+					stylingDoc.setNoProof(NurtureLinkdata3);
+					NurtureLinkdata3.addCarriageReturn();
+					NurtureLinkdata3.setText("Marketo University: Lead Nurturing: ");
+
+					XWPFRun NurtureLink4 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLink4);
+					stylingDoc.setNoProof(NurtureLink4);
+					NurtureLink4.setUnderline(UnderlinePatterns.SINGLE);
+					NurtureLink4.setColor("3333cc");
+					NurtureLink4.setText(
+							"\nhttps://www.marketo.com/education/training/email-marketing/#lead-nurturing/learn");
+
+					XWPFRun NurtureLinkdata4 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLinkdata4);
+					stylingDoc.setNoProof(NurtureLinkdata4);
+					NurtureLinkdata4.addCarriageReturn();
+					NurtureLinkdata4.setText("Nurture Campaign Setup Discussion:");
+
+					XWPFRun NurtureLink5 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLink5);
+					stylingDoc.setNoProof(NurtureLink5);
+					NurtureLink5.setUnderline(UnderlinePatterns.SINGLE);
+					NurtureLink5.setColor("3333cc");
+					NurtureLink5.setText(
+							"\nhttps://nation.marketo.com/t5/product-discussions/nurture-campaign-setup/td-p/124770");
+
+					XWPFRun NurtureLinkdata5 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLinkdata5);
+					stylingDoc.setNoProof(NurtureLinkdata5);
+					NurtureLinkdata5.addCarriageReturn();
+					NurtureLinkdata5.setText("Creating an Adaptable, Scalable Nurture Program Template in Marketo:");
+
+					XWPFRun NurtureLink6 = NurtureLink.createRun();
+					stylingDoc.FontFamilySize(NurtureLink6);
+					stylingDoc.setNoProof(NurtureLink6);
+					NurtureLink6.setUnderline(UnderlinePatterns.SINGLE);
+					NurtureLink6.setColor("3333cc");
+					NurtureLink6.setText(
+							"\n: https://nation.marketo.com/t5/champion-program-blogs/creating-an-adaptable-scalable-nurture-program-template-in/ba-p/300442");
+
 				}
 
-				XWPFParagraph NurtureLink = document.createParagraph();
-				XWPFRun NurtureLinkdata = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLinkdata);
-				NurtureLinkdata.addCarriageReturn();
-				NurtureLinkdata.setText("Please share the following resources with your customer: \r\n");
-				NurtureLinkdata.addCarriageReturn();
-				NurtureLinkdata.setText("\nMarketo Docs: Understanding Engagement Programs:");
-
-				XWPFRun NurtureLink1 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLink1);
-				stylingDoc.setNoProof(NurtureLink1);
-				NurtureLink1.setUnderline(UnderlinePatterns.SINGLE);
-				NurtureLink1.setColor("3333cc");
-				NurtureLink1.setText(
-						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/understanding-engagement-programs.html?lang=en");
-				NurtureLink1.addCarriageReturn();
-
-				XWPFRun NurtureLinkdata1 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLinkdata1);
-				stylingDoc.setNoProof(NurtureLinkdata1);
-				NurtureLinkdata1.setText("Marketo Docs: Create an Engagement Program: ");
-
-				XWPFRun NurtureLink2 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLink2);
-				stylingDoc.setNoProof(NurtureLink2);
-				NurtureLink2.setUnderline(UnderlinePatterns.SINGLE);
-				NurtureLink2.setColor("3333cc");
-				NurtureLink2.setText(
-						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en");
-
-				XWPFRun NurtureLinkdata2 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLinkdata2);
-				stylingDoc.setNoProof(NurtureLinkdata2);
-				NurtureLinkdata2.addCarriageReturn();
-				NurtureLinkdata2.setText("Marketo Best Practices – Pathway to Nurture ");
-
-				XWPFRun NurtureLink3 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLink3);
-				stylingDoc.setNoProof(NurtureLink3);
-				NurtureLink3.setUnderline(UnderlinePatterns.SINGLE);
-				NurtureLink3.setColor("3333cc");
-				NurtureLink3.setText("\nhttps://go.marketo.com/nurture-resources.html");
-
-				XWPFRun NurtureLinkdata3 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLinkdata3);
-				stylingDoc.setNoProof(NurtureLinkdata3);
-				NurtureLinkdata3.addCarriageReturn();
-				NurtureLinkdata3.setText("Marketo University: Lead Nurturing: ");
-
-				XWPFRun NurtureLink4 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLink4);
-				stylingDoc.setNoProof(NurtureLink4);
-				NurtureLink4.setUnderline(UnderlinePatterns.SINGLE);
-				NurtureLink4.setColor("3333cc");
-				NurtureLink4
-						.setText("\nhttps://www.marketo.com/education/training/email-marketing/#lead-nurturing/learn");
-
-				XWPFRun NurtureLinkdata4 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLinkdata4);
-				stylingDoc.setNoProof(NurtureLinkdata4);
-				NurtureLinkdata4.addCarriageReturn();
-				NurtureLinkdata4.setText("Nurture Campaign Setup Discussion:");
-
-				XWPFRun NurtureLink5 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLink5);
-				stylingDoc.setNoProof(NurtureLink5);
-				NurtureLink5.setUnderline(UnderlinePatterns.SINGLE);
-				NurtureLink5.setColor("3333cc");
-				NurtureLink5.setText(
-						"\nhttps://nation.marketo.com/t5/product-discussions/nurture-campaign-setup/td-p/124770");
-
-				XWPFRun NurtureLinkdata5 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLinkdata5);
-				stylingDoc.setNoProof(NurtureLinkdata5);
-				NurtureLinkdata5.addCarriageReturn();
-				NurtureLinkdata5.setText("Creating an Adaptable, Scalable Nurture Program Template in Marketo:");
-
-				XWPFRun NurtureLink6 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLink6);
-				stylingDoc.setNoProof(NurtureLink6);
-				NurtureLink6.setUnderline(UnderlinePatterns.SINGLE);
-				NurtureLink6.setColor("3333cc");
-				NurtureLink6.setText(
-						"\n: https://nation.marketo.com/t5/champion-program-blogs/creating-an-adaptable-scalable-nurture-program-template-in/ba-p/300442");
-
-			} else {
-				NurtureDataRun = NurtureData.createRun();
-				stylingDoc.FontFamilySize(NurtureDataRun);
-				stylingDoc.setNoProof(NurtureDataRun);
-				NurtureDataRun.addCarriageReturn();
-				NurtureDataRun.setText(passData.Exceldata("Account Name") + passData.No_Nurture);
-
-				XWPFParagraph NurtureData1 = document.createParagraph();
-				XWPFRun NurtureDatarun1 = NurtureData1.createRun();
-				stylingDoc.FontFamilySize(NurtureDatarun1);
-				NurtureData1.setNumID(stylingDoc.bullet(document));
-				NurtureData1.setSpacingAfter(0);
-				NurtureDatarun1.setText("Intelligently and automatically deliver content to a target audience.");
-
-				XWPFParagraph NurtureData2 = document.createParagraph();
-				XWPFRun NurtureDatarun2 = NurtureData2.createRun();
-				stylingDoc.FontFamilySize(NurtureDatarun2);
-				NurtureData2.setSpacingAfter(0);
-				NurtureData2.setNumID(stylingDoc.bullet(document));
-				NurtureDatarun2.setText(
-						"Easily build dialogue with prospects and customers while preventing customers who have already received content from receiving the same content again.");
-
-				XWPFParagraph NurtureData3 = document.createParagraph();
-				XWPFRun NurtureDatarun3 = NurtureData3.createRun();
-				stylingDoc.FontFamilySize(NurtureDatarun3);
-				NurtureData3.setSpacingAfter(0);
-				NurtureData3.setNumID(stylingDoc.bullet(document));
-				NurtureDatarun3.setText("Add new content and entire programs to nurture streams.");
-
-				XWPFParagraph NurtureData4 = document.createParagraph();
-				XWPFRun NurtureDatarun4 = NurtureData4.createRun();
-				stylingDoc.FontFamilySize(NurtureDatarun4);
-				NurtureData4.setSpacingAfter(0);
-				NurtureData4.setNumID(stylingDoc.bullet(document));
-				NurtureDatarun4.setText("Edit the availability of content.");
-
-				XWPFParagraph NurtureData5 = document.createParagraph();
-				XWPFRun NurtureDatarun5 = NurtureData5.createRun();
-				stylingDoc.FontFamilySize(NurtureDatarun5);
-				NurtureData5.setNumID(stylingDoc.bullet(document));
-				NurtureDatarun5
-						.setText("Understand content performance based on engagement with each piece of content.");
-				NurtureDatarun5.addCarriageReturn();
-
-				XWPFParagraph NurtureLink = document.createParagraph();
-				XWPFRun NurtureLinkdata = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLinkdata);
-				NurtureLinkdata.addCarriageReturn();
-				NurtureLinkdata.setText("Please share the following resources with your customer: \r\n");
-				NurtureLinkdata.addCarriageReturn();
-				NurtureLinkdata.setText("\nMarketo Docs: Understanding Engagement Programs:");
-
-				XWPFRun NurtureLink1 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLink1);
-				stylingDoc.setNoProof(NurtureLink1);
-				NurtureLink1.setUnderline(UnderlinePatterns.SINGLE);
-				NurtureLink1.setColor("3333cc");
-				NurtureLink1.setText(
-						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/understanding-engagement-programs.html?lang=en");
-				NurtureLink1.addCarriageReturn();
-
-				XWPFRun NurtureLinkdata1 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLinkdata1);
-				stylingDoc.setNoProof(NurtureLinkdata1);
-				NurtureLinkdata1.setText("Marketo Docs: Create an Engagement Program: ");
-
-				XWPFRun NurtureLink2 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLink2);
-				stylingDoc.setNoProof(NurtureLink2);
-				NurtureLink2.setUnderline(UnderlinePatterns.SINGLE);
-				NurtureLink2.setColor("3333cc");
-				NurtureLink2.setText(
-						"\nhttps://experienceleague.adobe.com/docs/marketo/using/product-docs/email-marketing/drip-nurturing/creating-an-engagement-program/create-an-engagement-program.html?lang=en");
-
-				XWPFRun NurtureLinkdata2 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLinkdata2);
-				stylingDoc.setNoProof(NurtureLinkdata2);
-				NurtureLinkdata2.addCarriageReturn();
-				NurtureLinkdata2.setText("Marketo Best Practices – Pathway to Nurture ");
-
-				XWPFRun NurtureLink3 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLink3);
-				stylingDoc.setNoProof(NurtureLink3);
-				NurtureLink3.setUnderline(UnderlinePatterns.SINGLE);
-				NurtureLink3.setColor("3333cc");
-				NurtureLink3.setText("\nhttps://go.marketo.com/nurture-resources.html");
-
-				XWPFRun NurtureLinkdata3 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLinkdata3);
-				stylingDoc.setNoProof(NurtureLinkdata3);
-				NurtureLinkdata3.addCarriageReturn();
-				NurtureLinkdata3.setText("Marketo University: Lead Nurturing: ");
-
-				XWPFRun NurtureLink4 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLink4);
-				stylingDoc.setNoProof(NurtureLink4);
-				NurtureLink4.setUnderline(UnderlinePatterns.SINGLE);
-				NurtureLink4.setColor("3333cc");
-				NurtureLink4
-						.setText("\nhttps://www.marketo.com/education/training/email-marketing/#lead-nurturing/learn");
-
-				XWPFRun NurtureLinkdata4 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLinkdata4);
-				stylingDoc.setNoProof(NurtureLinkdata4);
-				NurtureLinkdata4.addCarriageReturn();
-				NurtureLinkdata4.setText("Nurture Campaign Setup Discussion:");
-
-				XWPFRun NurtureLink5 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLink5);
-				stylingDoc.setNoProof(NurtureLink5);
-				NurtureLink5.setUnderline(UnderlinePatterns.SINGLE);
-				NurtureLink5.setColor("3333cc");
-				NurtureLink5.setText(
-						"\nhttps://nation.marketo.com/t5/product-discussions/nurture-campaign-setup/td-p/124770");
-
-				XWPFRun NurtureLinkdata5 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLinkdata5);
-				stylingDoc.setNoProof(NurtureLinkdata5);
-				NurtureLinkdata5.addCarriageReturn();
-				NurtureLinkdata5.setText("Creating an Adaptable, Scalable Nurture Program Template in Marketo:");
-
-				XWPFRun NurtureLink6 = NurtureLink.createRun();
-				stylingDoc.FontFamilySize(NurtureLink6);
-				stylingDoc.setNoProof(NurtureLink6);
-				NurtureLink6.setUnderline(UnderlinePatterns.SINGLE);
-				NurtureLink6.setColor("3333cc");
-				NurtureLink6.setText(
-						"\n: https://nation.marketo.com/t5/champion-program-blogs/creating-an-adaptable-scalable-nurture-program-template-in/ba-p/300442");
+			} catch (NumberFormatException ex) {
+				logger.error("Nurture Data Test is failed Hence we have null value\n");
+				// handle your exception
 
 			}
-
-			logger.info(" Nurture data part is done......");
-		} catch (NumberFormatException ex) {
-			logger.error("Nurture Data Test is failed Hence we have null value\n");
-			// handle your exception
-
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
+		logger.info(" Nurture data part is done......");
 
 	}
 
@@ -1435,6 +1464,7 @@ public class docReports {
 		XWPFParagraph Segment = document.createParagraph();
 		XWPFRun SegmentHeading = Segment.createRun();
 		SegmentHeading.setBold(true);
+		SegmentHeading.addCarriageReturn();
 		logger.info("Printing Segmentation Data");
 		SegmentHeading.setText("Segmentation");
 		try {
@@ -1445,8 +1475,11 @@ public class docReports {
 				XWPFRun SegmentRun = SegmentData.createRun();
 				stylingDoc.FontFamilySize(SegmentRun);
 				stylingDoc.setNoProof(SegmentRun);
-				SegmentRun.setText(passData.Exceldata("Account Name") + passData.segment);
-
+				try {
+					SegmentRun.setText(passData.Exceldata("Account Name") + passData.segment);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
 				SegmentRun = SegmentData.createRun();
 
 				SegmentRun.addBreak();
@@ -1589,7 +1622,7 @@ public class docReports {
 				segmentLink8.setText("\nhttps://www.marketo.com/ebooks/how-to-segment-and-target-your-emails/");
 
 			}
-		} catch (NumberFormatException ex) { // handle your exception
+		} catch (Exception e) { // handle your exception
 			logger.error("Test is skipped or failed so we have null value here\n");
 		}
 		logger.info(" Segmentation data part is done......");
@@ -1625,85 +1658,97 @@ public class docReports {
 				}
 			}
 		} catch (Exception e) {
+			logger.info(" Program Library part is printing Null Values");
 			// TODO: handle exception
 		}
+		logger.info(" Program Library part is done");
 	}
 
 	public static void Integration(XWPFDocument document) throws IOException, InvalidFormatException {
-		XWPFParagraph intigration = document.createParagraph();
-		XWPFRun intigrationRunHeading = intigration.createRun();
-		intigrationRunHeading.addCarriageReturn();
-		intigrationRunHeading.addCarriageReturn();
-		intigrationRunHeading.setBold(true);
-		logger.info("Printing Integration Data");
-		intigrationRunHeading.setText("Integrations");
 		try {
-			int intigration_Data = Integer.parseInt(passData.Exceldata("Integration"));
-			if (intigration_Data > 0) {
+			XWPFParagraph intigration = document.createParagraph();
+			XWPFRun intigrationRunHeading = intigration.createRun();
+			intigrationRunHeading.addCarriageReturn();
+			intigrationRunHeading.addCarriageReturn();
+			intigrationRunHeading.setBold(true);
+			logger.info("Printing Integration Data");
+			intigrationRunHeading.setText("Integrations");
+			try {
+				int intigration_Data = Integer.parseInt(passData.Exceldata("Integration"));
+				if (intigration_Data > 0) {
 
-				XWPFParagraph intigrationRun = document.createParagraph();
-				XWPFRun intigrationData = intigrationRun.createRun();
-				stylingDoc.FontFamilySize(intigrationData);
-				intigrationData.setText("The following integrations have been installed:");
+					XWPFParagraph intigrationRun = document.createParagraph();
+					XWPFRun intigrationData = intigrationRun.createRun();
+					stylingDoc.FontFamilySize(intigrationData);
+					intigrationData.setText("The following integrations have been installed:");
 
-				intigrationRun = document.createParagraph();
-				XWPFRun intigrationImg = intigrationRun.createRun();
-				for (int i = 1; i < 2; i++) {
+					intigrationRun = document.createParagraph();
+					XWPFRun intigrationImg = intigrationRun.createRun();
+					for (int i = 1; i < 2; i++) {
+						try {
+							intigrationImg.addCarriageReturn();
+							intigrationImg.addPicture(new FileInputStream(passData.FetchScreenshot("Integration")),
+									Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Integration"),
+									Units.toEMU(470), Units.toEMU(200));
+							intigrationImg.addCarriageReturn();
+						} catch (Exception e) {
+							// TODO: handle exception
+						}
+					}
+				}
+
+				else {
+
+					XWPFParagraph intigrationRun = document.createParagraph();
+					XWPFRun intigrationData = intigrationRun.createRun();
+					stylingDoc.FontFamilySize(intigrationData);
+					stylingDoc.setNoProof(intigrationData);
 					try {
-						intigrationImg.addCarriageReturn();
-						intigrationImg.addPicture(new FileInputStream(passData.FetchScreenshot("Integration")),
-								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Integration"), Units.toEMU(470),
-								Units.toEMU(200));
-						intigrationImg.addCarriageReturn();
+						intigrationData.setText(passData.Exceldata("Account Name") + passData.No_Integrations);
+
+						XWPFRun intigrationData1 = intigrationRun.createRun();
+						stylingDoc.FontFamilySize(intigrationData1);
+						stylingDoc.setNoProof(intigrationData1);
+						intigrationData1.addCarriageReturn();
+						intigrationData1.addCarriageReturn();
+						intigrationData1.setText(
+								"Here is a starting point for the client on some common Marketo Partners and step-by-step instructions on installing each one: ");
+
+						XWPFRun intigrationDatalink = intigrationRun.createRun();
+						stylingDoc.FontFamilySize(intigrationDatalink);
+						stylingDoc.setNoProof(intigrationDatalink);
+						intigrationDatalink.addCarriageReturn();
+						intigrationDatalink.setUnderline(UnderlinePatterns.SINGLE);
+						intigrationDatalink.setColor("3333cc");
+						intigrationDatalink
+								.setText("\nhttps://docs.marketo.com/display/public/DOCS/LaunchPoint+Event+Partners.");
 					} catch (Exception e) {
-						logger.warn("we dont have images to print\n");
 						// TODO: handle exception
 					}
 				}
 
-			} else {
-
-				XWPFParagraph intigrationRun = document.createParagraph();
-				XWPFRun intigrationData = intigrationRun.createRun();
-				stylingDoc.FontFamilySize(intigrationData);
-				stylingDoc.setNoProof(intigrationData);
-
-				intigrationData.setText(passData.Exceldata("Account Name") + passData.No_Integrations);
-
-				XWPFRun intigrationData1 = intigrationRun.createRun();
-				stylingDoc.FontFamilySize(intigrationData1);
-				stylingDoc.setNoProof(intigrationData1);
-				intigrationData1.addCarriageReturn();
-				intigrationData1.addCarriageReturn();
-				intigrationData1.setText(
-						"Here is a starting point for the client on some common Marketo Partners and step-by-step instructions on installing each one: ");
-
-				XWPFRun intigrationDatalink = intigrationRun.createRun();
-				stylingDoc.FontFamilySize(intigrationDatalink);
-				stylingDoc.setNoProof(intigrationDatalink);
-				intigrationDatalink.addCarriageReturn();
-				intigrationDatalink.setUnderline(UnderlinePatterns.SINGLE);
-				intigrationDatalink.setColor("3333cc");
-				intigrationDatalink
-						.setText("\nhttps://docs.marketo.com/display/public/DOCS/LaunchPoint+Event+Partners.");
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-
-		} catch (NumberFormatException ex) { // handle your exception
-			logger.error("Intigration Test is skiped\n");
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
-
 	}
 
 	public static void webPersonalize(XWPFDocument document) throws IOException, InvalidFormatException {
 		try {
-			if (passData.Exceldata("Web Personalize").equalsIgnoreCase("true")) {
+			if (passData.Exceldata("Web Personalization").equalsIgnoreCase("true")) {
+				
+				int TotalOrganizations = Integer.parseInt(passData.Exceldata("Total Organizations"));
 				XWPFParagraph Web_Personalize = document.createParagraph();
 				XWPFRun Web_PersonalizeRun = Web_Personalize.createRun();
 				Web_PersonalizeRun.addCarriageReturn();
 				Web_PersonalizeRun.addCarriageReturn();
 				Web_PersonalizeRun.setBold(true);
-				Web_PersonalizeRun.setText("Web Personalize");
-
+				Web_PersonalizeRun.setText("Website Personalization");
+				if(TotalOrganizations>5)
+				{
+					
 				XWPFParagraph PersonalizeDoc = document.createParagraph();
 				XWPFRun PersonalizeRun = PersonalizeDoc.createRun();
 				stylingDoc.FontFamilySize(PersonalizeRun);
@@ -1714,37 +1759,129 @@ public class docReports {
 				XWPFRun PersonalizeImg = PersonalizeDoc.createRun();
 				stylingDoc.setNoProof(PersonalizeImg);
 				stylingDoc.FontFamilySize(PersonalizeImg);
+				PersonalizeImg.setItalic(true);
 				PersonalizeImg.setText(
 						"Top Campaigns: The top performing campaigns during the selected time period, ordered by number of clicks.");
 
 				XWPFRun PersonalizeImg1 = PersonalizeDoc.createRun();
 				stylingDoc.FontFamilySize(PersonalizeImg1);
 				stylingDoc.setNoProof(PersonalizeImg1);
+				PersonalizeImg1.setItalic(true);
 				PersonalizeImg1.addCarriageReturn();
-				PersonalizeImg1.addPicture(new FileInputStream(passData.FetchScreenshot("Change Score1")),
-						Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Change Score"), Units.toEMU(470),
-						Units.toEMU(80));
-				PersonalizeImg1.addBreak();
 				PersonalizeImg1.addCarriageReturn();
-				PersonalizeImg1.addPicture(new FileInputStream(passData.FetchScreenshot("Change Score1")),
-						Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Change Score"), Units.toEMU(470),
-						Units.toEMU(80));
-				PersonalizeImg1.addBreak();
-				PersonalizeImg1.addCarriageReturn();
-				PersonalizeImg1.addPicture(new FileInputStream(passData.FetchScreenshot("Change Score1")),
-						Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Change Score"), Units.toEMU(470),
-						Units.toEMU(80));
-				PersonalizeImg1.addCarriageReturn();
-				PersonalizeImg1.setText(
-						"Total Organizations & Top 5 Organizations: The Organizations tab displays all the details (name, location, activity and time stamp) of organizations that visited your"
-								+ " website during a given period. The table can be sorted and organized by time, location, domain and via a free text search.");
 
-				// PersonalizeImg1.addCarriageReturn();
-				PersonalizeImg1.addPicture(new FileInputStream(passData.FetchScreenshot("Change Score1")),
-						Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Change Score"), Units.toEMU(470),
-						Units.toEMU(80));
+				int WorkSpace_count = Integer.parseInt(passData.Exceldata("Total WorkSpace"));
+				WorkSpace_count = WorkSpace_count + 2;
+
+				for (int i = 2; i < WorkSpace_count; i++) {
+					String WorkSpaceName = passData.Exceldata("Asset Data", i);
+					try {
+						PersonalizeImg1.addPicture(
+								new FileInputStream(passData.FetchScreenshot("Top Campaigns_" + WorkSpaceName)),
+								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Top Campaigns_Default"),
+								Units.toEMU(150), Units.toEMU(150));
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+				}
+
+				PersonalizeImg1.addBreak();
 				PersonalizeImg1.addCarriageReturn();
+				PersonalizeImg1.addCarriageReturn();
+				PersonalizeImg1.setText("Top Content:");
+				PersonalizeImg1.addCarriageReturn();
+				for (int i = 2; i < WorkSpace_count; i++) {
+					String WorkSpaceName = passData.Exceldata("Asset Data", i);
+					try {
+						PersonalizeImg1.addPicture(
+								new FileInputStream(passData.FetchScreenshot("Top Content_" + WorkSpaceName)),
+								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Top Content_Default"),
+								Units.toEMU(150), Units.toEMU(150));
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+				}
+				PersonalizeImg1.addBreak();
+				PersonalizeImg1.addCarriageReturn();
+				PersonalizeImg1.addCarriageReturn();
+				PersonalizeImg1.setText("Top Industries:");
+				PersonalizeImg1.addCarriageReturn();
+				for (int i = 2; i < WorkSpace_count; i++) {
+					String WorkSpaceName = passData.Exceldata("Asset Data", i);
+					try {
+						PersonalizeImg1.addPicture(
+								new FileInputStream(passData.FetchScreenshot("Top Industries_" + WorkSpaceName)),
+								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Top Industries_Default"),
+								Units.toEMU(150), Units.toEMU(150));
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+				}
+				PersonalizeImg1.addBreak();
+				PersonalizeImg1.addCarriageReturn();
+				PersonalizeImg1.addCarriageReturn();
+				PersonalizeImg1.setText("Total Organizations & Top 5 Organizations:");
+				PersonalizeImg1.addCarriageReturn();
+				for (int i = 2; i < WorkSpace_count; i++) {
+					String WorkSpaceName = passData.Exceldata("Asset Data", i);
+					try {
+						PersonalizeImg1.addPicture(
+								new FileInputStream(passData.FetchScreenshot("Top Organizations_" + WorkSpaceName)),
+								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Top Organizations_Default"),
+								Units.toEMU(150), Units.toEMU(150));
+						PersonalizeImg1.addPicture(
+								new FileInputStream(passData.FetchScreenshot("Total Organizations_" + WorkSpaceName)),
+								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Total Organizations_Default"),
+								Units.toEMU(150), Units.toEMU(150));
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+				}}
+				else {
+					XWPFParagraph PersonalizeDoc = document.createParagraph();
+					XWPFRun PersonalizeRun = PersonalizeDoc.createRun();
+					stylingDoc.FontFamilySize(PersonalizeRun);
+					stylingDoc.setNoProof(PersonalizeRun);
+					PersonalizeRun.setText("This is not a great use case in terms of Web Personalization. Here’s a good starting point for them: ");
+
+					XWPFRun Personalize_link = PersonalizeDoc.createRun();
+					stylingDoc.FontFamilySize(Personalize_link);
+					Personalize_link.setColor("3333cc");
+					Personalize_link.addBreak();
+					Personalize_link.addBreak();
+					stylingDoc.setNoProof(Personalize_link);
+					Personalize_link.setUnderline(UnderlinePatterns.SINGLE);
+					Personalize_link.setText(
+							"https://docs.marketo.com/display/public/DOCS/Web+Personalization+Overview");
+
+				}
+			} else if (passData.Exceldata("Web Personalization").equalsIgnoreCase("false")) {
+				XWPFParagraph Web_Personalize = document.createParagraph();
+				XWPFRun Web_PersonalizeRun = Web_Personalize.createRun();
+				Web_PersonalizeRun.addCarriageReturn();
+				Web_PersonalizeRun.addCarriageReturn();
+				Web_PersonalizeRun.setBold(true);
+				Web_PersonalizeRun.setText("Website Personalization");
+
+				XWPFParagraph PersonalizeDoc = document.createParagraph();
+				XWPFRun PersonalizeRun = PersonalizeDoc.createRun();
+				stylingDoc.FontFamilySize(PersonalizeRun);
+				stylingDoc.setNoProof(PersonalizeRun);
+				PersonalizeRun.setText(passData.No_web_personalize);
+
+				XWPFRun Personalize_link = PersonalizeDoc.createRun();
+				stylingDoc.FontFamilySize(Personalize_link);
+				Personalize_link.setColor("3333cc");
+				Personalize_link.addBreak();
+				Personalize_link.addBreak();
+				stylingDoc.setNoProof(Personalize_link);
+				Personalize_link.setUnderline(UnderlinePatterns.SINGLE);
+				Personalize_link.setText(
+						"https://docs.marketo.com/display/public/DOCS/Web+Personalization+Overview");
+
+				logger.info("No data in Personalization  data");
 			}
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -1753,6 +1890,66 @@ public class docReports {
 	public static void TAM(XWPFDocument document) throws IOException, InvalidFormatException {
 		try {
 			if (passData.Exceldata("Target Account Management").equalsIgnoreCase("true")) {
+				int NamedAccounts=  Integer.parseInt(passData.Exceldata("Named Accounts"));
+				XWPFParagraph Target_Account = document.createParagraph();
+				XWPFRun Target_AccountRun = Target_Account.createRun();
+
+				Target_AccountRun.addCarriageReturn();
+				Target_AccountRun.addCarriageReturn();
+				Target_AccountRun.setBold(true);
+				Target_AccountRun.setText("Target Account Management");
+				if(NamedAccounts>5)
+				{
+				XWPFParagraph Account_Management = document.createParagraph();
+				XWPFRun Account_ManagementRun = Account_Management.createRun();
+				stylingDoc.FontFamilySize(Account_ManagementRun);
+				stylingDoc.setNoProof(Account_ManagementRun);
+				Account_ManagementRun.setText(passData.Account_Management);
+
+				XWPFParagraph Overview = document.createParagraph();
+				XWPFRun OverviewRun = Overview.createRun();
+				OverviewRun.addCarriageReturn();
+				OverviewRun.addCarriageReturn();
+				stylingDoc.FontFamilySize(OverviewRun);
+				OverviewRun.setBold(true);
+				OverviewRun.setText("Overview");
+				OverviewRun.addBreak();
+				OverviewRun.addBreak();
+				try {
+					OverviewRun.addPicture(new FileInputStream(passData.FetchScreenshot("Target Account Management")),
+							Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Target Account Management").toString(),
+							Units.toEMU(470), Units.toEMU(110));
+					OverviewRun.addBreak();
+					OverviewRun.setText("Top Named Accounts (by Pipeline)");
+					OverviewRun.addBreak();
+					OverviewRun.addPicture(new FileInputStream(passData.FetchScreenshot("Target Account Management")),
+							Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Target Account Management").toString(),
+							Units.toEMU(470), Units.toEMU(280));
+				} catch (Exception e) {
+					logger.warn("Test is skipped so user dont have images to print\n");
+					// TODO: handle exception
+				}
+			}
+				else {
+					XWPFParagraph Account_Management = document.createParagraph();
+					XWPFRun Account_ManagementRun = Account_Management.createRun();
+					stylingDoc.FontFamilySize(Account_ManagementRun);
+					stylingDoc.setNoProof(Account_ManagementRun);
+					Account_ManagementRun.setText("While the client is paying for Target Account Management (TAM), they don’t appear to be making great use of it."
+							+ " I would direct them to the document below to begin to understand the great benefits TAM can provide.  ");
+
+					XWPFRun Account_link = Account_Management.createRun();
+					stylingDoc.FontFamilySize(Account_link);
+					Account_link.setColor("3333cc");
+					stylingDoc.setNoProof(Account_link);
+					Account_link.setUnderline(UnderlinePatterns.SINGLE);
+					Account_link.setText(
+							"https://experienceleague.adobe.com/docs/marketo/using/product-docs/target-account-management/setup/target-account-management-overview.html?lang=en ");
+				}
+			}
+
+			else {
+
 				XWPFParagraph Target_Account = document.createParagraph();
 				XWPFRun Target_AccountRun = Target_Account.createRun();
 
@@ -1765,102 +1962,22 @@ public class docReports {
 				XWPFRun Account_ManagementRun = Account_Management.createRun();
 				stylingDoc.FontFamilySize(Account_ManagementRun);
 				stylingDoc.setNoProof(Account_ManagementRun);
-				Account_ManagementRun.setText(passData.Account_Management);
-				Account_ManagementRun.addCarriageReturn();
-				Account_ManagementRun.setText(passData.Account_Management2);
+				Account_ManagementRun.setText(passData.No_targate_acc);
 
-				XWPFParagraph Overview = document.createParagraph();
-				XWPFRun OverviewRun = Overview.createRun();
-				OverviewRun.addCarriageReturn();
-				OverviewRun.addCarriageReturn();
-				stylingDoc.FontFamilySize(OverviewRun);
-				OverviewRun.setBold(true);
-				OverviewRun.setText("Overview");
-				OverviewRun.addBreak();
-				OverviewRun.addBreak();
-				try {
-					OverviewRun.addPicture(new FileInputStream(passData.FetchScreenshot("Integration")),
-							Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Integration").toString(),
-							Units.toEMU(470), Units.toEMU(80));
-					OverviewRun.addBreak();
-					OverviewRun.setText("Top Named Accounts (by Pipeline)");
-					OverviewRun.addBreak();
-					OverviewRun.addPicture(new FileInputStream(passData.FetchScreenshot("Integration")),
-							Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Integration").toString(),
-							Units.toEMU(470), Units.toEMU(280));
-				} catch (Exception e) {
-					logger.warn("Test is skipped so user dont have images to print\n");
-					// TODO: handle exception
-				}
-				XWPFParagraph HigestAccount = document.createParagraph();
-				XWPFRun HigestAccountRunHead = HigestAccount.createRun();
+				XWPFRun Account_link = Account_Management.createRun();
+				stylingDoc.FontFamilySize(Account_link);
+				Account_link.setColor("3333cc");
+				stylingDoc.setNoProof(Account_link);
+				Account_link.setUnderline(UnderlinePatterns.SINGLE);
+				Account_link.setText(
+						"https://experienceleague.adobe.com/docs/marketo/using/product-docs/target-account-management/setup/target-account-management-overview.html?lang=en");
 
-				HigestAccountRunHead.setBold(true);
-				HigestAccountRunHead.setText("Highest Account Score");
-
-				XWPFRun HigestAccountRunData = HigestAccount.createRun();
-				stylingDoc.FontFamilySize(HigestAccountRunData);
-				stylingDoc.setNoProof(HigestAccountRunData);
-				HigestAccountRunHead.addCarriageReturn();
-				HigestAccountRunData.setText(
-						"Marketo’s ABM Account Score is a systematic approach designed to help Sales and Marketing teams identify and prioritize "
-								+ "the companies (including prospects) that are most likely to make a purchase.");
-				HigestAccountRunData.addCarriageReturn();
-				HigestAccountRunData.addCarriageReturn();
-
-				HigestAccountRunData.setText(
-						"In the complex world of B2B buying processes, it’s rare that a single individual makes a purchase decision. "
-								+ "There are often various roles involved, each with their own needs. Account-based scoring takes this into account by aggregating the"
-								+ " lead scores from multiple leads and providing a score at an account level.\n"
-								+ passData.Exceldata("Account Name") + "’s highest account score is from Cisco with a\n"
-								+ "989.");
-				XWPFRun HigestAccountRunimg = HigestAccount.createRun();
-				HigestAccountRunimg.addPicture(new FileInputStream(passData.FetchScreenshot("Integration")),
-						Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Integration").toString(), Units.toEMU(470),
-						Units.toEMU(110));
-				HigestAccountRunimg.setBold(true);
-				HigestAccountRunimg.setText("Account Lists");
-				try {
-					HigestAccountRunimg.addCarriageReturn();
-					HigestAccountRunimg.addPicture(new FileInputStream(passData.FetchScreenshot("Integration")),
-							Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Integration").toString(),
-							Units.toEMU(470), Units.toEMU(110));
-				} catch (Exception e) {
-					logger.warn("Test is skipped so user dont have images to print\n");
-					// TODO: handle exception
-				}
-				XWPFParagraph LargestAccountList = document.createParagraph();
-				XWPFRun LargestAccountListRun = LargestAccountList.createRun();
-				LargestAccountListRun.setBold(true);
-				LargestAccountListRun.setText("Largest Account List");
-
-				XWPFRun LargestAccountListRunData = LargestAccountList.createRun();
-				LargestAccountListRunData.addCarriageReturn();
-				stylingDoc.FontFamilySize(LargestAccountListRunData);
-				stylingDoc.setNoProof(LargestAccountListRunData);
-				LargestAccountListRunData.setText(
-						"An account list is a collection of named accounts that can be targeted together. Account lists allow you to target named accounts by industry, location or size of the company. Marketo allows for up to 2,000 named accounts to be added to an account list.\n"
-								+ passData.Exceldata("Account Name")
-								+ "\n’s largest account list is NA Target Accounts, containing 545 named accounts and is responsible for $23.1 million in pipeline.");
-
-				XWPFRun LargestAccountListRunimg = LargestAccountList.createRun();
-				try {
-					LargestAccountListRunimg.addPicture(new FileInputStream(passData.FetchScreenshot("Integration")),
-							Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Integration").toString(),
-							Units.toEMU(470), Units.toEMU(80));
-				} catch (Exception e) {
-					logger.warn("Test is skipped so user dont have images to print\n");
-					// TODO: handle exception
-				}
-				LargestAccountListRunimg.addCarriageReturn();
-				LargestAccountListRunimg.addCarriageReturn();
-				stylingDoc.FontFamilySize(LargestAccountListRunimg);
-				stylingDoc.setNoProof(LargestAccountListRunimg);
-				LargestAccountListRunimg.setText(
-						"To learn more about using Account Lists in Marketo, visit: http://docs.marketo.com/display/public/DOCS/Account+Lists");
-
+				logger.info("No data in TAM data");
 			}
+
 		} catch (Exception e) {
+			logger.info("TAM section is skipped");
+
 			// TODO: handle exception
 		}
 
@@ -1869,6 +1986,9 @@ public class docReports {
 	public static void PredictiveContent(XWPFDocument document) throws IOException, InvalidFormatException {
 		try {
 			if (passData.Exceldata("Predictive Content").equalsIgnoreCase("true")) {
+				
+				int TotalContent=  Integer.parseInt(passData.Exceldata("Total Content"));
+				
 				XWPFParagraph Target_Account = document.createParagraph();
 				XWPFRun Target_AccountRun = Target_Account.createRun();
 
@@ -1876,16 +1996,76 @@ public class docReports {
 				Target_AccountRun.addCarriageReturn();
 				Target_AccountRun.setBold(true);
 				Target_AccountRun.setText("Predictive Content");
-
+				if(TotalContent>5)
+				{
 				XWPFParagraph Account_Management = document.createParagraph();
 				XWPFRun Account_ManagementRun = Account_Management.createRun();
 				stylingDoc.FontFamilySize(Account_ManagementRun);
 				stylingDoc.setNoProof(Account_ManagementRun);
 				Account_ManagementRun.setText(passData.PredictiveContent);
 
+				XWPFParagraph Account_Managementimg = document.createParagraph();
+				XWPFRun PredictiveImg = Account_Managementimg.createRun();
+				try {
+					PredictiveImg.addPicture(new FileInputStream(passData.FetchScreenshot("Predictive Content")),
+							Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Predictive Content").toString(),
+							Units.toEMU(470), Units.toEMU(300));
+				} catch (Exception e) {
+					logger.warn("Test is skipped so user dont have images to print\n");
+					// TODO: handle exception
+				}
+			}
+				else {
+					XWPFParagraph PredictiveContentText = document.createParagraph();
+					XWPFRun PredictiveContentTextRun = PredictiveContentText.createRun();
+					stylingDoc.FontFamilySize(PredictiveContentTextRun);
+					stylingDoc.setNoProof(PredictiveContentTextRun);
+					PredictiveContentTextRun.setText("They have Predictive Content but nothing is built out in it. Here’s a good starting point document for them:");
+
+					XWPFRun Predictive_link = PredictiveContentText.createRun();
+					stylingDoc.FontFamilySize(Predictive_link);
+					Predictive_link.setColor("3333cc");
+					Predictive_link.addBreak();
+					stylingDoc.setNoProof(Predictive_link);
+					Predictive_link.setUnderline(UnderlinePatterns.SINGLE);
+					Predictive_link.setText(
+							"https://experienceleague.adobe.com/docs/marketo/using/product-docs/predictive-content/working-with-predictive-content/understanding-predictive-content.html?lang=en");
+
+					
+					
+				}
+			
+				
+			} else if (passData.Exceldata("Predictive Content").equalsIgnoreCase("false"))
+
+			{
+				XWPFParagraph PredictiveContent = document.createParagraph();
+				XWPFRun PredictiveContentRun = PredictiveContent.createRun();
+
+				PredictiveContentRun.addCarriageReturn();
+				PredictiveContentRun.addCarriageReturn();
+				PredictiveContentRun.setBold(true);
+				PredictiveContentRun.setText("Predictive Content");
+
+				XWPFParagraph PredictiveContentText = document.createParagraph();
+				XWPFRun PredictiveContentTextRun = PredictiveContentText.createRun();
+				stylingDoc.FontFamilySize(PredictiveContentTextRun);
+				stylingDoc.setNoProof(PredictiveContentTextRun);
+				PredictiveContentTextRun.setText(passData.No_PredictiveContent);
+
+				XWPFRun Predictive_link = PredictiveContentText.createRun();
+				stylingDoc.FontFamilySize(Predictive_link);
+				Predictive_link.setColor("3333cc");
+				Predictive_link.addBreak();
+				stylingDoc.setNoProof(Predictive_link);
+				Predictive_link.setUnderline(UnderlinePatterns.SINGLE);
+				Predictive_link.setText(
+						"https://experienceleague.adobe.com/docs/marketo/using/product-docs/predictive-content/working-with-predictive-content/understanding-predictive-content.html?lang=en");
+
 			}
 
 		} catch (Exception e) {
+			logger.info("Predictive Content is not subscribed");
 			// TODO: handle exception
 		}
 	}

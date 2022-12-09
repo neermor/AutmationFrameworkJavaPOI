@@ -39,7 +39,7 @@ public class CommonLib extends TestBase {
 	public void SelectDropDownValue(WebElement element, String selectValue) {
 		Select dropDown = new Select(element);
 		dropDown.selectByVisibleText(selectValue);
-	}
+	} 
 
 	public void StandardWait(int time) throws Throwable {
 		Thread.sleep(time);
@@ -67,6 +67,7 @@ public class CommonLib extends TestBase {
 
 	}
 
+	
 	public void WriteExcelData(String sheetName, int row, int col, String cellValue) throws Exception {
 
 		File file = new File(ExcelPath);
@@ -84,7 +85,7 @@ public class CommonLib extends TestBase {
 		FileOutputStream fos = new FileOutputStream(file);
 		wb.write(fos);
 		fos.close();
-
+ 
 	}
 
 	public void ClearExcelData(String sheetName, int row) throws Exception {

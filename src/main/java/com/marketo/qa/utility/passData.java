@@ -15,7 +15,7 @@ public class passData {
 		String path = System.getProperty("user.dir") + "//Config/ScreenShot//" + screenshotName + ".png";
 		return path;
 	}
-
+	
 	public static String FetchScreenshotForApprovedModels(String screenshotName) {
 
 		String path = System.getProperty("user.dir") + "//Config/ScreenShot/Approved Models//" + screenshotName
@@ -23,7 +23,7 @@ public class passData {
 		return path;
 	}
 
-	static String Org_info = "\nhas created campaigns and content in Marketo."
+	static String Org_prog = "\nhas created campaigns and content in Marketo."
 			+ " There are two types of smart campaigns: Batch and Trigger. A batch campaign launches "
 			+ "at a specific time and affects a specific set of leads all at once. A triggered smart"
 			+ " campaign affects one lead at a time, based on a triggered event."
@@ -186,11 +186,10 @@ public class passData {
 	static String web_personalize = "With Marketo’s Real Time Personalization, you can engage the 98% of visitors that"
 			+ " you don’t know. 98% of website visitors are anonymous, only 2% are known. Using RTP, Marketers have an "
 			+ "opportunity to engage these anonymous visitors with relevant content and personalized messages via web "
-			+ "or mobile using firmographic and behavioral data. This real time personalization capability is "
-			+ "completely unified within the platform and shares a common user experience, making it easy for marketers"
-			+ " to create personalized web experiences without IT support. This results in increased conversion rates"
-			+ " up to 30% and increased content engagement up to 270%. Competitors cannot generate personalized web"
-			+ " experiences for anonymous visitors, and personalization for known visitors is overly complicated";
+			+ "or mobile using firmographic and behavioral data.";
+	
+	static String No_web_personalize= "The client does not have Predictive Content. If they are interested in learning more "
+			+ "about this add-on you can provide them with the following document:";
 
 	// Target Account Management
 	static String Account_Management = "Marketo Account Based Marketing brings sales and marketing teams together to"
@@ -200,11 +199,15 @@ public class passData {
 	static String Account_Management2 = "Marketo unifies ABM and lead management in one solution, making it easy for"
 			+ " marketers to execute personalized campaigns for both accounts and leads in one motion. You also "
 			+ "benefit from reaching key decision makers and deal influencers.";
+	
+	static String No_targate_acc ="The client does not have Target Account Management. If they are interested in learning more about"
+			+ " this add-on you can provide them with the following document: ";
 
 	static String PredictiveContent = "Content analytics allows you to gain further insights into your existing content, learn what content works for your audiences, and increase ROI from your marketing efforts.\r\n"
 			+ "\r\n"
 			+ "With your Predictive Content Analytics, you can view Top Content by Views, Top Content by Conversion Rate, Trending Content, Suggested Content, and Content.\r\n"
 			+ "";
+	static String No_PredictiveContent ="The client does not have Predictive Content. If they are interested in learning more about this add-on you can provide them with the following document:";
 
 	public static String Exceldata(String key) throws IOException {
 		try {
@@ -341,7 +344,7 @@ public class passData {
 			// int Library = Integer.parseInt(passData.Exceldata("Programe Library"));
 
 			if (passData.Exceldata("Programe Library").equalsIgnoreCase("true"))
-				;
+				
 			{
 				return "It appears that\n" + passData.Exceldata("Account Name") + Program_library;
 			}
@@ -351,7 +354,7 @@ public class passData {
 		}
 		return "It appears that\n" + passData.Exceldata("Account Name") + no_library;
 	}
-
+ 
 	public static String Exceldata(String key, int cell) throws IOException {
 		try {
 			Map<String, String> testdata = excelReader.getMapData(cell);
@@ -364,5 +367,8 @@ public class passData {
 		Map<String, String> testdata = excelReader.getMapData("Sheet1");
 		return testdata.get(key);
 	}
+	
+	
+
 
 }

@@ -27,7 +27,7 @@ public class ReportPrintMethods {
 		run.setFontSize(10);
 		Statsparagraph.setNumID(stylingDoc.bullet(document));
 		run.setText("They have " + passData.Exceldata("All Campaigns")+ " campaigns");
-		
+	
 		
 		Statsparagraph = document.createParagraph();
 		run = Statsparagraph.createRun();
@@ -88,7 +88,7 @@ public class ReportPrintMethods {
 			
 			r1.setFontFamily("Calibri Light (Headings)");
 			r1.setFontSize(10);
-			r1.setText(passData.Exceldata("Account Name") +"," +passData.Org_info);
+			r1.setText(passData.Exceldata("Account Name") +"," +passData.Org_prog);
 			
 			XWPFParagraph imgPara = document.createParagraph();
 			XWPFRun img = imgPara.createRun();
@@ -113,10 +113,7 @@ public class ReportPrintMethods {
 		
 	}
 
-	public static void main(String args[])
-	{
-		deleteScreen();
-	}
+	
 public static void deleteScreen()
 {
 	String filePath = System.getProperty("user.dir") + "//Config//ScreenShot";
