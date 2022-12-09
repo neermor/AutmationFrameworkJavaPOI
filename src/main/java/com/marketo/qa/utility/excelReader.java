@@ -9,16 +9,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class excelReader {
 
 	public static Map<String, String> getMapData(String sheetName) throws IOException {
 		HashMap<String, String> testData = new HashMap<String, String>();
-
+		
 		try {
 
 			String ExcelPath = System.getProperty("user.dir") + "//Config//MarketoData.xlsx";
@@ -27,8 +30,8 @@ public class excelReader {
 			try (Workbook workbook = new XSSFWorkbook(FileInputStream)) {
 				Sheet sheet = workbook.getSheet(sheetName);
 				int lastrownum = sheet.getLastRowNum();
-
-				for (int i = 1; i < lastrownum + 1; i++) {
+				
+				for (int i = 0; i<lastrownum+1; i++) {
 					Row row = sheet.getRow(i);
 
 					if (row == null) {
@@ -36,6 +39,7 @@ public class excelReader {
 						FileOutputStream fos = new FileOutputStream(file);
 						workbook.write(fos);
 					}
+
 
 					Cell Keycell = row.getCell(0, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
 					String key = getCellValue(Keycell);
@@ -55,6 +59,44 @@ public class excelReader {
 		return testData;
 
 	}
+	
+	public static Map<String, String> getMapData(int cell) throws IOException {
+		HashMap<String, String> testData = new HashMap<String, String>();
+
+		try {
+
+			String ExcelPath = System.getProperty("user.dir") + "//Config//MarketoData.xlsx";
+			FileInputStream FileInputStream = new FileInputStream(ExcelPath);
+			try (Workbook workbook = new XSSFWorkbook(FileInputStream)) {
+				Sheet sheet = workbook.getSheetAt(0);
+				int lastrownum = sheet.getLastRowNum();
+				
+				for (int i = 0; i < lastrownum+1 ; i++) {
+					Row row = sheet.getRow(i);
+
+					Cell Keycell = row.getCell(0, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
+					String key = getCellValue(Keycell);
+
+					Cell Valuecell = row.getCell(cell,Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
+					
+					String value =getCellValue(Valuecell);
+					
+					String valueformat = value.replaceAll("\\.0*$", ""); // Removing decimal value
+					testData.put(key, valueformat);
+				}
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return testData;
+
+	}
+
+	
+		
+	
 
 	public static String getCellValue(Cell cell) {
 		String CellData = null;
@@ -70,7 +112,7 @@ public class excelReader {
 			CellData = String.valueOf(cell.getBooleanCellValue());
 			break;
 		case BLANK:
-			CellData = String.valueOf(cell.getStringCellValue());
+			CellData = String.valueOf(cell.getRichStringCellValue());
 			break;
 
 		default:
@@ -90,37 +132,6 @@ public class excelReader {
 		}
 	}
 
-	public static Map<String, String> getMapData(int cell) throws IOException {
-		HashMap<String, String> testData = new HashMap<String, String>();
-
-		try {
-
-			String ExcelPath = System.getProperty("user.dir") + "//Config//MarketoData.xlsx";
-			FileInputStream FileInputStream = new FileInputStream(ExcelPath);
-			try (Workbook workbook = new XSSFWorkbook(FileInputStream)) {
-				Sheet sheet = workbook.getSheetAt(0);
-				int lastrownum = sheet.getLastRowNum();
-
-				for (int i = 1; i < lastrownum + 1; i++) {
-					Row row = sheet.getRow(i);
-
-					Cell Keycell = row.getCell(0, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
-					String key = getCellValue(Keycell);
-
-					Cell Valuecell = row.getCell(cell, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
-					String value = getCellValue(Valuecell);
-
-					String valueformat = value.replaceAll("\\.0*$", ""); // Removing decimal value
-					testData.put(key, valueformat);
-				}
-			}
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return testData;
-
-	}
+	
 
 }

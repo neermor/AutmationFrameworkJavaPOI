@@ -29,7 +29,7 @@ public class GhostLoginPage extends TestBase {
 	private By OkatSendPush = By.cssSelector("[value='Send Push']");
 	private By OkatSPushsent = By.cssSelector("[value='Push sent!']");
 	private By OktaWarning = By.cssSelector("icon warning");
-
+	
 	public WebElement GetPrfix() {
 		return driver.findElement(Prifix);
 	}

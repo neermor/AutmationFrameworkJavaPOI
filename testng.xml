@@ -8,7 +8,7 @@
         <listener class-name="com.marketo.qa.utility.AnnotationTransformer"/>
     </listeners>
 
-  <test thread-count="7" name="Test">
+  <test thread-count="8" name="Test">
     <classes> 
 
 	      <class name="com.marketo.qa.Tests.FetchCampaignCounts"/> 
