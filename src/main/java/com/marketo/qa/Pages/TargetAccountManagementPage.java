@@ -14,15 +14,38 @@ import com.marketo.qa.utility.screenshotUtility;
 public class TargetAccountManagementPage extends TestBase {
 	MyMarketoPage homepage = new MyMarketoPage();
 	private static Logger logger = LogManager.getLogger(TestBase.class);
+	CommonLib Clib = new CommonLib();
 
-	By Overview = By.xpath("//div[contains(@class,'abmDashboard') and contains(@id,'abmDashboard')]");
+	By TopNamedAccounts = By.xpath("//div[@class='x4-surface x4-box-item x4-surface-default']");
+	By NamedAccountNo = By.xpath("//label[text()='Named Accounts']/preceding-sibling::label");
+	By Pipeline = By.xpath("//label[text()='Pipeline']/preceding-sibling::label");
+	By Overview = By.xpath("//label[text()='Named Accounts']/../../../..");
+	By OpenOpportunities = By.xpath(
+			"//label[text()='Named Accounts']/../../../following-sibling::div//label[text()='Open Opportunities']/preceding-sibling::label");
+
+	public WebElement GetTopNamedAccounts() {
+		return driver.findElement(TopNamedAccounts);
+	}
 
 	public WebElement GetOverview() {
 		return driver.findElement(Overview);
 	}
 
-	public void VerifyAndFetchScreenshot(int row) throws Throwable {
-		new CommonLib().ClearExcelData("Sheet1", row);
+	public WebElement GetOpenOpportunities() {
+		return driver.findElement(OpenOpportunities);
+	}
+
+	public WebElement GetPipeline() {
+		return driver.findElement(Pipeline);
+	}
+
+	public WebElement GetNamedAccountNo() {
+		return driver.findElement(NamedAccountNo);
+	}
+
+	public void VerifyAndFetchScreenshot(int row, int NamedAccountsRow, int PipelineRow, int OpenOpportunitiesRow)
+			throws Throwable {
+		Clib.ClearExcelData("Sheet1", row);
 
 		try {
 
@@ -32,14 +55,37 @@ public class TargetAccountManagementPage extends TestBase {
 
 			Actions actions = new Actions(driver);
 			actions.sendKeys(Keys.ESCAPE).perform();
-			new CommonLib().WriteExcelData("Sheet1", row, 0, "Target Account Management");
-			new CommonLib().WriteExcelData("Sheet1", row, 1, "True");
-			new CommonLib().StandardWait(8000);
-			screenshotUtility.TakeFullPageScreenshot("Target Account Management");
+			int NamedAccounts = Integer.parseInt(GetNamedAccountNo().getText());
+			if (NamedAccounts > 0) {
+				Clib.WriteExcelData("Sheet1", row, 0, "Target Account Management");
+				Clib.WriteExcelData("Sheet1", row, 1, "True");
+				new CommonLib().WriteExcelData("Sheet1", NamedAccountsRow, 0, "Named Accounts");
+				new CommonLib().WriteExcelData("Sheet1", NamedAccountsRow, 1, NamedAccounts);
+				new CommonLib().WriteExcelData("Sheet1", PipelineRow, 0, "Pipeline");
+				new CommonLib().WriteExcelData("Sheet1", PipelineRow, 1, GetPipeline().getText());
+				new CommonLib().WriteExcelData("Sheet1", OpenOpportunitiesRow, 0, "Open Opportunities");
+				new CommonLib().WriteExcelData("Sheet1", OpenOpportunitiesRow, 1, GetOpenOpportunities().getText());
+
+				Clib.StandardWait(4000);
+				screenshotUtility.TakeScreenshot(GetTopNamedAccounts(), "Top Named Accounts");
+				screenshotUtility.TakeScreenshot(GetOverview(), "Overview");
+
+			} else {
+				new CommonLib().WriteExcelData("Sheet1", NamedAccountsRow, 0, "Named Accounts");
+				new CommonLib().WriteExcelData("Sheet1", NamedAccountsRow, 1, NamedAccounts);
+				new CommonLib().WriteExcelData("Sheet1", PipelineRow, 0, "Pipeline");
+				new CommonLib().WriteExcelData("Sheet1", PipelineRow, 1, GetPipeline().getText());
+				new CommonLib().WriteExcelData("Sheet1", OpenOpportunitiesRow, 0, "Open Opportunities");
+				new CommonLib().WriteExcelData("Sheet1", OpenOpportunitiesRow, 1, GetOpenOpportunities().getText());
+
+				Clib.WriteExcelData("Sheet1", row, 0, "Target Account Management");
+				Clib.WriteExcelData("Sheet1", row, 1, "True");
+				logger.info("Target Account Management is Zero Count");
+			}
 
 		} catch (Exception e) {
-			new CommonLib().WriteExcelData("Sheet1", row, 0, "Target Account Management");
-			new CommonLib().WriteExcelData("Sheet1", row, 1, "False");
+			Clib.WriteExcelData("Sheet1", row, 0, "Target Account Management");
+			Clib.WriteExcelData("Sheet1", row, 1, "False");
 			logger.info("Target Account Management not available");
 
 		}
