@@ -155,6 +155,8 @@ public class TestBase {
 			break;
 
 		case "Both":
+			reports.docs();
+
 			break;
 
 		default:

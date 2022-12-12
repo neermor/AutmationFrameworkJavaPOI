@@ -46,6 +46,9 @@ public class TargetAccountManagementPage extends TestBase {
 	public void VerifyAndFetchScreenshot(int row, int NamedAccountsRow, int PipelineRow, int OpenOpportunitiesRow)
 			throws Throwable {
 		Clib.ClearExcelData("Sheet1", row);
+		Clib.ClearExcelData("Sheet1", NamedAccountsRow);
+		Clib.ClearExcelData("Sheet1", PipelineRow);
+		Clib.ClearExcelData("Sheet1", OpenOpportunitiesRow);
 
 		try {
 

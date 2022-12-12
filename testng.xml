@@ -17,10 +17,8 @@
 	      <class name="com.marketo.qa.Tests.FetchLeadsCount"/>  
 	      <class name="com.marketo.qa.Tests.FetchDesignStudioData"/> 
 	      <class name="com.marketo.qa.Tests.FetchNuture_EventCount"/> 
-	           <class name="com.marketo.qa.Tests.AddOnFeature"/>
-		<class name="com.marketo.qa.Tests.FetchDataFromChangeScore"/>
-
- 
+	      <class name="com.marketo.qa.Tests.AddOnFeature"/>
+		<class name="com.marketo.qa.Tests.FetchDataFromChangeScore"/> 
       
     </classes>
   </test> <!-- Test -->  
