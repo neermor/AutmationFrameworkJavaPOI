@@ -30,7 +30,8 @@ public class docReports {
 
 		stylingDoc.bold(document);
 		FileOutputStream out = new FileOutputStream(word + passData.Exceldata("Account Name") + fileName + ".docx");
-
+		
+		
 		document.write(out);
 		out.close();
 		logger.info("Doc file is Ready for " + passData.Exceldata("Account Name"));
@@ -147,7 +148,7 @@ public class docReports {
 			Statsparagraph.setSpacingAfter(0);
 			Statsparagraph.setNumID(stylingDoc.bullet(document));
 			logger.info("Writing Snippets count in doc file.....");
-			run.setText(passData.GenricMethod(passData.Exceldata("Snippets")));
+			run.setText(passData.Exceldata("Snippets") +"\nSnippets");
 
 			Statsparagraph = document.createParagraph();
 			run = Statsparagraph.createRun();
@@ -1299,7 +1300,7 @@ public class docReports {
 					NurtureLink5.setUnderline(UnderlinePatterns.SINGLE);
 					NurtureLink5.setColor("3333cc");
 					NurtureLink5.setText(
-							"\nhttps://nation.marketo.com/t5/product-discussions/nurture-campaign-setup/td-p/124770");
+							passData.Nurturelink4);
 
 					XWPFRun NurtureLinkdata5 = NurtureLink.createRun();
 					stylingDoc.FontFamilySize(NurtureLinkdata5);
@@ -1312,8 +1313,7 @@ public class docReports {
 					stylingDoc.setNoProof(NurtureLink6);
 					NurtureLink6.setUnderline(UnderlinePatterns.SINGLE);
 					NurtureLink6.setColor("3333cc");
-					NurtureLink6.setText(
-							"\n: https://nation.marketo.com/t5/champion-program-blogs/creating-an-adaptable-scalable-nurture-program-template-in/ba-p/300442");
+					NurtureLink6.setText(passData.Nurturelink5);
 
 				} else {
 					NurtureDataRun = NurtureData.createRun();
@@ -1746,6 +1746,7 @@ public class docReports {
 				Web_PersonalizeRun.addCarriageReturn();
 				Web_PersonalizeRun.setBold(true);
 				Web_PersonalizeRun.setText("Website Personalization");
+				
 				if(TotalOrganizations>5)
 				{
 					
@@ -1778,7 +1779,7 @@ public class docReports {
 					try {
 						PersonalizeImg1.addPicture(
 								new FileInputStream(passData.FetchScreenshot("Top Campaigns_" + WorkSpaceName)),
-								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Top Campaigns_Default"),
+								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Top Campaigns_" + WorkSpaceName),
 								Units.toEMU(150), Units.toEMU(150));
 					} catch (Exception e) {
 						// TODO: handle exception
@@ -1795,7 +1796,7 @@ public class docReports {
 					try {
 						PersonalizeImg1.addPicture(
 								new FileInputStream(passData.FetchScreenshot("Top Content_" + WorkSpaceName)),
-								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Top Content_Default"),
+								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Top Content_" + WorkSpaceName),
 								Units.toEMU(150), Units.toEMU(150));
 					} catch (Exception e) {
 						// TODO: handle exception
@@ -1811,7 +1812,7 @@ public class docReports {
 					try {
 						PersonalizeImg1.addPicture(
 								new FileInputStream(passData.FetchScreenshot("Top Industries_" + WorkSpaceName)),
-								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Top Industries_Default"),
+								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Top Industries_"+ WorkSpaceName),
 								Units.toEMU(150), Units.toEMU(150));
 					} catch (Exception e) {
 						// TODO: handle exception
@@ -1826,13 +1827,10 @@ public class docReports {
 					String WorkSpaceName = passData.Exceldata("Asset Data", i);
 					try {
 						PersonalizeImg1.addPicture(
-								new FileInputStream(passData.FetchScreenshot("Top Organizations_" + WorkSpaceName)),
-								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Top Organizations_Default"),
+								new FileInputStream(passData.FetchScreenshot("Total Organizations_Top Organizations_" + WorkSpaceName)),
+								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Total Organizations_Top Organizations_"+ WorkSpaceName),
 								Units.toEMU(150), Units.toEMU(150));
-						PersonalizeImg1.addPicture(
-								new FileInputStream(passData.FetchScreenshot("Total Organizations_" + WorkSpaceName)),
-								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Total Organizations_Default"),
-								Units.toEMU(150), Units.toEMU(150));
+						
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
@@ -1916,14 +1914,14 @@ public class docReports {
 				OverviewRun.addBreak();
 				OverviewRun.addBreak();
 				try {
-					OverviewRun.addPicture(new FileInputStream(passData.FetchScreenshot("Target Account Management")),
-							Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Target Account Management").toString(),
+					OverviewRun.addPicture(new FileInputStream(passData.FetchScreenshot("Overview")),
+							Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Overview").toString(),
 							Units.toEMU(470), Units.toEMU(110));
 					OverviewRun.addBreak();
 					OverviewRun.setText("Top Named Accounts (by Pipeline)");
 					OverviewRun.addBreak();
-					OverviewRun.addPicture(new FileInputStream(passData.FetchScreenshot("Target Account Management")),
-							Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Target Account Management").toString(),
+					OverviewRun.addPicture(new FileInputStream(passData.FetchScreenshot("Top Named Accounts")),
+							Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Top Named Accounts").toString(),
 							Units.toEMU(470), Units.toEMU(280));
 				} catch (Exception e) {
 					logger.warn("Test is skipped so user dont have images to print\n");

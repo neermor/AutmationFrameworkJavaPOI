@@ -34,11 +34,11 @@ public class ARStringData {
 	static String NoIntegration="The client has no integrations set up. Here is a starting point for them on some common Marketo Partners and step-by-step instructions"
 			+ " on installing each one: https://docs.marketo.com/display/public/DOCS/LaunchPoint+Event+Partners.";
 	
-	static String NoModel =" has not built out any Revenue Cycle Models in their instance yet. Models are generally for customers who are comfortable with smart"
+	static String NoModel ="\nhas not built out any Revenue Cycle Models in their instance yet. Models are generally for customers who are comfortable with smart"
 			+ " campaigns and programs and want to take their analytics to the next level. If they would like to learn more about Revenue Cycle Models you can"
 			+ " share the Revenue Model resources found below.";
 	
-	static String ModelsImprovment="has built 1 Revenue Cycle Models that is a draft. Models are generally for customers who are comfortable with smart campaigns "
+	static String ModelsImprovment="\nhas built 1 Revenue Cycle Models that is a draft. Models are generally for customers who are comfortable with smart campaigns "
 			+ "and programs and want to take their analytics to the next level. If they would like to learn more about Revenue Cycle Models you can share the Revenue"
 			+ " Model resources found below.";
 	
@@ -54,7 +54,7 @@ public class ARStringData {
 	static String NoTAM ="The client has no TAM set up. Here is a starting point for them on some common Marketo Partners and step-by-step instructions on installing each one:\r\n"
 			+ "http://docs.marketo.com/display/public/DOCS/Account+Based+Marketing+Overview ";
 	
-	static String PredictiveContent="They have Predictive Content but nothing is built out in it.Here’s a good starting point document for them:"
+	static String PredictiveContentImprovment="They have Predictive Content but nothing is built out in it.Here’s a good starting point document for them:"
 			+ " https://docs.marketo.com/pages/releaseview.action?pageId=11385032";
 	
 	static String NoPredictiveContent="The client has no Predictive Content set up. Here is a starting point for them on some common Marketo Partners and step-by-step instructions on installing each one:\r\n"

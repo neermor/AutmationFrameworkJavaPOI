@@ -169,7 +169,7 @@ public class stylingDoc {
 	 {
 	 
 		 paragraph = docx.createParagraph();
-		 run = paragraph.createHyperlinkRun("https://stackoverflow.com/");
+		 run = paragraph.createHyperlinkRun("");
 		 paragraph.setSpacingAfter(0);
 		 run.setUnderline(UnderlinePatterns.SINGLE);
 		 run.setColor("0000FF");
@@ -187,16 +187,16 @@ public class stylingDoc {
 	// Using bellow method bold the particular data
 	 public static void bold(XWPFDocument document) throws IOException
 		{
-			String[] keywords = new String[] {String.valueOf(passData.Exceldata("All Campaigns")),String.valueOf(passData.Exceldata("Active campaigns")), 
-					String.valueOf(passData.Exceldata("Landing Pages")),String.valueOf(passData.Exceldata("Active Triggered Campaigns")),
+			String[] keywords = new String[] {String.format(passData.Exceldata("Account Name")),String.valueOf(passData.Exceldata("Total WorkSpace")),String.valueOf(passData.Exceldata("All Campaigns")),String.valueOf(passData.Exceldata("Active campaigns")), 
+					String.valueOf(passData.Exceldata("Landing Pages")),String.valueOf(passData.Exceldata("Active Triggered Campaigns")),String.valueOf(passData.Exceldata("Change Score")),
 					String.valueOf(passData.Exceldata("Forms")),String.valueOf(passData.Exceldata("Triggered campaigns")),String.valueOf(passData.Exceldata("Landing Pages")),
-					"Not","not",String.valueOf(passData.Exceldata("Snippets")),String.valueOf(passData.Exceldata("Emails")),
+					String.valueOf(passData.Exceldata("Snippets")),String.valueOf(passData.Exceldata("Emails")),
 					String.valueOf(passData.Exceldata("Active Campaigns")),String.valueOf(passData.Exceldata("model")),String.valueOf(passData.Exceldata("Lead")),
 					String.valueOf(passData.Exceldata("Change Data Value")),String.valueOf(passData.Exceldata("Event Programs")),String.valueOf(passData.Exceldata("Nurture campaigns")),
 					String.valueOf(passData.Exceldata("Segment Data")),String.valueOf(passData.Exceldata("Library")),String.valueOf(passData.Exceldata("Integrations")),
-					String.valueOf(passData.Exceldata("All Batch Campaigns")),String.valueOf(passData.Exceldata("All Triggered Campaigns")),
-					String.valueOf(passData.Exceldata("Models")),String.valueOf(passData.Exceldata("Leads")),String.valueOf(passData.Exceldata("Tags")),String.valueOf(passData.Exceldata("Account Name")),String.valueOf("null"),
-					String.valueOf(passData.Exceldata("Account Name")),String.valueOf(passData.Exceldata("Batch Campaigns - Repeating Schedule")),String.valueOf(passData.Exceldata("All People"))};
+					String.valueOf(passData.Exceldata("All Batch Campaigns")),String.valueOf(passData.Exceldata("All Triggered Campaigns")),String.valueOf(passData.Exceldata("Account Name")),
+					String.valueOf(passData.Exceldata("Models")),String.valueOf(passData.Exceldata("Leads")),String.valueOf(passData.Exceldata("Tags")),String.valueOf(passData.Exceldata("Account Name")),
+					String.valueOf(passData.Exceldata("Batch Campaigns - Repeating Schedule")),String.valueOf(passData.Exceldata("All People"))};
 		
 			Map<String, String> formats = new HashMap<String, String>();
 			formats.put("bold", "true");
@@ -209,6 +209,9 @@ public class stylingDoc {
 					WordFormatWords.formatWord(AllParagraph, keyword, formats);
 				}}
 			}
+	 
+	 
+	
 	 
 	 private static String getCurrentDate(String format) 
 		{

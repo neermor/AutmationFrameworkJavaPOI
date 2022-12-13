@@ -25,7 +25,7 @@ import java.util.*;
 		 
 	  int runNumber = 0;
 	  while (runNumber < paragraph.getRuns().size()) { //go through all runs, we cannot use for each since we will possibly insert new runs
-	   XWPFRun run = paragraph.getRuns().get(runNumber);
+	   XWPFRun run = paragraph.getRuns().get(0);
 	   XWPFRun run2 = run;
 	   String runText = run.getText(0);
 	   if (runText != null && runText.contains(keyword)) { //if we have a run with keyword in it, then
