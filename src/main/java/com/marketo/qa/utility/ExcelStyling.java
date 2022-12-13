@@ -34,20 +34,14 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import java.io.IOException;
 
-
-
-
-
-
-
 public class ExcelStyling {
 	
 	
 	static String ExcelPath = System.getProperty("user.dir") + "//Reports//";
 	static String fileName = new SimpleDateFormat("dd_MM_yy_HH_mm").format(new Date());
 
-	
-	public static void WriteExcel(Workbook workbook,XSSFSheet sheet ,int row, int col, String colorCode, String value,int height) throws DecoderException {
+	XSSFRow myRow = null;
+	public static void WriteExcel(Workbook workbook,XSSFSheet sheet ,int row, int col, String colorCode, String value,int height) throws DecoderException ,Exception {
 		XSSFCellStyle cellStyle = (XSSFCellStyle) workbook.createCellStyle();
 		Font headerFont = workbook.createFont();
 		byte[] rgbB = Hex.decodeHex(colorCode); // get byte array from hex string
@@ -61,7 +55,7 @@ public class ExcelStyling {
         headerFont.setBold(true);
         headerFont.setFontHeightInPoints((short) height);
 	    XSSFRow myRow = sheet.getRow(row);
-	     
+	    
 	    if (myRow == null)
 	        myRow = sheet.createRow(row);
 	    
@@ -71,10 +65,10 @@ public class ExcelStyling {
 	    myCell.setCellValue(value);
 	}
 
-	public static void WriteExcel(Workbook workbook,XSSFSheet sheet ,int row, int col, int value) {
+	public static void WriteExcel(Workbook workbook,XSSFSheet sheet ,int row, int col, int value) throws Exception {
 		
-
-	    XSSFRow myRow = sheet.getRow(row);
+		XSSFRow	myRow=null;
+	     myRow = sheet.getRow(row);
 
 	    if (myRow == null)
 	        myRow = sheet.createRow(row);
@@ -130,9 +124,10 @@ public class ExcelStyling {
 
 	        
 	
-	public static CellStyle createColorWithtext(Workbook workbook,int rownum,int cellno,XSSFSheet sheet,String text,String rgbS) throws DecoderException {
+	public static CellStyle createColorWithtext(Workbook workbook,int rownum,int cellno,XSSFSheet sheet,String text,String rgbS) throws DecoderException , Exception {
 	      //  CellStyle style = workbook.createCellStyle();
 	        XSSFCellStyle cellStyle = (XSSFCellStyle) workbook.createCellStyle();
+	        
 	        Row row = sheet.createRow(rownum); 
 	        
 	        
@@ -152,7 +147,7 @@ public class ExcelStyling {
 	    
 	    
 
-	public static void setMerge(Workbook workbook,XSSFSheet sheet, int numRow, int untilRow, int numCol, int untilCol) {
+	public static void setMerge(Workbook workbook,XSSFSheet sheet, int numRow, int untilRow, int numCol, int untilCol) throws Exception {
 		XSSFCellStyle cellStyle = (XSSFCellStyle) workbook.createCellStyle();
 		 
 		XSSFRow row = sheet.createRow(2);
@@ -170,7 +165,7 @@ public class ExcelStyling {
 	}
 
 	
-	public static void mergeAndCenter(Workbook workbook,XSSFSheet sheet,String rgbS ,String text, int firstRow, int lastRow, int firstCol, int lastCol,boolean value,int fontHeight) throws DecoderException {
+	public static void mergeAndCenter(Workbook workbook,XSSFSheet sheet,String rgbS ,String text, int firstRow, int lastRow, int firstCol, int lastCol,boolean value,int fontHeight) throws DecoderException ,Exception{
 	   
 		XSSFCellStyle cellStyle = (XSSFCellStyle) workbook.createCellStyle();
 		XSSFFont font = (XSSFFont) workbook.createFont();
@@ -224,7 +219,7 @@ public class ExcelStyling {
 
 		
 		Picture pict = drawing.createPicture(anchor, pictureIdx);
-		double scale = 0.6;
+		double scale = 0.8;
 		//Reset the image to the original size
 		pict.resize();
 		if (scale < 1) {
@@ -235,7 +230,7 @@ public class ExcelStyling {
 		
 	}
 	
-	public static void WriteExcel(Workbook workbook,XSSFSheet sheet ,int row, int col,String value,int height)  {
+	public static void WriteExcel(Workbook workbook,XSSFSheet sheet ,int row, int col,String value,int height) throws Exception  {
 		XSSFCellStyle cellStyle = (XSSFCellStyle) workbook.createCellStyle();
 		Font headerFont = workbook.createFont();
 		 
@@ -244,7 +239,8 @@ public class ExcelStyling {
        cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
         cellStyle.setWrapText(true);
         headerFont.setFontHeightInPoints((short) height);
-	    XSSFRow myRow = sheet.getRow(row);
+        XSSFRow	myRow=null;
+	     myRow = sheet.getRow(row);
 	     
 	    if (myRow == null)
 	        myRow = sheet.createRow(row);
@@ -257,7 +253,7 @@ public class ExcelStyling {
 	}
 	
 
-	public static void WriteExcel(Workbook workbook,XSSFSheet sheet ,int row, int col,int value,int height)  {
+	public static void WriteExcel(Workbook workbook,XSSFSheet sheet ,int row, int col,int value,int height) throws Exception  {
 		XSSFCellStyle cellStyle = (XSSFCellStyle) workbook.createCellStyle();
 		Font headerFont = workbook.createFont();
 		
@@ -267,7 +263,8 @@ public class ExcelStyling {
         cellStyle.setWrapText(true);
        
         headerFont.setFontHeightInPoints((short) height);
-	    XSSFRow myRow = sheet.getRow(row);
+        XSSFRow	myRow=null;
+	     myRow = sheet.getRow(row);
 	     
 	    if (myRow == null)
 	        myRow = sheet.createRow(row);

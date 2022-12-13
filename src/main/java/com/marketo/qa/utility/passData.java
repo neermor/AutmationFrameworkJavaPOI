@@ -99,7 +99,9 @@ public class passData {
 
 	static String No_Nurture = "\ndoes not have any Nurture campaigns set up in their instance. There are two types of Content you can add to engagement"
 			+ " program streams — emails and programs. Emails will be sent to leads at cast time. Marketo's smart streams also offer: ";
-
+	static String Nurturelink4 = "\nhttps://nation.marketo.com/t5/product-discussions/nurture-campaign-setup/td-p/124770";
+	static String Nurturelink5 = "\nhttps://nation.marketo.com/t5/champion-program-blogs/creating-an-adaptable-scalable-nurture-program-template-in/ba-p/300442";
+	
 	// Segments
 	static String no_segment = "\nClient does not have any segments defined. Segmentation categorizes your audience into different subgroups"
 			+ " based on a Smart List rule. These groups are called segments. Segments allow the marketer to target leads based on the segment"
@@ -209,6 +211,7 @@ public class passData {
 			+ "";
 	static String No_PredictiveContent ="The client does not have Predictive Content. If they are interested in learning more about this add-on you can provide them with the following document:";
 
+	
 	public static String Exceldata(String key) throws IOException {
 		try {
 			Map<String, String> testdata = excelReader.getMapData("Sheet1");

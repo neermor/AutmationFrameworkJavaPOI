@@ -25,8 +25,11 @@ public class converting {
 	static int ScheduledBatchCampaigns = 0;
 	static int Integration=0;
 	static int DataManagement=0;
-	
-
+	static int TotalContent=0;
+	static int TotalOrganizations=0;
+	static int NamedAccounts=0;
+	static int Pipeline=0;
+	static int OpenOpportunities=0;
 	public static void localtest() throws NumberFormatException, IOException {
 		try {
 		AllCampaigns = Integer.parseInt(passData.Exceldata("All Campaigns"));
@@ -69,6 +72,17 @@ public class converting {
 		DataManagement = Integer.parseInt(passData.Exceldata("Change Data Value"));
 		
 		ScheduledBatchCampaigns = Integer.parseInt(passData.Exceldata("Batch Campaigns - Repeating Schedule"));
+		
+		TotalContent= Integer.parseInt(passData.Exceldata("Total Content"));
+		
+		TotalOrganizations= Integer.parseInt(passData.Exceldata("Total Organizations"));
+		
+		NamedAccounts= Integer.parseInt(passData.Exceldata("Named Accounts"));
+		
+		Pipeline= Integer.parseInt(passData.Exceldata("Pipeline"));
+		
+		OpenOpportunities= Integer.parseInt(passData.Exceldata("Open Opportunities"));
+		
 		}
 		catch (Exception e) {
 			// TODO: handle exception

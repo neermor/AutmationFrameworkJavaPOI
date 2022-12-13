@@ -23,6 +23,7 @@ import com.marketo.qa.FileLib.CommonLib;
 import com.marketo.qa.Pages.GhostLoginPage;
 import com.marketo.qa.Pages.LoginPage;
 import com.marketo.qa.Pages.MyMarketoPage;
+import com.marketo.qa.utility.ExcelARReport;
 import com.marketo.qa.utility.reports;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -80,10 +81,11 @@ public class TestBase {
 		logger.info(browserName + " Browser launch");
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		driver.manage().deleteAllCookies();
-		driver.get(prop.getProperty("url"));
+		//driver.manage().deleteAllCookies();
+		driver.get(prop.getProperty("ghosturl"));
 		new GhostLoginPage().verifyLoginPage();
-		Login();
+		GhostLogin();
+		//Login();
 	}
 
 	public static void OpenSupportTool() {
@@ -152,17 +154,18 @@ public class TestBase {
 			break;
 
 		case "AR":
+			ExcelARReport.ARReport();
 			break;
 
 		case "Both":
 			reports.docs();
-
+			ExcelARReport.ARReport();
 			break;
 
 		default:
 			break;
 		}
-
+		
 		driver.quit();
 		System.out.println("Execution Over");
 
