@@ -90,7 +90,6 @@ public class TargetAccountManagementPage extends TestBase {
 			Clib.WriteExcelData("Sheet1", row, 0, "Target Account Management");
 			Clib.WriteExcelData("Sheet1", row, 1, "False");
 			logger.info("Target Account Management not available");
-
 		}
 
 	}

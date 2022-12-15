@@ -1,5 +1,7 @@
 package com.marketo.qa.Pages;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -20,6 +22,7 @@ public class AdminPage extends TestBase {
 	By Table = By.cssSelector(
 			"[class='x-panel-body x-panel-body-noheader x-panel-body-noborder'] div div div + [class='x-grid3-scroller'] [class='x-grid3-body']");
 	By ChannelTag = By.xpath("//span [text()='Channel']/preceding-sibling:: img");
+	By ChannelCount = By.xpath("//span[text()='Channel']/../../../../../../../..//div/table/tbody/tr");
 	By Iframe = By.cssSelector("#mlm");
 	By TagCount = By.xpath("//span[text()='Channel']/../../../following-sibling:: td //div[@class='undefined'] /span");
 	By IntegrationTag = By.xpath(
@@ -101,6 +104,12 @@ public class AdminPage extends TestBase {
 		return driver.findElement(InstalledService);
 	}
 
+	public int GetChannelCount() {
+		List<WebElement> ChannelCount = driver
+				.findElements(By.xpath("//span[text()='Channel']/../../../../../../../..//div/table/tbody/tr"));
+		return ChannelCount.size() - 1;
+	}
+
 	public void switchFrame() throws Throwable {
 		driver.switchTo().defaultContent();
 		driver.switchTo().frame(GetIFrame());
@@ -116,7 +125,7 @@ public class AdminPage extends TestBase {
 
 	}
 
-	public void TagsCountAndScreenshot(String tags, int row) throws Throwable {
+	public void TagsCountAndScreenshot(String tags, int row, int row1) throws Throwable {
 		new CommonLib().ClearExcelData("Sheet1", row);
 		new CommonLib().StandardWait(4000);
 		GetTags().click();
@@ -125,6 +134,8 @@ public class AdminPage extends TestBase {
 		logger.info("Click Tags Screenshots");
 		new CommonLib().WriteExcelData("Sheet1", row, 0, tags);
 		new CommonLib().WriteExcelData("Sheet1", row, 1, GetTagCount().getText());
+		new CommonLib().WriteExcelData("Sheet1", row1, 0, "Channels");
+		new CommonLib().WriteExcelData("Sheet1", row1, 1, GetChannelCount());
 		logger.info("Read Tags Count");
 
 	}
@@ -132,8 +143,8 @@ public class AdminPage extends TestBase {
 	public void OpenLunchPoint(int row) throws Throwable {
 		new CommonLib().ClearExcelData("Sheet1", row);
 
-		GetLunchPoint().click();
 		try {
+			GetLunchPoint().click();
 			driver.findElement(By.xpath("//span[text()='No services configured']")).isDisplayed();
 			logger.info("Integration not available");
 

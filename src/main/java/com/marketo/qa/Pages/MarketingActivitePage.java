@@ -217,6 +217,7 @@ public class MarketingActivitePage extends TestBase {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			WebElement element = driver.findElement(By.xpath("//div[@data-id='globalTreeDrawerExpanderContent']"));
 			js.executeScript("arguments[0].setAttribute('style', 'width: 900px;')", element);
+			Clib.StandardWait(2000);
 			screenshotUtility.TakeScreenshot(GetTemplate(), "Template");
 			js.executeScript("arguments[0].setAttribute('style', 'width: 310px;')", element);
 
@@ -239,7 +240,7 @@ public class MarketingActivitePage extends TestBase {
 
 	}
 
-	public void GetEventCount(int row) throws Exception {
+	public void GetEventCount(int row) throws Throwable {
 		ClickResetButtonIfActive();
 		Clib.WaitForElementToLoad(driver, 60, GetEventFilter());
 		GetEventFilter().click();
@@ -251,6 +252,7 @@ public class MarketingActivitePage extends TestBase {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			WebElement element = driver.findElement(By.xpath("//div[@data-id='globalTreeDrawerExpanderContent']"));
 			js.executeScript("arguments[0].setAttribute('style', 'width: 900px;')", element);
+			Clib.StandardWait(2000);
 			screenshotUtility.TakeScreenshot(GetMAO(), "Event");
 			ClickResetButtonIfActive();
 			js.executeScript("arguments[0].setAttribute('style', 'width: 310px;')", element);
@@ -276,8 +278,10 @@ public class MarketingActivitePage extends TestBase {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			WebElement element = driver.findElement(By.xpath("//div[@data-id='globalTreeDrawerExpanderContent']"));
 			js.executeScript("arguments[0].setAttribute('style', 'width: 900px;')", element);
+			Clib.StandardWait(2000);
 			screenshotUtility.TakeScreenshot(GetMAO(), "Nurture campaigns");
 			ClickResetButtonIfActive();
+
 			js.executeScript("arguments[0].setAttribute('style', 'width: 310px;')", element);
 
 		} catch (Exception e) {
