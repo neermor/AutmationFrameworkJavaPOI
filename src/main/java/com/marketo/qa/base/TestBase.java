@@ -42,7 +42,9 @@ public class TestBase {
 			fis = new FileInputStream(System.getProperty("user.dir") + "//Config//data.properties");
 			prop.load(fis);
 		} catch (FileNotFoundException e) {
+			
 			// TODO Auto-generated catch block
+			logger.info(" Data.Properties not fount");
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -81,11 +83,10 @@ public class TestBase {
 		logger.info(browserName + " Browser launch");
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		//driver.manage().deleteAllCookies();
+		driver.manage().deleteAllCookies();
 		driver.get(prop.getProperty("ghosturl"));
 		new GhostLoginPage().verifyLoginPage();
 		GhostLogin();
-		//Login();
 	}
 
 	public static void OpenSupportTool() {
@@ -98,6 +99,10 @@ public class TestBase {
 	public static void GhostLogin() throws Throwable {
 		new GhostLoginPage().GhostLogin(prop.getProperty("prefix"), prop.getProperty("ghostpwd"),
 				prop.getProperty("id"));
+	}
+
+	public static void GLogin() throws Throwable {
+		new GhostLoginPage().GLogin(prop.getProperty("prefix"), prop.getProperty("ghostpwd"), prop.getProperty("id"));
 	}
 
 	public static void Login() throws Throwable {
@@ -165,10 +170,9 @@ public class TestBase {
 		default:
 			break;
 		}
-		
+
 		driver.quit();
 		System.out.println("Execution Over");
 
 	}
-
 }

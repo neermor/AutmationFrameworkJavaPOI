@@ -3,6 +3,9 @@ package com.marketo.qa.utility;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -12,7 +15,7 @@ public class ExcelARReport extends converting {
 
 	static String ExcelPath = System.getProperty("user.dir") + "//Reports//";
 	static String fileName = new SimpleDateFormat("dd_MM_yy_HH_mm").format(new Date());
-
+	private static final Logger logger = LogManager.getLogger(ExcelARReport.class);
 	public static void ARReport() throws Exception {
 		
 		converting.localtest();
@@ -21,7 +24,7 @@ public class ExcelARReport extends converting {
 		String report = System.getProperty("user.dir") + "//Reports//" + passData.Exceldata("Account Name") + "_"
 				+ fileName + ".xlsx";
 		// FileInputStream FileInputStream = new FileInputStream(report);
-
+		logger.info("Creating blank templet");
 		// Create a blank sheet
 		XSSFWorkbook workbookinput = new XSSFWorkbook(AR);
 		XSSFWorkbook workbookoutput = workbookinput;
@@ -32,21 +35,24 @@ public class ExcelARReport extends converting {
 		XSSFSheet AR_Data_Point2 = workbookoutput.getSheet("AR Data Points 2");
 
 		// Adding prefix name
+		logger.info("Adding Prifix in account");
 		ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point1, 1, 1, "FFFFFF", "Requested By CSM", 11);
 		// adjusting column width for workspace
 
 		AR_Data_Point1.setColumnWidth(3 + WorkSpace_count, 25 * 256);
 		AR_Data_Point1.setColumnWidth(5 + WorkSpace_count, 25 * 1000);
-
+		logger.info("Seting column width");
 		// inserting tag Images
 		int row = 47;
 		for (int i = 1; i <= 1; i++) {
 
 			try {
-				ExcelStyling.pestImg(workbookoutput, AR_Data_Point1, 2, row, passData.FetchScreenshot("Tags" + i));
+				logger.info("Printing Tag screenshot");
+				ExcelStyling.pestImg(workbookoutput, AR_Data_Point1, 2, row, passData.FetchScreenshot("Tags" + i),0.6);
 				row = row + 22;
 
 			} catch (Exception e) {
+				logger.info("Image not available");
 				// TODO: handle exception
 			}
 
@@ -54,7 +60,7 @@ public class ExcelARReport extends converting {
 
 		// printing data in sheet
 		if (WorkSpace_count >= 1) {
-			
+			logger.info("Seting templete according to Workspace count");
 				AR_Data_Point1.shiftColumns(3, 9, WorkSpace_count);
 
 				// Printing the Heading
@@ -68,6 +74,7 @@ public class ExcelARReport extends converting {
 				}
 				catch (Exception e) {
 					// TODO: handle exception
+					logger.warn("not able to merge and print account prifix");
 				}
 				int coll = 3;
 				int j = 2;
@@ -75,7 +82,7 @@ public class ExcelARReport extends converting {
 
 				// Printing workspaces names
 				for (int i = 1; i <= WorkSpace_count; i++) {
-					
+					logger.info("Printing workspaces");
 						ExcelStyling.mergeAndCenter(workbookoutput, AR_Data_Point1, "D662FC", "AR Data Points", 1, 2, 2,
 								3 + WorkSpace_count, true, 25);
 
@@ -107,7 +114,7 @@ public class ExcelARReport extends converting {
 				coll = 3;
 				// k =7;
 				for (int i = 1; i <= WorkSpace_count; i++) {
-
+					logger.info("Printing Campaign data in coll"+coll);
 					try {
 					//	int AllCampaigns = Integer.parseInt(passData.Exceldata("All Campaigns", j++));
 						ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point1, 7, coll++, passData.Exceldata("All Campaigns", j++), 12);
@@ -261,6 +268,8 @@ public class ExcelARReport extends converting {
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
+				
+				
 
 				// Totals of Campaigns
 				try {
@@ -269,11 +278,12 @@ public class ExcelARReport extends converting {
 					// TODO: handle exception
 				}
 				try {
-					ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point1, 8, 3 + WorkSpace_count, passData.Exceldata("All Batch Campaigns"),
+					ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point1, 8, 3 + WorkSpace_count, passData.Exceldata("Active Campaigns"),
 							12);
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
+				
 				try {
 					ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point1, 9, 3 + WorkSpace_count,
 							passData.Exceldata("All Triggered Campaigns"), 12);
@@ -299,6 +309,13 @@ public class ExcelARReport extends converting {
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
+				try {
+					ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point1, 13, 3 + WorkSpace_count, passData.Exceldata("Scheduled Batch Campaigns"),
+							12);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+
 				// printing Asset Data totals for multiple workspaces
 				try {
 					ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point1, 18, 3 + WorkSpace_count, passData.Exceldata("Landing Pages"), 12);
@@ -436,6 +453,8 @@ public class ExcelARReport extends converting {
 		workbookoutput.getCreationHelper().createFormulaEvaluator().evaluateAll();
 		FileOutputStream out = new FileOutputStream(report);
 		workbookoutput.write(out);
+		logger.info("Printing done in AR Data Sheet 1 and 2");
+		logger.info("AR report ready for view can view in Report folder");
 		out.close();
 		
 
@@ -443,299 +462,28 @@ public class ExcelARReport extends converting {
 
 	public static void ArDataPoint2(XSSFSheet AR_Data_Point2, XSSFWorkbook workbookoutput) throws Exception {
 		try {
-			int InterestingMoment = Integer.parseInt(passData.Exceldata("Interesting Moment"));
 
-			if (InterestingMoment == 0) {
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 6, 3, InterestingMoment, 12);
-
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 6, 4, ARStringData.Intresting_moment, 12);
-
-			} else {
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 6, 3, InterestingMoment, 12);
-				try {
-					ExcelStyling.pestImg(workbookoutput, AR_Data_Point2, 11, 5,
-							passData.FetchScreenshot("Interesting Moment"));
-
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-			}
-
+			
+			ARDataPoint2.IntrestingMomentAR(AR_Data_Point2, workbookoutput);
 			// Lead scoring section
-			int lead = Integer.parseInt(passData.Exceldata("Change Score"));
-
-			ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 20, 3, lead, 12);
-
-			if (lead == 0) {
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 20, 6, ARStringData.No_lead, 12);
-
-			} else if (lead <= 5) {
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 20, 8, ARStringData.No_leadImprovement, 12);
-			}
-
-			// printing EventCampion data
-			int EventCampion = Integer.parseInt(passData.Exceldata("Event Programs"));
-
-			if (EventCampion == 0) {
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 37, 5,
-						passData.Exceldata("Account Name") + ARStringData.No_EventCampions, 12);
-
-			} else if (EventCampion <= 1) {
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 37, 7,
-						passData.Exceldata("Account Name") + ARStringData.EventCampionsImprovment, 12);
-
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 37, 3, "yes", 14);
-				try {
-					ExcelStyling.pestImg(workbookoutput, AR_Data_Point2, 11, 36, passData.FetchScreenshot("Event"));
-
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-			} else {
-
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 37, 3, "yes", 14);
-
-				try {
-					ExcelStyling.pestImg(workbookoutput, AR_Data_Point2, 11, 36, passData.FetchScreenshot("Event"));
-
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-			}
-
+			ARDataPoint2.leadAR( AR_Data_Point2,  workbookoutput);
+			ARDataPoint2.EventCampionAR(AR_Data_Point2, workbookoutput);
 			// printing Nurture data
-			int NurtureCampaigns = Integer.parseInt(passData.Exceldata("Nurture campaigns"));
-
-			if (NurtureCampaigns == 0) {
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 47, 5,
-						passData.Exceldata("Account Name") + ARStringData.NoNurtureCampaigns, 12);
-
-			} else if (NurtureCampaigns <= 1) {
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 47, 7,
-						passData.Exceldata("Account Name") + ARStringData.NurtureCampaignsImprovment, 12);
-
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 47, 3, "yes", 14);
-				try {
-					ExcelStyling.pestImg(workbookoutput, AR_Data_Point2, 11, 46,
-							passData.FetchScreenshot("Nurture campaigns"));
-
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-
-			} else {
-
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 47, 3, "yes", 14);
-				try {
-					ExcelStyling.pestImg(workbookoutput, AR_Data_Point2, 11, 46,
-							passData.FetchScreenshot("Nurture campaigns"));
-
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-
-			}
-
-			// printing Segmentation data
-
-			int Segmentation = Integer.parseInt(passData.Exceldata("Segmentations"));
-
-			if (Segmentation == 0) {
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 58, 5,
-						passData.Exceldata("Account Name") + ARStringData.NoSegmentation, 12);
-
-			} else {
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 58, 3, "Yes", 12);
-			}
-			int coll = 9;
-			for (int i = 1; i < 3; i++)
-				try {
-					ExcelStyling.pestImg(workbookoutput, AR_Data_Point2, coll, 58,
-							passData.FetchScreenshot("Segmentations" + i));
-					coll = coll + 3;
-
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-
+			ARDataPoint2.SegmentationAR(AR_Data_Point2, workbookoutput);
+			// Printing Nurture Library
+			ARDataPoint2.NurtureCampaigns(AR_Data_Point2, workbookoutput);
 			// Printing Program Library
-
-			String ProgrameLibrary = passData.Exceldata("Programe Library");
-
-			if (ProgrameLibrary.equalsIgnoreCase("true")) {
-
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 72, 3, "Yes", 12);
-
-			} else {
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 72, 5, ARStringData.NoProgrameLibrary, 12);
-
-			}
-
-			// Printing Data Management
-
-			// String DataManagement=passData.Exceldata("Change Data Value");
-
-			if (DataManagement > 0) {
-
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 80, 3, "Yes", 12);
-
-			} else {
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 80, 5,
-						passData.Exceldata("Account Name") + ARStringData.NoDataManagement, 12);
-
-			}
-
+			ARDataPoint2.ProgrameLibraryAR(AR_Data_Point2, workbookoutput);
+			// Printing ProgramData 
+			ARDataPoint2.ProgramDataAR(AR_Data_Point2, workbookoutput);
 			// Printing integrations
-
-			// int integrations=passData.Exceldata("Integration");
-
-			if (Integration > 0) {
-
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 92, 3, "Yes", 12);
-				try {
-					ExcelStyling.pestImg(workbookoutput, AR_Data_Point2, 10, 90,
-							passData.FetchScreenshot("Integration"));
-
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-
-			} else {
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 92, 5, ARStringData.NoIntegration, 12);
-
-			}
-
+			ARDataPoint2.IntegrationAR(AR_Data_Point2, workbookoutput);
 			// printing Revenue Models
-			int RevenueModels = Integer.parseInt(passData.Exceldata("Models"));
 
-			if (RevenueModels == 0) {
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 98, 5,
-						passData.Exceldata("Account Name") + ARStringData.NoModel, 12);
+			ARDataPoint2.RevenueModelsAR(AR_Data_Point2, workbookoutput);
+			ARDataPoint2.AddtionalProductAR(AR_Data_Point2, workbookoutput);
+			
 
-			} else if (RevenueModels <= 1) {
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 98, 7,
-						passData.Exceldata("Account Name") + ARStringData.ModelsImprovment, 12);
-
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 98, 3, "yes", 14);
-			} else {
-
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 98, 3, "yes", 14);
-			}
-			int WPCount = Integer.parseInt(passData.Exceldata("Total WorkSpace"));
-			int j = 1;
-
-			for (int i = 1; i <= WPCount; i++) {
-				String data = "Approved Models" + j++;
-				try {
-					ExcelStyling.pestImg(workbookoutput, AR_Data_Point2, coll, 98,
-							passData.FetchScreenshot(passData.Exceldata(data, 2)));
-					coll = coll + 3;
-
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-
-				int ModelsCount = Integer.parseInt(passData.Exceldata(data));
-				ModelsCount = ModelsCount + 3;
-				coll = 11;
-				for (int k = 3; k <= ModelsCount; k++) {
-					try {
-
-						ExcelStyling.pestImg(workbookoutput, AR_Data_Point2, coll, 102,
-								passData.FetchScreenshotForApprovedModels(passData.Exceldata(data, k)));
-						coll = coll + 7;
-					} catch (Exception e) {
-						// TODO: handle exception
-					}
-
-				}
-			}
-
-			// Additional Product WebPersonalization
-			if (passData.Exceldata("Web Personalization").equalsIgnoreCase("true")) {
-
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 110, 3, "Yes", 12);
-
-				try {
-					ExcelStyling.pestImg(workbookoutput, AR_Data_Point2, 2, 120,
-							passData.FetchScreenshot("Top Campaigns_Default"));
-					ExcelStyling.pestImg(workbookoutput, AR_Data_Point2, 5, 120,
-							passData.FetchScreenshot("Top Content_Default"));
-					ExcelStyling.pestImg(workbookoutput, AR_Data_Point2, 8, 120,
-							passData.FetchScreenshot("Top Industries_Default"));
-					ExcelStyling.pestImg(workbookoutput, AR_Data_Point2, 7, 130,
-							passData.FetchScreenshot("Total Organizations_Top OrganizationsDefault"));
-
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				if (TotalOrganizations <= 5) {
-					ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 110, 7,
-							ARStringData.WebPersonalizationImprovment, 12);
-
-				}
-
-			} else if (passData.Exceldata("Web Personalization").equalsIgnoreCase("false")) {
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 110, 5, ARStringData.NoWebPersonalization, 12);
-			}
-
-			// TAM data printing
-
-			String TAM = passData.Exceldata("Target Account Management");
-
-			if (TAM.equalsIgnoreCase("true")) {
-
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 112, 3, "Yes", 12);
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 141, 4, NamedAccounts, 12);
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 143, 4, OpenOpportunities, 12);
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 145, 4, Pipeline, 12);
-
-				try {
-					ExcelStyling.pestImg(workbookoutput, AR_Data_Point2, 2, 149, passData.FetchScreenshot("Overview"));
-
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-
-				if (NamedAccounts <= 5) {
-					ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 112, 7, ARStringData.TMAImprovment, 12);
-				}
-
-				try {
-					ExcelStyling.pestImg(workbookoutput, AR_Data_Point2, 2, 149, passData.FetchScreenshot("Overview"));
-
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-
-			} else if (TAM.equalsIgnoreCase("false")) {
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 112, 5, ARStringData.NoTAM, 12);
-			}
-
-			// Predictive Content data printing
-
-			String PredictiveContent = passData.Exceldata("Predictive Content");
-
-			if (PredictiveContent.equalsIgnoreCase("true")) {
-
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 114, 3, "Yes", 12);
-				if (TotalContent <= 5) {
-					ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 114, 7,
-							ARStringData.PredictiveContentImprovment, 12);
-				}
-
-				try {
-					ExcelStyling.pestImg(workbookoutput, AR_Data_Point2, 2, 177,
-							passData.FetchScreenshot("Predictive Content"));
-
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-			}
-
-			else if (PredictiveContent.equalsIgnoreCase("false")) {
-				ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point2, 114, 5, ARStringData.NoPredictiveContent, 12);
-			}
 
 		} catch (Exception e) {
 			// TODO: handle exception

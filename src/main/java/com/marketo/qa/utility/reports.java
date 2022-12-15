@@ -58,6 +58,8 @@ public class reports {
 			docReports.TAM(document);
 
 			docReports.PredictiveContent(document);
+			
+			docReports.EmailInsights( document);
 			//closing the document
 			docReports.close(document);
 		}
