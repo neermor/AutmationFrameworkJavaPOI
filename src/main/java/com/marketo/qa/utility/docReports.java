@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -41,15 +42,29 @@ public class docReports {
 			throws NumberFormatException, InvalidFormatException, FileNotFoundException, IOException, XmlException {
 		XWPFParagraph Statsparagraph = document.createParagraph();
 		XWPFRun run = Statsparagraph.createRun();
-		Statsparagraph = document.createParagraph();
-		run = Statsparagraph.createRun();
+		//Statsparagraph = document.createParagraph();
+		
 		stylingDoc.setNoProof(run);
 		stylingDoc.FontFamilySize(run);
 		logger.info("Start writing in Doc file");
 		logger.info("Printing workspaces");
+		
 		try {
-			run.setText(passData.Exceldata("Account Name") + "\nhas\n" + passData.Exceldata("Total WorkSpace")
-					+ "\nworkspaces. Stats below are a sum of assets found across all workspaces.");
+			run.setBold(true);
+			run.setText(passData.Exceldata("Account Name"));
+			XWPFRun run1 = Statsparagraph.createRun();
+			stylingDoc.setNoProof(run1);
+			stylingDoc.FontFamilySize(run1);
+			run1.setText("\nhas\n");
+			XWPFRun run2 = Statsparagraph.createRun();
+			stylingDoc.setNoProof(run2);
+			stylingDoc.FontFamilySize(run2);
+			run2.setBold(true);
+			run2.setText(passData.Exceldata("Total WorkSpace"));
+			XWPFRun run3 = Statsparagraph.createRun();
+			stylingDoc.setNoProof(run3);
+			stylingDoc.FontFamilySize(run3);
+			run3.setText("\nworkspaces. Stats below are a sum of assets found across all workspaces.");
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -80,6 +95,7 @@ public class docReports {
 			Statsparagraph.setSpacingAfter(0);
 			run = Statsparagraph.createRun();
 			stylingDoc.FontFamilySize(run);
+			Statsparagraph.setNumILvl(BigInteger.valueOf(1));
 			Statsparagraph.setNumID(stylingDoc.bullet(document));
 			logger.info("Writing Active Campaigns count in doc file.....");
 			run.setText("They have " + passData.Exceldata("Active Campaigns") + " active campaigns");
@@ -95,6 +111,7 @@ public class docReports {
 			Statsparagraph = document.createParagraph();
 			run = Statsparagraph.createRun();
 			Statsparagraph.setSpacingAfter(0);
+			Statsparagraph.setNumILvl(BigInteger.valueOf(1));
 			stylingDoc.FontFamilySize(run);
 			Statsparagraph.setNumID(stylingDoc.bullet(document));
 			logger.info("Writing Active Triggered Campaigns count in doc file.....");
@@ -411,6 +428,7 @@ public class docReports {
 				XWPFRun modelTest3 = paragraphModelData.createRun();
 				modelTest3.addCarriageReturn();
 				stylingDoc.setNoProof(modelTest3);
+				
 				stylingDoc.FontFamilySize(modelTest3);
 				modelTest3.setText("Marketo Docs: Understanding Revenue Models-");
 
@@ -421,6 +439,7 @@ public class docReports {
 				modelTestLink3.setUnderline(UnderlinePatterns.SINGLE);
 				// paragraphModelData.createHyperlinkRun("https://experienceleague.adobe.com/docs/marketo/using/product-docs/reporting/revenue-cycle-analytics/revenue-cycle-models/understanding-revenue-models.html
 				// ");
+				modelTestLink3.setBold(false);
 				modelTestLink3.setText(
 						"https://nation.marketo.com/t5/product-blogs/marketo-revenue-attribution-explained/ba-p/244033");
 
@@ -542,6 +561,7 @@ public class docReports {
 				LeadDatapara3.addCarriageReturn();
 				LeadDatapara3.setText("I would strongly encourage you to share the following lead scoring resources:");
 				LeadDatapara3.addCarriageReturn();
+				stylingDoc.setNoProof(LeadDatapara3);
 				LeadDatapara3.setText("Marketo Resources: Lead Scoing:");
 				XWPFRun LeadDataparaLink3 = LeadData.createRun();
 				stylingDoc.FontFamilySize(LeadDataparaLink3);
@@ -552,6 +572,7 @@ public class docReports {
 				XWPFRun LeadDatapara4 = LeadData.createRun();
 				stylingDoc.FontFamilySize(LeadDatapara4);
 				LeadDatapara4.addCarriageReturn();
+				stylingDoc.setNoProof(LeadDatapara4);
 				LeadDatapara4.setText("Marketo's Definitive Guide to Lead Scoring");
 				XWPFRun LeadDataparaLink4 = LeadData.createRun();
 				stylingDoc.FontFamilySize(LeadDataparaLink4);
@@ -572,6 +593,7 @@ public class docReports {
 				XWPFRun LeadDatapara6 = LeadData.createRun();
 				stylingDoc.FontFamilySize(LeadDatapara6);
 				LeadDatapara6.addCarriageReturn();
+				stylingDoc.setNoProof(LeadDatapara6);
 				LeadDatapara6.setText("Marketo Docs: Simple Scoring:");
 				XWPFRun LeadDataparaLink6 = LeadData.createRun();
 				stylingDoc.FontFamilySize(LeadDataparaLink6);
@@ -680,6 +702,7 @@ public class docReports {
 						InterestingMoment1.setText(
 								"I would encourage you to share the following interesting moment’s resources:");
 						InterestingMoment1.addCarriageReturn();
+						stylingDoc.setNoProof(InterestingMoment1);
 						InterestingMoment1.setText("Marketo Docs: Interesting Moment Overview: ");
 
 						XWPFRun InterestingMomentLink = InterestingData.createRun();
@@ -693,6 +716,7 @@ public class docReports {
 						XWPFRun InterestingMoment2 = InterestingData.createRun();
 						stylingDoc.FontFamilySize(InterestingMoment2);
 						InterestingMoment2.addCarriageReturn();
+						stylingDoc.setNoProof(InterestingMoment2);
 						InterestingMoment2.setText("Marketo Docs: Using Interesting Moments:");
 
 						// InterestingMoment2.setText("\nUnderstanding Event Programs:");
@@ -717,12 +741,14 @@ public class docReports {
 						stylingDoc.setNoProof(InterestingMomentLink3);
 						InterestingMomentLink3.setUnderline(UnderlinePatterns.SINGLE);
 						InterestingMomentLink3.setColor("3333cc");
+						InterestingMomentLink3.setBold(false);
 						InterestingMomentLink3.setText(
 								"\nhttps://nation.marketo.com/t5/knowledgebase/how-to-create-a-custom-interesting-moment-type/ta-p/253526");
 
 						XWPFRun InterestingMoment4 = InterestingData.createRun();
 						stylingDoc.FontFamilySize(InterestingMoment4);
 						InterestingMoment4.addCarriageReturn();
+						stylingDoc.setNoProof(InterestingMoment4);
 						InterestingMoment4.setText("Using Interesting Moments Best Practices – DemandSpring: ");
 
 						// InterestingMoment2.setText("\nUnderstanding Event Programs:");
@@ -738,6 +764,7 @@ public class docReports {
 						XWPFRun InterestingMoment5 = InterestingData.createRun();
 						stylingDoc.FontFamilySize(InterestingMoment5);
 						InterestingMoment5.addCarriageReturn();
+						stylingDoc.setNoProof(InterestingMoment5);
 						InterestingMoment5.setText("Marketo Interesting Moments vs. Tasks – MarketingRockStarGuides:");
 
 						// InterestingMoment2.setText("\nUnderstanding Event Programs:");
@@ -806,6 +833,7 @@ public class docReports {
 						stylingDoc.setNoProof(InterestingMomentLink3);
 						InterestingMomentLink3.setUnderline(UnderlinePatterns.SINGLE);
 						InterestingMomentLink3.setColor("3333cc");
+						InterestingMomentLink3.setBold(false);
 						InterestingMomentLink3.setText(
 								"\nhttps://nation.marketo.com/t5/knowledgebase/how-to-create-a-custom-interesting-moment-type/ta-p/253526");
 
@@ -835,6 +863,7 @@ public class docReports {
 						stylingDoc.FontFamilySize(InterestingMomentLink5);
 						stylingDoc.setNoProof(InterestingMomentLink5);
 						InterestingMomentLink5.setUnderline(UnderlinePatterns.SINGLE);
+						InterestingMomentLink5.setBold(false);
 						InterestingMomentLink5.setColor("3333cc");
 						InterestingMomentLink5.setText(
 								"\nhttps://www.marketingrockstarguides.com/marketo-interesting-moments-vs-tasks-1206/");
@@ -1237,6 +1266,7 @@ public class docReports {
 					NurtureLinkdata.addCarriageReturn();
 					NurtureLinkdata.setText("Please share the following resources with your customer: \r\n");
 					NurtureLinkdata.addCarriageReturn();
+					stylingDoc.setNoProof(NurtureLinkdata);
 					NurtureLinkdata.setText("\nMarketo Docs: Understanding Engagement Programs:");
 
 					XWPFRun NurtureLink1 = NurtureLink.createRun();
@@ -1426,6 +1456,7 @@ public class docReports {
 					stylingDoc.FontFamilySize(NurtureLink5);
 					stylingDoc.setNoProof(NurtureLink5);
 					NurtureLink5.setUnderline(UnderlinePatterns.SINGLE);
+					NurtureLink5.setBold(false);
 					NurtureLink5.setColor("3333cc");
 					NurtureLink5.setText(
 							"\nhttps://nation.marketo.com/t5/product-discussions/nurture-campaign-setup/td-p/124770");
@@ -1440,6 +1471,7 @@ public class docReports {
 					stylingDoc.FontFamilySize(NurtureLink6);
 					stylingDoc.setNoProof(NurtureLink6);
 					NurtureLink6.setUnderline(UnderlinePatterns.SINGLE);
+					NurtureLink6.setBold(false);
 					NurtureLink6.setColor("3333cc");
 					NurtureLink6.setText(
 							"\n: https://nation.marketo.com/t5/champion-program-blogs/creating-an-adaptable-scalable-nurture-program-template-in/ba-p/300442");
@@ -1488,7 +1520,7 @@ public class docReports {
 					try {
 						SegmentRun.addCarriageReturn();
 						SegmentRun.addPicture(new FileInputStream(passData.FetchScreenshot("Segmentations" + i)),
-								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Segmentations"), Units.toEMU(500),
+								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Segmentations"), Units.toEMU(150),
 								Units.toEMU(80));
 						SegmentRun.addCarriageReturn();
 					} catch (Exception e) {
@@ -1508,6 +1540,7 @@ public class docReports {
 				XWPFRun segmentalalternet = segment.createRun();
 				stylingDoc.FontFamilySize(segmentalalternet);
 				segmentalalternet.addCarriageReturn();
+				stylingDoc.setNoProof(segmentalalternet);
 				segmentalalternet.setText("I would direct them to the docs below:\r\n");
 				segmentalalternet.addCarriageReturn();
 				segmentalalternet.setText("\nMarketo Docs: Create a Segmentation: ");
@@ -1546,6 +1579,7 @@ public class docReports {
 				stylingDoc.FontFamilySize(segmentLink3);
 				stylingDoc.setNoProof(segmentLink3);
 				segmentLink3.setUnderline(UnderlinePatterns.SINGLE);
+				segmentLink3.setBold(false);
 				segmentLink3.setColor("3333cc");
 				segmentLink3.setText(
 						"\nhttps://nation.marketo.com/t5/product-blogs/marketo-engage-segmentation-marketo-engage-success-guide-sneak/ba-p/242620");
@@ -1587,7 +1621,8 @@ public class docReports {
 
 				XWPFRun segmentLink6 = segment.createRun();
 				stylingDoc.FontFamilySize(segmentLink6);
-				stylingDoc.setNoProof(segmentLink4);
+				stylingDoc.setNoProof(segmentLink6);
+				segmentLink6.setBold(false);
 				segmentLink6.setUnderline(UnderlinePatterns.SINGLE);
 				segmentLink6.setColor("3333cc");
 				segmentLink6.setText(
@@ -1929,6 +1964,7 @@ public class docReports {
 				}
 			}
 				else {
+					try {
 					XWPFParagraph Account_Management = document.createParagraph();
 					XWPFRun Account_ManagementRun = Account_Management.createRun();
 					stylingDoc.FontFamilySize(Account_ManagementRun);
@@ -1943,11 +1979,14 @@ public class docReports {
 					Account_link.setUnderline(UnderlinePatterns.SINGLE);
 					Account_link.setText(
 							"https://experienceleague.adobe.com/docs/marketo/using/product-docs/target-account-management/setup/target-account-management-overview.html?lang=en ");
+				
+				}catch (Exception e) {
+					// TODO: handle exception
 				}
-			}
+			}}
 
 			else {
-
+				try {
 				XWPFParagraph Target_Account = document.createParagraph();
 				XWPFRun Target_AccountRun = Target_Account.createRun();
 
@@ -1972,6 +2011,9 @@ public class docReports {
 
 				logger.info("No data in TAM data");
 			}
+			catch (Exception e) {
+				// TODO: handle exception
+			}}
 
 		} catch (Exception e) {
 			logger.info("TAM section is skipped");
@@ -1984,7 +2026,7 @@ public class docReports {
 	public static void PredictiveContent(XWPFDocument document) throws IOException, InvalidFormatException {
 		try {
 			if (passData.Exceldata("Predictive Content").equalsIgnoreCase("true")) {
-				
+				logger.info("Predictive Content fount in subscription");
 				int TotalContent=  Integer.parseInt(passData.Exceldata("Total Content"));
 				
 				XWPFParagraph Target_Account = document.createParagraph();
@@ -1996,6 +2038,7 @@ public class docReports {
 				Target_AccountRun.setText("Predictive Content");
 				if(TotalContent>5)
 				{
+					logger.info("Predictive Content count is greater then 5");
 				XWPFParagraph Account_Management = document.createParagraph();
 				XWPFRun Account_ManagementRun = Account_Management.createRun();
 				stylingDoc.FontFamilySize(Account_ManagementRun);
@@ -2014,6 +2057,7 @@ public class docReports {
 				}
 			}
 				else {
+					try {
 					XWPFParagraph PredictiveContentText = document.createParagraph();
 					XWPFRun PredictiveContentTextRun = PredictiveContentText.createRun();
 					stylingDoc.FontFamilySize(PredictiveContentTextRun);
@@ -2028,8 +2072,11 @@ public class docReports {
 					Predictive_link.setUnderline(UnderlinePatterns.SINGLE);
 					Predictive_link.setText(
 							"https://experienceleague.adobe.com/docs/marketo/using/product-docs/predictive-content/working-with-predictive-content/understanding-predictive-content.html?lang=en");
-
-					
+					}
+					catch (Exception e) {
+						logger.info("Printing Predictive Content");
+						// TODO: handle exception
+					}
 					
 				}
 			
@@ -2037,6 +2084,7 @@ public class docReports {
 			} else if (passData.Exceldata("Predictive Content").equalsIgnoreCase("false"))
 
 			{
+				logger.info("Printing Predictive Content");
 				XWPFParagraph PredictiveContent = document.createParagraph();
 				XWPFRun PredictiveContentRun = PredictiveContent.createRun();
 
@@ -2068,4 +2116,41 @@ public class docReports {
 		}
 	}
 
-}
+	public static void EmailInsights(XWPFDocument document) throws IOException, InvalidFormatException
+	{  
+		try {	
+	if(passData.Exceldata("Email Insights").equalsIgnoreCase("true"))
+			{
+		XWPFParagraph EmailInsights = document.createParagraph();
+		XWPFRun EmailInsightsRun = EmailInsights.createRun();
+
+		EmailInsightsRun.addCarriageReturn();
+		EmailInsightsRun.addCarriageReturn();
+		EmailInsightsRun.setBold(true);
+		EmailInsightsRun.setText("Email Insights");
+
+		XWPFParagraph EmailInsightsImg = document.createParagraph();
+		XWPFRun EmailInsightsImgRun = EmailInsightsImg.createRun();
+		stylingDoc.FontFamilySize(EmailInsightsImgRun);
+		stylingDoc.setNoProof(EmailInsightsImgRun);
+		
+		try {
+			EmailInsightsImgRun.addPicture(new FileInputStream(passData.FetchScreenshot("Email Insights")),
+					Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Email Insights").toString(),
+					Units.toEMU(470), Units.toEMU(310));	
+	}
+		catch (Exception e) {
+			// TODO: handle exception
+			logger.info("No images in Email INsights");
+		}
+			}}
+	catch (Exception e) {
+		// TODO: handle exception
+	}
+	
+		
+	}	
+			
+	}
+
+		

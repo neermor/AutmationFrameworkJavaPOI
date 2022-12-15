@@ -198,7 +198,7 @@ public class ExcelStyling {
 	}
 
 	
-	public static void pestImg(Workbook workbook,XSSFSheet sheet,int col,int row,String path) throws IOException {
+	public static void pestImg(Workbook workbook,XSSFSheet sheet,int col,int row,String path,double scale) throws IOException {
 		
 		//add picture data to this workbook.
 		InputStream is = new FileInputStream(path);
@@ -219,7 +219,7 @@ public class ExcelStyling {
 
 		
 		Picture pict = drawing.createPicture(anchor, pictureIdx);
-		double scale = 0.8;
+		scale = 0.6;
 		//Reset the image to the original size
 		pict.resize();
 		if (scale < 1) {

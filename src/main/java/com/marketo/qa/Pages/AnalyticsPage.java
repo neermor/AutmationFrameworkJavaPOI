@@ -75,7 +75,7 @@ public class AnalyticsPage extends TestBase {
 
 	String Parent_window = null;
 	int cell = 3;
-	int row = 42;
+	int row = 43;
 
 	public void FetchApprovedModelScreenshot(String WorkspaceName) throws Throwable {
 		List<WebElement> ApprovedModel = driver.findElements(ApprovedModels);
@@ -118,7 +118,7 @@ public class AnalyticsPage extends TestBase {
 							robot.keyRelease(KeyEvent.VK_SUBTRACT);
 							robot.keyRelease(KeyEvent.VK_CONTROL);
 						}
-						Clib.StandardWait(4000);
+						Clib.StandardWait(8000);
 						screenshotUtility.TakeScreenshotForModels(GetModeler(), WindowTitle);
 
 						for (int i = 0; i < 4; i++) {
@@ -209,6 +209,7 @@ public class AnalyticsPage extends TestBase {
 		Clib.ClearExcelData("Sheet1", 22);
 		Clib.ClearExcelData("Sheet1", 23);
 		Clib.ClearExcelData("Sheet1", 43);
+		Clib.ClearExcelData("Sheet1", 44);
 
 		for (WebElement value : workSpace) {
 			try {
@@ -240,11 +241,16 @@ public class AnalyticsPage extends TestBase {
 				String child_window = I1.next();
 				driver.switchTo().window(child_window);
 				Clib.StandardWait(9000);
+				Clib.WriteExcelData("Sheet1", 43, 1, "Email Insights");
+				Clib.WriteExcelData("Sheet1", 43, 1, "True");
 				screenshotUtility.TakeFullPageScreenshot("Email Insights");
 
 				driver.close();
 				driver.switchTo().window(Parent_window);
 			} catch (Exception nk) {
+				Clib.WriteExcelData("Sheet1", 43, 1, "Email Insights");
+				Clib.WriteExcelData("Sheet1", 43, 1, "False");
+
 				logger.info("Email Insights is not available");
 			}
 
@@ -263,6 +269,7 @@ public class AnalyticsPage extends TestBase {
 		Clib.ClearExcelData("Sheet1", 22);
 		Clib.ClearExcelData("Sheet1", 23);
 		Clib.ClearExcelData("Sheet1", 43);
+		Clib.ClearExcelData("Sheet1", 44);
 
 		new DesignStudioPage().CloseDefaultTreeView();
 		for (int i = 1; i <= NoOfWorkspace; i++) {
@@ -296,11 +303,16 @@ public class AnalyticsPage extends TestBase {
 						String child_window = I1.next();
 						driver.switchTo().window(child_window);
 						Clib.StandardWait(9000);
+						Clib.WriteExcelData("Sheet1", 43, 1, "Email Insights");
+						Clib.WriteExcelData("Sheet1", 43, 1, "True");
 						screenshotUtility.TakeFullPageScreenshot("Email Insights");
 
 						driver.close();
 						driver.switchTo().window(Parent_window);
 					} catch (Exception nk) {
+						Clib.WriteExcelData("Sheet1", 43, 1, "Email Insights");
+						Clib.WriteExcelData("Sheet1", 43, 1, "False");
+
 						logger.info("Email Insights is not available");
 					}
 				} catch (Exception ee) {

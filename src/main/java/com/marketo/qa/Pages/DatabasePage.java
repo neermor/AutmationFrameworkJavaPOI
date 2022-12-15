@@ -262,7 +262,8 @@ public class DatabasePage extends TestBase {
 					value = value.replace(",", "");
 					Marketable_Leads = Integer.parseInt(value);
 					new CommonLib().WriteExcelData("Sheet1", 21, 0, "Marketable Leads");
-					new CommonLib().WriteExcelData("Sheet1", 21, cell, GetSag().size());
+					new CommonLib().WriteExcelData("Sheet1", 21, cell, Marketable_Leads);
+				
 					driver.switchTo().defaultContent();
 
 					ExtendWorkshoptreenode("System Smart Lists", "All People");
