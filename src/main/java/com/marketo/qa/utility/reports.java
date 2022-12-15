@@ -21,6 +21,7 @@ public class reports {
 		
 		//word format data pasting 
 		XWPFDocument document = new XWPFDocument();
+		
 			docReports.stats(document);
 
 			// Models report part, Note : we have to added conditional based formatting

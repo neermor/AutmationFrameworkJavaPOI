@@ -42,7 +42,7 @@ public class TestBase {
 			fis = new FileInputStream(System.getProperty("user.dir") + "//Config//data.properties");
 			prop.load(fis);
 		} catch (FileNotFoundException e) {
-			
+
 			// TODO Auto-generated catch block
 			logger.info(" Data.Properties not fount");
 			e.printStackTrace();
@@ -86,6 +86,7 @@ public class TestBase {
 		driver.manage().deleteAllCookies();
 		driver.get(prop.getProperty("ghosturl"));
 		new GhostLoginPage().verifyLoginPage();
+		// GLogin();
 		GhostLogin();
 	}
 
