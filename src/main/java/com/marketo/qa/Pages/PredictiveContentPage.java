@@ -32,9 +32,15 @@ public class PredictiveContentPage extends TestBase {
 
 			Parent_window = I1.next();
 			String child_window = I1.next();
+			System.out.println(Parent_window);
+			System.out.println(child_window);
+
 			driver.switchTo().window(child_window);
+			System.out.println(driver.getWindowHandle());
 			new CommonLib().StandardWait(6000);
-			int TC = Integer.parseInt(GetTotalContentNo().getText());
+			String count = GetTotalContentNo().getText();
+			count = count.replace(",", "");
+			int TC = Integer.parseInt(count);
 			if (TC > 0) {
 				screenshotUtility.TakeFullPageScreenshot("Predictive Content");
 				new CommonLib().WriteExcelData("Sheet1", row, 0, "Predictive Content");

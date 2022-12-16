@@ -107,7 +107,7 @@ public class AdminPage extends TestBase {
 	public int GetChannelCount() {
 		List<WebElement> ChannelCount = driver
 				.findElements(By.xpath("//span[text()='Channel']/../../../../../../../..//div/table/tbody/tr"));
-		return ChannelCount.size() - 1;
+		return ChannelCount.size();
 	}
 
 	public void switchFrame() throws Throwable {
@@ -129,13 +129,19 @@ public class AdminPage extends TestBase {
 		new CommonLib().ClearExcelData("Sheet1", row);
 		new CommonLib().StandardWait(4000);
 		GetTags().click();
+		int before = GetChannelCount();
+		System.out.println(before);
 		GetChannelTag().click();
 		screenshotUtility.TakeScreenshot(GetTable(), "Tags1");
 		logger.info("Click Tags Screenshots");
 		new CommonLib().WriteExcelData("Sheet1", row, 0, tags);
 		new CommonLib().WriteExcelData("Sheet1", row, 1, GetTagCount().getText());
+		int Aftre = GetChannelCount();
+		System.out.println(Aftre);
+		int value = Aftre - before;
+		System.out.println(value);
 		new CommonLib().WriteExcelData("Sheet1", row1, 0, "Channels");
-		new CommonLib().WriteExcelData("Sheet1", row1, 1, GetChannelCount());
+		new CommonLib().WriteExcelData("Sheet1", row1, 1, Aftre - before);
 		logger.info("Read Tags Count");
 
 	}
