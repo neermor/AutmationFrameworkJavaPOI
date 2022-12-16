@@ -114,126 +114,128 @@ public class WebPersonalization extends TestBase {
 			mAP.switchFrame();
 			switch (WorkspaceCondition) {
 			case "All":
-				VerifyAndFetchScreenshots(row);
+				if (VerifyAndFetchScreenshots(row)) {
 
-				try {
+					try {
 
-					Clib.WaitForElementToLoad(driver, 60, GetWorkSpaceDropDown());
-					GetWorkSpaceDropDown().click();
-					Clib.StandardWait(2000);
-					String wp = driver.findElements(WorkSpace).get(i).getText();
-					Clib.StandardWait(2000);
-					List<WebElement> SlipperyElement = driver.findElements(WorkSpace);
-					size = SlipperyElement.size();
-
-					for (WebElement value : SlipperyElement) {
+						Clib.WaitForElementToLoad(driver, 60, GetWorkSpaceDropDown());
+						GetWorkSpaceDropDown().click();
 						Clib.StandardWait(2000);
-						if (value.getText().equalsIgnoreCase(wp)) {
-							value.click();
-							Clib.StandardWait(2000);
-							Clib.WaitForElementToLoad(driver, 60, GetDashboard("Top Campaigns"));
-							screenshotUtility.TakeScreenshot(GetDashboard("Top Campaigns"), "Top Campaigns_" + wp);
-							screenshotUtility.TakeScreenshot(GetDashboard("Top Content"), "Top Content_" + wp);
-							screenshotUtility.TakeScreenshot(GetTopIndustries(), "Top Industries_" + wp);
-							screenshotUtility.TakeScreenshot(GetTotalOrganizations_Top_Organizations(),
-									"Total Organizations_Top Organizations" + wp);
-							Clib.WaitForElementToLoad(driver, 60, GetTotalOrgCount());
-							Clib.WriteExcelData("Sheet1", TotalOrgCountrow, 0, "Total Organizations");
-							Clib.WriteExcelData("Sheet1", TotalOrgCountrow, 1, GetTotalOrgCount().getText());
+						String wp = driver.findElements(WorkSpace).get(i).getText();
+						Clib.StandardWait(2000);
+						List<WebElement> SlipperyElement = driver.findElements(WorkSpace);
+						size = SlipperyElement.size();
 
-							Actions actions = new Actions(driver);
-							actions.sendKeys(Keys.PAGE_UP).perform();
-							actions.sendKeys(Keys.PAGE_UP).perform();
-							actions.sendKeys(Keys.PAGE_UP).perform();
-
-							Clib.MouseHover(GetMktoBall());
+						for (WebElement value : SlipperyElement) {
 							Clib.StandardWait(2000);
-							GetWebCampaigns().click();
-							Clib.StandardWait(2000);
+							if (value.getText().equalsIgnoreCase(wp)) {
+								value.click();
+								Clib.StandardWait(2000);
+								Clib.WaitForElementToLoad(driver, 60, GetDashboard("Top Campaigns"));
+								screenshotUtility.TakeScreenshot(GetDashboard("Top Campaigns"), "Top Campaigns_" + wp);
+								screenshotUtility.TakeScreenshot(GetDashboard("Top Content"), "Top Content_" + wp);
+								screenshotUtility.TakeScreenshot(GetTopIndustries(), "Top Industries_" + wp);
+								screenshotUtility.TakeScreenshot(GetTotalOrganizations_Top_Organizations(),
+										"Total Organizations_Top Organizations" + wp);
+								Clib.WaitForElementToLoad(driver, 60, GetTotalOrgCount());
+								Clib.WriteExcelData("Sheet1", TotalOrgCountrow, 0, "Total Organizations");
+								Clib.WriteExcelData("Sheet1", TotalOrgCountrow, 1, GetTotalOrgCount().getText());
 
-							try {
-								GetWebCampaignsNoResults().isDisplayed();
-								screenshotUtility.TakeScreenshot(GetCampaignsList(), "Web Campaigns_" + wp);
-								break;
-							} catch (Exception e) {
-								Reporter.log(wp + "No WebCampaigns are present");
-								break;
+								Actions actions = new Actions(driver);
+								actions.sendKeys(Keys.PAGE_UP).perform();
+								actions.sendKeys(Keys.PAGE_UP).perform();
+								actions.sendKeys(Keys.PAGE_UP).perform();
+
+								Clib.MouseHover(GetMktoBall());
+								Clib.StandardWait(2000);
+								GetWebCampaigns().click();
+								Clib.StandardWait(2000);
+
+								try {
+									GetWebCampaignsNoResults().isDisplayed();
+									screenshotUtility.TakeScreenshot(GetCampaignsList(), "Web Campaigns_" + wp);
+									break;
+								} catch (Exception e) {
+									Reporter.log(wp + "No WebCampaigns are present");
+									break;
+								}
 							}
 
 						}
 
+						driver.close();
+						driver.switchTo().window(Parent_window);
+
 					}
-					driver.close();
-					driver.switchTo().window(Parent_window);
 
-				}
-
-				catch (Exception e) {
-					driver.close();
-					driver.switchTo().window(Parent_window);
-					break;
+					catch (Exception e) {
+						driver.close();
+						driver.switchTo().window(Parent_window);
+						break;
+					}
 				}
 
 			default:
 				break;
 
 			case "Specific":
-				VerifyAndFetchScreenshots(row);
-				try {
+				if (VerifyAndFetchScreenshots(row)) {
+					try {
 
-					Clib.WaitForElementToLoad(driver, 60, GetWorkSpaceDropDown());
-					GetWorkSpaceDropDown().click();
-					Clib.StandardWait(2000);
-					String wp = prop.getProperty("WorkSpace" + ++i);
-					Clib.StandardWait(2000);
-					List<WebElement> SlipperyElement = driver.findElements(WorkSpace);
-					size = Integer.parseInt(prop.getProperty("NoOfWorkspaces"));
-
-					for (WebElement value : SlipperyElement) {
+						Clib.WaitForElementToLoad(driver, 60, GetWorkSpaceDropDown());
+						GetWorkSpaceDropDown().click();
 						Clib.StandardWait(2000);
-						if (value.getText().equalsIgnoreCase(wp)) {
-							value.click();
-							Clib.StandardWait(2000);
-							Clib.WaitForElementToLoad(driver, 60, GetDashboard("Top Campaigns"));
-							screenshotUtility.TakeScreenshot(GetDashboard("Top Campaigns"), "Top Campaigns_" + wp);
-							screenshotUtility.TakeScreenshot(GetDashboard("Top Content"), "Top Content_" + wp);
-							screenshotUtility.TakeScreenshot(GetTopIndustries(), "Top Industries_" + wp);
-							screenshotUtility.TakeScreenshot(GetTotalOrganizations_Top_Organizations(),
-									"Total Organizations_Top Organizations" + wp);
-							Clib.WaitForElementToLoad(driver, 60, GetTotalOrgCount());
-							Clib.WriteExcelData("Sheet1", TotalOrgCountrow, 0, "Total Organizations");
-							Clib.WriteExcelData("Sheet1", TotalOrgCountrow, 1, GetTotalOrgCount().getText());
+						String wp = prop.getProperty("WorkSpace" + ++i);
+						Clib.StandardWait(2000);
+						List<WebElement> SlipperyElement = driver.findElements(WorkSpace);
+						size = Integer.parseInt(prop.getProperty("NoOfWorkspaces"));
 
-							Actions actions = new Actions(driver);
-							actions.sendKeys(Keys.PAGE_UP).perform();
-							actions.sendKeys(Keys.PAGE_UP).perform();
-							actions.sendKeys(Keys.PAGE_UP).perform();
-
-							Clib.MouseHover(GetMktoBall());
+						for (WebElement value : SlipperyElement) {
 							Clib.StandardWait(2000);
-							GetWebCampaigns().click();
-							Clib.StandardWait(2000);
+							if (value.getText().equalsIgnoreCase(wp)) {
+								value.click();
+								Clib.StandardWait(2000);
+								Clib.WaitForElementToLoad(driver, 60, GetDashboard("Top Campaigns"));
+								screenshotUtility.TakeScreenshot(GetDashboard("Top Campaigns"), "Top Campaigns_" + wp);
+								screenshotUtility.TakeScreenshot(GetDashboard("Top Content"), "Top Content_" + wp);
+								screenshotUtility.TakeScreenshot(GetTopIndustries(), "Top Industries_" + wp);
+								screenshotUtility.TakeScreenshot(GetTotalOrganizations_Top_Organizations(),
+										"Total Organizations_Top Organizations" + wp);
+								Clib.WaitForElementToLoad(driver, 60, GetTotalOrgCount());
+								Clib.WriteExcelData("Sheet1", TotalOrgCountrow, 0, "Total Organizations");
+								Clib.WriteExcelData("Sheet1", TotalOrgCountrow, 1, GetTotalOrgCount().getText());
 
-							try {
-								GetWebCampaignsNoResults().isDisplayed();
-								Reporter.log(wp + "No WebCampaigns are present");
-								break;
-							} catch (Exception e) {
-								screenshotUtility.TakeScreenshot(GetCampaignsList(), "Web Campaigns_" + wp);
-								break;
+								Actions actions = new Actions(driver);
+								actions.sendKeys(Keys.PAGE_UP).perform();
+								actions.sendKeys(Keys.PAGE_UP).perform();
+								actions.sendKeys(Keys.PAGE_UP).perform();
+
+								Clib.MouseHover(GetMktoBall());
+								Clib.StandardWait(2000);
+								GetWebCampaigns().click();
+								Clib.StandardWait(2000);
+
+								try {
+									GetWebCampaignsNoResults().isDisplayed();
+									Reporter.log(wp + "No WebCampaigns are present");
+									break;
+								} catch (Exception e) {
+									screenshotUtility.TakeScreenshot(GetCampaignsList(), "Web Campaigns_" + wp);
+									break;
+								}
 							}
+
 						}
+						driver.close();
+						driver.switchTo().window(Parent_window);
 
 					}
-					driver.close();
-					driver.switchTo().window(Parent_window);
 
-				}
-
-				catch (Exception e) {
-					driver.close();
-					driver.switchTo().window(Parent_window);
-					break;
+					catch (Exception e) {
+						driver.close();
+						driver.switchTo().window(Parent_window);
+						break;
+					}
 				}
 			}
 

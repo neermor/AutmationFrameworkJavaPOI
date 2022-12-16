@@ -14,7 +14,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -102,10 +101,6 @@ public class TestBase {
 				prop.getProperty("id"));
 	}
 
-	public static void GLogin() throws Throwable {
-		new GhostLoginPage().GLogin(prop.getProperty("prefix"), prop.getProperty("ghostpwd"), prop.getProperty("id"));
-	}
-
 	public static void Login() throws Throwable {
 		new LoginPage().Login(prop.getProperty("username"), prop.getProperty("password"));
 		new CommonLib().StandardWait(20000);
@@ -130,12 +125,6 @@ public class TestBase {
 			e.printStackTrace();
 		}
 		logger.info("Screenshot Deleted");
-	}
-
-	@AfterTest
-	public void BackToMyMarketo() {
-		driver.switchTo().defaultContent();
-		new MyMarketoPage().OpenMyMarketo();
 	}
 
 	@BeforeClass
