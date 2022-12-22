@@ -41,8 +41,11 @@ public class ExcelStyling {
 	static String fileName = new SimpleDateFormat("dd_MM_yy_HH_mm").format(new Date());
 
 	XSSFRow myRow = null;
+<<<<<<< HEAD
 	
 	//writing Excel data with color code
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void WriteExcel(Workbook workbook,XSSFSheet sheet ,int row, int col, String colorCode, String value,int height) throws DecoderException ,Exception {
 		XSSFCellStyle cellStyle = (XSSFCellStyle) workbook.createCellStyle();
 		Font headerFont = workbook.createFont();
@@ -67,7 +70,10 @@ public class ExcelStyling {
 	    myCell.setCellValue(value);
 	}
 
+<<<<<<< HEAD
 	//writing Excel data with out color code
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void WriteExcel(Workbook workbook,XSSFSheet sheet ,int row, int col, int value) throws Exception {
 		
 		XSSFRow	myRow=null;
@@ -81,7 +87,11 @@ public class ExcelStyling {
 	    myCell.setCellValue(value);
 	}
 
+<<<<<<< HEAD
 	//Deleting column method
+=======
+
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void deleteColumn(XSSFSheet sheet, int columnToDelete) {
 		for (int rId = 0; rId < sheet.getLastRowNum(); rId++) {
 	        Row row = sheet.getRow(rId);
@@ -104,7 +114,14 @@ public class ExcelStyling {
 	        }}
 	        }
 	    
+<<<<<<< HEAD
    //Cloning cell from row
+=======
+	
+
+
+
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void cloneCell(Cell cNew, Cell cOld) {
 	    cNew.setCellComment(cOld.getCellComment());
 	    cNew.setCellStyle(cOld.getCellStyle());
@@ -121,7 +138,13 @@ public class ExcelStyling {
 	        cNew.setCellValue(cOld.getCellFormula());
 	    }
 	}
+<<<<<<< HEAD
         //Defining cell style for pasting data
+=======
+
+	        
+	
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static CellStyle createColorWithtext(Workbook workbook,int rownum,int cellno,XSSFSheet sheet,String text,String rgbS) throws DecoderException , Exception {
 	      //  CellStyle style = workbook.createCellStyle();
 	        XSSFCellStyle cellStyle = (XSSFCellStyle) workbook.createCellStyle();
@@ -142,8 +165,32 @@ public class ExcelStyling {
 	        return cellStyle;
 	    
 	}
+<<<<<<< HEAD
 	        
 	//Cell merging methods for heading
+=======
+	    
+	    
+
+	public static void setMerge(Workbook workbook,XSSFSheet sheet, int numRow, int untilRow, int numCol, int untilCol) throws Exception {
+		XSSFCellStyle cellStyle = (XSSFCellStyle) workbook.createCellStyle();
+		 
+		XSSFRow row = sheet.createRow(2);
+//		cellStyle.setAlignment(HorizontalAlignment.CENTER);
+//        cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	    CellRangeAddress cellMerge = new CellRangeAddress(numRow, untilRow, numCol, untilCol);
+	    XSSFCell cell = row.createCell(2);
+	    cell.setCellStyle(cellStyle);
+	    sheet.addMergedRegion(cellMerge);
+	    
+	   
+	 
+ 
+	}
+
+	
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void mergeAndCenter(Workbook workbook,XSSFSheet sheet,String rgbS ,String text, int firstRow, int lastRow, int firstCol, int lastCol,boolean value,int fontHeight) throws DecoderException ,Exception{
 	   
 		XSSFCellStyle cellStyle = (XSSFCellStyle) workbook.createCellStyle();
@@ -176,7 +223,11 @@ public class ExcelStyling {
     
 	}
 
+<<<<<<< HEAD
 	//pasting images 
+=======
+	
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void pestImg(Workbook workbook,XSSFSheet sheet,int col,int row,String path,double scale) throws IOException {
 		
 		//add picture data to this workbook.
@@ -208,7 +259,11 @@ public class ExcelStyling {
 		
 		
 	}
+<<<<<<< HEAD
 	 
+=======
+	
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void WriteExcel(Workbook workbook,XSSFSheet sheet ,int row, int col,String value,int height) throws Exception  {
 		XSSFCellStyle cellStyle = (XSSFCellStyle) workbook.createCellStyle();
 		Font headerFont = workbook.createFont();
@@ -231,6 +286,10 @@ public class ExcelStyling {
 	    myCell.setCellValue(value);
 	}
 	
+<<<<<<< HEAD
+=======
+
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void WriteExcel(Workbook workbook,XSSFSheet sheet ,int row, int col,int value,int height) throws Exception  {
 		XSSFCellStyle cellStyle = (XSSFCellStyle) workbook.createCellStyle();
 		Font headerFont = workbook.createFont();
@@ -255,6 +314,7 @@ public class ExcelStyling {
 	    myCell.setCellValue(value);
 	}
 	
+<<<<<<< HEAD
 	public static void WriteExcel(Workbook workbook,XSSFSheet sheet ,int row, int col,float value,int height) throws Exception  {
 		XSSFCellStyle cellStyle = (XSSFCellStyle) workbook.createCellStyle();
 		Font headerFont = workbook.createFont();
@@ -283,15 +343,26 @@ public class ExcelStyling {
 		XSSFCellStyle cellStyle = (XSSFCellStyle) workbook.createCellStyle();
 		Font formulafont = workbook.createFont();
 		
+=======
+	public static void WriteExcelWithFormula(Workbook workbook,XSSFSheet sheet ,int row, int col,int height,String formula)  {
+		XSSFCellStyle cellStyle = (XSSFCellStyle) workbook.createCellStyle();
+		Font headerFont = workbook.createFont();
+		
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
            
         cellStyle.setAlignment(HorizontalAlignment.CENTER);
         cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
         
+<<<<<<< HEAD
         formulafont.setFontHeightInPoints((short) height);
+=======
+        headerFont.setFontHeightInPoints((short) height);
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	    XSSFRow myRow = sheet.getRow(row);
 	     
 	    if (myRow == null)
 	        myRow = sheet.createRow(row);
+<<<<<<< HEAD
 	    XSSFCell myCell = myRow.createCell(col);
 	  
 	   
@@ -303,6 +374,17 @@ public class ExcelStyling {
 	    myCell.setCellStyle(cellStyle);
 	    workbook.getCreationHelper().createFormulaEvaluator().evaluateAll();
 	    //myCell.setCellValue( myCell.setCellFormula(formula));
+=======
+	    
+	   
+	   XSSFCell myCell = myRow.createCell(col);
+	    myCell.setCellFormula(formula);	
+	    
+	    cellStyle.setFont(headerFont); 
+	    myCell.setCellStyle(cellStyle);
+	    workbook.getCreationHelper().createFormulaEvaluator().evaluateAll();
+	    //myCell.setCellValue(value);
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	}
 	
 	

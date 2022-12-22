@@ -9,14 +9,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.poi.ss.usermodel.Cell;
+<<<<<<< HEAD
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+=======
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellReference;
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class excelReader {
 
+<<<<<<< HEAD
 	//fetching data from excel sheet
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static Map<String, String> getMapData(String sheetName) throws IOException {
 		HashMap<String, String> testData = new HashMap<String, String>();
 		
@@ -57,7 +69,11 @@ public class excelReader {
 		return testData;
 
 	}
+<<<<<<< HEAD
 	//method overloading for excel sheet
+=======
+	
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static Map<String, String> getMapData(int cell) throws IOException {
 		HashMap<String, String> testData = new HashMap<String, String>();
 
@@ -92,7 +108,14 @@ public class excelReader {
 
 	}
 
+<<<<<<< HEAD
 	// adding switch case which perform fetching for different type of values 
+=======
+	
+		
+	
+
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static String getCellValue(Cell cell) {
 		String CellData = null;
 
@@ -116,7 +139,10 @@ public class excelReader {
 		return CellData;
 	}
 
+<<<<<<< HEAD
 	//Different Approach for Excel model reader 
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static String excelModelReader(int row, int cell) throws NumberFormatException, IOException {
 		String ExcelPath = System.getProperty("user.dir") + "//Config//MarketoData.xlsx";
 		FileInputStream FileInputStream = new FileInputStream(ExcelPath);

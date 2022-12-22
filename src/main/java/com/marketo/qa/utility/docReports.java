@@ -1,7 +1,10 @@
 package com.marketo.qa.utility;
 
+<<<<<<< HEAD
 import java.awt.image.BufferedImage;
 import java.io.File;
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -10,8 +13,11 @@ import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+<<<<<<< HEAD
 import javax.imageio.ImageIO;
 
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -30,7 +36,10 @@ public class docReports {
 	static String fileName = new SimpleDateFormat("dd_MM_yy_HH_mm").format(new Date());
 	private static final Logger logger = LogManager.getLogger(docReports.class);
 
+<<<<<<< HEAD
 	//define for closing the print stream of Doc
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void close(XWPFDocument document) throws InvalidFormatException, IOException {
 		stylingDoc.HeaderFooter(document);// Styling of Header and footer
 
@@ -43,7 +52,10 @@ public class docReports {
 		logger.info("Doc file is Ready for " + passData.Exceldata("Account Name"));
 	}
 
+<<<<<<< HEAD
 	//Printing data in stats Section 
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void stats(XWPFDocument document)
 			throws NumberFormatException, InvalidFormatException, FileNotFoundException, IOException, XmlException {
 		XWPFParagraph Statsparagraph = document.createParagraph();
@@ -265,6 +277,7 @@ public class docReports {
 			for (int i = 1; i < 3; i++) {
 
 				img.addCarriageReturn();
+<<<<<<< HEAD
 				 BufferedImage bimg = ImageIO.read(new File(passData.FetchScreenshot("Tags" + i)));
                  int anchoImagen          = bimg.getWidth();
                  int altoImagen         = bimg.getHeight();
@@ -273,6 +286,10 @@ public class docReports {
 				img.addPicture(new FileInputStream(passData.FetchScreenshot("Tags" + i)), Document.PICTURE_TYPE_PNG,
 						passData.FetchScreenshot("Tags" + i), Units.toEMU(450), Units.toEMU(210));
 				
+=======
+				img.addPicture(new FileInputStream(passData.FetchScreenshot("Tags" + i)), Document.PICTURE_TYPE_PNG,
+						passData.FetchScreenshot("Tags" + i), Units.toEMU(400), Units.toEMU(210));
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 				img.addCarriageReturn();
 			}
 
@@ -285,7 +302,10 @@ public class docReports {
 
 	}
 
+<<<<<<< HEAD
 	//Printing Model Data in doc 
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void models(XWPFDocument document)
 			throws InvalidFormatException, FileNotFoundException, IOException, XmlException {
 		// TODO Auto-generated method stub
@@ -340,10 +360,13 @@ public class docReports {
 							XWPFParagraph model_img = document.createParagraph();
 							logger.info("Printing images in doc");
 							XWPFRun img1 = model_img.createRun();
+<<<<<<< HEAD
 							
 							 BufferedImage bimg = ImageIO.read(new File(passData.FetchScreenshot(passData.Exceldata(data, 2))));
 			                 int anchoImagen          = bimg.getWidth();
 			                 int altoImagen         = bimg.getHeight();
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 
 							img1.addPicture(new FileInputStream(passData.FetchScreenshot(passData.Exceldata(data, 2))),
 									Document.PICTURE_TYPE_PNG,
@@ -489,7 +512,10 @@ public class docReports {
 
 	}
 
+<<<<<<< HEAD
 	//Printing  Lead Document 
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void lead(XWPFDocument document)
 			throws NumberFormatException, InvalidFormatException, FileNotFoundException, IOException, XmlException {
 		XWPFParagraph LeadParagraph = document.createParagraph();
@@ -626,7 +652,10 @@ public class docReports {
 		}
 	}
 
+<<<<<<< HEAD
 	//Printing Interesting Moment
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void intrestingMoment(XWPFDocument document)
 			throws NumberFormatException, InvalidFormatException, FileNotFoundException, IOException {
 		try {
@@ -665,7 +694,11 @@ public class docReports {
 								InterestingDatarun.addPicture(
 										new FileInputStream(passData.FetchScreenshot("Interesting Moment")),
 										Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Interesting Moment"),
+<<<<<<< HEAD
 										Units.toEMU(520), Units.toEMU(300));
+=======
+										Units.toEMU(470), Units.toEMU(80));
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 								InterestingDatarun.addCarriageReturn();
 							} catch (Exception e) {
 
@@ -702,7 +735,11 @@ public class docReports {
 								InterestingDatarun.addPicture(
 										new FileInputStream(passData.FetchScreenshot("Interesting Moment" + i)),
 										Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Interesting Moment"),
+<<<<<<< HEAD
 										Units.toEMU(550), Units.toEMU(300));
+=======
+										Units.toEMU(470), Units.toEMU(80));
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 
 							} catch (Exception e) {
 
@@ -901,7 +938,10 @@ public class docReports {
 		}
 	}
 
+<<<<<<< HEAD
 	//Printing Data Management 
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void DataManagment(XWPFDocument document) throws IOException {
 		XWPFParagraph DataManagement = document.createParagraph();
 		XWPFRun DataManagementRun = DataManagement.createRun();
@@ -955,7 +995,10 @@ public class docReports {
 		}
 	}
 
+<<<<<<< HEAD
 	// Printing Events 
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void Events(XWPFDocument document) throws IOException {
 		XWPFParagraph Events = document.createParagraph();
 		XWPFRun Eventsrun = Events.createRun();
@@ -979,7 +1022,11 @@ public class docReports {
 
 					img.addCarriageReturn();
 					img.addPicture(new FileInputStream(passData.FetchScreenshot("Event")), Document.PICTURE_TYPE_PNG,
+<<<<<<< HEAD
 							passData.FetchScreenshot("Event"), Units.toEMU(400), Units.toEMU(450));
+=======
+							passData.FetchScreenshot("Event"), Units.toEMU(200), Units.toEMU(380));
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 					img.addCarriageReturn();
 				}
 
@@ -998,7 +1045,11 @@ public class docReports {
 
 					img.addCarriageReturn();
 					img.addPicture(new FileInputStream(passData.FetchScreenshot("Event")), Document.PICTURE_TYPE_PNG,
+<<<<<<< HEAD
 							passData.FetchScreenshot("Event"), Units.toEMU(400), Units.toEMU(450));
+=======
+							passData.FetchScreenshot("Event"), Units.toEMU(200), Units.toEMU(380));
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 					img.addCarriageReturn();
 				}
 
@@ -1139,7 +1190,10 @@ public class docReports {
 		logger.info("Events data printing  is done");
 	}
 
+<<<<<<< HEAD
 	//Printing Nurture Data
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void nurtureData(XWPFDocument document) throws NumberFormatException, IOException, XmlException
 
 	{
@@ -1211,7 +1265,11 @@ public class docReports {
 
 							img1.addPicture(new FileInputStream(passData.FetchScreenshot("Nurture campaigns")),
 									Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Nurture campaigns").toString(),
+<<<<<<< HEAD
 									Units.toEMU(450), Units.toEMU(450));
+=======
+									Units.toEMU(220), Units.toEMU(380));
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 
 						} catch (Exception e) {
 							// TODO: handle exception
@@ -1274,7 +1332,11 @@ public class docReports {
 
 							img1.addPicture(new FileInputStream(passData.FetchScreenshot("Nurture campaigns")),
 									Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Nurture campaigns").toString(),
+<<<<<<< HEAD
 									Units.toEMU(350), Units.toEMU(400));
+=======
+									Units.toEMU(220), Units.toEMU(380));
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 
 						} catch (Exception e) {
 							// TODO: handle exception
@@ -1512,7 +1574,10 @@ public class docReports {
 
 	}
 
+<<<<<<< HEAD
 	//Printing Segment data in doc
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void segment(XWPFDocument document)
 			throws NumberFormatException, IOException, InvalidFormatException {
 
@@ -1543,8 +1608,13 @@ public class docReports {
 					try {
 						SegmentRun.addCarriageReturn();
 						SegmentRun.addPicture(new FileInputStream(passData.FetchScreenshot("Segmentations" + i)),
+<<<<<<< HEAD
 								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Segmentations"), Units.toEMU(350),
 								Units.toEMU(150));
+=======
+								Document.PICTURE_TYPE_PNG, passData.FetchScreenshot("Segmentations"), Units.toEMU(150),
+								Units.toEMU(80));
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 						SegmentRun.addCarriageReturn();
 					} catch (Exception e) {
 						// TODO: handle exception
@@ -1687,7 +1757,10 @@ public class docReports {
 
 	}
 
+<<<<<<< HEAD
 	// Printing program library in doc
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void programLibrary(XWPFDocument document) throws IOException, InvalidFormatException {
 		try {
 			XWPFParagraph program = document.createParagraph();
@@ -1723,7 +1796,10 @@ public class docReports {
 		logger.info(" Program Library part is done");
 	}
 
+<<<<<<< HEAD
 	//Printing Integration Data
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void Integration(XWPFDocument document) throws IOException, InvalidFormatException {
 		try {
 			XWPFParagraph intigration = document.createParagraph();
@@ -1795,7 +1871,10 @@ public class docReports {
 		}
 	}
 
+<<<<<<< HEAD
 	//Printing Web personalization  
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void webPersonalize(XWPFDocument document) throws IOException, InvalidFormatException {
 		try {
 			if (passData.Exceldata("Web Personalization").equalsIgnoreCase("true")) {
@@ -1946,7 +2025,10 @@ public class docReports {
 		}
 	}
 
+<<<<<<< HEAD
 	//Printing TAM data in docs
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void TAM(XWPFDocument document) throws IOException, InvalidFormatException {
 		try {
 			if (passData.Exceldata("Target Account Management").equalsIgnoreCase("true")) {
@@ -2050,7 +2132,10 @@ public class docReports {
 
 	}
 
+<<<<<<< HEAD
 	//Printing Predictive content 
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void PredictiveContent(XWPFDocument document) throws IOException, InvalidFormatException {
 		try {
 			if (passData.Exceldata("Predictive Content").equalsIgnoreCase("true")) {
@@ -2144,7 +2229,10 @@ public class docReports {
 		}
 	}
 
+<<<<<<< HEAD
 	//Printing Email Incites data 
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 	public static void EmailInsights(XWPFDocument document) throws IOException, InvalidFormatException
 	{  
 		try {	

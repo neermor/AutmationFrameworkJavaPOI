@@ -1,7 +1,11 @@
 package com.marketo.qa.utility;
 
 
+<<<<<<< HEAD
 
+=======
+import java.io.FileInputStream;
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 import java.io.IOException;
 import java.math.BigInteger;
 import java.text.DateFormat;
@@ -12,9 +16,15 @@ import java.util.Map;
 import java.util.TimeZone;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+<<<<<<< HEAD
 
 import org.apache.poi.xwpf.model.XWPFHeaderFooterPolicy;
 
+=======
+import org.apache.poi.util.Units;
+import org.apache.poi.xwpf.model.XWPFHeaderFooterPolicy;
+import org.apache.poi.xwpf.usermodel.Document;
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.UnderlinePatterns;
 import org.apache.poi.xwpf.usermodel.XWPFAbstractNum;
@@ -224,7 +234,25 @@ public class stylingDoc {
 			
 		}
 	 
+<<<<<<< HEAD
 	
+=======
+	 
+	 public static void textStyledInbetween(String text, String style,XWPFRun run ) {
+		       
+		    run.setFontSize(12);
+		
+		    if (text != null) {
+		        if (style != null) {
+		            if (style.equals("Bold")) {
+		                run.setBold(true);
+		            } 
+		            }
+		        }
+		        run.setText(text);
+		        
+		    }
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 		    
 		
 	 

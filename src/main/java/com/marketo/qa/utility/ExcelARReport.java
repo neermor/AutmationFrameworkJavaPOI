@@ -1,6 +1,7 @@
 package com.marketo.qa.utility;
 
 import java.io.FileOutputStream;
+<<<<<<< HEAD
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,6 +12,13 @@ import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
+=======
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -63,7 +71,10 @@ public class ExcelARReport extends converting {
 
 		}
 
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 		// printing data in sheet
 		if (WorkSpace_count >= 1) {
 			logger.info("Seting templete according to Workspace count");
@@ -80,7 +91,11 @@ public class ExcelARReport extends converting {
 				}
 				catch (Exception e) {
 					// TODO: handle exception
+<<<<<<< HEAD
 				logger.warn("not able to merge and print account prifix");
+=======
+					logger.warn("not able to merge and print account prifix");
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 				}
 				int coll = 3;
 				int j = 2;
@@ -89,12 +104,21 @@ public class ExcelARReport extends converting {
 				// Printing workspaces names
 				for (int i = 1; i <= WorkSpace_count; i++) {
 					logger.info("Printing workspaces");
+<<<<<<< HEAD
 //						ExcelStyling.mergeAndCenter(workbookoutput, AR_Data_Point1, "D662FC", "AR Data Points", 1, 2, 2,
 //								3 + WorkSpace_count, true, 25);
 //
 //						ExcelStyling.mergeAndCenter(workbookoutput, AR_Data_Point1, "B541DF",
 //								"instance acct prefix: " + passData.Exceldata("Account Name"), 3, 3, 2,
 //								3 + WorkSpace_count, false, 12);
+=======
+						ExcelStyling.mergeAndCenter(workbookoutput, AR_Data_Point1, "D662FC", "AR Data Points", 1, 2, 2,
+								3 + WorkSpace_count, true, 25);
+
+						ExcelStyling.mergeAndCenter(workbookoutput, AR_Data_Point1, "B541DF",
+								"instance acct prefix: " + passData.Exceldata("Account Name"), 3, 3, 2,
+								3 + WorkSpace_count, false, 12);
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 
 						AR_Data_Point1.setColumnWidth(coll, 25 * 256);
 						ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point1, 6, coll++, "D662FC",
@@ -382,6 +406,7 @@ public class ExcelARReport extends converting {
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
+<<<<<<< HEAD
 				
 				
 				try {
@@ -424,6 +449,8 @@ public class ExcelARReport extends converting {
 					// TODO: handle exception
 				}
 				
+=======
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 				// Printing Program Data
 				try {
 					ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point1, 41, 3, passData.Exceldata("Tags"), 12);
@@ -431,7 +458,11 @@ public class ExcelARReport extends converting {
 					// TODO: handle exception
 				}
 				try {
+<<<<<<< HEAD
 					ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point1, 42, 3, passData.Exceldata("Channels"), 12);
+=======
+					ExcelStyling.WriteExcel(workbookoutput, AR_Data_Point1, 42, 3, passData.Exceldata("Models"), 12);
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
@@ -515,6 +546,7 @@ public class ExcelARReport extends converting {
 			ARDataPoint2.IntrestingMomentAR(AR_Data_Point2, workbookoutput);
 			// Lead scoring section
 			ARDataPoint2.leadAR( AR_Data_Point2,  workbookoutput);
+<<<<<<< HEAD
 			
 			//Printing Event  Data 
 			
@@ -541,6 +573,22 @@ public class ExcelARReport extends converting {
 			//Printing Web Personalization
 			ARDataPoint2.Web_Personalisation(AR_Data_Point2, workbookoutput);
 			
+=======
+			ARDataPoint2.EventCampionAR(AR_Data_Point2, workbookoutput);
+			// printing Nurture data
+			ARDataPoint2.SegmentationAR(AR_Data_Point2, workbookoutput);
+			// Printing Nurture Library
+			ARDataPoint2.NurtureCampaigns(AR_Data_Point2, workbookoutput);
+			// Printing Program Library
+			ARDataPoint2.ProgrameLibraryAR(AR_Data_Point2, workbookoutput);
+			// Printing ProgramData 
+			ARDataPoint2.ProgramDataAR(AR_Data_Point2, workbookoutput);
+			// Printing integrations
+			ARDataPoint2.IntegrationAR(AR_Data_Point2, workbookoutput);
+			// printing Revenue Models
+
+			ARDataPoint2.RevenueModelsAR(AR_Data_Point2, workbookoutput);
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 			ARDataPoint2.AddtionalProductAR(AR_Data_Point2, workbookoutput);
 			
 

@@ -1,5 +1,6 @@
 package com.marketo.qa.Tests;
 
+<<<<<<< HEAD
 import com.marketo.qa.utility.ExcelARReport;
 import com.marketo.qa.utility.converting;
 import com.marketo.qa.utility.passData;
@@ -17,5 +18,9 @@ public class test {
 		
 
 	}
+=======
+public class test {
+	int i = 10;
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 
 }

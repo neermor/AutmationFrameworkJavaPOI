@@ -20,7 +20,11 @@ public class reports {
 		
 		
 		//word format data pasting 
+<<<<<<< HEAD
 		 XWPFDocument document = new XWPFDocument();
+=======
+		XWPFDocument document = new XWPFDocument();
+>>>>>>> 756f7ccb649fbee02a08964e9b289fc0f41ab3a3
 		
 			docReports.stats(document);
 
