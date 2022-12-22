@@ -1,2 +1,28 @@
+ ## Output files  
+ /target/ 
+ /test-output/
+  /target/classes/ 
+ /Reports/
+ /Config/ScreenShot/
+ 
+ ## OS Files 
+.DS_Store
+.DS_Store?
+markketo-instance/*.log
+MarketoInstance/*.log
+
+# Intellij project files
+*.iml
+*.class
+*.ipr
+*.iws
+.idea/
+
+# Logs files
+*.log
+
+# WebDriver files
+markketo-instance/src/main/resources/
+MarketoInstance/src/main/resources/
+.metadata/*
 /target/
-/.metadata/

@@ -10,7 +10,7 @@ import java.util.*;
 	
 	public class WordFormatWords {
 
-	 static void cloneRunProperties(XWPFRun source, XWPFRun dest) { // clones the underlying w:rPr element
+	 static void cloneRunProperties(XWPFRun source, XWPFRun dest) { 	// clones the underlying w:rPr element
 	  CTR tRSource = source.getCTR();
 	  CTRPr rPrSource = tRSource.getRPr();
 	  if (rPrSource != null) {
@@ -35,16 +35,24 @@ import java.util.*;
 	    for (int charNumber = 0; charNumber < runChars.length; charNumber++) { //go through all characters in that run
 	     sb.append(runChars[charNumber]); //buffer all characters
 	     runText = sb.toString();
-	     if (runText.endsWith(keyword)) { //if the bufferend character stream ends with the keyword  
+	     
+	     
+	   
+	 	    
+	     if (runText.endsWith(keyword)) { 
+	    	 
+	    	//if the buffered character stream ends with the keyword  
 	      //set all chars, which are current buffered, except the keyword, as the text of the actual run
+	    	 
+	    	
 	      run.setText(runText.substring(0, runText.length() - keyword.length()), 0); 
 	      run2 = paragraph.insertNewRun(++runNumber); //insert new run for the formatted keyword
 	      cloneRunProperties(run, run2); // clone the run properties from original run
-	      run2.setText(keyword, 0); // set the keyword in run
+	      run2.setText(keyword,0); // set the keyword in run
 	      for (String toSet : formats.keySet()) { // do the additional formatting
-	       if ("color".equals(toSet)) {
-	        run2.setColor(formats.get(toSet));
-	       } else if ("bold".equals(toSet)) {
+//	       if ("color".equals(toSet)) {
+//	        run2.setColor(formats.get(toSet));	       } 
+	       if ("bold".equals(toSet)) {
 	        run2.setBold(Boolean.valueOf(formats.get(toSet)));
 	       }
 	      }

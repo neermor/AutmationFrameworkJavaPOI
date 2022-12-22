@@ -1,102 +1,73 @@
 package com.marketo.qa.utility;
 
 import static org.testng.Assert.assertTrue;
-
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
-import org.apache.poi.util.Units;
-import org.apache.poi.xwpf.usermodel.BreakType;
-import org.apache.poi.xwpf.usermodel.Document;
-import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.apache.poi.xwpf.usermodel.XWPFRun;
-import org.apache.xmlbeans.XmlException;
 
 public class reports {
 
-	passData pd = new passData();
+	static String word = System.getProperty("user.dir") + "//Reports//"; 
 
-	static String word = System.getProperty("user.home") + "\\Desktop\\Reports\\";
-	static String screenshotsPathWordDoc = word + "screenshots.docx";
-
-	public static void docs() throws IOException, XmlException {
+	public static void docs() throws Exception {
 		Path outputDirectory = Paths.get(word);
 		if (!Files.exists(outputDirectory)) {
 			assertTrue(new File(String.valueOf(outputDirectory)).mkdirs(), "Unable to create output directory");
 
 		}
+		
+		
+		//word format data pasting 
+		 XWPFDocument document = new XWPFDocument();
+		
+			docReports.stats(document);
 
-		XWPFDocument document;
-		document = new XWPFDocument();
-		XWPFParagraph paragraph = document.createParagraph();
-		XWPFRun run = paragraph.createRun();
-		run.setBold(true);
-		run.setText("Stats");
+			// Models report part, Note : we have to added conditional based formatting
+			docReports.models(document);
 
-		paragraph = document.createParagraph();
-		run = paragraph.createRun();
-		paragraph.setNumID(stylingDoc.bullet(document));
-		run.setText("They have " + passData.Exceldata("Change Score")+ " triggered campaigns");
-		System.out.println(passData.Exceldata("Interesting Moment"));
-		paragraph = document.createParagraph();
-		run = paragraph.createRun();
-		paragraph.setNumID(stylingDoc.bullet(document));
-		run.setText("They have " + passData.Document_name + " triggered campaigns");
-		paragraph = document.createParagraph();
-		paragraph.setAlignment(ParagraphAlignment.LEFT);
-		XWPFRun r1 = paragraph.createRun();
+			// adding lead scoring data into report
+			docReports.lead(document);
 
-		try {
-			int width = 400;
-			int height = 240;
+			// Interesting moment report part
+			docReports.intrestingMoment(document);
 
-			r1.addCarriageReturn();
-			r1.addCarriageReturn();
-			r1.setBold(false);
-			r1.addCarriageReturn();
-			r1.setFontFamily("Calibri Light (Headings)");
-			r1.setFontSize(10);
-			r1.setText(passData.Org_info);
+			// adding Data management
 
-			r1.addPicture(new FileInputStream(passData.login), Document.PICTURE_TYPE_PNG, passData.login,
-					Units.toEMU(width), Units.toEMU(height));
-			r1.addBreak(BreakType.PAGE);
-			r1.addCarriageReturn();
-			r1.addCarriageReturn();
+			docReports.DataManagment(document);
 
-			r1.addPicture(new FileInputStream(passData.after), Document.PICTURE_TYPE_PNG, passData.after,
-					Units.toEMU(width), Units.toEMU(height));
+			// adding Events data
+			docReports.Events(document);
 
-		} catch (Exception e) {
+			// adding Nurture data
+			docReports.nurtureData(document);
 
+			// Segment Data printing
+			docReports.segment(document);
+
+			// program library section
+			docReports.programLibrary(document);
+
+			// Integration Data Section
+			docReports.Integration(document);
+
+			// Web Personalize Data Section
+			docReports.webPersonalize(document);
+
+			// Target Account Management
+			docReports.TAM(document);
+
+			docReports.PredictiveContent(document);
+			
+			docReports.EmailInsights( document);
+			//closing the document
+			docReports.close(document);
 		}
-		stylingDoc.HeaderFooter(document);// Styling of Header and footer
-
-		String[] keywords = new String[] { passData.Document_name, passData.test,passData.Exceldata("Interesting Moment") };
-		Map<String, String> formats = new HashMap<String, String>();
-		formats.put("bold", "true");
-		formats.put("color", "000000");
-
-		for (XWPFParagraph AllParagraph : document.getParagraphs()) { // go through all paragraphs
-			for (String keyword : keywords) {
-
-				WordFormatWords.formatWord(AllParagraph, keyword, formats);
-			}
-		}
-		FileOutputStream out = new FileOutputStream(screenshotsPathWordDoc);
-
-		document.write(out);
-		out.close();
-
+		
 	}
 
-}
+		
+	
+
+
