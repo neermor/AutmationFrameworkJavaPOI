@@ -26,3 +26,5 @@ markketo-instance/src/main/resources/
 MarketoInstance/src/main/resources/
 .metadata/*
 /target/
+/.metadata/
+/.metadata/
